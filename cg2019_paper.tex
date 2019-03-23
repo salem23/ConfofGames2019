@@ -465,7 +465,7 @@ The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TOR
 
 The evaluation of the individuals is based in two different fitness functions (one per approach), namely:
 % Antonio - Mohammed, are we still considering two fitness functions?
-
+%%% Mohammed - No only the second one
 \begin{description}
 	\item[GFC-MMS:]  
 	\begin{equation} \label{fit1}
@@ -481,7 +481,7 @@ The evaluation of the individuals is based in two different fitness functions (o
 	\end{equation}	
 \end{description}
 
-They depend on some variables, which we considered in our previous work [***REF-CIG2018***] in order to obtain more `human-like' controllers. So, they try to drive as fast as possible in every single part of the track while avoiding damage. The variables are:
+They depend on some variables, which we considered in our previous work \cite{blind_2018} in order to obtain more `human-like' controllers. So, they try to drive as fast as possible in every single part of the track while avoiding damage. The variables are:
 \begin{itemize}
 \item $MinSpeed$: aims to increase the good driving in the difficult zones of the tracks (e.g. curves).
 \item $MaxSpeed$: centered on the enhancement of the controller in easy or straight parts.
@@ -492,7 +492,7 @@ They depend on some variables, which we considered in our previous work [***REF-
 So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
 car in a 20 laps race in a circuit without opponents, and the results (Maximum, Minimum and Average speed, Damage) are used to compute the fitness value. 
 As the objective of the car controller is to win as many races as
-possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers [***REF Uncertainty in games***].
+possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{unctorcs}.
 The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
 
 
@@ -502,19 +502,56 @@ With regard to the other genetic operators, mutation has remained the same as in
 
 A new \textbf{Race-based Selection process} has been implemented in this approach, aiming to get better individuals/controllers to be parents of the following population. To this end the parents are selected by means of several races against the rest of candidates (X parents compete in each race), the winner of every race is considered as the best of the individuals.
 % Antonio - Mohammed, do you conduct just one race among the parents or some of them?
-This way, `probably' the best individuals will be selected to reproduce. We cannot assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents [***REF Uncertainty in games***]. Anyway, we argue that this selection process will be fairer and more reliable, as it would be desirable in order to ensure a good optimization process.
+% Mohaammed- we used 5 races to evaluate the X parents
+This way, `probably' the best individuals will be selected to reproduce. We cannot assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents\cite{unctorcs}. Anyway, we argue that this selection process will be fairer and more reliable, as it would be desirable in order to ensure a good optimization process.
 
 Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
 
 % >>>>>> TODO: Explain BLX-Alpha and why we have included it -> Mohammed  <<<<<<
 
-\textbf{BLX-$\alpha$ Crossover operator} [***REF***] has been also added to the GA (instead of previous two-point operator).
+\textbf{BLX-$\alpha$ Crossover operator}\cite{blx2008} has been also added to the GA (instead of previous two-point operator). The blend crossover operator (BLX-α) starts by choosing
+randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
+$i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$.See Fig\ref{fig:blxalpha}
 
-The aim of this approach is...
 
-The advantages of BLX-$\alpha$ are...
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=3cm]{fig/blxalpha.jpg}
+		\caption{Blend crossover operator ($BLX-\alpha$}
+		\label{fig:blxalpha}	
+	\end{center}	
+\end{figure}
 
-Thus, we try to enhance with it...
+
+
+This operator is suitable for real coded genetic algorithms and it achieves a good balance between exploration and exploitation \cite{blx2008}.
+
+This operator is based on the random generation
+of genes from the associated neighborhood of the genes in the parents. Thee generated descendants are deferent among them and also among them and their parents leading to a high exploration in the generation of the descendants.
+
+In the Blend crossover operator, the $\alpha$  parameter values can control the exploration/exploitation rate so to
+ensure the balance between exploitation and exploration of the
+search space, $\alpha = 0.5$ could be selected.
+
+In genetic algorithms, The search process needs high exploration rate in the first generations to explore multiple parts of the search space so to  obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
+%%Thus, we try to enhance with it.
+In our approach, we propose to decrease the values of $\alpha$ so to get more exploitation and less exploitation over the generations. Its value is obtained by \ref{eqalpha}
+
+\begin{equation}
+\label{eqalpha}
+\alpha =1-\frac{g}{g_{max}}
+\end{equation}
+where $g$ is the current generation and $g_{max}$ is the maximum generations number.\\
+%%Mohammed-  I tried this and it get better results than alpha=0.5
+ With this combination, we can achieve an effective
+balance between exploitation and exploration and therefore, better solutions may be reached.
+
+This operator is based on the random generation
+of genes from the associated neighborhood of the genes in the parents. With
+this technique, offspring are generated that can defer
+among them and also among them and their parents. In this sense, this operator presents
+a high exploration in the generation of the descendants.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%  NEW RIVAL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -536,6 +573,9 @@ Thus, we try to enhance with it...
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
+
+
+
 After analyzing most of the available tracks, we have selected for these experiments the \textbf{Alpine 2} circuit. It is a quite complex one, with multiple turns, but also straight parts (See Figure \ref{fig:alpine2_track}).
 
 \begin{figure}[!ht]	
@@ -550,7 +590,7 @@ After analyzing most of the available tracks, we have selected for these experim
 
 We have used the driving car  \textit{car1-tbr1} for our controllers, since according to previous experiments \cite{evo17}, this is a fair choice due to its moderate performance. This will lead our controller to be prepared to drive in the most usual conditions. 
 
-We have evaluated the Genetic Fuzzy Controller (GFC) with the two proposed fitness functions: GFC-MMS (Equation \ref{fit1}) and GFC-AVS (Equation \ref{fit2}), comparing them for racing performance. We have run the algorithm with a population size of 50 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.1, and 10 different runs per configuration.
+We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness functions: GFC-AVS (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.1, and 10 different runs per configuration.
 
 
 %\begin{table}[!ht]	
