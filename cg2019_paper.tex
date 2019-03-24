@@ -587,7 +587,7 @@ We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness f
 %}
 %\end{table}
 
-Race  based selection was carried out where 10 races are used to compete every 10 controllers of the population.
+New race  based selection was carried out where 10 races are used to compete every 10 controllers of the population.
 We used 5 races (of 5 laps) in the \textbf{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textbf{E-Track 5} track (a new one for them). 
 In order to enhance the selection of the best, another two controllers are picked randomly from the default TORCS bots to participate in the race. Moreover, in order to do it fairer, we have defined a \textit{score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 points.
 The evolution process was applied  to obtain the three following controllers:
@@ -598,10 +598,7 @@ The evolution process was applied  to obtain the three following controllers:
 	\item $GFC-VA$:A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race selection in every 5 generations and Equation \ref{fit2} in the others. 
 \end{itemize}
 
-These genetic fuzzy based controllers are evaluated in some practice races together with other six bots from TORCS platform.
-
-%"Best laps" and "Min damage" are the scores obtained by every controller in every race when getting the best lap time or/and the minimum damage of all the contenders. 
-This evaluation is a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the best two $GFC-MMS_1$ and $GFC-AVG_2$, $EVO1$ and $EVO2$, and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textbf{Alpine 2} track (trained one); and the other 5 races took place in \textbf{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
+These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the four genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textbf{Alpine 2} track (trained one); and the other 5 races took place in \textbf{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
 The results are shown in Table \ref{tab:chsresults}. 
 %
 \begin{table*}[ht]
@@ -635,6 +632,26 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 	}
 \end{table*}
 %
+
+
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=8cm]{fig/gfc_races.jpg}
+		\caption{Genetic fuzzy based controllers evaluation}
+		\label{fig:gfc_races}	
+	\end{center}	
+\end{figure}
+It is clear that the $GFC-VA$ fuzzy controller has yield the best results in the evaluation process.Indeed, The proposed controller won three races in the alpine2 track and has been ranked in the second place in the two other races. In the Track5 track, it won two races and has been second in two times and third  in the last race. 
+
+The second controller using the $BLX-\alpha$ operator came second in all races. He won one race and was ranked second in two more and third in three races.
+The other races were won by the $berniw$ controller
+We can notice that the $BLX-\alpha$ based controllers won three of the five races in the Alpine2 track used in the selection and were ranked at least in fourth place.
+The same results or even  better were obtained for the other track supposed to be unknown for our controllers.
+
+
+These results confirm the effectiveness and strength of the race-based selection policy used to evaluate individuals as well as to select candidates for crossover and mutation. Although this policy has been applied only for every five generations due to its time-consuming, it has clearly affected the performance of the obtained controllers  and this is clearly visible in the large gap between the results of the $GFC$ controller  against $GFC-RS$ one.\\
+this proposed selection policy, combined with the $BLX-\alpha$ operator, has improved the performance of the $GFC-FA$ controller.
+The introduction of a variable alpha parameter along the generations in $GFC-VA$ bot has made it possible to better control the exploration / exploitation ratio during the evolutionary process which allows to generate descendants different from their parents in genes and more efficient than them.
 
 \textbf{Comparison with S\&PL controller}
 
