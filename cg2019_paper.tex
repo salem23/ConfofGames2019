@@ -140,7 +140,8 @@ corresponding section.
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
-simulator, the fuzzy controllers and the Genetic Algorithm implemented in Section \ref{sec:experimental_setup}. After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in section \ref{sec:conclusions}.
+simulator \ref{sec:torcs}, the defined fuzzy controllers \ref{sec:subcontrollers} and a deep explanation of the Genetic Algorithm implemented and tested in this work in Section \ref{sec:GA_optimization}. Then, in Section \ref{sec:new-opponent}, we briefly introduce a real controller which participated in previous editions of the Simulated Car Racing Competition and which will be considered as a new opponent for comparisons.
+After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in section \ref{sec:conclusions}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,39 +185,44 @@ In this paper we focus on the improvement of the evolved controllers by means of
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{TORCS Simulator and Fuzzy Controllers}
-\label{sec:experimental_setup}
+\section{The Open Racing Car Simulator}
+\label{sec:torcs}
 
-The Open Racing Car Simulator (TORCS) \cite{torcs4} is an open
-source, modern, multi-player, modular and portable racing simulator
-that allows users to compete against other computer-controlled opponents.
+The framework in which this study has been conducted is TORCS \cite{torcs4}. It is an open source, multi-player, modular and portable racing simulator that allows users to compete against other computer-controlled opponents.
 Its high degree of modularity and portability, together with the
 realistic and real-time driving simulation, make it an ideal testbed
-for artificial intelligence research, as we have shown in the previous section.
+for artificial intelligence research, as stated in previous section.
 
 Every car in TORCS includes  a large set of sensors \cite{Torcs3},
-whose values the car can use during a race, such as distances to track borders, to rivals, current fuel, current gear, position in the race, speed, or damage, among others.
+whose values the car can use during a race, such as distances to track borders, to rivals, current fuel, current gear, position in the race, speed, or damage, among others. See Figure \ref{fig:torcs-sensors}.
+
+\begin{figure}[!ht] 
+	\begin{center}
+		\includegraphics[scale=0.35]{fig/torcs-sensors}
+		\caption {TORCS capture showing some of the sensors that the car includes.}
+		\label{fig:torcs-sensors}
+	\end{center}
+% Antonio - if we need space we can remove this image
+\end{figure}
+
+
 The sensor values are considered by any TORCS autonomous driver, or
 {\em controller}, to manage the car using actuators \cite{Torcs3}: the
 steering wheel, the accelerator, the brake pedal and the gearbox.   
 
-%Thus, a controller is a program, running inside TORCS, that drives a car automatically. It gets as input information about the current state of
-%the car and its situation on the track (sensors). These collected data
-%are used to decide actions to perform in the next simulation tick.  
-
-
-\subsection{Fuzzy sub-controllers}
-\label{subsec:subcontrollers}
 
 %*****************************  FUZZY CONTROLLER  ******************************
-The controller proposed initially \cite{evo17} has the same modular
-architecture as the simple TORCS driver; however, the target speed and
+
+\section{Fuzzy sub-controllers}
+\label{sec:subcontrollers}
+
+We initially proposed a controller \cite{evo17} with the same modular architecture as the simple TORCS driver; however, the target speed and
 steering angle are computed by means of two modular and specialized
 fuzzy sub-controllers, which consider five position sensors. This is
 the controller which will be improved by means of a GA in this
 work.
 
-The {\em fuzzy target speed sub-controller} aims to estimate the
+The \textbf{fuzzy target speed sub-controller} aims to estimate the
 optimal target speed of the car, both in straight parts and curves of
 the track, taking into account two criteria: move as fast as possible
 and be safe. This estimation is based on two general cases: if the car
@@ -305,7 +311,7 @@ Moreover, the controller is based in a set of fuzzy rules, designed to maximize 
 % \textbf{Fuzzy steering control sub-controller}\\
 % %
 %
-The second is the {\em fuzzy steering sub-controller}, which aims to define the steer angle estimating and determining the target position of the car. 
+The second is the \textbf{fuzzy steering sub-controller}, which aims to define the steer angle estimating and determining the target position of the car. 
 %
 The structure of this sub-controller is similar to the speed one, but it has the steering as output. Thus, the set of sensors considered is the same as in the speed case.
 
@@ -428,10 +434,8 @@ This is the base of the optimization conducted by the Genetic Algorithm, as it i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Genetic Algorithm}
-\label{subsec:GA_optimization}
-
-% >>>>>> Section Rewritten by Antonio - Just missing TODOs by Mohammed  <<<<<<<<
+\section{Genetic Algorithm}
+\label{sec:GA_optimization}
 
 We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs_Goldberg89} aiming to find the optimal parameters of the membership functions of the two sub-controllers previously introduced. 
 
@@ -444,8 +448,7 @@ Thus, every individual is a vector of 18 values/parameters, 6 per variable. Figu
   \end{center}	
 \end{figure*}
 
-The initialization of the chromosomes (first population) is performed
-assigning random values inside a range of variation ($[0,100]$)
+The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
 \cite{GAs_Goldberg89}, in order to start from feasible values
 \cite{evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
 implementation \cite{elsayed13} in a vector that includes all variables to optimize.
@@ -460,97 +463,73 @@ The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TOR
   \caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
 \end{figure}
 
+The evaluation of the individuals is based in different fitness functions, which we have tested in previous works. In this study we will consider the one which yielded the best results in our previous paper \cite{blind_2018}, namely:
 
-% TODO: Mohammed, please, revise this
-
-The evaluation of the individuals is based in two different fitness functions (one per approach), namely:
-% Antonio - Mohammed, are we still considering two fitness functions?
-%%% Mohammed - No only the second one
-\begin{description}
-	\item[GFC-MMS:]  
-	\begin{equation} \label{fit1}
-	\begin{array}{ll}
-	f_{1} =   \frac{(MinSpeed*MaxSpeed) }{Damage+1}
-	\end{array}
-	\end{equation}
-	\item[GFC-AVS:] 
-	\begin{equation} \label{fit2}
+\begin{equation} \label{fit2}
 	\begin{array}{lll}
-	f_{2}= \frac{AVG(Speed)}{Damage+1}
+	f_{GFC-AVS}= \frac{AVG(Speed)}{Damage+1}
 	\end{array}
-	\end{equation}	
-\end{description}
+\end{equation}	
 
-They depend on some variables, which we considered in our previous work \cite{blind_2018} in order to obtain more `human-like' controllers. So, they try to drive as fast as possible in every single part of the track while avoiding damage. The variables are:
+It depends on two variables, which we considered in our previous work \cite{blind_2018} in order to obtain more `human-like' controllers. So, it aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage. These variables are:
 \begin{itemize}
-\item $MinSpeed$: aims to increase the good driving in the difficult zones of the tracks (e.g. curves).
-\item $MaxSpeed$: centered on the enhancement of the controller in easy or straight parts.
-\item $AVG(Speed)$: shows the combination of the overall behavior in the whole track.
+\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
 \item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
 \end{itemize} 
 
 So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
 car in a 20 laps race in a circuit without opponents, and the results (Maximum, Minimum and Average speed, Damage) are used to compute the fitness value. 
 As the objective of the car controller is to win as many races as
-possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{unctorcs}.
+possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{merelo2016statistical}.
 The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
-
-
-% >>>>>> TODO: Explain the new selection process -> Mohammed  <<<<<<<<<<<<<
 
 With regard to the other genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997} has been considered. 
 
-A new \textbf{Race-based Selection process} has been implemented in this approach, aiming to get better individuals/controllers to be parents of the following population. To this end the parents are selected by means of several races against the rest of candidates (X parents compete in each race), the winner of every race is considered as the best of the individuals.
+A new \textbf{Race-based Selection process} has been implemented in this approach, aiming to get better individuals/controllers to be parents of the following population. To this end the parents are selected by means of several races against the rest of candidates (X parents compete in each race), the 
+% Antonio - Mohammed, How many parents do you evaluate at the same time?
+%           How many are selected in every race?
+%           How many races do you conduct every generation to select all the 
+%           parents?
+winner of every race is considered as the best of the individuals.
 % Antonio - Mohammed, do you conduct just one race among the parents or some of them?
 % Mohaammed- we used 5 races to evaluate the X parents
-This way, `probably' the best individuals will be selected to reproduce. We cannot assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents\cite{unctorcs}. Anyway, we argue that this selection process will be fairer and more reliable, as it would be desirable in order to ensure a good optimization process.
+This way, `probably' the best individuals will be selected to reproduce. We cannot assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. Anyway, we argue that this selection process will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
 
 Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
 
 % >>>>>> TODO: Explain BLX-Alpha and why we have included it -> Mohammed  <<<<<<
 
-\textbf{BLX-$\alpha$ Crossover operator}\cite{blx2008} has been also added to the GA (instead of previous two-point operator). The blend crossover operator (BLX-α) starts by choosing
-randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
-$i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$.See Fig\ref{fig:blxalpha}
-
+\textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008} has also been added to the GA (instead of previous two-point operator). 
+The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
+$i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
 \begin{figure}[!ht]	
 	\begin{center}
-		\includegraphics[width=3cm]{fig/blxalpha.jpg}
-		\caption{Blend crossover operator ($BLX-\alpha$}
+		\includegraphics[width=5cm]{fig/blxalpha.jpg}
+		\caption{Blend crossover operator ($BLX-\alpha$)}
 		\label{fig:blxalpha}	
 	\end{center}	
 \end{figure}
 
+Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
+This operator is suitable for real coded genetic algorithms and it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
 
+In the Blend crossover operator, the $\alpha$ parameter values can control the exploration/exploitation rate. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
 
-This operator is suitable for real coded genetic algorithms and it achieves a good balance between exploration and exploitation \cite{blx2008}.
+In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
 
-This operator is based on the random generation
-of genes from the associated neighborhood of the genes in the parents. Thee generated descendants are deferent among them and also among them and their parents leading to a high exploration in the generation of the descendants.
-
-In the Blend crossover operator, the $\alpha$  parameter values can control the exploration/exploitation rate so to
-ensure the balance between exploitation and exploration of the
-search space, $\alpha = 0.5$ could be selected.
-
-In genetic algorithms, The search process needs high exploration rate in the first generations to explore multiple parts of the search space so to  obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
-%%Thus, we try to enhance with it.
-In our approach, we propose to decrease the values of $\alpha$ so to get more exploitation and less exploitation over the generations. Its value is obtained by \ref{eqalpha}
+After some experiments considering constant values of $\alpha$, we conclude that the best approach is to decrease the values of $\alpha$ over the generations (getting sequentially more exploitation and less exploration). 
+So, its value is obtained applying the following expression:
 
 \begin{equation}
 \label{eqalpha}
 \alpha =1-\frac{g}{g_{max}}
 \end{equation}
-where $g$ is the current generation and $g_{max}$ is the maximum generations number.\\
-%%Mohammed-  I tried this and it get better results than alpha=0.5
- With this combination, we can achieve an effective
-balance between exploitation and exploration and therefore, better solutions may be reached.
 
-This operator is based on the random generation
-of genes from the associated neighborhood of the genes in the parents. With
-this technique, offspring are generated that can defer
-among them and also among them and their parents. In this sense, this operator presents
-a high exploration in the generation of the descendants.
+Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations.
+%%Mohammed-  I tried this and it get better results than alpha=0.5
+% Antonio - Ok, great. I have commented this in the text.
+With this combination, we can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
 
 
 
@@ -660,7 +639,7 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 \textbf{Comparison with S\&PL controller}
 
 
-Finally, Table \ref{tab:damagespeed} presents a comparison between the  two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{spl}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
+Finally, Table \ref{tab:damagespeed} presents a comparison between the  two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{SPL-controller09}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
 
 \begin{table}[!ht]
   \centering
