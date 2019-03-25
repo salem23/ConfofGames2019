@@ -168,25 +168,25 @@ Results were encouraging, but it is still a surrogate model. As such a
 model, we need to decide on the best track to perform {\em training}
 and also the solo race measures with the biggest impact in the
 eventual racing performance. This is why in this paper we have
-combined into the fitness function only those terms related with speed during race (to maximize) and damage (to minimize) - the most important factors - in two different approaches.
+combined into the fitness function only those terms related with speed
+during race (to maximize) and damage (to minimize) - the most
+important factors - in two different approaches. 
 Besides, the fitness evaluation process has a certain amount of uncertainty because damages and some track conditions can randomly vary in different
 evaluations. This is why instead of selecting directly the driver as
 we did before, we will be using an actual race among the best drivers
 to select the best one.
 
-The main objective of the three new techniques introduced in this
-paper, namely, heuristic track selection, fitness function design and
-{\em winner} selection have as the main objective to create a better
-model of the racing environment. Its results will be commented in the
-corresponding section. 
-
-%considering the noisy nature of the problem, which leads to the fact
-%that the same individual could obtain very good or very bad results in
-%the same races, and against the same opponents, due to the
-%stochasticity present in the game and in the rivals' AI.
-% Antonio - Just in case we want to comment something about te uncertainty/noise of the game
-
-
+The two new techniques introduced in this paper, namely, ``Pole''
+selection and BLX-$\alpha$ crossover, try to improve on previous
+results by first relying less on the surrogacy of the fitness function
+to select the best individuals. The Pole selection will use fitness to
+select a few individuals that will race against each other; racing
+will {\em smooth out} randomness in the fitness by putting them in a
+more real environment; racing cars against each other will offer a
+result that varies much less than simply comparing fitness. But, even
+so, uncertainty is present in the fitness and we should avoid
+excessive exploitation of the results. The BLX-$\alpha$ crossover we
+have introduced takes care of this aspect.
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
