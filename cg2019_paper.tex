@@ -25,11 +25,30 @@ Juan J. Merelo\IEEEauthorrefmark{3}}
 
 \begin{abstract}
 
-% Antonio - I have written this abstract for the submission. Please revise an improve it JJ and Mohammed. ;D	
+% Antonio - I have written this abstract for the submission. Please revise and improve it JJ and Mohammed. ;D	
 	
-This paper describes an enhanced version of a Fuzzy-based Genetic Controller for the car simulator TORCS. It is based on two fuzzy sub-controllers, one for deciding on the wheel steering angle and another to set the car target speed at the next simulation tick. They are both optimized by means of an Evolutionary Algorithm, which considers a parameter-less fitness function focused on the maximization of the average speed during the race and the minimization of the car damage. Moreover a Blend Crossover operator has been applied in order to control the balance between exploration and exploitation. This operator is also combined with a novel selection policy of parents, based in races where the best individuals to date compete against others, so only the winner will be selected.
+This paper describes an enhanced version of a fuzzy-based genetic
+controller for the car racing simulator TORCS. It is based on two fuzzy
+sub-controllers, one for deciding on the wheel steering angle and
+another to set the car target speed at the next simulation tick. They
+are both optimized by means of an Evolutionary Algorithm, which
+considers a fitness function focused on the
+maximization of the average speed during the race and the minimization
+of the car damage. Moreover a Blend Crossover operator has been
+applied in order to control the balance between exploration and
+exploitation. This operator is also combined with a novel selection
+policy of parents, based in races where the best individuals to date
+compete against others, so only the winner will be selected.
 % Antonio - Mohammed, is it only the winner selected or the top ones?
-Several experiments have been conducted, testing the value of the different controllers. The results show that the combination of a dynamic $BLX-\alpha$ crossover operator + the race-based selection policy clearly beats the rest of approaches. Moreover, in the comparison of this controller with one of the participants of the prestigious international Simulated Car Racing Competition, our autonomous driver obtains much better results than the opponent.
+% You can't just say "we have added this and that". We need the
+% motivation and the objectives. JJ
+Several experiments have been conducted, testing the value of the
+different controllers. The results show that the combination of a
+dynamic $BLX-\alpha$ crossover operator + the race-based selection
+policy clearly beats the rest of approaches. Moreover, in the
+comparison of this controller with one of the participants of the
+prestigious international Simulated Car Racing Competition, our
+autonomous driver obtains much better results than the opponent. 
 
 \end{abstract}
 \begin{IEEEkeywords}
