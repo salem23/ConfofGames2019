@@ -214,10 +214,21 @@ driver for a car, and through the use of different simulators and
 techniques, they have probably been pursued in one way or the
 other. In a nutshell, you have to provide for a way to drive the car,
 in real time, from the inputs gathered by the car. TORCS offer a rich
-array of sensors, but it also includes vision, although most papers do
-rely only on the sensors.
+array of sensors, but it also includes vision  \cite{Floreano2004}, although most papers do
+rely only on the sensors, since they offer enough information for
+driving the car.
 
-The way sensors and effectors are connected also varies. 
+The way sensors and effectors are connected also varies. The simulator
+itself offers a baseline controller, but that is also configurable and
+you can choose to wire it in some other way
+\cite{cussat2016dangerousness}. While this might be effective for some
+specific purposes like the one used in the paper, evaluate the
+dangerousness of the track, in general working with an already wired
+controller that is able, for instance, to work towards a target speed
+instead of dealing directly with throttle and braking is much more
+convenient. This default controller, as a matter of fact, lets you
+choose what you actually want to change or optimize. Some people opt
+for changing just the steering \cite{CarRacing_Pelta09,
 
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
