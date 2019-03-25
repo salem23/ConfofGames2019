@@ -10,7 +10,8 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Enhancing Evolutionary Fuzzy Drivers for TORCS using Race-based Selection and BLX--$\alpha$ Crossover}
+\title{Beating uncertainty in racing bot evolution through enhanced
+  exploration and pole position selection}
 
 \author{\IEEEauthorblockN{Mohammed Salem\IEEEauthorrefmark{1},
 Antonio M. Mora\IEEEauthorrefmark{2} and
@@ -26,7 +27,13 @@ Juan J. Merelo\IEEEauthorrefmark{3}}
 \begin{abstract}
 
 % Antonio - I have written this abstract for the submission. Please revise and improve it JJ and Mohammed. ;D	
-	
+One of the main problems in the design through optimization of car
+racing bots is the inherent noise in the optimization process: besides
+the fact that the fitness is a heuristic based on what we think are
+the keys to success and as such just a surrogate for the ultimate
+objective, winning races, fitness itself is uncertain due to the
+stochastic behavior of racing conditions and the rest of the
+(simulated) racers. 
 This paper describes an enhanced version of a fuzzy-based genetic
 controller for the car racing simulator TORCS. It is based on two fuzzy
 sub-controllers, one for deciding on the wheel steering angle and
@@ -64,7 +71,11 @@ Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, 
 % NEW SELLING POINTS: 
 % 	- Tried selection based in races every 5 generations (in addition to at the end)
 %	- Implemented BLX-Alpha Crossover to enhance results
-%	- Tested against a "real" controller which finished in the middle of classification at the last Car Racing Competition (in 2009, but anyway it has not been improved and it's the only one we have)
+%	- Tested against a "real" controller which finished in the
+%	middle of classification at the last Car Racing Competition
+%	(in 2009, but anyway it has not been improved and it's the
+%	only one we have)
+% The introduction is then the same one as before? - JJ
 
 Autonomous driving is a problem that shows up in many environments,
 including of course self-driving cars, but also in drones, ships,
