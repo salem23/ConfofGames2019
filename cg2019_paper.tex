@@ -40,7 +40,7 @@ considers an already tested fitness function focused on the
 maximization of the average speed during the race and the minimization
 of the car damage. The noisy environment asks for keeping diversity
 high during evolution, that is why we have added a Blend Crossover (BLX-$\alpha$) operator, which is, besides, able to exploit current results at the same time it explores. Additionally, we try to address uncertainty in
-selection by introducing a novel selection policy of parents based in races, where the individuals are grouped and compete against others in several races, so the first 5 will remain in the population as parents.
+selection by introducing a novel selection policy of parents based in races, where the individuals are grouped and compete against others in several races, so just the firsts ranked will remain in the population as parents.
 Several experiments have been conducted, testing the value of the
 different controllers. The results show that the combination of a
 dynamic BLX-$\alpha$ crossover operator plus the \textit{pole position selection} policy clearly beats the rest of approaches. Moreover, in the
@@ -532,18 +532,9 @@ The selected track for this evaluation will be one with a combination of curves 
 
 With regard to the other genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997} has been considered. 
 
-A new \textbf{Pole Position Selection policy} (or race-based selection) has been implemented in this approach, aiming to get better or more reliable individuals/controllers to be parents of the following population. To this end all the individuals are arranged randomly in groups of 10, then 5 different races of 20 laps are simulated using every individual as a controller (using the same car) in a track of TORCS. After every race, the participants obtain different scores depending on their position in the final pole. The best 5 controllers in the sum of 5 races are selected as parents for the following offspring.
-% Antonio - Mohammed, How many parents do you evaluate at the same time?
-%           How many are selected in every race (only the winner, some of them)?
-%				What happens if the race is won by a bot of TORCS?
-%           How many races do you conduct every generation to select all the 
-%           parents?
-%				How many tracks? How many laps? Are there other rivals per race?
-% Antonio - We have to explain very well the process as it is one of the main 
-%           novelties of the work. ;)
-% Antonio - Mohammed, do you conduct just one race among the parents or some of them?
-% Mohaammed- we used 5 races to evaluate the X parents
-This way, with higher probability the best individuals will be selected to reproduce. It is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection process will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
+A new \textbf{Pole Position Selection policy} (or race-based selection) has been implemented in this approach, aiming to get better or more reliable individuals/controllers to be parents of the following population. To this end all the individuals are arranged in groups of 10, then some different races of  several laps are simulated using every individual as a controller (with the same car) in a track of TORCS. After every race, the participants obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following offspring.
+
+This way, the best individuals will be selected to reproduce with higher probability. It is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
 %Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
 
 
@@ -554,7 +545,7 @@ $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See F
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=5cm]{fig/blxalpha.jpg}
-		\caption{Blend crossover operator (BLX-$\alpha$)}
+		\caption{Blend crossover operator ($BLX-\alpha$)}
 		\label{fig:blxalpha}	
 	\end{center}	
 \end{figure}
@@ -610,44 +601,28 @@ On the basis of the results of our previous paper \cite{salem_cig2018}, the sele
 
 As in our others studies, we have used the vehicle \textit{car1-tbr1} for our controllers, since it has a moderate performance, which will lead our controller to be prepared to drive in the most usual conditions.
 
-We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness function: $AVG$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
+We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness function: $f_{AVS}$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
 
-New pole position selection was carried out where 10 races are used to compete every 10 individuals/controllers of the population.
-We used 5 races (of 5 laps) in the \textit{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textit{E-Track 5} track (a new one for them). 
-In order to enhance the selection of the best, another two controllers are picked randomly from the default TORCS bots to participate in the race. Moreover, in order to do it fairer, we have defined a \textit{score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 points.
-% Antonio - Mohammed, this is the explanation of the race-based selection policy, right? If so, I'll copy this explanation (or a part of it) to the GA section. ;)
-% Or is it the description of the final selection of the best?
+New pole position selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
+We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
+Due to the high-demanding time this method is, this race-based selection process has just been performed every 5 generations (not in all of them).
 
+At the end of the evolution a race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in an additional championship, where 10 races are carried out: 5 races (of 5 laps) in the \textit{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textit{E-Track 5} track (a new one for them). 
+Moreover, in order to enhance the selection of the best, another two controllers are picked randomly from the default TORCS bots to participate in the race. Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
 	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
+% Antonio - the review process is not double-blind. ;)
 using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-RS$: A controller obtained by applying two points
-          crossover operator. Pole selection is applied once every five
-          generations; fitness $f_{AVS}$ in all the others. 
-	\item $GFC-FA$: A controller obtained by applying BLX-$\alpha$
-          crossover operator with a constant value of $\alpha=0.5$ and
-          pole selection once every 5 generations and fitness
-          $f_{AVS}$ in the others. 
-	\item $GFC-VA$: A controller obtained by applying BLX-$\alpha$
-          crossover operator with a varying value of $\alpha$ using
-          Equation \ref{eqalpha} and pole selection once every 5
-          generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RS$: A controller obtained by applying two points crossover operator and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 \end{itemize}
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
-% If this happens at the end, you should clarify - JJ 
-These genetic fuzzy based controllers are evaluated in some practice
-races together in a kind of Formula 1 {\em mini championship}, consisting of
-10 races, each one for 20 laps, and with a total of 10 participants
-per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS
-are used to test our controllers. The first 5 races are conducted in
-\textit{Alpine 2} track (trained one); and the other 5 races took
-place in \textit{E-Track 5} track (not trained for the new
-controllers, but used in the evolution of our previous ones). 
-The results are shown in Table \ref{tab:chsresults} and summarized
-graphically in Figure \ref{fig:gfc_races}. 
+These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textit{Alpine 2} track (trained one); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
+The results are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
 %
 \begin{table*}[ht]
   \centering
@@ -701,18 +676,16 @@ ranked in the second place in the two other racing tracks. In the E-Track 5
 circuit, it won two races, has been second twice and third in
 the last race.
 
-The second controller using the BLX-$\alpha$ (constant value of 0.5)
+The second controller using the $BLX-\alpha$ (constant value of 0.5)
 operator came second in all races. It won one race and was ranked
 second in two more and third in three races.
 The other races were won by the $berniw$ controller, always a tough rival.
-We can notice that the BLX-$\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
+We can notice that the $BLX-\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
 The same results or even  better were obtained for the other track, which is supposed to be unknown for our controllers.
 
 These results confirm the effectiveness and strength of the pole position selection policy used to evaluate individuals as well as to select candidates for crossover. Although this policy has been applied only once every 5 generations due to its time-consuming, it has clearly affected the performance of the obtained controllers looking to the large gap between the results of the $GFC$ controller against $GFC-RS$ one.
 
-This proposed selection policy (which also includes mutation),
-combined with the BLX-$\alpha$ operator, has improved the performance
-of the $GFC-FA$ controller. 
+This proposed selection policy combined with the $BLX-\alpha$ operator, has boosted the performance of the $GFC-FA$ controller. 
 The introduction of a variable $\alpha$ parameter along the
 generations in $GFC-VA$ bot has made it possible to better control the
 exploration/exploitation ratio during the evolutionary process,
@@ -730,19 +703,9 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 
 This controller behaves mainly using a Finite State Machine (FSM), defining the main states in which the driver can be (for instance turning, overtaking a rival). The transitions in the FSM are governed by a set of fuzzy rules, based on the information read from different sensors. There is also a classifier module (J48 decision tree), able to analyse the inputs from some sensors in order to predict parts of the track, to anticipate the following actions to perform. The fuzzy rules and also some parameters of the FSM were optimized by means of a NSGA-II algorithm.
 
-As stated, PSRI controller competed in 2009 edition of the Simulated
-Car Racing Championship \cite{SimulatedCarRacing-2010}, where it was
-ranked 4th considering the scores obtained in three different
-Competitions (held at CEC, GECCO and CIG 2009 conferences). It
-performed very well on average, reaching good scores and positions in
-several races.
+As stated, PSRI controller competed in 2009 edition of the Simulated Car Racing Championship \cite{SimulatedCarRacing-2010}, where it was ranked 4th considering the scores obtained in three different Competitions (held at CEC, GECCO and CIG 2009 conferences). It performed on average very well, reaching good scores and positions in several races.
 
-Table \ref{tab:damagespeed} presents a comparison between the two
-BLX-$\alpha$ genetic based fuzzy controllers presented in this paper,
-\textbf{$GFC-FA$} and \textbf{$GFC-VA$} with PSRI controller. The
-results are the average values of $damage$, $MaxSpeed$ and $Speed$ of
-10 races in the \textit{Alpine 2} and \textit{E-Track 5} tracks. 
-
+Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with PSRI controller. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textit{Alpine 2} and \textit{E-Track 5} tracks. 
 
 \begin{table}[!ht]
   \centering
@@ -762,6 +725,7 @@ results are the average values of $damage$, $MaxSpeed$ and $Speed$ of
       \hline 
     \end{tabular}
     \begin{tabular}{|p{1.65cm}|c|c|c|}
+      \hline 
       \multicolumn{4}{|c|}{\textbf{E-Track 5}}  \\
       \hline 
 & \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\				
