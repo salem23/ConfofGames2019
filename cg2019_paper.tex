@@ -50,7 +50,7 @@ autonomous driver obtains much better results than the opponent.
 
 \end{abstract}
 \begin{IEEEkeywords}
-Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, BLX-$\alpha$ Crossover, Optimization, Race-based Selection, Uncertainty
+Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Race-based Selection, Uncertainty
 \end{IEEEkeywords}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   INTRODUCTION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,17 +58,7 @@ Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, 
 \section{Introduction}
 \label{sec:intro}
 
-% >>>>>> TODO: Rewrite Introduction -> JJ  <<<<<<<<<<<<<
-% NEW SELLING POINTS: 
-% 	- Tried selection based in races every 5 generations (in addition to at the end)
-%	- Implemented BLX-Alpha Crossover to enhance results
-%	- Tested against a "real" controller which finished in the
-%	middle of classification at the last Car Racing Competition
-%	(in 2009, but anyway it has not been improved and it's the
-%	only one we have)
-% The introduction is then the same one as before? - JJ
-
-Games are, in many cases, closes and controlled environments, mini or
+Games are, in many cases, closed and controlled environments, mini or
 simulated worlds that allow you to test techniques that will then
 eventually be applied in real life, probably combined with other
 different technologies to tackle its complexity and variability. Car
@@ -77,10 +67,7 @@ autonomous driving: tracks are very different and not known in
 advance, there are other vehicles present on the track, and the
 conditions change according to weather, and car deteriorates with
 damage. Car is also aware of this only through a set of limited
-sensors, and it will have to take a decision on
-speed and steering that is optimal in several different
-senses \cite{Autodriv2006}, including, depending on the context, the
-possibility of beating a set of opponents in a simulated race.
+sensors, and it will have to take a decision on speed and steering that is optimal in several different senses \cite{Autodriv2006}, including, depending on the context, the possibility of beating a set of opponents in a simulated race.
 
 
 Since testing different autonomous driving methodologies in real life is
@@ -94,14 +81,14 @@ implementation and evaluation of autonomous drivers.
 It has been used several times for the celebration of Artificial
 Intelligence (AI) competitions, where the aim is to create the best
 autonomous driver for racing
-\cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010,Torcs3,manualTORCS}. Besides being able to test your car against other cars that have been published, it can be used as a standalone environment to optimize driving in a
+\cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010,manualTORCS}. Besides being able to test your car against other cars that have been published, it can be used as a standalone environment to optimize driving in a
 solo race. 
 
 Evolutionary Algorithms (EAs) \cite{EAs_Back96} have been frequently
 applied as a general-purpose optimization method in this area,
 generally combined with behavioural engines that rule different parts
 of the car
-\cite{Floreano2004,CarRacing_Pelta09,SAES2012,torcs2012}. These
+\cite{CarRacing_Pelta09,SAES2012,Autopia2012}. These
 driving engines have included lately fuzzy controllers
 \cite{Guadarrama2008, LFAG, PerezEvolvingFuzzy09}. These controllers
 use fuzzy Logic \cite{Fuzzy2011}, a  technique that is quite suitable
@@ -114,7 +101,7 @@ particular situations.
 
 From the point of view of optimization, one of the main problems is
 that the environment is always going to change; this is correctly
-reflected in the simulators used, and it means that the score (and
+reflected in the simulator used, and it means that the score (and
 thus the ranking, if that's the eventual target) will always change,
 making selection of the {\em best} or {\em winning} controller
 probabilistic at best. This uncertainty is a challenge from two points
@@ -122,20 +109,15 @@ of view: non optimal (non-winning) controllers might be selected just
 by chance, since they were assigned a score favored by that
 uncertainty, and, once they are selected, that might make the
 algorithm explore zones around some controllers that have been
-selected just by chance, and leave others unexplored. For these two
+selected just casually, and leave others unexplored. For these two
 reasons, there are two challenges that we intend to approach in this
-paper: reduce uncertainty in selection of the ``best'', and keep
+paper: reduce uncertainty in the selection of the ``best'', and keep
 diversity high to not exploit just the areas around those individuals
 whose score might have been favored by chance at a certain point in
 the evolution process.
 
 % Antonio - Previous works
-Previously, the authors presented an approach
-combining two specialized fuzzy controllers, designed by hand, that
-were able to decide the car's proper steering angle and desired speed
-at every single point (or tick) during a race \cite{salem_evo17}. This
-driver was later improved \cite{salem_evo18} optimizing the parameters of
-their membership functions by means of a Genetic Algorithm
+Previously, the authors presented an approach combining two specialized fuzzy controllers, designed by hand, that were able to decide the car's proper steering angle and desired speed at every single point (or tick) during a race \cite{salem_evo17}. This driver was later improved \cite{salem_evo18} optimizing the parameters of their membership functions by means of a Genetic Algorithm
 \cite{GAs_Goldberg89}; this automated design improved manual one
 obtaining several controllers that were able to beat the initial
 hand-designed controller in a race, as well as other published
@@ -156,35 +138,32 @@ some curves and did not take too long to run, and eventually we had to
 decide what factors related to speed, damage and lap time were going
 to be effectively included in the final fitness function. 
 
-Results were encouraging, but it is still a surrogate model. As such a
-model, we need to decide on the best track to perform {\em training}
-and also the solo race measures with the biggest impact in the
-eventual racing performance. This is why in this paper we have
-combined into the fitness function only those terms related with speed
-during race (to maximize) and damage (to minimize) - the most
-important factors - in two different approaches. 
-Besides, the fitness evaluation process has a certain amount of uncertainty because damages and some track conditions can randomly vary in different
-evaluations. This is why instead of selecting directly the driver as
-we did before, we will be using an actual race among the best drivers
-to select the best one.
+%Results were encouraging, but it is still a surrogate model. As such a
+%model, we need to decide on the best track to perform {\em training}
+%and also the solo race measures with the biggest impact in the
+%eventual racing performance. This is why in this paper we have
+%combined into the fitness function only those terms related with speed
+%during race (to maximize) and damage (to minimize) - the most
+%important factors - in two different approaches. 
+%Besides, the fitness evaluation process has a certain amount of uncertainty because damages and some track conditions can randomly vary in different
+%evaluations. This is why instead of selecting directly the driver as
+%we did before, we will be using an actual race among the best drivers
+%to select the best one.
 
-The two new techniques introduced in this paper, namely, ``Pole''
-selection and BLX-$\alpha$ crossover, try to improve on previous
-results by first relying less on the surrogacy of the fitness function
-to select the best individuals. The Pole selection will use fitness to
-select a few individuals that will race against each other; racing
-will {\em smooth out} randomness in the fitness by putting them in a
+The two new techniques introduced in this paper, namely, \textit{``Pole'' Position selection} (race-based) and $BLX-\alpha$ crossover, try to improve on previous results by first relying less on the surrogacy of the fitness function
+to select the best individuals. The Pole selection will use a parameter-less fitness function to select a few individuals that will race against each other; racing will {\em smooth out} randomness in the fitness by putting them in a
 more real environment; racing cars against each other will offer a
 result that varies much less than simply comparing fitness. But, even
 so, uncertainty is present in the fitness and we should avoid
-excessive exploitation of the results. The BLX-$\alpha$ crossover we
+excessive exploitation of the results. The $BLX-\alpha$ crossover we
 have introduced takes care of this aspect.
 
-The rest of the paper is organized as follows. Next we present the
-state of the art, to be followed by a description of the TORCS
-simulator \ref{sec:torcs}, the defined fuzzy controllers \ref{sec:subcontrollers} and a deep explanation of the Genetic Algorithm implemented and tested in this work in Section \ref{sec:GA_optimization}. 
-%Then, in Section \ref{sec:new-opponent}, we briefly introduce a real controller which participated in previous editions of the Simulated Car Racing Competition and which will be considered as a new opponent for comparisons.
-After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in section \ref{sec:conclusions}.
+With these methods we aim to obtain more reliable and competitive controllers and we will test them against some tough opponents, including a controller from the state of the art in Simulated Car Racing Competitions.
+
+%The rest of the paper is organized as follows. Next we present the
+%state of the art, to be followed by a description of the TORCS
+%simulator \ref{sec:torcs}, the defined fuzzy controllers \ref{sec:subcontrollers} and a deep explanation of the Genetic Algorithm implemented and tested in this work in Section \ref{sec:GA_optimization}. 
+%After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in Section \ref{sec:conclusions}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -193,15 +172,11 @@ After it, the experiments conducted and the obtained results are described in Se
 
 % This is almost the same as the last one, if not exactly the same. We
 % should really change it more than introduction or other things. - JJ
-TORCS has become one of the
-main environments for research on AI since its launch in 2007
-\cite{torcs4}. {\em Autonomous} cars, or {\em bots}, created to win
-races in this environment need to set the optimal parameters for the
+TORCS has become one of the main environments for research on AI since its launch in 2007 \cite{torcs4}. {\em Autonomous} cars, or {\em bots}, created to win races in this environment need to set the optimal parameters for the
 cars \cite{Kole-ParamCarTunning12} with the ultimate objective of
 participating in one of the Simulated Racing Car Competitions
 \cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010}. However, the
-problem of racing a car itself is a challenge, and thus it has been used as a subject
-of research from the beginning even without the intention of
+problem of racing a car itself is a challenge, and thus it has been used as a subject of research from the beginning even without the intention of
 participating in the competition; in any case, published controllers
 are always used as the state of the art reference, and any new bot
 should be compared against at least those that are available.
@@ -212,11 +187,7 @@ should be compared against at least those that are available.
 There are many possible ways of approaching the design of an automatic
 driver for a car, and through the use of different simulators and
 techniques, they have probably been pursued in one way or the
-other. In a nutshell, you have to provide for a way to drive the car,
-in real time, from the inputs gathered by the car. TORCS offer a rich
-array of sensors, but it also includes vision  \cite{Floreano2004,zhu2018driving}, although most papers do
-rely only on the sensors, since they offer enough information for
-driving the car.
+other. They have to provide for a way to drive the car, in real time, from the inputs gathered by the car. TORCS offer a rich array of sensors, but it also includes vision \cite{zhu2018driving}, although most papers do rely only on the sensors, since they offer enough information for driving the car.
 
 The way sensors and effectors are connected also varies. The simulator
 itself offers a baseline controller, but that is also configurable and
@@ -227,49 +198,36 @@ dangerousness of the track, in general working with an already wired
 controller that is able, for instance, to work towards a target speed
 instead of dealing directly with throttle and braking is much more
 convenient. This default controller, as a matter of fact, lets you
-choose what you actually want to change or optimize. Some people opt for changing just the steering \cite{CarRacing_Pelta09},
-for changing just the steering
-\cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
+choose what you actually want to change or optimize. Some people opt for changing just the steering \cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
 
 Although you can simply create a controller and optimize a series of
 probabilities or rates by hand, generally metaheuristics such as
 neural networks \cite{zhu2018driving} or fuzzy controllers
 \cite{armagan2017fuzzy}. Besides, working towards the automatic
-configuration via optimization of the steering wheel and the target speed also allows a
-bit of more leverage to obtain the maximum performance out of the
-racing cars
-\cite{CarRacing_Pelta09,PerezEvolvingFuzzy09,torcs2012}. The main
-intention of these authors was to imitate human driving patterns;
-however, in our case, we were mainly interested in optimizing the
-performance.
+configuration via optimization of the steering wheel and the target speed also allows a bit of more leverage to obtain the maximum performance out of the
+racing cars \cite{PerezEvolvingFuzzy09,Autopia2012}. The main intention of these authors was to imitate human driving patterns; however, in our case, we aim to optimize the performance.
 
 Evolutionary algorithms have been often used as an optimization
 mechanism, but any optimization mechanism must take into account the
-uncertainty in selecting the best. For instance, Fernández Ares et
+uncertainty in selecting the best. For instance, Fern\'andez-Ares et
 al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
 {\em Joust} selection, avoiding inherently noisy fitness by subsuming
 selection in a situation as close to real as possible. Several
 different mechanisms have been applied in the context of TORCS racing
 including application of filters \cite{preuss2011torcs} and averaging
-\cite{24}.
+\cite{Shi-DE13}.
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
-\cite{salem_evo17}, which evolved a fuzzy-based driver considering the
+\cite{salem_evo18}, which evolved a fuzzy-based driver considering the
 target speed in addition to controlling steering (two fuzzy
-sub-controllers). 
-This controller was also enhanced in a further work \cite{salem_evo18}
-optimizing the parameters of the membership functions by means of a
-real coded genetic algorithm, obtaining a noticeable improvement in
+sub-controllers). We optimized the parameters of the membership functions by means of a real coded genetic algorithm, obtaining a noticeable improvement in
 performance. Lately, we presented \cite{salem_cig2018} an improvement on our proposal considering parameter-less fitness functions and a final selection of the best based in additional races involving the top 4 individuals and other rivals.
 
 In this study we build on this last approach, focusing on the best
 fitness function to date and the final selection process, but also
-involving two new mechanisms during the evolution: a \textit{Blend or BLX-$\alpha$
-  Crossover operator} to control the balance between exploration and
-exploitation, and a \textit{pole selection of parents} inspired by the
-Joust selection mentioned above and aiming
-to choose real good drivers in races, rather than just select those
-with the highest fitness values. 
+involving two new mechanisms during the evolution: a \textit{Blend or BLX-$\alpha$ Crossover operator} to control the balance between exploration and
+exploitation, and a \textit{Pole Selection policy of parents} inspired by the
+Joust selection mentioned above and aiming to choose real good drivers in races, rather than just select those with the highest fitness values. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -282,7 +240,7 @@ Its high degree of modularity and portability, together with the
 realistic and real-time driving simulation, make it an ideal testbed
 for artificial intelligence research, as stated in previous section.
 
-Every car in TORCS includes  a large set of sensors \cite{Torcs3},
+Every car in TORCS includes  a large set of sensors \cite{manualTORCS},
 whose values the car can use during a race, such as distances to track borders, to rivals, current fuel, current gear, position in the race, speed, or damage, among others. See Figure \ref{fig:torcs-sensors}.
 
 \begin{figure}[!ht] 
@@ -296,7 +254,7 @@ whose values the car can use during a race, such as distances to track borders, 
 
 
 The sensor values are considered by any TORCS autonomous driver, or
-{\em controller}, to manage the car using actuators \cite{Torcs3}: the
+{\em controller}, to manage the car using actuators \cite{manualTORCS}: the
 steering wheel, the accelerator, the brake pedal and the gearbox.   
 
 
@@ -441,8 +399,8 @@ $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
 And a fuzzy partition with \textit{n} trapezoidal membership functions
 is defined by \textit{2n} variables (\textit{a =} $ x_{1}$,$x_{2}
 $,. .., $x_{2n} $ \textit {= b})(Equation \ref{eq:e1}). In this case,
-the representation is given by the
-figure \ref{fig:at} 
+the representation is given by Figure \ref{fig:at}.
+
 \begin{figure}[!ht] 
 	\begin{center}
 		\includegraphics[scale=0.4]{fig/trapezoidal.png}
@@ -450,7 +408,7 @@ figure \ref{fig:at}
 		\label{fig:at}
 	\end{center}
 \end{figure}
-with:
+With:
 \begin{equation}
 a = x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n}=b 	
 \end{equation}		
@@ -494,10 +452,11 @@ This is the base of the optimization conducted by the Genetic Algorithm, as it i
 
 We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs_Goldberg89} aiming to find the optimal parameters of the membership functions of the two sub-controllers previously introduced. 
 
-Thus, every individual is a vector of 18 values/parameters, 6 per variable. Figure \ref {fig:cromosome} illustrates the structure of the chromosome.
+Thus, every individual/chromosome is a vector of 18 values/parameters, 6 per variable, as Figure \ref {fig:cromosome} shows.
+
 \begin{figure*}[!ht]	
   \begin{center}
-    \includegraphics[width=12cm]{fig/chromosome2.png}
+    \includegraphics[width=10cm]{fig/chromosome2.png}
     \caption{Chromosome description}
     \label{fig:cromosome}	
   \end{center}	
@@ -540,7 +499,7 @@ As the objective of the car controller is to win as many races as
 possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{merelo2016statistical}.
 The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
 
-With regard to the other genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997} has been considered. 
+With regard to the genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
 
 A new \textbf{Pole Position Selection policy} (or race-based selection) has been implemented in this approach, aiming to get better or more reliable individuals/controllers to be parents of the following population. To this end all the individuals are arranged in groups of 10, then some different races of  several laps are simulated using every individual as a controller (with the same car) in a track of TORCS. After every race, the participants obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following offspring.
 
@@ -567,7 +526,7 @@ In the Blend crossover operator, the $\alpha$ parameter values can control the e
 
 In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
 
-We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained applying the following expression:
+We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
 
 \begin{equation}
 \label{eqalpha}
@@ -599,7 +558,7 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number pf gener
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
-On the basis of the results of our previous paper \cite{salem_cig2018}, the selection of an appropriate track for training is an important factor in order to obtain competitive bots. To this end we have selected for the experiments the \textbf{Alpine 2} circuit. It is a quite complex one, with multiple turns, but also straight parts (See Figure \ref{fig:alpine2_track}).
+On the basis of the results of our previous paper \cite{salem_cig2018}, the selection of an appropriate track for training is an important factor in order to obtain competitive bots. \textit{Alpine 2} circuit has been selected for the experiments, since it combines multiple turns with straight parts (See Figure \ref{fig:alpine2_track}).
 
 \begin{figure}[!ht]	
   \begin{center}
@@ -617,7 +576,7 @@ New pole position selection has been conducted considering \textit{Alpine 2} tra
 We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
 Due to the high-demanding time this method is, this race-based selection process has just been performed every 5 generations (not in all of them).
 
-At the end of the evolution (in the last generation) an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 score scheme is again applied and the winner will be selected as the best controller of the run.
+At the end of the evolution (in the last generation) an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
@@ -712,9 +671,9 @@ and more efficient than them.
 
 % -------------------------------------------
 
-\textbf{Comparison with PSRI controller.}
+%\textbf{Comparison with PSRI controller.}
 
-In order to check the value of the obtained controller using our algorithm, we have conducted an additional experimentation.
+In order to check the value of our best controller, we have conducted an additional experimentation.
 
 We have considered an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
 It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.
@@ -779,24 +738,19 @@ fitness-based evolution, and second, keep the balance between
 exploration and exploitation high, and also variable, by using a fixed
 and adaptive version of the BLX-$\alpha$ operator.
 
-The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and resistant bot, we proposed to apply a pole position selection where the selection of individuals in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.\\
-Aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values ​​of the $\alpha$ parameter throughout the generations.
-The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, giving good results.
-The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller). In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the best damage, average speed and maximum speed  values.
+The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and reliable bot, we proposed to apply a \textit{Pole Position Selection policy} where the selection of parents in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.
+At the same time, and aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values of the $\alpha$ parameter throughout the generations.
 
-In this paper we have tried to get winning racing car drivers by
-first improving the selection process so that, from time to time,
-uncertainty is eliminated by using actual competitions instead of
-fitness-based evolution, and second, keep the balance between
-exploration and exploitation high, and also variable, by using a fixed
-and adaptive version of the BLX-$\alpha$ operator.
+The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, yielding very good results.
+The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller), which participated in several Simulated Car Racing Competitions. In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the lowest damage, average speed and maximum speed values.
 
-These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).\\
+These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
 
-This controller can be improved in several ways:
-We can extend the selection policy to all generations while overcoming the computation time drawback by parallel algorithms.\\
-We can also explore other fitness functions to evaluate individuals including other parameters affecting the performance of the car.
-Another perspective is to use multiple tracks in the selection process because although the Alpine2 track has different segments representing most of the features of the race tracks, it can not replace the other tracks especially the crossroads tracks.
+As future lines of work, this controller can be improved in some ways:
+We can extend the selection policy to all generations while overcoming the computation time drawback by means of a parallel implementation.
+We can also explore other parameter-less fitness functions to evaluate individuals including other factors affecting the performance of the car.
+Another perspective is to use multiple tracks (instead of just one) in the selection process in order to train a more general controller, able to deal with many different situations.
+
 \section*{Acknowledgments}
 
 This work has been supported in part by: Ministerio espa\~{n}ol de
