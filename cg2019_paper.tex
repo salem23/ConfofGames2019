@@ -209,9 +209,54 @@ should be compared against at least those that are available.
 % This should be much more systematic. It should say:
 % These are the kind of controllers there are; these are the kind of
 % techniques that are used, these are the results obtained
+There are many possible ways of approaching the design of an automatic
+driver for a car, and through the use of different simulators and
+techniques, they have probably been pursued in one way or the
+other. In a nutshell, you have to provide for a way to drive the car,
+in real time, from the inputs gathered by the car. TORCS offer a rich
+array of sensors, but it also includes vision  \cite{Floreano2004,zhu2018driving}, although most papers do
+rely only on the sensors, since they offer enough information for
+driving the car.
 
+The way sensors and effectors are connected also varies. The simulator
+itself offers a baseline controller, but that is also configurable and
+you can choose to wire it in some other way
+\cite{cussat2016dangerousness}. While this might be effective for some
+specific purposes like the one used in the paper, evaluate the
+dangerousness of the track, in general working with an already wired
+controller that is able, for instance, to work towards a target speed
+instead of dealing directly with throttle and braking is much more
+convenient. This default controller, as a matter of fact, lets you
+choose what you actually want to change or optimize. Some people opt for changing just the steering \cite{CarRacing_Pelta09},
+for changing just the steering
+\cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
 
-In this line, we presented an improved approach \cite{salem_evo17}, which evolved a fuzzy-based driver considering the target speed in addition to controlling steering (two fuzzy sub-controllers).
+Although you can simply create a controller and optimize a series of
+probabilities or rates by hand, generally metaheuristics such as
+neural networks \cite{zhu2018driving} or fuzzy controllers
+\cite{armagan2017fuzzy}. Besides, working towards the automatic
+configuration via optimization of the steering wheel and the target speed also allows a
+bit of more leverage to obtain the maximum performance out of the
+racing cars
+\cite{CarRacing_Pelta09,PerezEvolvingFuzzy09,torcs2012}. The main
+intention of these authors was to imitate human driving patterns;
+however, in our case, we were mainly interested in optimizing the
+performance.
+
+Evolutionary algorithms have been often used as an optimization
+mechanism, but any optimization mechanism must take into account the
+uncertainty in selecting the best. For instance, Fernández Ares et
+al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
+{\em Joust} selection, avoiding inherently noisy fitness by subsuming
+selection in a situation as close to real as possible. Several
+different mechanisms have been applied in the context of TORCS racing
+including application of filters \cite{preuss2011torcs} and averaging
+\cite{24}.
+Our own work tried to take the state of the art further by introducing
+a fuzzy controller evolved via evolutionary algorithms in
+\cite{salem_evo17}, which evolved a fuzzy-based driver considering the
+target speed in addition to controlling steering (two fuzzy
+sub-controllers). 
 This controller was also enhanced in a further work \cite{salem_evo18}
 optimizing the parameters of the membership functions by means of a
 real coded genetic algorithm, obtaining a noticeable improvement in
@@ -219,13 +264,12 @@ performance. Lately, we presented \cite{salem_cig2018} an improvement on our pro
 
 In this study we build on this last approach, focusing on the best
 fitness function to date and the final selection process, but also
-involving two new mechanisms during the evolution: a \textit{Blend
+involving two new mechanisms during the evolution: a \textit{Blend or BLX-$\alpha$
   Crossover operator} to control the balance between exploration and
-exploitation, and a \textit{Race-based selection of parents}, aiming
+exploitation, and a \textit{pole selection of parents} inspired by the
+Joust selection mentioned above and aiming
 to choose real good drivers in races, rather than just select those
-with the highest fitness values, in order to avoid somehow the
-uncertainty/noise present on the problem
-\cite{merelo2016statistical}. 
+with the highest fitness values. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -289,43 +333,9 @@ trapezoidal Membership Functions (MF) for every input variable.
 %\ref{tab:flouevar}. 
 In \cite{salem_evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
 
-%\begin{table*}
-%	\centering
-%	{\scriptsize
-%		\caption{Fuzzy variables description.}
-%		\label{tab:flouevar}
-%		\begin{tabular}{ |p{1.5cm}|p{2cm}|p{2cm}|p{2 cm}|p{1 cm}|p{1.5 cm}|p{1.5 cm}|}
-%			\hline
-%			{ \textbf{Variable}}&
-%			{ \textbf{Range}}&
-%			{ \textbf{Name}}&  
-%			{ \textbf{MF}} &
-%			{ \textbf{Low}} &
-%			{ \textbf{Medium}}&
-%			{ \textbf{High}} \\
-%			\hline
-%			Input & [0-100] m & Front & trapezoidal & [0-50] & [20-80] & [60-100]
-%			\\
-%			\hline
-%			Input & [0-100] m & M5 & trapezoidal &[0-40] & [10-70] & [50-100] 
-%			\\
-%			\hline
-%			Input & [0-100] m  & M10 & trapezoidal & [0-30] & [20-60] & [50-100]
-%			\\
-%			\hline 
-%			Output & [0-200] m/s & TargetSpeed & singleton & / & / & /
-%			\\
-%			\hline 
-%		\end{tabular} 
-%	}
-%\end{table*}
-
-% This is from the last paper? If so, just a reference would be
-% enough. We need to save space - JJ
-% Consider whether adding this again or not -- JJ
-% Antonio - not needed
-
-Moreover, the controller is based in a set of fuzzy rules, designed to maximize the car speed depending on the distance to the track border. These rules can be consulted in \cite{salem_evo17}.
+Moreover, the controller is based in a set of fuzzy rules, designed to
+maximize the car speed depending on the distance to the track
+border. These rules can be consulted in \cite{salem_evo17}.
 % Antonio - TODO: Include the rules if there is available space?
 %
 %The fuzzy rules are:
@@ -607,8 +617,7 @@ New pole position selection has been conducted considering \textit{Alpine 2} tra
 We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
 Due to the high-demanding time this method is, this race-based selection process has just been performed every 5 generations (not in all of them).
 
-At the end of the evolution a race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in an additional championship, where 10 races are carried out: 5 races (of 5 laps) in the \textit{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textit{E-Track 5} track (a new one for them). 
-Moreover, in order to enhance the selection of the best, another two controllers are picked randomly from the default TORCS bots to participate in the race. Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
+At the end of the evolution an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. 
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
@@ -621,8 +630,14 @@ using race-based selection only in the final generation and with fitness  $f_{AV
 \end{itemize}
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
-These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textit{Alpine 2} track (trained one); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
-The results are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
+% If this happens at the end, you should clarify - JJ 
+%%%  Mohammed  Yes I do
+
+The obtained genetic fuzzy based controllers (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants
+per race: the 4 GFCs and also 6 standard bots from TORCS. The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
+The results are shown in Table \ref{tab:chsresults} and summarized
+graphically in Figure \ref{fig:gfc_races}. 
+
 %
 \begin{table*}[ht]
   \centering
@@ -668,7 +683,7 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 	\end{center}
 \end{figure}
 % Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
-
+%Mohammed Done
 It is clear from the table and figure that the $GFC-VA$ controller
 yields the best results in the evaluation process. Indeed, The
 proposed controller won three races in Alpine 2 track and has been
@@ -710,7 +725,9 @@ Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ g
 \begin{table}[!ht]
   \centering
   {\scriptsize
-    \caption{Average damage and Speed Results of 5 races in \textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
+    \caption{Average damage and Speed Results of 5 races in
+      \textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
+    % Average should always go with standard deviation - JJ
     \label{tab:damagespeed}
     \begin{tabular}{|p{1.65cm}|c|c|c|}
       \hline 
@@ -752,16 +769,37 @@ Looking at these and previous results, we can conclude that the proposed control
 % >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
 
 
-These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
+In this paper we have tried to get winning racing car drivers by
+first improving the selection process so that, from time to time,
+uncertainty is eliminated by using actual competitions instead of
+fitness-based evolution, and second, keep the balance between
+exploration and exploitation high, and also variable, by using a fixed
+and adaptive version of the BLX-$\alpha$ operator.
 
+The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and resistant bot, we proposed to apply a pole position selection where the selection of individuals in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.\\
+Aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values ​​of the $\alpha$ parameter throughout the generations.
+The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, giving good results.
+The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller). In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the best damage, average speed and maximum speed  values.
 
+In this paper we have tried to get winning racing car drivers by
+first improving the selection process so that, from time to time,
+uncertainty is eliminated by using actual competitions instead of
+fitness-based evolution, and second, keep the balance between
+exploration and exploitation high, and also variable, by using a fixed
+and adaptive version of the BLX-$\alpha$ operator.
 
+These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).\\
+
+This controller can be improved in several ways:
+We can extend the selection policy to all generations while overcoming the computation time drawback by parallel algorithms.\\
+We can also explore other fitness functions to evaluate individuals including other parameters affecting the performance of the car.
+Another perspective is to use multiple tracks in the selection process because although the Alpine2 track has different segments representing most of the features of the race tracks, it can not replace the other tracks especially the crossroads tracks.
 \section*{Acknowledgments}
 
 This work has been supported in part by: Ministerio espa\~{n}ol de
 Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio) and TEC2015-68752 (also funded by FEDER).
 
 \bibliographystyle{IEEEtranS}
-\bibliography{fuzzy_torcs}
+\bibliography{fuzzy_torcs,geneura}
 
 \end{document}
