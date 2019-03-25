@@ -209,9 +209,21 @@ should be compared against at least those that are available.
 % This should be much more systematic. It should say:
 % These are the kind of controllers there are; these are the kind of
 % techniques that are used, these are the results obtained
+There are many possible ways of approaching the design of an automatic
+driver for a car, and through the use of different simulators and
+techniques, they have probably been pursued in one way or the
+other. In a nutshell, you have to provide for a way to drive the car,
+in real time, from the inputs gathered by the car. TORCS offer a rich
+array of sensors, but it also includes vision, although most papers do
+rely only on the sensors.
 
+The way sensors and effectors are connected also varies. 
 
-In this line, we presented an improved approach \cite{salem_evo17}, which evolved a fuzzy-based driver considering the target speed in addition to controlling steering (two fuzzy sub-controllers).
+Our own work tried to take the state of the art further by introducing
+a fuzzy controller evolved via evolutionary algorithms in
+\cite{salem_evo17}, which evolved a fuzzy-based driver considering the
+target speed in addition to controlling steering (two fuzzy
+sub-controllers). 
 This controller was also enhanced in a further work \cite{salem_evo18}
 optimizing the parameters of the membership functions by means of a
 real coded genetic algorithm, obtaining a noticeable improvement in
@@ -289,43 +301,9 @@ trapezoidal Membership Functions (MF) for every input variable.
 %\ref{tab:flouevar}. 
 In \cite{salem_evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
 
-%\begin{table*}
-%	\centering
-%	{\scriptsize
-%		\caption{Fuzzy variables description.}
-%		\label{tab:flouevar}
-%		\begin{tabular}{ |p{1.5cm}|p{2cm}|p{2cm}|p{2 cm}|p{1 cm}|p{1.5 cm}|p{1.5 cm}|}
-%			\hline
-%			{ \textbf{Variable}}&
-%			{ \textbf{Range}}&
-%			{ \textbf{Name}}&  
-%			{ \textbf{MF}} &
-%			{ \textbf{Low}} &
-%			{ \textbf{Medium}}&
-%			{ \textbf{High}} \\
-%			\hline
-%			Input & [0-100] m & Front & trapezoidal & [0-50] & [20-80] & [60-100]
-%			\\
-%			\hline
-%			Input & [0-100] m & M5 & trapezoidal &[0-40] & [10-70] & [50-100] 
-%			\\
-%			\hline
-%			Input & [0-100] m  & M10 & trapezoidal & [0-30] & [20-60] & [50-100]
-%			\\
-%			\hline 
-%			Output & [0-200] m/s & TargetSpeed & singleton & / & / & /
-%			\\
-%			\hline 
-%		\end{tabular} 
-%	}
-%\end{table*}
-
-% This is from the last paper? If so, just a reference would be
-% enough. We need to save space - JJ
-% Consider whether adding this again or not -- JJ
-% Antonio - not needed
-
-Moreover, the controller is based in a set of fuzzy rules, designed to maximize the car speed depending on the distance to the track border. These rules can be consulted in \cite{salem_evo17}.
+Moreover, the controller is based in a set of fuzzy rules, designed to
+maximize the car speed depending on the distance to the track
+border. These rules can be consulted in \cite{salem_evo17}.
 % Antonio - TODO: Include the rules if there is available space?
 %
 %The fuzzy rules are:
@@ -747,7 +725,9 @@ results are the average values of $damage$, $MaxSpeed$ and $Speed$ of
 \begin{table}[!ht]
   \centering
   {\scriptsize
-    \caption{Average damage and Speed Results of 5 races in \textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
+    \caption{Average damage and Speed Results of 5 races in
+      \textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
+    % Average should always go with standard deviation - JJ
     \label{tab:damagespeed}
     \begin{tabular}{|p{1.65cm}|c|c|c|}
       \hline 
