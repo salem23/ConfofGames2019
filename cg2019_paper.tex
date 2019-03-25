@@ -248,7 +248,10 @@ mechanism, but any optimization mechanism must take into account the
 uncertainty in selecting the best. For instance, Fernández Ares et
 al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
 {\em Joust} selection, avoiding inherently noisy fitness by subsuming
-selection in a situation as close to real as possible.
+selection in a situation as close to real as possible. Several
+different mechanisms have been applied in the context of TORCS racing
+including application of filters \cite{preuss2011torcs} and averaging
+\cite{24}.
 
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
@@ -262,13 +265,12 @@ performance. Lately, we presented \cite{salem_cig2018} an improvement on our pro
 
 In this study we build on this last approach, focusing on the best
 fitness function to date and the final selection process, but also
-involving two new mechanisms during the evolution: a \textit{Blend
+involving two new mechanisms during the evolution: a \textit{Blend or BLX-$\alpha$
   Crossover operator} to control the balance between exploration and
-exploitation, and a \textit{Race-based selection of parents}, aiming
+exploitation, and a \textit{pole selection of parents} inspired by the
+Joust selection mentioned above and aiming
 to choose real good drivers in races, rather than just select those
-with the highest fitness values, in order to avoid somehow the
-uncertainty/noise present on the problem
-\cite{merelo2016statistical}. 
+with the highest fitness values. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
