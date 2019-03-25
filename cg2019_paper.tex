@@ -701,17 +701,30 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 \end{figure}
 % Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
 
-It is clear from the Table and Figure that the $GFC-VA$ controller has yield the best results in the evaluation process. Indeed, The proposed controller won three races in Alpine 2 track and has been ranked in the second place in the two other races. In E-Track 5 circuit, it won two races and has been second two times and third in the last race. 
+It is clear from the table and figure that the $GFC-VA$ controller
+yields the best results in the evaluation process. Indeed, The
+proposed controller won three races in Alpine 2 track and has been
+ranked in the second place in the two other racing tracks. In the E-Track 5
+circuit, it won two races, has been second twice and third in
+the last race.
 
-The second controller using the $BLX-\alpha$ (constant value of 0.5) operator came second in all races. It won one race and was ranked second in two more and third in three races.
+The second controller using the $BLX-\alpha$ (constant value of 0.5)
+operator came second in all races. It won one race and was ranked
+second in two more and third in three races.
 The other races were won by the $berniw$ controller, always a tough rival.
 We can notice that the $BLX-\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
 The same results or even  better were obtained for the other track, which is supposed to be unknown for our controllers.
 
 These results confirm the effectiveness and strength of the race-based selection policy used to evaluate individuals as well as to select candidates for crossover. Although this policy has been applied only once every 5 generations due to its time-consuming, it has clearly affected the performance of the obtained controllers looking to the large gap between the results of the $GFC$ controller against $GFC-RS$ one.
 
-This proposed selection policy, combined with the $BLX-\alpha$ operator, has improved the performance of the $GFC-FA$ controller.
-The introduction of a variable alpha parameter along the generations in $GFC-VA$ bot has made it possible to better control the exploration / exploitation ratio during the evolutionary process, allowing to generate descendants different from their parents in genes and more efficient than them.
+This proposed selection policy (which also includes mutation),
+combined with the $BLX-\alpha$ operator, has improved the performance
+of the $GFC-FA$ controller. 
+The introduction of a variable $\alpha$ parameter along the
+generations in $GFC-VA$ bot has made it possible to better control the
+exploration / exploitation ratio during the evolutionary process,
+allowing to generate descendants different from their parents in genes
+and more efficient than them. 
 
 % -------------------------------------------
 
