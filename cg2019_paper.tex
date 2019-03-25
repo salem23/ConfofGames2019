@@ -624,9 +624,17 @@ The evolution process was applied in separate bunches of runs to obtain the foll
 	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
 % Antonio - the review process is not double-blind. ;)
 using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-RS$: A controller obtained by applying two points crossover operator and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-FA$: A controller obtained by applying BLX-$\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-VA$: A controller obtained by applying BLX-$\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RS$: A controller obtained by applying two points
+          crossover operator. Pole selection is applied once every five
+          generations; fitness $f_{AVS}$ in all the others. 
+	\item $GFC-FA$: A controller obtained by applying BLX-$\alpha$
+          crossover operator with a constant value of $\alpha=0.5$ and
+          pole selection once every 5 generations and fitness
+          $f_{AVS}$ in the others. 
+	\item $GFC-VA$: A controller obtained by applying BLX-$\alpha$
+          crossover operator with a varying value of $\alpha$ using
+          Equation \ref{eqalpha} and pole selection once every 5
+          generations and fitness $f_{AVS}$ in the others. 
 \end{itemize}
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
