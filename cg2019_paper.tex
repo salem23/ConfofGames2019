@@ -33,29 +33,28 @@ the fact that the fitness is a heuristic based on what we think are
 the keys to success and as such just a surrogate for the ultimate
 objective, winning races, fitness itself is uncertain due to the
 stochastic behavior of racing conditions and the rest of the
-(simulated) racers. 
-This paper describes an enhanced version of a fuzzy-based genetic
-controller for the car racing simulator TORCS. It is based on two fuzzy
+(simulated) racers. The  fuzzy-based genetic controller for the car
+racing simulator TORCS we have been using is based on two fuzzy
 sub-controllers, one for deciding on the wheel steering angle and
 another to set the car target speed at the next simulation tick. They
 are both optimized by means of an Evolutionary Algorithm, which
-considers a fitness function focused on the
+considers an already tested fitness function focused on the
 maximization of the average speed during the race and the minimization
-of the car damage. Moreover a Blend Crossover operator has been
-applied in order to control the balance between exploration and
-exploitation. This operator is also combined with a novel selection
-policy of parents, based in races where the best individuals to date
+of the car damage. The noisy environment asks for keeping diversity
+high during evolution, which is why we have added a Blend Crossover (BLX-$\alpha$)
+operator, which is, besides, able to exploit current results at the
+same time it explores. Additionally, we try to address uncertainty in
+selection by introducing a novel selection
+policy of parents based in races, where the best individuals
+(according to the fitness) to date
 compete against others, so only the winner will be selected.
-% Antonio - Mohammed, is it only the winner selected or the top ones?
-% You can't just say "we have added this and that". We need the
-% motivation and the objectives. JJ
 Several experiments have been conducted, testing the value of the
 different controllers. The results show that the combination of a
-dynamic $BLX-\alpha$ crossover operator + the race-based selection
+dynamic BLX-$\alpha$ crossover operator + the race-based selection
 policy clearly beats the rest of approaches. Moreover, in the
 comparison of this controller with one of the participants of the
 prestigious international Simulated Car Racing Competition, our
-autonomous driver obtains much better results than the opponent. 
+autonomous driver obtains much better results than the opponent.
 
 \end{abstract}
 \begin{IEEEkeywords}
