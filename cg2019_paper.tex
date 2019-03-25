@@ -214,7 +214,7 @@ driver for a car, and through the use of different simulators and
 techniques, they have probably been pursued in one way or the
 other. In a nutshell, you have to provide for a way to drive the car,
 in real time, from the inputs gathered by the car. TORCS offer a rich
-array of sensors, but it also includes vision  \cite{Floreano2004}, although most papers do
+array of sensors, but it also includes vision  \cite{Floreano2004,zhu2018driving}, although most papers do
 rely only on the sensors, since they offer enough information for
 driving the car.
 
@@ -228,7 +228,27 @@ controller that is able, for instance, to work towards a target speed
 instead of dealing directly with throttle and braking is much more
 convenient. This default controller, as a matter of fact, lets you
 choose what you actually want to change or optimize. Some people opt
-for changing just the steering \cite{CarRacing_Pelta09,
+for changing just the steering
+\cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
+
+Although you can simply create a controller and optimize a series of
+probabilities or rates by hand, generally metaheuristics such as
+neural networks \cite{zhu2018driving} or fuzzy controllers
+\cite{armagan2017fuzzy}. Besides, working towards the automatic
+configuration via optimization of the steering wheel and the target speed also allows a
+bit of more leverage to obtain the maximum performance out of the
+racing cars
+\cite{CarRacing_Pelta09,PerezEvolvingFuzzy09,torcs2012}. The main
+intention of these authors was to imitate human driving patterns;
+however, in our case, we were mainly interested in optimizing the
+performance.
+
+Evolutionary algorithms have been often used as an optimization
+mechanism, but any optimization mechanism must take into account the
+uncertainty in selecting the best. For instance, Fernández Ares et
+al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
+{\em Joust} selection, avoiding inherently noisy fitness by subsuming
+selection in a situation as close to real as possible.
 
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
