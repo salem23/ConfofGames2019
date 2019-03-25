@@ -76,17 +76,27 @@ Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, 
 %	only one we have)
 % The introduction is then the same one as before? - JJ
 
-Autonomous driving is a problem that shows up in many environments,
-including of course self-driving cars, but also in drones, ships,
-trains and underwater vehicles. In general, there will be a series of
-sensor inputs that include real speed, obstacles and other vehicles,
-and based on those sensors, the bot will have to take a decision on
+Games are, in many cases, closes and controlled environments, mini or
+simulated worlds that allow you to test techniques that will then
+eventually be applied in real life, probably combined with other
+different technologies to tackle its complexity and variability. Car
+racing simulation includes many of the factors that are present in
+autonomous driving: tracks are very different and not known in
+advance, there are other vehicles present on the track, and the
+conditions change according to weather, and car deteriorates with
+damage. Car is also aware of this only through a set of limited
+sensors, and it will have to take a decision on
 speed and steering that is optimal in several different
-senses \cite{Autodriv2006}. Testing different autonomous driving methodologies in real life is usually reserved to just a few big players, and methodologies
+senses \cite{Autodriv2006}, including, depending on the context, the
+possibility of beating a set of opponents in a simulated race.
+
+
+Since testing different autonomous driving methodologies in real life is
+usually reserved to just a few big players, methodologies 
 as well as algorithms are usually tested in simulated environments;
 these simulated environments, at the same time, offer the incentive of
 competition among your system and others. In this paper, we will be
-using the Open Racing Car Simulator (TORCS) \cite{torcs4}, a very
+using The Open Racing Car Simulator (TORCS) \cite{torcs4}, a very
 realistic racing simulator which offers a great testbed for the
 implementation and evaluation of autonomous drivers.  
 It has been used several times for the celebration of Artificial
@@ -109,6 +119,23 @@ with linguistic variables, and will for instance turn {\em slightly}
 to the right when the next curve is {\em close}, but these controllers
 have to be designed to map properly inputs to desired outputs in
 particular situations. 
+
+From the point of view of optimization, one of the main problems is
+that the environment is always going to change; this is correctly
+reflected in the simulators used, and it means that the score (and
+thus the ranking, if that's the eventual target) will always change,
+making selection of the {\em best} or {\em winning} controller
+probabilistic at best. This uncertainty is a challenge from two points
+of view: non optimal (non-winning) controllers might be selected just
+by chance, since they were assigned a score favored by that
+uncertainty, and, once they are selected, that might make the
+algorithm explore zones around some controllers that have been
+selected just by chance, and leave others unexplored. For these two
+reasons, there are two challenges that we intend to approach in this
+paper: reduce uncertainty in selection of the ``best'', and keep
+diversity high to not exploit just the areas around those individuals
+whose score might have been favored by chance at a certain point in
+the evolution process.
 
 % Antonio - Previous works
 Previously, the authors presented an approach
