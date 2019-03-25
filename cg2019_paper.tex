@@ -214,7 +214,7 @@ driver for a car, and through the use of different simulators and
 techniques, they have probably been pursued in one way or the
 other. In a nutshell, you have to provide for a way to drive the car,
 in real time, from the inputs gathered by the car. TORCS offer a rich
-array of sensors, but it also includes vision  \cite{Floreano2004}, although most papers do
+array of sensors, but it also includes vision  \cite{Floreano2004,zhu2018driving}, although most papers do
 rely only on the sensors, since they offer enough information for
 driving the car.
 
@@ -227,9 +227,31 @@ dangerousness of the track, in general working with an already wired
 controller that is able, for instance, to work towards a target speed
 instead of dealing directly with throttle and braking is much more
 convenient. This default controller, as a matter of fact, lets you
-choose what you actually want to change or optimize. Some people opt
-for changing just the steering \cite{CarRacing_Pelta09},
+choose what you actually want to change or optimize. Some people opt for changing just the steering \cite{CarRacing_Pelta09},
+for changing just the steering
+\cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
 
+Although you can simply create a controller and optimize a series of
+probabilities or rates by hand, generally metaheuristics such as
+neural networks \cite{zhu2018driving} or fuzzy controllers
+\cite{armagan2017fuzzy}. Besides, working towards the automatic
+configuration via optimization of the steering wheel and the target speed also allows a
+bit of more leverage to obtain the maximum performance out of the
+racing cars
+\cite{CarRacing_Pelta09,PerezEvolvingFuzzy09,torcs2012}. The main
+intention of these authors was to imitate human driving patterns;
+however, in our case, we were mainly interested in optimizing the
+performance.
+
+Evolutionary algorithms have been often used as an optimization
+mechanism, but any optimization mechanism must take into account the
+uncertainty in selecting the best. For instance, Fernández Ares et
+al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
+{\em Joust} selection, avoiding inherently noisy fitness by subsuming
+selection in a situation as close to real as possible. Several
+different mechanisms have been applied in the context of TORCS racing
+including application of filters \cite{preuss2011torcs} and averaging
+\cite{24}.
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
 \cite{salem_evo17}, which evolved a fuzzy-based driver considering the
@@ -242,13 +264,12 @@ performance. Lately, we presented \cite{salem_cig2018} an improvement on our pro
 
 In this study we build on this last approach, focusing on the best
 fitness function to date and the final selection process, but also
-involving two new mechanisms during the evolution: a \textit{Blend
+involving two new mechanisms during the evolution: a \textit{Blend or BLX-$\alpha$
   Crossover operator} to control the balance between exploration and
-exploitation, and a \textit{Race-based selection of parents}, aiming
+exploitation, and a \textit{pole selection of parents} inspired by the
+Joust selection mentioned above and aiming
 to choose real good drivers in races, rather than just select those
-with the highest fitness values, in order to avoid somehow the
-uncertainty/noise present on the problem
-\cite{merelo2016statistical}. 
+with the highest fitness values. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -780,12 +801,18 @@ Looking at these and previous results, we can conclude that the proposed control
 \label{sec:conclusions}
 
 % >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
-
 In this work, we have proposed an improved evolutionary approach to optimize a fuzzy controller for automatic driving in TORCS.This genetic approach is an attempt to find the parameters of the membership functions of a previous work controller composed of two sub controllers fuzzy, the first one is intended to calculate the desired speed of the car while the second one outputs the steer to take.\\
 The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and resistant bot, we proposed to apply a pole position selection where the selection of individuals in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.\\
 Aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values ​​of the $\alpha$ parameter throughout the generations.
 The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, giving good results.
 The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller). In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the best damage, average speed and maximum speed  values.
+
+In this paper we have tried to get winning racing car drivers by
+first improving the selection process so that, from time to time,
+uncertainty is eliminated by using actual competitions instead of
+fitness-based evolution, and second, keep the balance between
+exploration and exploitation high, and also variable, by using a fixed
+and adaptive version of the BLX-$\alpha$ operator.
 
 These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).\\
 
@@ -799,6 +826,6 @@ This work has been supported in part by: Ministerio espa\~{n}ol de
 Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio) and TEC2015-68752 (also funded by FEDER).
 
 \bibliographystyle{IEEEtranS}
-\bibliography{fuzzy_torcs}
+\bibliography{fuzzy_torcs,geneura}
 
 \end{document}
