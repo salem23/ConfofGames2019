@@ -25,20 +25,17 @@ Juan J. Merelo\IEEEauthorrefmark{3}}
 
 \begin{abstract}
 
-% >>>>>> TODO: Rewrite Abstract -> JJ  <<<<<<<<<<<<<	
+% Antonio - I have written this abstract for the submission. Please revise an improve it JJ and Mohammed. ;D	
 	
-	
-
-
-
-In this paper we will describe a new optimized genetic fuzzy controller for TORCS races So to improve the previous controller presented in CIG conference, we choose to apply $BLX-\alpha$ crossover operator in the genetic algorithm to enhance the optimal solution search process.
-
-
+This paper describes an enhanced version of a Fuzzy-based Genetic Controller for the car simulator TORCS. It is based on two fuzzy sub-controllers, one for deciding on the wheel steering angle and another to set the car target speed at the next simulation tick. They are both optimized by means of an Evolutionary Algorithm, which considers a parameter-less fitness function focused on the maximization of the average speed during the race and the minimization of the car damage. Moreover a Blend Crossover operator has been applied in order to control the balance between exploration and exploitation. This operator is also combined with a novel selection policy of parents, based in races where the best individuals to date compete against others, so only the winner will be selected.
+% Antonio - Mohammed, is it only the winner selected or the top ones?
+Several experiments have been conducted, testing the value of the different controllers. The results show that the combination of a dynamic $BLX-\alpha$ crossover operator + the race-based selection policy clearly beats the rest of approaches. Moreover, in the comparison of this controller with one of the participants of the prestigious international Simulated Car Racing Competition, our autonomous driver obtains much better results than the opponent.
 
 \end{abstract}
 \begin{IEEEkeywords}
-Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, BLX-$\alpha$ Crossover, Optimization, Evaluation
+Videogames, Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, BLX-$\alpha$ Crossover, Optimization, Race-based Selection
 \end{IEEEkeywords}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   INTRODUCTION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \section{Introduction}
@@ -66,9 +63,7 @@ implementation and evaluation of autonomous drivers.
 It has been used several times for the celebration of Artificial
 Intelligence (AI) competitions, where the aim is to create the best
 autonomous driver for racing
-\cite{SimulatedCarRacing-2008,oponnents2010,Torcs3,manualTORCS}. Besides being
-able to test your car against other cars that have been published, it
-can be used as a standalone environment to optimize driving in a
+\cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010,Torcs3,manualTORCS}. Besides being able to test your car against other cars that have been published, it can be used as a standalone environment to optimize driving in a
 solo race. 
 
 Evolutionary Algorithms (EAs) \cite{EAs_Back96} have been frequently
@@ -84,16 +79,19 @@ inspired by the human reasoning when driving. A fuzzy controller works
 with linguistic variables, and will for instance turn {\em slightly}
 to the right when the next curve is {\em close}, but these controllers
 have to be designed to map properly inputs to desired outputs in
-particular situations. Previously, the authors presented an approach
+particular situations. 
+
+% Antonio - Previous works
+Previously, the authors presented an approach
 combining two specialized fuzzy controllers, designed by hand, that
 were able to decide the car's proper steering angle and desired speed
-at every single point (or tick) during a race \cite{evo17}. This
-driver was later improved \cite{evo18} optimizing the parameters of
+at every single point (or tick) during a race \cite{salem_evo17}. This
+driver was later improved \cite{salem_evo18} optimizing the parameters of
 their membership functions by means of a Genetic Algorithm
 \cite{GAs_Goldberg89}; this automated design improved manual one
 obtaining several controllers that were able to beat the initial
 hand-designed controller in a race, as well as other published
-controllers. 
+controllers. Finally, the authors enhanced the controller in the last paper \cite{salem_cig2018} by means of the definition of new fitness functions. The selection of the best controller at the end of the evolution was based on a set of races among the best 4 solutions, getting a better driver than in previous studies.
 
 This proved that evolutionary algorithms were able to get the fuzzy
 controller parameters better than a hand-made design, but at the same
@@ -133,10 +131,6 @@ corresponding section.
 % Antonio - Just in case we want to comment something about te uncertainty/noise of the game
 
 
-% Antonio - comment on the results
-
-%Once optimized, the best genetic-fuzzy based controllers (one per fitness) have been evaluated in a practice race (without rivals) first, and then in a real race against different drivers in TORCS. 
-%According to the obtained results the enhanced controllers perform both much better than the original fuzzy controller, improving the lap time and reducing the received damage. Moreover they are much more competitive against tough rivals, reaching high ranks in the most difficult races.
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
@@ -148,9 +142,7 @@ After it, the experiments conducted and the obtained results are described in Se
 \section{State of the Art}
 \label{sec:soa}
 
-% >>>>>> TODO: Rewrite SotA -> Antonio  <<<<<<<<<<<<<
-
-TORCS has become one of the main environments for research on AI since its launch in 2007 \cite{torcs4}. It offers different kinds of problems to solve, such as the definition of the optimal parameters for the cars (before the race) \cite{Kole-ParamCarTunning12}, and the main one, which is the design of competitive autonomous drivers aiming to win races against other cars, mainly presented in the context on the Simulated Car Racing Competition \cite{SimulatedCarRacing-2008,oponnents2010}.
+In the scope of car racing simulation, TORCS has become one of the main environments for research on AI since its launch in 2007 \cite{torcs4}. It offers different kinds of problems to solve, such as the definition of the optimal parameters for the cars (before the race) \cite{Kole-ParamCarTunning12}, and the main one, which is the design of competitive autonomous drivers aiming to win races against other cars, mainly presented in the context on the Simulated Car Racing Competition \cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010}.
 
 Evolutionary algorithms have targeted TORCS almost since its
 publication, for instance, for determining the
@@ -174,13 +166,15 @@ offline, or online (during the game)
 Our approach is focused in this line, proposing the application of an off-line genetic algorithm for the improvement of the parameters which determine the behavior of a controller for TORCS. We have focused on a Fuzzy-based model, as it is one of the best options for modeling human-like decisions and actions, as others authors have also used this kind of technique in the literature with good results \cite{torcs2012}. 
 For instance, in \cite{Guadarrama2008}, a fuzzy rule-based car controller for a Car Racing Competition was built and tuned with co-evolutionary genetic algorithms. Two fuzzy sub-controllers were designed (acceleration and turning angle). But this approach was applied to a simpler simulator than TORCS which is a more realistic and time-constrained simulator. 
 
-P{\'e}rez et al. introduced an evolutionary fuzzy approach for TORCS in \cite{PerezEvolvingFuzzy09}, where they applied EAs for improving fuzzy models to infer the acceleration and turning angle. However, the models were not so specialized as the proposed here, since their controller did not compute the target speed, which is a key factor for a competitive controller. 
+P{\'e}rez et al. introduced an evolutionary fuzzy approach for TORCS in \cite{PerezEvolvingFuzzy09}, where they applied EAs for improving fuzzy models to infer the acceleration and turning angle. This controller will be later commented in Section \ref{sec:new-opponent}, as we will consider it as a baseline for comparisons of our proposed autonomous driver.
 
-Onieva et al. \cite{LFAG} presented a parametrized modular architecture with a fuzzy system and a GA, aiming to reproduce the behavior of a human driver when controlling the steering wheel. In this line, we presented an improved approach \cite{evo17}, which evolved a fuzzy-based driver considering the target speed in addition to the steer (two fuzzy sub-controllers).
-This controller was also enhanced in a further work \cite{evo18} optimizing the parameters of the membership functions by means of a real coded genetic algorithm, obtaining a noticeable improvement in performance.
+Onieva et al. \cite{LFAG} presented a parametrized modular architecture with a fuzzy system and a GA, aiming to reproduce the behavior of a human driver when controlling the steering wheel. 
 
-In this paper we focus on the improvement of the evolved controllers by means of a redefinition of the fitness functions, looking for a parameter-less approach (no weights in the terms) \cite{Harik-ParameterLess99}, which will be also more focused on the real objectives for a driver during a race, rather than the overall target. In addition, a `fairer' selection process of the best individual has been implemented, aiming to focus on real good drivers in races, instead of choosing the one with the highest fitness value, which could have a poorer performance due to the uncertainty/noise present on the problem.
+In this line, we presented an improved approach \cite{salem_evo17}, which evolved a fuzzy-based driver considering the target speed in addition to the steer (two fuzzy sub-controllers).
+This controller was also enhanced in a further work \cite{salem_evo18} optimizing the parameters of the membership functions by means of a real coded genetic algorithm, obtaining a noticeable improvement in performance.
+Our previous work \cite{salem_cig2018} presented an improvement on our proposal considering parameter-less fitness functions and a final selection of the best based in additional races involving the top 4 individuals and other rivals.
 
+In this study we try to enhance this last approach, focusing on the best fitness function to date and the final selection process, but also involving two new mechanisms during the evolution: a \textit{Blend Crossover operator} to control the balance between exploration and exploitation, and a \textit{Race-based selection of parents}, aiming to choose real good drivers in races, rather than just select those with the highest fitness values, in order to avoid somehow the uncertainty/noise present on the problem \cite{merelo2016statistical}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,7 +210,7 @@ steering wheel, the accelerator, the brake pedal and the gearbox.
 \section{Fuzzy sub-controllers}
 \label{sec:subcontrollers}
 
-We initially proposed a controller \cite{evo17} with the same modular architecture as the simple TORCS driver; however, the target speed and
+We initially proposed a controller \cite{salem_evo17} with the same modular architecture as the simple TORCS driver; however, the target speed and
 steering angle are computed by means of two modular and specialized
 fuzzy sub-controllers, which consider five position sensors. This is
 the controller which will be improved by means of a GA in this
@@ -231,7 +225,7 @@ is in a straight line, the target speed will take a maximum value
 controller will decrease the current speed to a value included in the
 interval \textit{[minSpeed, maxSpeed]} km/h. 
 
-This fuzzy controller has an output, the speed, and three input values:
+This fuzzy controller has an output, the speed, and three input values (See Figure \ref{fig:torcs-sensors}):
 \begin{itemize}
 	\item Front = Track\_9: front distance to the track border (angle 0\textdegree).  
 	\item M5 = max (Track\_8, Track\_10): max distance to the track border in an angle of +5\textdegree and -5\textdegree with respect to Front.
@@ -242,7 +236,7 @@ It is a Mamdani-based fuzzy system \cite{iancu2012} with three
 trapezoidal Membership Functions (MF) for every input variable. 
 %The description of these fuzzy inputs and output are represented in Table
 %\ref{tab:flouevar}. 
-In \cite{evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
+In \cite{salem_evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
 
 %\begin{table*}
 %	\centering
@@ -280,7 +274,7 @@ In \cite{evo18} the different sets of parameters which define the membership fun
 % Consider whether adding this again or not -- JJ
 % Antonio - not needed
 
-Moreover, the controller is based in a set of fuzzy rules, designed to maximize the car speed depending on the distance to the track border. These rules can be consulted in \cite{evo17}.
+Moreover, the controller is based in a set of fuzzy rules, designed to maximize the car speed depending on the distance to the track border. These rules can be consulted in \cite{salem_evo17}.
 % Antonio - TODO: Include the rules if there is available space?
 %
 %The fuzzy rules are:
@@ -319,7 +313,7 @@ Then, as general rules: if the car is in a straight line, it will set as target 
 
 In order to detect the curves, the controller focuses on the sensor values (M10, M5, and Front). So, if the value on Front sensor is the longest, there is a straight road; whereas if the values of M5 and M10 with positive angles (+5 and +10) are the longest, there is right curve; and the other way round.
 
-It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{evo17}.
+It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{salem_evo17}.
 
 %, so, for this controller:
 % Antonio - TODO: Include the rules if there is available space?
@@ -450,7 +444,7 @@ Thus, every individual is a vector of 18 values/parameters, 6 per variable. Figu
 
 The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
 \cite{GAs_Goldberg89}, in order to start from feasible values
-\cite{evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
+\cite{salem_evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
 implementation \cite{elsayed13} in a vector that includes all variables to optimize.
 
 The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TORCS is used during the evaluation step of every individual in the evolutionary process.
@@ -463,15 +457,17 @@ The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TOR
   \caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
 \end{figure}
 
-The evaluation of the individuals is based in different fitness functions, which we have tested in previous works. In this study we will consider the one which yielded the best results in our previous paper \cite{blind_2018}, namely:
+The evaluation of the individuals is based in different fitness functions, which we have tested in previous works \cite{salem_evo18}. In this study we will consider the one which yielded the best results in our previous paper \cite{salem_cig2018}, namely:
 
 \begin{equation} \label{fit2}
 	\begin{array}{lll}
-	f_{GFC-AVS}= \frac{AVG(Speed)}{Damage+1}
+	f_{AVS}= \frac{AVG(Speed)}{Damage+1}
 	\end{array}
 \end{equation}	
 
-It depends on two variables, which we considered in our previous work \cite{blind_2018} in order to obtain more `human-like' controllers. So, it aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage. These variables are:
+It is a parameter-less approach (no weights in the terms) \cite{Harik-ParameterLess99}, which is also more focused on the real objectives for a driver during a race, rather than the overall target of winning or not,
+in order to obtain more `human-like' controllers. It depends on two variables, so the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage:
+
 \begin{itemize}
 \item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
 \item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
@@ -487,9 +483,13 @@ With regard to the other genetic operators, mutation has remained the same as in
 
 A new \textbf{Race-based Selection process} has been implemented in this approach, aiming to get better individuals/controllers to be parents of the following population. To this end the parents are selected by means of several races against the rest of candidates (X parents compete in each race), the 
 % Antonio - Mohammed, How many parents do you evaluate at the same time?
-%           How many are selected in every race?
+%           How many are selected in every race (only the winner, some of them)?
+%				What happens if the race is won by a bot of TORCS?
 %           How many races do you conduct every generation to select all the 
 %           parents?
+%				How many tracks? How many laps? Are there other rivals per race?
+% Antonio - We have to explain very well the process as it is one of the main 
+%           novelties of the work. ;)
 winner of every race is considered as the best of the individuals.
 % Antonio - Mohammed, do you conduct just one race among the parents or some of them?
 % Mohaammed- we used 5 races to evaluate the X parents
@@ -497,7 +497,6 @@ This way, `probably' the best individuals will be selected to reproduce. We cann
 
 Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
 
-% >>>>>> TODO: Explain BLX-Alpha and why we have included it -> Mohammed  <<<<<<
 
 \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008} has also been added to the GA (instead of previous two-point operator). 
 The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
@@ -518,18 +517,14 @@ In the Blend crossover operator, the $\alpha$ parameter values can control the e
 
 In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
 
-After some experiments considering constant values of $\alpha$, we conclude that the best approach is to decrease the values of $\alpha$ over the generations (getting sequentially more exploitation and less exploration). 
-So, its value is obtained applying the following expression:
+We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained applying the following expression:
 
 \begin{equation}
 \label{eqalpha}
 \alpha =1-\frac{g}{g_{max}}
 \end{equation}
 
-Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations.
-%%Mohammed-  I tried this and it get better results than alpha=0.5
-% Antonio - Ok, great. I have commented this in the text.
-With this combination, we can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
+Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
 
 
 
@@ -539,6 +534,9 @@ With this combination, we can achieve an effective balance between exploitation 
 \label{sec:new-opponent}
 
 % >>>>>> TODO: Describe "S&PL Controller" -> Antonio  <<<<<<<<<<
+
+P{\'e}rez et al. introduced an evolutionary fuzzy approach for TORCS in \cite{PerezEvolvingFuzzy09}, where they applied EAs for improving fuzzy models to infer the acceleration and turning angle. This controller will be later commented in Section \ref{sec:new-opponent}, as we will consider it as a baseline for comparisons of our proposed autonomous driver.
+However, the models were not so specialized as the proposed here, since their controller did not compute the target speed, which is a key factor for a competitive controller. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -552,10 +550,7 @@ With this combination, we can achieve an effective balance between exploitation 
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
-
-
-
-After analyzing most of the available tracks, we have selected for these experiments the \textbf{Alpine 2} circuit. It is a quite complex one, with multiple turns, but also straight parts (See Figure \ref{fig:alpine2_track}).
+On the basis of the results of our previous paper \cite{salem_cig2018}, the selection of an appropriate track for training is an important factor in order to obtain competitive bots. To this end we have selected for the experiments the \textbf{Alpine 2} circuit. It is a quite complex one, with multiple turns, but also straight parts (See Figure \ref{fig:alpine2_track}).
 
 \begin{figure}[!ht]	
   \begin{center}
@@ -565,41 +560,29 @@ After analyzing most of the available tracks, we have selected for these experim
   \end{center}	
 \end{figure}
 
+As in our others studies, we have used the vehicle \textit{car1-tbr1} for our controllers, since it has a moderate performance, which will lead our controller to be prepared to drive in the most usual conditions.
 
+We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness function: $AVG$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
 
-We have used the driving car  \textit{car1-tbr1} for our controllers, since according to previous experiments \cite{evo17}, this is a fair choice due to its moderate performance. This will lead our controller to be prepared to drive in the most usual conditions. 
-
-We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness functions: $GFC$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
-
-
-%\begin{table}[!ht]	
-%		\centering
-%{\scriptsize
-%		\caption{GA parameters}
-%		\label{tab:GA_config}
-%		\begin{tabular}{|p{3.6cm}|p{3cm}|}
-%			\hline \textbf{Population size} & 50 \\
-%			\hline \textbf{Generations} & 50   \\
-%			\hline \textbf{Crossover rate$\textit{P}_{\textit{c}}$} &  0.85 \\
-%			\hline \textbf{Mutation rate $\textit{P}_{\textit{m}}$} &  0.1   \\ 		
-%			\hline          
-%		\end{tabular}	
-%}
-%\end{table}
-
-New race  based selection was carried out where 10 races are used to compete every 10 controllers of the population.
-We used 5 races (of 5 laps) in the \textbf{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textbf{E-Track 5} track (a new one for them). 
+New race-based selection was carried out where 10 races are used to compete every 10 individuals/controllers of the population.
+We used 5 races (of 5 laps) in the \textit{Alpine 2} track (used in the optimization) and 5 races (of 5 laps) in \textit{E-Track 5} track (a new one for them). 
 In order to enhance the selection of the best, another two controllers are picked randomly from the default TORCS bots to participate in the race. Moreover, in order to do it fairer, we have defined a \textit{score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 points.
-The evolution process was applied  to obtain the three following controllers:
-\begin{itemize}
-	\item $GFC$: The controller  from our previous work \cite{blind_2018} using race selection only in the final generation and with fitness of Equation \ref{fit2}.
-	\item $GFC-RS$:A controller obtained by applying two points crossover operator and  race selection in every 5 generations and Equation \ref{fit2} in the others. 
-	\item $GFC-FA$:A controller obtained by applying $BLX-\alpha$ crossover operator with fixed value of $\alpha$ ($\alpha=0.5$) and race selection in every 5 generations and Equation \ref{fit2} in the others. 
-	\item $GFC-VA$:A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race selection in every 5 generations and Equation \ref{fit2} in the others. 
-\end{itemize}
+% Antonio - Mohammed, this is the explanation of the race-based selection policy, right? If so, I'll copy this explanation (or a part of it) to the GA section. ;)
 
-These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the four genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textbf{Alpine 2} track (trained one); and the other 5 races took place in \textbf{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
-The results are shown in Table \ref{tab:chsresults}. 
+
+The evolution process was applied in separate bunches of runs to obtain the following controllers:
+\begin{itemize}
+	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
+% Antonio - the review process is not double-blind. ;)
+using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+	\item $GFC-RS$: A controller obtained by applying two points crossover operator and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+\end{itemize}
+% Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
+
+These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textit{Alpine 2} track (trained one); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
+The results are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
 %
 \begin{table*}[ht]
   \centering
@@ -611,7 +594,7 @@ The results are shown in Table \ref{tab:chsresults}.
     {
 			\begin{tabular}{|c||c|c|c|c|c|c||c|c|c|c|c|c||c|}
 				\hline
-			&\multicolumn{6}{|c|}{Races in \textbf{Alpine 2} track (20 laps each)} &	\multicolumn{6}{|c|}{Races in \textbf{E-Track 5} track (20 laps each)}&\\
+			&\multicolumn{6}{|c|}{Races in \textit{Alpine 2} track (20 laps each)} &	\multicolumn{6}{|c|}{Races in \textit{E-Track 5} track (20 laps each)}&\\
 					\cline{2-13}
 Driver&{R1}&{R2}&{R3}&{R4}&{R5}&Track Score&{R6}&{R7}&{R8}& {R9}&{R10}&Track Score& Total Score\\
 				\hline
@@ -637,26 +620,29 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=8cm]{fig/gfc_races.jpg}
-		\caption{Genetic fuzzy based controllers evaluation}
+		\caption{Scores obtained by the different Genetic fuzzy-based controllers in two different tracks.}
 		\label{fig:gfc_races}	
 	\end{center}	
 \end{figure}
-It is clear from the table and Figure \ref{fig:gfc_races} that the $GFC-VA$ fuzzy controller has yield the best results in the evaluation process.Indeed, The proposed controller won three races in the alpine2 track and has been ranked in the second place in the two other races. In the Track5 track, it won two races and has been second in two times and third  in the last race. 
+% Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
 
-The second controller using the $BLX-\alpha$ operator came second in all races. He won one race and was ranked second in two more and third in three races.
-The other races were won by the $berniw$ controller
-We can notice that the $BLX-\alpha$ based controllers won three of the five races in the Alpine2 track used in the selection and were ranked at least in fourth place.
-The same results or even  better were obtained for the other track supposed to be unknown for our controllers.
+It is clear from the Table and Figure that the $GFC-VA$ controller has yield the best results in the evaluation process. Indeed, The proposed controller won three races in Alpine 2 track and has been ranked in the second place in the two other races. In E-Track 5 circuit, it won two races and has been second two times and third in the last race. 
 
+The second controller using the $BLX-\alpha$ (constant value of 0.5) operator came second in all races. It won one race and was ranked second in two more and third in three races.
+The other races were won by the $berniw$ controller, always a tough rival.
+We can notice that the $BLX-\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
+The same results or even  better were obtained for the other track, which is supposed to be unknown for our controllers.
 
-These results confirm the effectiveness and strength of the race-based selection policy used to evaluate individuals as well as to select candidates for crossover and mutation. Although this policy has been applied only for every five generations due to its time-consuming, it has clearly affected the performance of the obtained controllers  and this is clearly visible in the large gap between the results of the $GFC$ controller  against $GFC-RS$ one.\\
-this proposed selection policy, combined with the $BLX-\alpha$ operator, has improved the performance of the $GFC-FA$ controller.
-The introduction of a variable alpha parameter along the generations in $GFC-VA$ bot has made it possible to better control the exploration / exploitation ratio during the evolutionary process which allows to generate descendants different from their parents in genes and more efficient than them.
+These results confirm the effectiveness and strength of the race-based selection policy used to evaluate individuals as well as to select candidates for crossover. Although this policy has been applied only once every 5 generations due to its time-consuming, it has clearly affected the performance of the obtained controllers looking to the large gap between the results of the $GFC$ controller against $GFC-RS$ one.
 
-\textbf{Comparison with S\&PL controller}
+This proposed selection policy, combined with the $BLX-\alpha$ operator, has improved the performance of the $GFC-FA$ controller.
+The introduction of a variable alpha parameter along the generations in $GFC-VA$ bot has made it possible to better control the exploration / exploitation ratio during the evolutionary process, allowing to generate descendants different from their parents in genes and more efficient than them.
 
+% -------------------------------------------
 
-Finally, Table \ref{tab:damagespeed} presents a comparison between the  two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{SPL-controller09}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
+\textbf{Comparison with S\&PL controller.}
+
+Finally, Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{PerezEvolvingFuzzy09}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
 
 \begin{table}[!ht]
   \centering
@@ -693,6 +679,8 @@ The results of the $GFC-AV$ controller are very satisfactory. Indeed, he won 7 r
 The introduction of a decreasing variation is not strange to these performances.
 
 
+% Antonio - Speak about the quality of that controller in the competition it participated and try to extrapolate the position that our controller could have reach... :D
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions and Future Work} 
@@ -702,9 +690,9 @@ The introduction of a decreasing variation is not strange to these performances.
 
 In this work, we have presented new ways of evaluating controllers
 for the TORCS game; these new methods work within an evolutionary
-algorithm that optimizes a set of fuzzy controllers for TORCS cars \cite{evo18}. It combines two sub-controllers, one to calculate the target speed and the other for the direction, that is, for driving the steering wheel. 
+algorithm that optimizes a set of fuzzy controllers for TORCS cars \cite{salem_evo18}. It combines two sub-controllers, one to calculate the target speed and the other for the direction, that is, for driving the steering wheel. 
 
-After initial tests in previous works \cite{evo17,evo18}, that showed the promise of using evolutionary algorithms with two different fitness functions, one considering the average lap time and the car damage and another adding the top speed reached, we discovered the importance of the speed, using different
+After initial tests in previous works \cite{salem_evo17,salem_evo18}, that showed the promise of using evolutionary algorithms with two different fitness functions, one considering the average lap time and the car damage and another adding the top speed reached, we discovered the importance of the speed, using different
 combinations. {\em A priori}, we could think that races are won by
 being very fast when you can be, and trying not to get too slow in
 tortuous segments. This heuristic was what drove us to design the
@@ -727,11 +715,11 @@ The yielded results are very promising since the optimized controllers
 (one per fitness function) were ranked among the first ones in 
 different evaluation races with rivals, with the minimum of damage and a very good average and maximum speed. 
 
-In the comparison with the previous evolved fuzzy controllers (from \cite{evo18}), the improvement can be clearly seen in the results. The
+In the comparison with the previous evolved fuzzy controllers (from \cite{salem_evo18}), the improvement can be clearly seen in the results. The
 new controllers are able to drive much faster than them, even in a
 track where the latter were trained, and moreover they manage to
 sustain a low damage. They do so even if, compared with
-\cite{evo17,evo18}, they are not using damage as a criterium for
+\cite{salem_evo17,salem_evo18}, they are not using damage as a criterium for
 optimization. High damage might make a car abandon a race, but
 apparently a certain amount of damage should be expected if you want
 to win the race. 
