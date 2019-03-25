@@ -228,7 +228,7 @@ controller that is able, for instance, to work towards a target speed
 instead of dealing directly with throttle and braking is much more
 convenient. This default controller, as a matter of fact, lets you
 choose what you actually want to change or optimize. Some people opt
-for changing just the steering \cite{CarRacing_Pelta09,
+for changing just the steering \cite{CarRacing_Pelta09},
 
 Our own work tried to take the state of the art further by introducing
 a fuzzy controller evolved via evolutionary algorithms in
@@ -607,6 +607,7 @@ In order to enhance the selection of the best, another two controllers are picke
 % Antonio - Mohammed, this is the explanation of the race-based selection policy, right? If so, I'll copy this explanation (or a part of it) to the GA section. ;)
 % Or is it the description of the final selection of the best?
 
+%%Mohammed-  The E-Track5 track is used only in the comparison (test purpose) , in the selection, I used only Alpine2
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
@@ -627,6 +628,8 @@ using race-based selection only in the final generation and with fitness  $f_{AV
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
 % If this happens at the end, you should clarify - JJ 
+%%%  Mohammed  Yes I do
+
 These genetic fuzzy based controllers are evaluated in some practice
 races together in a kind of Formula 1 {\em mini championship}, consisting of
 10 races, each one for 20 laps, and with a total of 10 participants
@@ -682,7 +685,7 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 	\end{center}
 \end{figure}
 % Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
-
+%Mohammed Done
 It is clear from the table and figure that the $GFC-VA$ controller
 yields the best results in the evaluation process. Indeed, The
 proposed controller won three races in Alpine 2 track and has been
@@ -778,11 +781,18 @@ Looking at these and previous results, we can conclude that the proposed control
 
 % >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
 
+In this work, we have proposed an improved evolutionary approach to optimize a fuzzy controller for automatic driving in TORCS.This genetic approach is an attempt to find the parameters of the membership functions of a previous work controller composed of two sub controllers fuzzy, the first one is intended to calculate the desired speed of the car while the second one outputs the steer to take.\\
+The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and resistant bot, we proposed to apply a pole position selection where the selection of individuals in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.\\
+Aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values ​​of the $\alpha$ parameter throughout the generations.
+The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, giving good results.
+The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller). In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the best damage, average speed and maximum speed  values.
 
-These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
+These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).\\
 
-
-
+This controller can be improved in several ways:
+We can extend the selection policy to all generations while overcoming the computation time drawback by parallel algorithms.\\
+We can also explore other fitness functions to evaluate individuals including other parameters affecting the performance of the car.
+Another perspective is to use multiple tracks in the selection process because although the Alpine2 track has different segments representing most of the features of the race tracks, it can not replace the other tracks especially the crossroads tracks.
 \section*{Acknowledgments}
 
 This work has been supported in part by: Ministerio espa\~{n}ol de
