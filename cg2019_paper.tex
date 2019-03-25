@@ -622,7 +622,6 @@ In order to enhance the selection of the best, another two controllers are picke
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
 	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
-% Antonio - the review process is not double-blind. ;)
 using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
 	\item $GFC-RS$: A controller obtained by applying two points
           crossover operator. Pole selection is applied once every five
@@ -638,8 +637,17 @@ using race-based selection only in the final generation and with fitness  $f_{AV
 \end{itemize}
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
-These genetic fuzzy based controllers are evaluated in some practice races together in a kind of Formula 1 mini championship, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS are used to test our controllers. The first 5 races are conducted in \textit{Alpine 2} track (trained one); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers, but used in the evolution of our previous ones).
-The results are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
+% If this happens at the end, you should clarify - JJ 
+These genetic fuzzy based controllers are evaluated in some practice
+races together in a kind of Formula 1 {\em mini championship}, consisting of
+10 races, each one for 20 laps, and with a total of 10 participants
+per race: the 4 genetic fuzzy controllers and also 6 bots from TORCS
+are used to test our controllers. The first 5 races are conducted in
+\textit{Alpine 2} track (trained one); and the other 5 races took
+place in \textit{E-Track 5} track (not trained for the new
+controllers, but used in the evolution of our previous ones). 
+The results are shown in Table \ref{tab:chsresults} and summarized
+graphically in Figure \ref{fig:gfc_races}. 
 %
 \begin{table*}[ht]
   \centering
