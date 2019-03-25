@@ -179,10 +179,18 @@ main environments for research on AI since its launch in 2007
 races in this environment need to set the optimal parameters for the
 cars \cite{Kole-ParamCarTunning12} with the ultimate objective of
 participating in one of the the Simulated Racing Car Competitions
-\cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010}. 
+\cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010}. However, the
+problem itself is a challenge, and thus it has been used as a subject
+of research from the beginning even without the intention of
+participating in the competition; in any case, published controllers
+are always used as the state of the art reference, and any new bot
+should be compared against at least those that are available.
 
-Evolutionary algorithms have targeted TORCS almost since its
-publication, for instance, for determining the
+% This should be much more systematic. It should say:
+% These are the kind of controllers there are; these are the kind of
+% techniques that are used, these are the results obtained
+
+Initial papers focused on trying to obtain the 
 optimal trajectory of a lap in a known circuit \cite{drivingGA2008},
 but this approach suffers from the problem that the obtained
 trajectory in the evolving process strongly depends on the initial
@@ -200,18 +208,45 @@ structure/architecture of the models \cite{SAES2012,neurone}, working
 offline, or online (during the game)
 \cite{TanOnline08,Cardamone_Online_NN}.
 % FUZZY + EAs
-Our approach is focused in this line, proposing the application of an off-line genetic algorithm for the improvement of the parameters which determine the behavior of a controller for TORCS. We have focused on a Fuzzy-based model, as it is one of the best options for modeling human-like decisions and actions, as others authors have also used this kind of technique in the literature with good results \cite{torcs2012}. 
-For instance, in \cite{Guadarrama2008}, a fuzzy rule-based car controller for a Car Racing Competition was built and tuned with co-evolutionary genetic algorithms. Two fuzzy sub-controllers were designed (acceleration and turning angle). But this approach was applied to a simpler simulator than TORCS which is a more realistic and time-constrained simulator. 
+Our hybrid approach applies an off-line genetic algorithm for the
+improvement of the parameters which determine the behavior of a
+controller for TORCS using fuzzy-based model, as it is
+one of the best options for modeling human-like decisions and
+actions. Other authors have also used this kind of technique in the
+literature with good results \cite{torcs2012}.  
+For instance, in \cite{Guadarrama2008}, a fuzzy rule-based car
+controller for a Car Racing Competition was built and tuned with
+co-evolutionary genetic algorithms. Two fuzzy sub-controllers were
+designed (acceleration and turning angle). But this approach was
+applied to a simpler simulator than TORCS which is a more realistic
+and time-constrained simulator. 
 
-P{\'e}rez et al. introduced an evolutionary fuzzy approach for TORCS in \cite{PerezEvolvingFuzzy09}, where they applied EAs for improving fuzzy models to infer the acceleration and turning angle. This controller will be later commented in Section \ref{sec:new-opponent}, as we will consider it as a baseline for comparisons of our proposed autonomous driver.
+P{\'e}rez et al. introduced an evolutionary fuzzy approach for TORCS
+in \cite{PerezEvolvingFuzzy09}, where they applied EAs for improving
+fuzzy models to infer the acceleration and turning angle. This
+controller will be later commented in Section \ref{sec:new-opponent},
+as we will consider it as a baseline for comparisons of our proposed
+autonomous driver. 
 
-Onieva et al. \cite{LFAG} presented a parametrized modular architecture with a fuzzy system and a GA, aiming to reproduce the behavior of a human driver when controlling the steering wheel. 
+Onieva et al. \cite{LFAG} presented a parametrized modular
+architecture with a fuzzy system and a GA, aiming to reproduce the
+behavior of a human driver when controlling the steering wheel.  
 
-In this line, we presented an improved approach \cite{salem_evo17}, which evolved a fuzzy-based driver considering the target speed in addition to the steer (two fuzzy sub-controllers).
-This controller was also enhanced in a further work \cite{salem_evo18} optimizing the parameters of the membership functions by means of a real coded genetic algorithm, obtaining a noticeable improvement in performance.
-Our previous work \cite{salem_cig2018} presented an improvement on our proposal considering parameter-less fitness functions and a final selection of the best based in additional races involving the top 4 individuals and other rivals.
+In this line, we presented an improved approach \cite{salem_evo17}, which evolved a fuzzy-based driver considering the target speed in addition to controlling steering (two fuzzy sub-controllers).
+This controller was also enhanced in a further work \cite{salem_evo18}
+optimizing the parameters of the membership functions by means of a
+real coded genetic algorithm, obtaining a noticeable improvement in
+performance. Lately, we presented \cite{salem_cig2018} an improvement on our proposal considering parameter-less fitness functions and a final selection of the best based in additional races involving the top 4 individuals and other rivals.
 
-In this study we try to enhance this last approach, focusing on the best fitness function to date and the final selection process, but also involving two new mechanisms during the evolution: a \textit{Blend Crossover operator} to control the balance between exploration and exploitation, and a \textit{Race-based selection of parents}, aiming to choose real good drivers in races, rather than just select those with the highest fitness values, in order to avoid somehow the uncertainty/noise present on the problem \cite{merelo2016statistical}.
+In this study we build on this last approach, focusing on the best
+fitness function to date and the final selection process, but also
+involving two new mechanisms during the evolution: a \textit{Blend
+  Crossover operator} to control the balance between exploration and
+exploitation, and a \textit{Race-based selection of parents}, aiming
+to choose real good drivers in races, rather than just select those
+with the highest fitness values, in order to avoid somehow the
+uncertainty/noise present on the problem
+\cite{merelo2016statistical}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -658,8 +693,11 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 	\begin{center}
 		\includegraphics[width=8cm]{fig/gfc_races.jpg}
 		\caption{Scores obtained by the different Genetic fuzzy-based controllers in two different tracks.}
-		\label{fig:gfc_races}	
-	\end{center}	
+		\label{fig:gfc_races}
+                % Please don't use screen captures for figures. Also,
+                % the little circles around one of the bars make no
+                % sense - JJ
+	\end{center}
 \end{figure}
 % Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
 
