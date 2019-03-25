@@ -617,26 +617,29 @@ New pole position selection has been conducted considering \textit{Alpine 2} tra
 We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
 Due to the high-demanding time this method is, this race-based selection process has just been performed every 5 generations (not in all of them).
 
-At the end of the evolution an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. 
+At the end of the evolution (in the last generation) an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 score scheme is again applied and the winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
 	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
 % Antonio - the review process is not double-blind. ;)
 using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-RS$: A controller obtained by applying two points crossover operator and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RS$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 \end{itemize}
+
+Once the 10 runs have finished, the obtained 10 best controllers compete again in a similar set of races as those conducted in the last generation of the algorithms, in order to choose the best controller overall per approach, i.e. the best $GFC-RS$, $GFC-FA$ and $GFC-VA$.
+
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
 % If this happens at the end, you should clarify - JJ 
 %%%  Mohammed  Yes I do
 
-The obtained genetic fuzzy based controllers (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants
-per race: the 4 GFCs and also 6 standard bots from TORCS. The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
-The results are shown in Table \ref{tab:chsresults} and summarized
-graphically in Figure \ref{fig:gfc_races}. 
+The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
+Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
+
+The results of this comparison are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
 
 %
 \begin{table*}[ht]
