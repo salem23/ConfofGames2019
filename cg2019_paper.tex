@@ -801,7 +801,15 @@ Looking at these and previous results, we can conclude that the proposed control
 \label{sec:conclusions}
 
 % >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
-In this work, we have proposed an improved evolutionary approach to optimize a fuzzy controller for automatic driving in TORCS.This genetic approach is an attempt to find the parameters of the membership functions of a previous work controller composed of two sub controllers fuzzy, the first one is intended to calculate the desired speed of the car while the second one outputs the steer to take.\\
+
+
+In this paper we have tried to get winning racing car drivers by
+first improving the selection process so that, from time to time,
+uncertainty is eliminated by using actual competitions instead of
+fitness-based evolution, and second, keep the balance between
+exploration and exploitation high, and also variable, by using a fixed
+and adaptive version of the BLX-$\alpha$ operator.
+
 The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and resistant bot, we proposed to apply a pole position selection where the selection of individuals in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.\\
 Aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values ​​of the $\alpha$ parameter throughout the generations.
 The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, giving good results.
