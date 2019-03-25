@@ -26,7 +26,6 @@ Juan J. Merelo\IEEEauthorrefmark{3}}
 
 \begin{abstract}
 
-% Antonio - I have written this abstract for the submission. Please revise and improve it JJ and Mohammed. ;D	
 One of the main problems in the design through optimization of car
 racing bots is the inherent noise in the optimization process: besides
 the fact that the fitness is a heuristic based on what we think are
@@ -563,7 +562,7 @@ $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See F
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=5cm]{fig/blxalpha.jpg}
-		\caption{Blend crossover operator ($BLX-\alpha$)}
+		\caption{Blend crossover operator (BLX-$\alpha$)}
 		\label{fig:blxalpha}	
 	\end{center}	
 \end{figure}
@@ -634,8 +633,8 @@ The evolution process was applied in separate bunches of runs to obtain the foll
 % Antonio - the review process is not double-blind. ;)
 using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
 	\item $GFC-RS$: A controller obtained by applying two points crossover operator and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-FA$: A controller obtained by applying BLX-$\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-VA$: A controller obtained by applying BLX-$\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 \end{itemize}
 % Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
@@ -694,17 +693,17 @@ ranked in the second place in the two other racing tracks. In the E-Track 5
 circuit, it won two races, has been second twice and third in
 the last race.
 
-The second controller using the $BLX-\alpha$ (constant value of 0.5)
+The second controller using the BLX-$\alpha$ (constant value of 0.5)
 operator came second in all races. It won one race and was ranked
 second in two more and third in three races.
 The other races were won by the $berniw$ controller, always a tough rival.
-We can notice that the $BLX-\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
+We can notice that the BLX-$\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
 The same results or even  better were obtained for the other track, which is supposed to be unknown for our controllers.
 
 These results confirm the effectiveness and strength of the race-based selection policy used to evaluate individuals as well as to select candidates for crossover. Although this policy has been applied only once every 5 generations due to its time-consuming, it has clearly affected the performance of the obtained controllers looking to the large gap between the results of the $GFC$ controller against $GFC-RS$ one.
 
 This proposed selection policy (which also includes mutation),
-combined with the $BLX-\alpha$ operator, has improved the performance
+combined with the BLX-$\alpha$ operator, has improved the performance
 of the $GFC-FA$ controller. 
 The introduction of a variable $\alpha$ parameter along the
 generations in $GFC-VA$ bot has made it possible to better control the
@@ -716,7 +715,7 @@ and more efficient than them.
 
 \textbf{Comparison with S\&PL controller.}
 
-Finally, Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{PerezEvolvingFuzzy09}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
+Finally, Table \ref{tab:damagespeed} presents a comparison between the two BLX-$\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with the S\&PL controller \cite{PerezEvolvingFuzzy09}. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textbf{Alpine 2} and \textbf{E-Track 5} tracks. 
 
 \begin{table}[!ht]
   \centering
