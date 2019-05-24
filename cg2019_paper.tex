@@ -397,8 +397,8 @@ $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
 % Antonio - if we need space, yes, otherwise, it does not matter I think
 \end{figure}
 And a fuzzy partition with \textit{n} trapezoidal membership functions
-is defined by \textit{2n} variables (\textit{a =} $ x_{1}$,$x_{2}
-$,. .., $x_{2n} $ \textit {= b})(Equation \ref{eq:e1}). In this case,
+is defined by \textit{2n} variables ($x_{1}$,$x_{2}
+$,. .., $x_{2n} $ )(Equation \ref{eq:e1}). In this case,
 the representation is given by Figure \ref{fig:at}.
 
 \begin{figure}[!ht] 
@@ -410,9 +410,9 @@ the representation is given by Figure \ref{fig:at}.
 \end{figure}
 With:
 \begin{equation}
-a = x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n}=b 	
+x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n} 	
 \end{equation}		
-
+The first variable $x_{1}$ is chosen to be equal to the lower boundary of the range (\textit{a} while $x_{2n}$ is equal to \textit {b}.
 \begin{equation} 
 \begin{tabular}{l}
 $\mu_{A1}(x)=  \left \{
@@ -595,7 +595,9 @@ Once the 10 runs have finished, the obtained 10 best controllers compete again i
 % If this happens at the end, you should clarify - JJ 
 %%%  Mohammed  Yes I do
 
-The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
+The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers from {\tt tita}, {\tt berniw} and {\tt
+	inferno} teams where {\tt berniw} is known by its aggressive overtaking policy while {\tt
+	inferno} is the faster one.  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
 Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
 
 The results of this comparison are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
