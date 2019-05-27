@@ -22,7 +22,13 @@ Juan J. Merelo\IEEEauthorrefmark{3}}
 \IEEEauthorblockA{\IEEEauthorrefmark{3}Dept. of Computer Architecture and Computer Technology. University of Granada, Spain. \\Email: jmerelo@geneura.ugr.es}
 }
 
+\IEEEpubid{\begin{minipage}{\textwidth}\ \\[12pt]
+978-1-7281-1884-0/19/\$31.00 \copyright 2019 IEEE
+\end{minipage}}
+
 \maketitle
+
+
 
 \begin{abstract}
 
@@ -595,9 +601,7 @@ Once the 10 runs have finished, the obtained 10 best controllers compete again i
 % If this happens at the end, you should clarify - JJ 
 %%%  Mohammed  Yes I do
 
-The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers from {\tt tita}, {\tt berniw} and {\tt
-	inferno} teams where {\tt berniw} is known by its aggressive overtaking policy while {\tt
-	inferno} is the faster one.  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
+The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers between {\tt tita} (a conservative driver), {\tt berniw} (known by its aggressive overtaking policy) and {\tt inferno} (the fastest one).  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
 Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
 
 The results of this comparison are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
@@ -746,7 +750,7 @@ At the same time, and aiming to intensify the exploration process in the search 
 The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, yielding very good results.
 The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller), which participated in several Simulated Car Racing Competitions. In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the lowest damage, average speed and maximum speed values.
 
-These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
+These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2015. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
 
 As future lines of work, this controller can be improved in some ways:
 We can extend the selection policy to all generations while overcoming the computation time drawback by means of a parallel implementation.
