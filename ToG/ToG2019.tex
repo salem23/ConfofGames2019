@@ -1,37 +1,484 @@
-\documentclass[conference]{IEEEtran}
-\IEEEoverridecommandlockouts
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+
+%% bare_jrnl_compsoc.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% Computer Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
-\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
 \begin{document}
-
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+	%\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
+%
 \title{Beating uncertainty in racing bot evolution through enhanced
-  exploration and pole position selection}
+	exploration and pole position selection}
 
-\author{\IEEEauthorblockN{Mohammed Salem\IEEEauthorrefmark{1},
-Antonio M. Mora\IEEEauthorrefmark{2} and
-Juan J. Merelo\IEEEauthorrefmark{3}}
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc 
+% journal papers have the author affiliations above the "Manuscript
+% received ..."  text while in non-compsoc journals this is reversed. Sigh.
 
-\IEEEauthorblockA{\IEEEauthorrefmark{1}Dept. of Computer Sciences, University of Mascara, Algeria. \\Email: salem@univ-mascara.dz}
-\IEEEauthorblockA{\IEEEauthorrefmark{2}Dept. of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain. \\Email: amorag@ugr.es}
-\IEEEauthorblockA{\IEEEauthorrefmark{3}Dept. of Computer Architecture and Computer Technology. University of Granada, Spain. \\Email: jmerelo@geneura.ugr.es}
-}
+\author{Mohammed~Salem, Antonio~M.~Mora,      and~Juan~J.~Merelo% <-this % stops a space
+\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Salem was with the Department of Computer Sciences, University of Mascara, Algeria.\protect\\
+% note need leading \protect in front of \\ to get a newline within \thanks as
+% \\ is fragile and will error, could use \hfil\break instead.
+E-mail: salem@univ-mascara.dz
+\IEEEcompsocthanksitem A~M.~Mora was with thr Department of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain.\protect\\
+Email: amorag@ugr.es
+\IEEEcompsocthanksitem J~J.~Merelo was with the Department of Computer Architecture and Computer Technology. University of Granada, Spain.\protect\\
+Email: jmerelo@geneura.ugr.es
+}% <-this % stops an unwanted space
+\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
 
-\IEEEpubid{\begin{minipage}{\textwidth}\ \\[12pt]
-978-1-7281-1884-0/19/\$31.00 \copyright 2019 IEEE
-\end{minipage}}
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
 
-\maketitle
+
+
+% The paper headers
+\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
 
 
 
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2015 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\IEEEtitleabstractindextext{%
 \begin{abstract}
-
 One of the main problems in the design through optimization of car
 racing bots is the inherent noise in the optimization process: besides
 the fact that the fitness is a heuristic based on what we think are
@@ -53,16 +500,44 @@ dynamic BLX-$\alpha$ crossover operator plus the \textit{pole position selection
 comparison of this controller with one of the participants of the
 prestigious international Simulated Car Racing Championship, our
 autonomous driver obtains much better results than the opponent.
-
 \end{abstract}
-\begin{IEEEkeywords}
-Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Race-based Selection, Uncertainty
-\end{IEEEkeywords}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   INTRODUCTION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Race-based Selection, Uncertainty.
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
+% or transmag modes are not selected <OR> if conference mode is selected 
+% - because all conference papers position the abstract like regular
+% papers do.
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
 %
-\section{Introduction}
-\label{sec:intro}
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
 Games are, in many cases, closed and controlled environments, mini or
 simulated worlds that allow you to test techniques that will then
@@ -255,7 +730,7 @@ whose values the car can use during a race, such as distances to track borders, 
 		\caption {TORCS capture showing some of the sensors that the car includes.}
 		\label{fig:torcs-sensors}
 	\end{center}
-% Antonio - if we need space we can remove this image
+	% Antonio - if we need space we can remove this image
 \end{figure}
 
 
@@ -375,23 +850,23 @@ trapezoidal membership functions.
 A trapezoidal membership function in a finite universe of discourse \textit{[a, b]} can be defined by:
 
 \begin{equation}
-\mu_{A}(x)= \left \{
-\begin{array}{ll}
-\frac{x - x_{1}}{x_{2} - x_{1}},& x_{1} \leq x \leq x_{2}\\
-1 , &x_{2} \leq x \leq x_{3}\\
-\frac{x_{4} - x}{x_{4} - x_{3}},& x_{3} \leq x \leq x_{4}\\
-0        ,& else\\	
-\end{array}
-\right.
-\label{eq:trapmf}
+	\mu_{A}(x)= \left \{
+	\begin{array}{ll}
+		\frac{x - x_{1}}{x_{2} - x_{1}},& x_{1} \leq x \leq x_{2}\\
+		1 , &x_{2} \leq x \leq x_{3}\\
+		\frac{x_{4} - x}{x_{4} - x_{3}},& x_{3} \leq x \leq x_{4}\\
+		0        ,& else\\	
+	\end{array}
+	\right.
+	\label{eq:trapmf}
 \end{equation}
 with:
 \begin{equation}
-x_{1} \leq x_{2} \leq x_{3} \leq x_{4}
+	x_{1} \leq x_{2} \leq x_{3} \leq x_{4}
 \end{equation}
 This MF function is defined by four parameters $x_{1}$, $x_{2}$,
 $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
-  b]}.% (See Figure \ref{fig:trapeze}).
+	b]}.% (See Figure \ref{fig:trapeze}).
 
 \begin{figure}[!ht] 
 	\begin{center}
@@ -399,8 +874,8 @@ $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
 		\caption {Trapezoidal MFs}
 		\label{fig:trapeze}
 	\end{center}
-% Mohammed: Could we remove this figure?
-% Antonio - if we need space, yes, otherwise, it does not matter I think
+	% Mohammed: Could we remove this figure?
+	% Antonio - if we need space, yes, otherwise, it does not matter I think
 \end{figure}
 And a fuzzy partition with \textit{n} trapezoidal membership functions
 is defined by \textit{2n} variables ($x_{1}$,$x_{2}
@@ -416,36 +891,36 @@ the representation is given by Figure \ref{fig:at}.
 \end{figure}
 With:
 \begin{equation}
-x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n} 	
+	x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n} 	
 \end{equation}		
 The first variable $x_{1}$ is chosen to be equal to the lower boundary of the range (\textit{a} while $x_{2n}$ is equal to \textit {b}.
 \begin{equation} 
-\begin{tabular}{l}
-$\mu_{A1}(x)=  \left \{
-\begin{array}{ll}
-1, &x_{1} \leq x \leq x_{2}\\
-\frac{x_{3} - x}{x_{3} - x_{2}}, &x_{2} \leq x \leq x_{3}\\
-0        , &x > x_{3}\\
-\end{array} 
-\right.$		\\ 	
-$\mu_{Ai}(x)= \left \{
-\begin{array}{ll} 
-0, &x \leq x_{2i-2}\\
-\frac{x - x_{2i-2}}{x_{2i-1} - x_{2i-2}}, &x_{2i-2} \leq x \leq x_{2i-1},n=2,...,i-1\\
-1, & x_{2i-1} \leq x \leq x_{2i}\\
-\frac{x_{2i+1} - x}{x_{2i+1} - x_{2i}},& x_{2i} \leq x \leq x_{2i+1}\\
-0  , &x > x_{2i+1}\\
-\end{array}  
-\right.	$		\\
-$\mu_{An}(x)= \left \{
-\begin{array}{ll} 
-0, &x \leq x_{2n-2}\\
-\frac{x - x_{2n-2}}{x_{2n-1} - x_{2n-2}},& x_{2n-2} \leq x \leq x_{2n-1}\\
-1 ,& x > x_{2n-1} 
-\end{array} 
-\right.$\\
-\label{eq:e1}
-\end{tabular}
+	\begin{tabular}{l}
+		$\mu_{A1}(x)=  \left \{
+		\begin{array}{ll}
+		1, &x_{1} \leq x \leq x_{2}\\
+		\frac{x_{3} - x}{x_{3} - x_{2}}, &x_{2} \leq x \leq x_{3}\\
+		0        , &x > x_{3}\\
+		\end{array} 
+		\right.$		\\ 	
+		$\mu_{Ai}(x)= \left \{
+		\begin{array}{ll} 
+		0, &x \leq x_{2i-2}\\
+		\frac{x - x_{2i-2}}{x_{2i-1} - x_{2i-2}}, &x_{2i-2} \leq x \leq x_{2i-1},n=2,...,i-1\\
+		1, & x_{2i-1} \leq x \leq x_{2i}\\
+		\frac{x_{2i+1} - x}{x_{2i+1} - x_{2i}},& x_{2i} \leq x \leq x_{2i+1}\\
+		0  , &x > x_{2i+1}\\
+		\end{array}  
+		\right.	$		\\
+		$\mu_{An}(x)= \left \{
+		\begin{array}{ll} 
+		0, &x \leq x_{2n-2}\\
+		\frac{x - x_{2n-2}}{x_{2n-1} - x_{2n-2}},& x_{2n-2} \leq x \leq x_{2n-1}\\
+		1 ,& x > x_{2n-1} 
+		\end{array} 
+		\right.$\\
+		\label{eq:e1}
+	\end{tabular}
 \end{equation}
 
 This is the base of the optimization conducted by the Genetic Algorithm, as it is described in the following section.
@@ -461,11 +936,11 @@ We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs
 Thus, every individual/chromosome is a vector of 18 values/parameters, 6 per variable, as Figure \ref {fig:cromosome} shows.
 
 \begin{figure*}[!ht]	
-  \begin{center}
-    \includegraphics[width=10cm]{fig/chromosome2.png}
-    \caption{Chromosome description}
-    \label{fig:cromosome}	
-  \end{center}	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/chromosome2.png}
+		\caption{Chromosome description}
+		\label{fig:cromosome}	
+	\end{center}	
 \end{figure*}
 
 The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
@@ -476,18 +951,18 @@ implementation \cite{elsayed13} in a vector that includes all variables to optim
 The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TORCS is used during the evaluation step of every individual in the evolutionary process.
 
 \begin{figure}[!ht]
-  \label{fig:ga}
-  \begin{center}
-    \includegraphics[width=9cm]{fig/flowchart}
-  \end{center}
-  \caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
+	\label{fig:ga}
+	\begin{center}
+		\includegraphics[width=9cm]{fig/flowchart}
+	\end{center}
+	\caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
 \end{figure}
 
 The evaluation of the individuals is based in different fitness functions, which we have tested in previous works \cite{salem_evo18}. In this study we will consider the one which yielded the best results in our previous paper \cite{salem_cig2018}, namely:
 
 \begin{equation} \label{fit2}
 	\begin{array}{lll}
-	f_{AVS}= \frac{AVG(Speed)}{Damage+1}
+		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
 	\end{array}
 \end{equation}	
 
@@ -495,8 +970,8 @@ It is a parameter-less approach (no weights in the terms) \cite{Harik-ParameterL
 in order to obtain more `human-like' controllers. It depends on two variables, so the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage:
 
 \begin{itemize}
-\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
-\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
+	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
+	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
 \end{itemize} 
 
 So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
@@ -535,8 +1010,8 @@ In GAs, the search process needs a high exploration rate in the first generation
 We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
 
 \begin{equation}
-\label{eqalpha}
-\alpha =1-\frac{g}{g_{max}}
+	\label{eqalpha}
+	\alpha =1-\frac{g}{g_{max}}
 \end{equation}
 
 Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
@@ -550,7 +1025,7 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number pf gener
 
 % >>>>>> TODO: Describe "S&PL Controller" -> Antonio  <<<<<<<<<<
 
- 
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -567,11 +1042,11 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number pf gener
 On the basis of the results of our previous paper \cite{salem_cig2018}, the selection of an appropriate track for training is an important factor in order to obtain competitive bots. \textit{Alpine 2} circuit has been selected for the experiments, since it combines multiple turns with straight parts (See Figure \ref{fig:alpine2_track}).
 
 \begin{figure}[!ht]	
-  \begin{center}
-    \includegraphics[width=3cm]{fig/alpine2.jpg}
-    \caption{Alpine 2 Track: Slow mountain road. Length: 3773.57m, Width: 10m}
-    \label{fig:alpine2_track}	
-  \end{center}	
+	\begin{center}
+		\includegraphics[width=3cm]{fig/alpine2.jpg}
+		\caption{Alpine 2 Track: Slow mountain road. Length: 3773.57m, Width: 10m}
+		\label{fig:alpine2_track}	
+	\end{center}	
 \end{figure}
 
 As in our others studies, we have used the vehicle \textit{car1-tbr1} for our controllers, since it has a moderate performance, which will lead our controller to be prepared to drive in the most usual conditions.
@@ -587,8 +1062,8 @@ At the end of the evolution (in the last generation) an additional race-based se
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
 	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
-% Antonio - the review process is not double-blind. ;)
-using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+	% Antonio - the review process is not double-blind. ;)
+	using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
 	\item $GFC-RS$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
 	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
@@ -601,37 +1076,39 @@ Once the 10 runs have finished, the obtained 10 best controllers compete again i
 % If this happens at the end, you should clarify - JJ 
 %%%  Mohammed  Yes I do
 
-The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers between {\tt tita} (a conservative driver), {\tt berniw} (known by its aggressive overtaking policy) and {\tt inferno} (the fastest one).  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
+The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers from {\tt tita}, {\tt berniw} and {\tt
+	inferno} teams where {\tt berniw} is known by its aggressive overtaking policy while {\tt
+	inferno} is the faster one.  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
 Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
 
 The results of this comparison are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
 
 %
 \begin{table*}[ht]
-  \centering
-  {\scriptsize
-    \caption{ Results of the mini-championship with 10 drivers and 10
-      races in two different tracks. {\tt tita}, {\tt berniw} and {\tt
-      inferno} are example controllers included with the TORCS
-    simulator \cite{torcs4}}
-    {
+	\centering
+	{\scriptsize
+		\caption{ Results of the mini-championship with 10 drivers and 10
+			races in two different tracks. {\tt tita}, {\tt berniw} and {\tt
+				inferno} are example controllers included with the TORCS
+			simulator \cite{torcs4}}
+		{
 			\begin{tabular}{|c||c|c|c|c|c|c||c|c|c|c|c|c||c|}
 				\hline
-			&\multicolumn{6}{|c|}{Races in \textit{Alpine 2} track (20 laps each)} &	\multicolumn{6}{|c|}{Races in \textit{E-Track 5} track (20 laps each)}&\\
-					\cline{2-13}
-Driver&{R1}&{R2}&{R3}&{R4}&{R5}&Track Score&{R6}&{R7}&{R8}& {R9}&{R10}&Track Score& Total Score\\
+				&\multicolumn{6}{|c|}{Races in \textit{Alpine 2} track (20 laps each)} &	\multicolumn{6}{|c|}{Races in \textit{E-Track 5} track (20 laps each)}&\\
+				\cline{2-13}
+				Driver&{R1}&{R2}&{R3}&{R4}&{R5}&Track Score&{R6}&{R7}&{R8}& {R9}&{R10}&Track Score& Total Score\\
 				\hline
-$GFC$	&	6&	8&	8&	15&15		&52&	12&	15&	10&	10&	15&62&134\\
-$GFC-RS$&	12&	10&	18&	12&12		&64&	10&	8&	12&	25&	8&63&127\\
-$GFC-FA$&	18&	12&	15&	10&10		&65&	15&	12&	25&	15&	25&92&157\\
-$GFC-VA$&	25&	18&	25&	25&18		&111&	25&	18&	15&	18&18	&94&205\\
-$tita1$	&	4&	2&	6&	4&1			&15&	2&	1&	2&	1&	1&7&22\\
-$tita2$	&	2&	1&	2&	2&2			&9&	1&	2&	1&	2&	2&8&17\\
-$inferno1$&	8&	4&	1&	1&6			&20&	4&	4&	6&	8&	6&28&48\\
-$inferno2$&	1&	6&	4&	8&8			&27&	6&	6&	4&	4&	4&24&51\\
-$berniw1$&	10&	25&	10&	18&4		&67&	18&	10&	8&	12&	12&60&127\\
-$berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
-\hline
+				$GFC$	&	6&	8&	8&	15&15		&52&	12&	15&	10&	10&	15&62&134\\
+				$GFC-RS$&	12&	10&	18&	12&12		&64&	10&	8&	12&	25&	8&63&127\\
+				$GFC-FA$&	18&	12&	15&	10&10		&65&	15&	12&	25&	15&	25&92&157\\
+				$GFC-VA$&	25&	18&	25&	25&18		&111&	25&	18&	15&	18&18	&94&205\\
+				$tita1$	&	4&	2&	6&	4&1			&15&	2&	1&	2&	1&	1&7&22\\
+				$tita2$	&	2&	1&	2&	2&2			&9&	1&	2&	1&	2&	2&8&17\\
+				$inferno1$&	8&	4&	1&	1&6			&20&	4&	4&	6&	8&	6&28&48\\
+				$inferno2$&	1&	6&	4&	8&8			&27&	6&	6&	4&	4&	4&24&51\\
+				$berniw1$&	10&	25&	10&	18&4		&67&	18&	10&	8&	12&	12&60&127\\
+				$berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
+				\hline
 				
 			\end{tabular}
 		}\label{tab:chsresults}
@@ -645,9 +1122,9 @@ $berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
 		\includegraphics[width=8cm]{fig/gfc_races.jpg}
 		\caption{Scores obtained by the different Genetic fuzzy-based controllers in two different tracks.}
 		\label{fig:gfc_races}
-                % Please don't use screen captures for figures. Also,
-                % the little circles around one of the bars make no
-                % sense - JJ
+		% Please don't use screen captures for figures. Also,
+		% the little circles around one of the bars make no
+		% sense - JJ
 	\end{center}
 \end{figure}
 % Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
@@ -691,35 +1168,35 @@ As stated, PSRI controller competed in 2009 edition of the Simulated Car Racing 
 Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with PSRI controller. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textit{Alpine 2} and \textit{E-Track 5} tracks. 
 
 \begin{table}[!ht]
-  \centering
-  {\scriptsize
-    \caption{Average damage and Speed Results of 5 races in
-      \textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
-    % Average should always go with standard deviation - JJ
-    \label{tab:damagespeed}
-    \begin{tabular}{|p{1.65cm}|c|c|c|}
-      \hline 
-      \multicolumn{4}{|c|}{\textbf{Alpine 2}}  \\	
-      \hline  
-   & \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\					
-      \hline \textbf{Average Speed (km/h)}& 187.11&199.65&176.94\\
-      \hline \textbf{Max Speed (km/h)}& 225.07&231.91&217.83\\	
-      \hline \textbf{Damage}& 126.82& 117.55&131.99 \\	
-      \hline \textbf{Won races}&0&4&1\\	
-      
-      \hline 
-    \end{tabular}
-    \begin{tabular}{|p{1.65cm}|c|c|c|}
-      \hline 
-      \multicolumn{4}{|c|}{\textbf{E-Track 5}}  \\
-      \hline 
-& \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\				
-      \hline \textbf{Average Speed (km/h)}& 161.11&170.23&160.89\\
-      \hline \textbf{Max Speed  (km/h)}&262.88&270.17&266.54\\	
-      \hline \textbf{Damage}&18.12& 14.67&28.09\\	 
-      \hline \textbf{Won races}&1&3&1\\	
-      \hline 
-    \end{tabular}
+	\centering
+	{\scriptsize
+		\caption{Average damage and Speed Results of 5 races in
+			\textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
+		% Average should always go with standard deviation - JJ
+		\label{tab:damagespeed}
+		\begin{tabular}{|p{1.65cm}|c|c|c|}
+			\hline 
+			\multicolumn{4}{|c|}{\textbf{Alpine 2}}  \\	
+			\hline  
+			& \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\					
+			\hline \textbf{Average Speed (km/h)}& 187.11&199.65&176.94\\
+			\hline \textbf{Max Speed (km/h)}& 225.07&231.91&217.83\\	
+			\hline \textbf{Damage}& 126.82& 117.55&131.99 \\	
+			\hline \textbf{Won races}&0&4&1\\	
+			
+			\hline 
+		\end{tabular}
+		\begin{tabular}{|p{1.65cm}|c|c|c|}
+			\hline 
+			\multicolumn{4}{|c|}{\textbf{E-Track 5}}  \\
+			\hline 
+			& \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\				
+			\hline \textbf{Average Speed (km/h)}& 161.11&170.23&160.89\\
+			\hline \textbf{Max Speed  (km/h)}&262.88&270.17&266.54\\	
+			\hline \textbf{Damage}&18.12& 14.67&28.09\\	 
+			\hline \textbf{Won races}&1&3&1\\	
+			\hline 
+		\end{tabular}
 	}
 \end{table} 
 
@@ -750,7 +1227,7 @@ At the same time, and aiming to intensify the exploration process in the search 
 The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, yielding very good results.
 The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller), which participated in several Simulated Car Racing Competitions. In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the lowest damage, average speed and maximum speed values.
 
-These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2015. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
+These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
 
 As future lines of work, this controller can be improved in some ways:
 We can extend the selection policy to all generations while overcoming the computation time drawback by means of a parallel implementation.
@@ -759,9 +1236,288 @@ Another perspective is to use multiple tracks (instead of just one) in the selec
 
 \section*{Acknowledgments}
 
-This work has been funded by projects TIN2017-85727-C4-2-P, RTI2018-102002-A-I00 (Spanish Ministry of Science, Innovation and Universities) and TEC2015-68752 (Spanish Ministry of Economy and Competitiveness + FEDER).
+This work has been supported in part by: Ministerio espa\~{n}ol de
+Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio) and TEC2015-68752 (also funded by FEDER).
 
 \bibliographystyle{IEEEtranS}
 \bibliography{fuzzy_torcs,geneura}
 
+
+% Computer Society journal (but not conference!) papers do something unusual
+% with the very first section heading (almost always called "Introduction").
+% They place it ABOVE the main text! IEEEtran.cls does not automatically do
+% this for you, but you can achieve this effect with the provided
+% \IEEEraisesectionheading{} command. Note the need to keep any \label that
+% is to refer to the section immediately after \section in the above as
+% \IEEEraisesectionheading puts \section within a raised box.
+
+
+
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps (small caps for compsoc).
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by the IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+%\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+%for IEEE Computer Society journal papers produced under \LaTeX\ using
+%IEEEtran.cls version 1.8b and later.
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+%I wish you the best of success.
+%
+%\hfill mds
+% 
+%\hfill August 26, 2015
+%
+%\subsection{Subsection Heading Here}
+%Subsection text here.
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+%\subsubsection{Subsubsection Heading Here}
+%Subsubsection text here.
+
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that the IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+% However, the Computer Society has been known to put floats at the bottom.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% the IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+%\section{Conclusion}
+%The conclusion goes here.
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+%\appendices
+%\section{Proof of the First Zonklar Equation}
+%Appendix one text goes here.
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+%\section{}
+%Appendix two text goes here.
+
+
+% use section* for acknowledgment
+%\ifCLASSOPTIONcompsoc
+%  % The Computer Society usually uses the plural form
+%  \section*{Acknowledgments}
+%\else
+%  % regular IEEE prefers the singular form
+%  \section*{Acknowledgment}
+%\fi
+
+
+%The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+%\ifCLASSOPTIONcaptionsoff
+%  \newpage
+%\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+%\begin{thebibliography}{1}
+%
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+%
+%\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+\begin{IEEEbiography}{Mohammed Salem}
+Biography text here.
+\end{IEEEbiography}
+
+% if you will not have a photo at all:
+\begin{IEEEbiographynophoto}{Antonio~M.~Mora}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+
+
+
+
+\begin{IEEEbiographynophoto}{Juan~J.~Merelo}
+Biography text here.
+\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
 \end{document}
+
+
