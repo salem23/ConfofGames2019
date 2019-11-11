@@ -1054,160 +1054,164 @@ As in our others studies, we have used the vehicle \textit{car1-tbr1} for our co
 We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness function: $f_{AVS}$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
 
 New pole position selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
-We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
-Due to the high-demanding time this method is, this race-based selection process has just been performed every 5 generations (not in all of them).
+We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.\\
 
-At the end of the evolution (in the last generation) an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
+To analyze the influence of the new introduced pole position based selection  and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization process based on the pole position  selection: the first one uses the  with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
+In each process, three experimentations are achieved, the pole position selection is applied in every generation in the first experimentation, only in the last generation the second and each 5 generations in the last one.
+ 
+When race-based selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
-	\item $GFC$: Controller  from our previous work \cite{salem_cig2018} 
-	% Antonio - the review process is not double-blind. ;)
-	using race-based selection only in the final generation and with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-RS$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-FA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a constant value of $\alpha=0.5$ and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RS5$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSL$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once in the last generation and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSE$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection every generation. 
+	 
+	\item $GFC-RSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once in the last generation and fitness $f_{AVS}$ in the others. 
+	 
+	\item $GFC-RSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	 
+	\item $GFC-RSVAE$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection every generation. 
+	
+		\item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and fitness $f_{AVS}$. 	
 \end{itemize}
 
-Once the 10 runs have finished, the obtained 10 best controllers compete again in a similar set of races as those conducted in the last generation of the algorithms, in order to choose the best controller overall per approach, i.e. the best $GFC-RS$, $GFC-FA$ and $GFC-VA$.
+Once the 10 runs have finished, the obtained best controllers from the previous evolution process  compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between $GFC-RSL$, $GFC-RSE$ and $GFC-RS5$, and between $GFC-RSVAL$,$GFC-RSVAE$ and $GFC-RSVA5$.
+Results are shown in Tables\ref{tab:RSsresults} and \ref{tab:VaryingalphaRSresults}
 
-% Antonio - Mohammed, are you performing also a race-based selection at the end of the evolution to choose the best of all the controllers, as it was done in GFC?
 
-% If this happens at the end, you should clarify - JJ 
-%%%  Mohammed  Yes I do
 
-The final best GFCs (one per approach) are evaluated in some races together in a kind of Formula 1 {\em mini championship}, consisting of 10 races, each one for 20 laps, and with a total of 10 participants per race: the 4 GFCs and also 6 standard bots from TORCS. We have choose two controllers from {\tt tita}, {\tt berniw} and {\tt
-	inferno} teams where {\tt berniw} is known by its aggressive overtaking policy while {\tt
-	inferno} is the faster one.  The first 5 races are conducted in \textit{Alpine 2} track (used during training/optimization); and the other 5 races took place in \textit{E-Track 5} track (not trained for the new controllers). 
-Finally, in order to do it fairer, we have defined an \textit{additional score}, so the controller which gets the fastest lap or the minimum damage in each race is given 5 extra points. The starting grid was again set randomly.
 
-The results of this comparison are shown in Table \ref{tab:chsresults} and summarized graphically in Figure \ref{fig:gfc_races}. 
-
-%
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of the mini-championship with 10 drivers and 10
-			races in two different tracks. {\tt tita}, {\tt berniw} and {\tt
+		\caption{ Results of $GFC-RS$ controllers in a mini-championship with 10 drivers and 10
+			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}}
 		{
-			\begin{tabular}{|c||c|c|c|c|c|c||c|c|c|c|c|c||c|}
+			\begin{tabular}{|c|c|c||c|}
 				\hline
-				&\multicolumn{6}{|c|}{Races in \textit{Alpine 2} track (20 laps each)} &	\multicolumn{6}{|c|}{Races in \textit{E-Track 5} track (20 laps each)}&\\
-				\cline{2-13}
-				Driver&{R1}&{R2}&{R3}&{R4}&{R5}&Track Score&{R6}&{R7}&{R8}& {R9}&{R10}&Track Score& Total Score\\
+				Driver&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
-				$GFC$	&	6&	8&	8&	15&15		&52&	12&	15&	10&	10&	15&62&134\\
-				$GFC-RS$&	12&	10&	18&	12&12		&64&	10&	8&	12&	25&	8&63&127\\
-				$GFC-FA$&	18&	12&	15&	10&10		&65&	15&	12&	25&	15&	25&92&157\\
-				$GFC-VA$&	25&	18&	25&	25&18		&111&	25&	18&	15&	18&18	&94&205\\
-				$tita1$	&	4&	2&	6&	4&1			&15&	2&	1&	2&	1&	1&7&22\\
-				$tita2$	&	2&	1&	2&	2&2			&9&	1&	2&	1&	2&	2&8&17\\
-				$inferno1$&	8&	4&	1&	1&6			&20&	4&	4&	6&	8&	6&28&48\\
-				$inferno2$&	1&	6&	4&	8&8			&27&	6&	6&	4&	4&	4&24&51\\
-				$berniw1$&	10&	25&	10&	18&4		&67&	18&	10&	8&	12&	12&60&127\\
-				$berniw2$&	15&	15&	12&	6&25		&73&	8&	25&	18&	6&	10&67&140\\
+				\hline
+				
+			$GFC-RS5$&	75	&74&	149\\
+			$GFC-RSE$&	98	&93&	191\\
+			$GFC-RSL$&	77	&81&	158\\
+			$GFC$	&	56	&50&	106\\
+			$GFC-VA$	&	46	&7&		53\\
+			$inferno1$&	9	&8&		17\\
+			$inferno2$&		20	&51&	71\\
+			$berniw1$&	16	&24&	40\\
+			$berniw2$&	76	&79&	155\\
+			$tita1$&32	&38&	70\\		
 				\hline
 				
 			\end{tabular}
-		}\label{tab:chsresults}
+		}\label{tab:RSresults}
 	}
 \end{table*}
 %
 
 
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=8cm]{fig/gfc_races.jpg}
-		\caption{Scores obtained by the different Genetic fuzzy-based controllers in two different tracks.}
-		\label{fig:gfc_races}
-		% Please don't use screen captures for figures. Also,
-		% the little circles around one of the bars make no
-		% sense - JJ
-	\end{center}
-\end{figure}
-% Antonio - Mohammed, please, generate the figure without the "dots" in blue bars. Also put the correct name of the track "E-Track 5".
-%Mohammed Done
-It is clear from the table and figure that the $GFC-VA$ controller
-yields the best results in the evaluation process. Indeed, The
-proposed controller won three races in Alpine 2 track and has been
-ranked in the second place in the two other racing tracks. In the E-Track 5
-circuit, it won two races, has been second twice and third in
-the last race.
+%
+\begin{table*}[ht]
+	\centering
+	{\scriptsize
+		\caption{ Results of $GFC-VARS$ controllers in a mini-championship with 10 drivers and 10
+			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
+				inferno} are example controllers included with the TORCS
+			simulator \cite{torcs4}}
+		{
+			\begin{tabular}{|c|c|c||c|}
+				\hline
+				Driver&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
+				\hline
+				\hline	
+				$GFC-VARS5$&	82&	82&	164\\
+				$GFC-VARSE$&	108&101&	209\\
+				$GFC-VARSL$&	77&	73&	150\\
+				$GFC$&	56&	50&	106\\
+				$GFC-VA$&	46&	7&	53\\
+				$inferno1$&	9&	8&	17\\
+				$inferno2$&	20&	49&	69\\
+				$berniw1$&	16&	24&	40\\
+				$berniw2$&	59&	73&	132\\
+				$tita1$&	32&	38&	70\\			
+				\hline
+				
+			\end{tabular}
+		}\label{tab:VaryingalphaRSresults}
+	}
+\end{table*}
+%
+The best controllers obtained from the two main optimization processes: $GFC-RSVAE$ and $GFC-RSE$ are evaluated in formula like championship against the references controllers $GFC-VA$ and $GFC$, five Torcs bots and we have considered an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
+It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
+%
+\begin{table*}[ht]
+	\centering
+	{\scriptsize
+		\caption{ Results of $GFC-RSVAE$ and $GFC-RSE$ controller in a mini-championship with 10 drivers and 10
+			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
+				inferno} are example controllers included with the TORCS
+			simulator \cite{torcs4}}
+		{
+			\begin{tabular}{|c|c|c||c|}
+				\hline
+				Driver&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
+				\hline
+				\hline
+$GFC-RSE$&	85&	82&	167\\
+$GFC-VARSE$&111&101&212\\
+$GFC$&		48&	55&	103\\
+$PSRI$&		53&	48&	101\\
+$GFC-VA$&	78&	64&	142\\
+$inferno1$&	9&	8&	17\\
+$inferno2$&	20&	40&	60\\
+$berniw1$&	16&	24&	40\\
+$berniw2$&	59&	69&	128\\
+$tita1$&	26&	18&	44\\
+					\hline
+				
+			\end{tabular}
+		}\label{tab:allsresults}
+	}
+\end{table*}
+%
 
-The second controller using the $BLX-\alpha$ (constant value of 0.5)
-operator came second in all races. It won one race and was ranked
-second in two more and third in three races.
-The other races were won by the $berniw$ controller, always a tough rival.
-We can notice that the $BLX-\alpha$ based controllers won three out of the five races in the Alpine 2 track used in the selection and were ranked at least in fourth place.
-The same results or even  better were obtained for the other track, which is supposed to be unknown for our controllers.
 
-These results confirm the effectiveness and strength of the pole position selection policy used to evaluate individuals as well as to select candidates for crossover. Although this policy has been applied only once every 5 generations due to its time-consuming, it has clearly affected the performance of the obtained controllers looking to the large gap between the results of the $GFC$ controller against $GFC-RS$ one.
 
-This proposed selection policy combined with the $BLX-\alpha$ operator, has boosted the performance of the $GFC-FA$ controller. 
-The introduction of a variable $\alpha$ parameter along the
-generations in $GFC-VA$ bot has made it possible to better control the
-exploration/exploitation ratio during the evolutionary process,
-allowing to generate descendants different from their parents in genes
-and more efficient than them. 
 
-% -------------------------------------------
-
-%\textbf{Comparison with PSRI controller.}
-
-In order to check the value of our best controller, we have conducted an additional experimentation.
-
-We have considered an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
-It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.
-
-This controller behaves mainly using a Finite State Machine (FSM), defining the main states in which the driver can be (for instance turning, overtaking a rival). The transitions in the FSM are governed by a set of fuzzy rules, based on the information read from different sensors. There is also a classifier module (J48 decision tree), able to analyse the inputs from some sensors in order to predict parts of the track, to anticipate the following actions to perform. The fuzzy rules and also some parameters of the FSM were optimized by means of a NSGA-II algorithm.
-
-As stated, PSRI controller competed in 2009 edition of the Simulated Car Racing Championship \cite{SimulatedCarRacing-2010}, where it was ranked 4th considering the scores obtained in three different Competitions (held at CEC, GECCO and CIG 2009 conferences). It performed on average very well, reaching good scores and positions in several races.
-
-Table \ref{tab:damagespeed} presents a comparison between the two $BLX-\alpha$ genetic based fuzzy controllers presented in this paper, \textbf{$GFC-FA$} and \textbf{$GFC-VA$} with PSRI controller. The results are the average values of $damage$, $MaxSpeed$ and $Speed$ of 10 races in the \textit{Alpine 2} and \textit{E-Track 5} tracks. 
+The table \ref{tab:time} shows the average laps number and the range of the generation where the best individual is found of all the considered controllers. These results are obtained by running genetic optimization for 50 generations for 10 runs. 
 
 \begin{table}[!ht]
 	\centering
 	{\scriptsize
-		\caption{Average damage and Speed Results of 5 races in
-			\textbf{Alpine 2} and 5 races in \textbf{E-Track 5} tracks}
-		% Average should always go with standard deviation - JJ
-		\label{tab:damagespeed}
-		\begin{tabular}{|p{1.65cm}|c|c|c|}
-			\hline 
-			\multicolumn{4}{|c|}{\textbf{Alpine 2}}  \\	
+		\caption{Average runtime and generation of the best individual}
+		\label{tab:time}
+		\begin{tabular}{|p{2.85cm}|p{1.65cm}|p{1.65cm}|}
+			\hline 	
 			\hline  
-			& \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\					
-			\hline \textbf{Average Speed (km/h)}& 187.11&199.65&176.94\\
-			\hline \textbf{Max Speed (km/h)}& 225.07&231.91&217.83\\	
-			\hline \textbf{Damage}& 126.82& 117.55&131.99 \\	
-			\hline \textbf{Won races}&0&4&1\\	
-			
+			Controller& \textbf{average Runtime}&\textbf{Generation of the best ind}\\					
+			\hline \textbf{\textbf{$GFC$}}&296 &34-39\\
+			\hline \textbf{$GFC-VA$}&298	&10-18\\	
+			\hline \textbf{$GFC-RSL$}& 322&23-38\\	
+			\hline \textbf{$GFC-RS5$}&689	&24-38\\	
+			\hline \textbf{$GFC-RSE$}&	2488&22-40\\	
+			\hline \textbf{$GFC-VARSL$}&321	&9-15\\	
+			\hline\textbf{$GFC-VARS5$}&	691&8-17\\	
+			\hline\textbf{$GFC-VARSE$}&2489	&11-18\\					
 			\hline 
 		\end{tabular}
-		\begin{tabular}{|p{1.65cm}|c|c|c|}
-			\hline 
-			\multicolumn{4}{|c|}{\textbf{E-Track 5}}  \\
-			\hline 
-			& \textbf{$GFC-FA$}&\textbf{$GFC-VA$} & \textbf{$PSRI$}\\				
-			\hline \textbf{Average Speed (km/h)}& 161.11&170.23&160.89\\
-			\hline \textbf{Max Speed  (km/h)}&262.88&270.17&266.54\\	
-			\hline \textbf{Damage}&18.12& 14.67&28.09\\	 
-			\hline \textbf{Won races}&1&3&1\\	
-			\hline 
-		\end{tabular}
+		
 	}
 \end{table} 
 
-The results of the $PSRI$ controller and $GFC-FA$ are very close, they won two and one race respectively among 10. Their average speeds are similar but as for the damage, the controller $GFC-FA$ suffered the minimum because of the inclusion of the variable $damage$ in the fitness evaluation.
-The results of the $GFC-VA$ controller are very satisfactory. Indeed, it won 7 races and got the lowest value of damage $117.55$ and $14.67$ for both circuits, the highest average speed $199.65$ and $170.23$.
+%%TODO upload  the results of skeweness and kurtosis of the evolution expermientations
 
-Looking at these and previous results, we can conclude that the proposed controllers are very successful, due to the new included mechanisms to deal with uncertainty and to perform a more convenient search of the space of solutions.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions and Future Work} 
 \label{sec:conclusions}
 
