@@ -1189,12 +1189,12 @@ The table \ref{tab:time} shows the average laps number and the range of the gene
 \begin{table}[!ht]
 	\centering
 	{\scriptsize
-		\caption{Average runtime and generation of the best individual}
+		\caption{Average Laps number per generation  and generation of the best individual}
 		\label{tab:time}
 		\begin{tabular}{|p{2.85cm}|p{1.65cm}|p{1.65cm}|}
 			\hline 	
 			\hline  
-			Controller& \textbf{average Runtime}&\textbf{Generation of the best ind}\\					
+			Controller& \textbf{Average Runtime}&\textbf{Generation of the best ind is obtained}\\					
 			\hline \textbf{\textbf{$GFC$}}&296 &34-39\\
 			\hline \textbf{$GFC-VA$}&298	&10-18\\	
 			\hline \textbf{$GFC-RSL$}& 322&23-38\\	
@@ -1209,7 +1209,50 @@ The table \ref{tab:time} shows the average laps number and the range of the gene
 	}
 \end{table} 
 
+
+
+
 %%TODO upload  the results of skeweness and kurtosis of the evolution expermientations
+
+An analysis study of the distribution  of the genetic individuals of three evolution processes $GFC$, $GFC-RSE$ and $GFC-VARS5$.
+The skewness and kurtosis are computed for $20\%$ chosen randomly fitness values after the first, the 20th and the last generation for the three controllers (See Figure \ref{fig:gfcsk},\ref{fig:gfcrsesk} and Figure \ref{fig:gfcvarsesk})
+
+
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfc.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC$}
+		\label{fig:gfcsk}	
+	\end{center}	
+\end{figure}
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfcrse.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC-RSE$}
+		\label{fig:gfcrsesk}	
+	\end{center}	
+\end{figure}
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfcvarse.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC-VARSE$}
+		\label{fig:gfcvarsesk}	
+	\end{center}	
+\end{figure}
+
+When comparing the three figures, a clear convergence, 
+is observed as generations pass but without reaching, the normal distribution; in the first
+generations, values of skewness and kurtosis are quite
+high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
+approach zero. However, they do not converge
+exactly to 0, meaning that, even if uncertainty can be
+approached by a normal distribution, that approximation
+would only be correct for the latest generations\cite{noisylunch2015}.
+Another remarkable fact is the faster the convergence is in the case of $GFC-VARSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
+This convergence speed is the result of the combination of $Alpha-BLX$ operator and the pole selection which highly pressure the chromosomes.
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions and Future Work} 
