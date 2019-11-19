@@ -940,105 +940,116 @@ This is the base of the optimization conducted by the Genetic Algorithm, as it i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Genetic Algorithm}
+\section{Evolutionary Algorithm}
 \label{sec:GA_optimization}
 
-We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs_Goldberg89} aiming to find the optimal parameters of the membership functions of the two sub-controllers previously introduced. 
+% ----------------------------- We need to rewrite most of this
+% ---------------
 
-Thus, every individual/chromosome is a vector of 18 values/parameters, 6 per variable, as Figure \ref {fig:cromosome} shows.
+% We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs_Goldberg89} aiming to find the optimal parameters of the membership functions of the two sub-controllers previously introduced. 
 
-\begin{figure*}[!ht]	
-	\begin{center}
-		\includegraphics[width=10cm]{fig/chromosome2.png}
-		\caption{Chromosome description}
-		\label{fig:cromosome}	
-	\end{center}	
-\end{figure*}
+% Thus, every individual/chromosome is a vector of 18 values/parameters, 6 per variable, as Figure \ref {fig:cromosome} shows.
 
-The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
-\cite{GAs_Goldberg89}, in order to start from feasible values
-\cite{salem_evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
-implementation \cite{elsayed13} in a vector that includes all variables to optimize.
+% \begin{figure*}[!ht]	
+% 	\begin{center}
+% 		\includegraphics[width=10cm]{fig/chromosome2.png}
+% 		\caption{Chromosome description}
+% 		\label{fig:cromosome}	
+% 	\end{center}	
+% \end{figure*}
 
-The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TORCS is used during the evaluation step of every individual in the evolutionary process.
+% The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
+% \cite{GAs_Goldberg89}, in order to start from feasible values
+% \cite{salem_evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
+% implementation \cite{elsayed13} in a vector that includes all variables to optimize.
 
-\begin{figure}[!ht]
-	\label{fig:ga}
-	\begin{center}
-		\includegraphics[width=9cm]{fig/flowchart}
-	\end{center}
-	\caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
-\end{figure}
+% The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TORCS is used during the evaluation step of every individual in the evolutionary process.
 
-The evaluation of the individuals is based in different fitness functions, which we have tested in previous works \cite{salem_evo18}. In this study we will consider the one which yielded the best results in our previous paper \cite{salem_cig2018}, namely:
+% \begin{figure}[!ht]
+% 	\label{fig:ga}
+% 	\begin{center}
+% 		\includegraphics[width=9cm]{fig/flowchart}
+% 	\end{center}
+% 	\caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
+% \end{figure}
 
-\begin{equation} \label{fit2}
-	\begin{array}{lll}
-		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
-	\end{array}
-\end{equation}	
+% The evaluation of the individuals is based in different fitness functions, which we have tested in previous works \cite{salem_evo18}. In this study we will consider the one which yielded the best results in our previous paper \cite{salem_cig2018}, namely:
 
-It is a parameter-less approach (no weights in the terms) \cite{Harik-ParameterLess99}, which is also more focused on the real objectives for a driver during a race, rather than the overall target of winning or not,
-in order to obtain more `human-like' controllers. It depends on two variables, so the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage:
+% \begin{equation} \label{fit2}
+% 	\begin{array}{lll}
+% 		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
+% 	\end{array}
+% \end{equation}	
 
-\begin{itemize}
-	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
-	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
-\end{itemize} 
+% It is a parameter-less approach (no weights in the terms) \cite{Harik-ParameterLess99}, which is also more focused on the real objectives for a driver during a race, rather than the overall target of winning or not,
+% in order to obtain more `human-like' controllers. It depends on two variables, so the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage:
 
-So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
-car in a 20 laps race in a circuit without opponents, and the results (Maximum, Minimum and Average speed, Damage) are used to compute the fitness value. 
-As the objective of the car controller is to win as many races as
-possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{merelo2016statistical}.
-The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
+% \begin{itemize}
+% 	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
+% 	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
+% \end{itemize} 
 
-With regard to the genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
+% So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
+% car in a 20 laps race in a circuit without opponents, and the results (Maximum, Minimum and Average speed, Damage) are used to compute the fitness value. 
+% As the objective of the car controller is to win as many races as
+% possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{merelo2016statistical}.
+% The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
 
-A new \textbf{Pole Position Selection policy} (or race-based selection) has been implemented in this approach, aiming to get better or more reliable individuals/controllers to be parents of the following population. To this end all the individuals are arranged in groups of 10, then some different races of  several laps are simulated using every individual as a controller (with the same car) in a track of TORCS. After every race, the participants obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following offspring.
+% With regard to the genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
 
-This way, the best individuals will be selected to reproduce with higher probability. It is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
-%Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
+% We need to summarize this and refer to previous papers
+% -------------------------
 
+% I find "race-based selection" a very bad name. REALLY bad. Either we
+% don't mention it, or do it some other way  - JJ
 
-\textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008} has also been added to the GA (instead of previous two-point operator). 
-The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
-$i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
+% Besides, this is also in the other paper - JJ ----------------------
 
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=5cm]{fig/blxalpha.jpg}
-		\caption{Blend crossover operator ($BLX-\alpha$)}
-		\label{fig:blxalpha}	
-	\end{center}	
-\end{figure}
+% A new \textbf{Pole Position Selection policy} (or race-based
+% selection) has been implemented in this approach, aiming to get better
+% or more reliable individuals/controllers to be parents of the
+% following population. To this end all the individuals are arranged in
+% groups of 10, then some different races of  several laps are simulated
+% using every individual as a controller (with the same car) in a track
+% of TORCS. After every race, the participants obtain different scores
+% depending on their position in the final rank. The best 5 controllers
+% in the sum of all the races are selected as parents for the following
+% offspring. 
 
-Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
-This operator is suitable for real coded genetic algorithms and it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
-
-In the Blend crossover operator, the $\alpha$ parameter values can control the exploration/exploitation rate. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
-
-In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
-
-We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
-
-\begin{equation}
-	\label{eqalpha}
-	\alpha =1-\frac{g}{g_{max}}
-\end{equation}
-
-Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
+% This way, the best individuals will be selected to reproduce with higher probability. It is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
+% %Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
 
 
+% \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008} has also been added to the GA (instead of previous two-point operator). 
+% The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
+% $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%  NEW RIVAL  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{figure}[!ht]	
+% 	\begin{center}
+% 		\includegraphics[width=5cm]{fig/blxalpha.jpg}
+% 		\caption{Blend crossover operator ($BLX-\alpha$)}
+% 		\label{fig:blxalpha}	
+% 	\end{center}	
+% \end{figure}
 
-%\section{A New Opponent}  
-%\label{sec:new-opponent}
+% Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
+% This operator is suitable for real coded genetic algorithms and it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
 
-% >>>>>> TODO: Describe "S&PL Controller" -> Antonio  <<<<<<<<<<
+% In the Blend crossover operator, the $\alpha$ parameter values can control the exploration/exploitation rate. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
 
+% In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
 
+% We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
 
+% \begin{equation}
+% 	\label{eqalpha}
+% 	\alpha =1-\frac{g}{g_{max}}
+% \end{equation}
+
+% Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
+
+% All this is also from the other paper and does not really correspond
+% to what we are doing in this paper - JJ
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
