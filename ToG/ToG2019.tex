@@ -1093,7 +1093,9 @@ Once the 10 runs have finished, the obtained best controllers from the previous 
 Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}
 
 
-
+% We need to clarify how long every simulation takes, even if it's
+% only a ballpark. How much times does making the race every
+% generation add to the total time? - JJ
 
 \begin{table*}[ht]
 	\centering
@@ -1110,7 +1112,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				\hline
 				
 			$GFC-RS5$&	75	&74&	149\\
-			$GFC-RSE$&	98	&93&	191\\
+			$GFC-RSE$&	98	&93&	{\bf 191}\\
 			$GFC-RSL$&	77	&81&	158\\
 			$GFC$	&	56	&50&	106\\
 			$GFC-VA$	&	46	&7&		53\\
@@ -1143,7 +1145,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				\hline
 				\hline	
 				$GFC-VARS5$&	82&	82&	164\\
-				$GFC-VARSE$&	108&101&	209\\
+				$GFC-VARSE$&	108&    101&	{\bf 209}\\
 				$GFC-VARSL$&	77&	73&	150\\
 				$GFC$&	56&	50&	106\\
 				$GFC-VA$&	46&	7&	53\\
@@ -1159,7 +1161,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 	}
 \end{table*}
 %
-The best controllers obtained from the two main optimization processes: $GFC-RSVAE$ and $GFC-RSE$ are evaluated in formula like championship against the references controllers $GFC-VA$ and $GFC$, five Torcs bots and we have considered an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
+The best controllers obtained from the two main optimization processes: $GFC-RSVAE$ and $GFC-RSE$ are evaluated in formula like championship against the references controllers $GFC-VA$ and $GFC$, five TORCS bots and we have considered an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
 It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
 %
 \begin{table*}[ht]
