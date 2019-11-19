@@ -1099,7 +1099,9 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 		\caption{ Results of $GFC-RS$ controllers in a mini-championship with 10 drivers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}}
+			simulator \cite{torcs4}. We use {\bf boldface}
+                      for the best value, {\em italics} for the second
+                    best. }
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
@@ -1109,7 +1111,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				
 			$GFC-RS5$&	75	&74&	149\\
 			$GFC-RSE$&	98	&93&	{\bf 191}\\
-			$GFC-RSL$&	77	&81&	158\\
+			$GFC-RSL$&	77	&81&	{\em 158}\\
 			$GFC$	&	56	&50&	106\\
 			$GFC-VA$	&	46	&7&		53\\
 			$inferno1$&	9	&8&		17\\
@@ -1133,14 +1135,16 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 		\caption{ Results of $GFC-VARS$ controllers in a mini-championship with 10 drivers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}}
+			simulator \cite{torcs4}. {\bf Boldface}
+                      for the absolute winner, {\em italics} for the second
+                    best.}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
 				Driver&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
 				\hline	
-				$GFC-VARS5$&	82&	82&	164\\
+				$GFC-VARS5$&	82&	82&	{\em 164}\\
 				$GFC-VARSE$&	108&    101&	{\bf 209}\\
 				$GFC-VARSL$&	77&	73&	150\\
 				$GFC$&	56&	50&	106\\
@@ -1166,15 +1170,17 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 		\caption{ Results of $GFC-RSVAE$ and $GFC-RSE$ controller in a mini-championship with 10 drivers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}}
+			simulator \cite{torcs4}.  {\bf Boldface} is
+                        used to highlight the best value, {\em italics} for the second
+                    best.}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
 				Driver&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
 				\hline
-$GFC-RSE$&	85&	82&	167\\
-$GFC-VARSE$&111&101&212\\
+$GFC-RSE$&	85&	82&	{\em 167}\\
+$GFC-VARSE$&111&101&            {\bf 212}\\
 $GFC$&		48&	55&	103\\
 $PSRI$&		53&	48&	101\\
 $GFC-VA$&	78&	64&	142\\
@@ -1194,17 +1200,25 @@ $tita1$&	26&	18&	44\\
 
 
 
-The table \ref{tab:time} shows the average laps number and the range of the generation where the best individual is found of all the considered controllers. These results are obtained by running genetic optimization for 50 generations for 10 runs. 
+The table \ref{tab:time} shows the average number of laps % Isn't this
+                                % average running time? - JJ
+and the
+range of the generation where the best individual is found of all the
+considered controllers. These results are obtained by running genetic
+optimization for 50 generations for 10 runs.  
 
 \begin{table}[!ht]
 	\centering
 	{\scriptsize
-		\caption{Average Laps number per generation  and generation of the best individual}
+          \caption{Average number of laps per generation %  Isn't this
+                                %  average running time? - JJ
+            and
+                  generation where the best individual was spawned.}
 		\label{tab:time}
 		\begin{tabular}{|p{2.85cm}|p{1.65cm}|p{1.65cm}|}
 			\hline 	
 			\hline  
-			Controller& \textbf{Average Runtime}&\textbf{Generation of the best ind is obtained}\\					
+			Controller& \textbf{Average Runtime}&\textbf{Generation}\\					
 			\hline \textbf{\textbf{$GFC$}}&296 &34-39\\
 			\hline \textbf{$GFC-VA$}&298	&10-18\\	
 			\hline \textbf{$GFC-RSL$}& 322&23-38\\	
@@ -1222,7 +1236,7 @@ The table \ref{tab:time} shows the average laps number and the range of the gene
 
 
 
-%%TODO upload  the results of skeweness and kurtosis of the evolution expermientations
+%%TODO upload  the results of skewness and kurtosis of the evolution expermientations
 
 An analysis study of the distribution  of the genetic individuals of three evolution processes $GFC$, $GFC-RSE$ and $GFC-VARS5$.
 The skewness and kurtosis are computed for $20\%$ chosen randomly fitness values after the first, the 20th and the last generation for the three controllers (See Figure \ref{fig:gfcsk},\ref{fig:gfcrsesk} and Figure \ref{fig:gfcvarsesk})
