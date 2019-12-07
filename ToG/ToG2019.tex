@@ -322,19 +322,19 @@
 % Do not put math or special symbols in the title.
 	%\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
 %
-\title{}
+\title{Overtaking Uncertainty with Evolutionary Drivers for TORCS: Combining BLX-$\alpha$ Operator and Race-based Selection}
 
-\author{Mohammed~Salem, Antonio~M.~Mora,      and~Juan~J.~Merelo% <-this % stops a space
+\author{Mohammed~Salem, Antonio~M.~Mora, and~Juan~J.~Merelo% <-this % stops a space
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Salem was with the Department of Computer Sciences, University of Mascara, Algeria.\protect\\
 % note need leading \protect in front of \\ to get a newline within \thanks as
 % \\ is fragile and will error, could use \hfil\break instead.
 E-mail: salem@univ-mascara.dz
-\IEEEcompsocthanksitem A~M.~Mora was with thr Department of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain.\protect\\
+\IEEEcompsocthanksitem A~M.~Mora was with the Department of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain.\protect\\
 Email: amorag@ugr.es
 \IEEEcompsocthanksitem J~J.~Merelo was with the Department of Computer Architecture and Computer Technology. University of Granada, Spain.\protect\\
 Email: jmerelo@geneura.ugr.es
 }% <-this % stops an unwanted space
-\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
+\thanks{Manuscript received December XX, 2019; revised XXXX, 2020.}}
 
 % note the % following the last \IEEEmembership and also \thanks - 
 % these prevent an unwanted space from occurring between the last author name
@@ -397,27 +397,10 @@ Email: jmerelo@geneura.ugr.es
 % in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-One of the main problems in the design through optimization of car
-racing bots is the inherent noise in the optimization process: besides
-the fact that the fitness is a heuristic based on what we think are
-the keys to success and as such just a surrogate for the ultimate
-objective, winning races, fitness itself is uncertain due to the
-stochastic behavior of racing conditions and the rest of the
-(simulated) racers. The  fuzzy-based genetic controller for the car
-racing simulator TORCS we have defined in previous works is based on two fuzzy sub-controllers, one for deciding on the wheel steering angle and
-another to set the car target speed at the next simulation tick. They
-are both optimized by means of an Evolutionary Algorithm, which
-considers an already tested fitness function focused on the
-maximization of the average speed during the race and the minimization
-of the car damage. The noisy environment asks for keeping diversity
-high during evolution, that is why we have added a Blend Crossover (BLX-$\alpha$) operator, which is, besides, able to exploit current results at the same time it explores. Additionally, we try to address uncertainty in
-selection by introducing a novel selection policy of parents based in races, where the individuals are grouped and compete against others in several races, so just the firsts ranked will remain in the population as parents.
-Several experiments have been conducted, testing the value of the
-different controllers. The results show that the combination of a
-dynamic BLX-$\alpha$ crossover operator plus the \textit{pole position selection} policy clearly beats the rest of approaches. Moreover, in the
-comparison of this controller with one of the participants of the
-prestigious international Simulated Car Racing Championship, our
-autonomous driver obtains much better results than the opponent.
+Uncertainty, also called \textit{noise}, is one of the principal issues to address in the construction of algorithms to improve autonomous drivers. This effect means that a specific controller can be evaluated as very good or on the contrary as very bad, depending on `external' conditions, such as the behaviour of the competitors (other controllers) in the race, or the track status, for instance.
+The evolutionary fuzzy-based driver proposed in previous works by the authors also suffered from that problem. It was composed of two fuzzy subcontrollers: one for selecting the best wheel steering angle and another to set the car target speed at the next simulation tick. Both where refined by applying a genetic algorithm on their parameterization.
+Thus, in this paper we propose the improvement of our previous controller by means of two techniques. First, a Blend Crossover (\textit{BLX-$\alpha$}) operator has been applied during the search, in order to enhance diversity in the population of solutions. Together with this operator, a novel fitness-less selection mechanism has been considered: \textit{Race-Based selection}. It is based on conducting a set of races involving some individuals (potential controllers) in order to select the winners as parents for the next generation.
+The effectiveness of those mechanisms has been studied in several experiments, aiming to see the impact of each of them in the quality of the obtained controllers, as well as to determine the best configuration for an autonomous driver to win other existing controllers from the literature.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
