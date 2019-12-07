@@ -687,30 +687,26 @@ In \cite{salem_evo18} the different sets of parameters which define the membersh
 
 Moreover, the controller is based in a set of fuzzy rules, designed to
 maximize the car speed depending on the distance to the track
-border. These rules can be consulted in \cite{salem_evo17}.
-% Antonio - TODO: Include the rules if there is available space?
+border. These rules are \cite{salem_evo17}:
+ \begin{itemize}
+ {\small
+ 	\item \texttt{IF Front is High THEN TargetSpeed is TS1}
+ 	\item \texttt{IF Front is Medium THEN TargetSpeed is TS2}
+ 	\item \texttt{IF Front is Low and M5 is High THEN TargetSpeed is TS3}
+ 	\item \texttt{IF Front is Low and M5 is Medium THEN TargetSpeed is TS4}
+ 	\item \texttt{IF Front is Low and M5 is Low and M10 is High THEN TargetSpeed is TS5}
+ 	\item \texttt{IF Front is Low and M5 is Low and M10 is Medium THEN TargetSpeed is TS6}
+ 	\item \texttt{IF Front is Low and M5 is Low and M10 is Low THEN TargetSpeed is TS7}\\
+ }
 %
-%The fuzzy rules are:
-%
-% \begin{itemize}
-% {\small
-% 	\item \texttt{IF Front is High THEN TargetSpeed is TS1}
-% 	\item \texttt{IF Front is Medium THEN TargetSpeed is TS2}
-% 	\item \texttt{IF Front is Low and M5 is High THEN TargetSpeed is TS3}
-% 	\item \texttt{IF Front is Low and M5 is Medium THEN TargetSpeed is TS4}
-% 	\item \texttt{IF Front is Low and M5 is Low and M10 is High THEN TargetSpeed is TS5}
-% 	\item \texttt{IF Front is Low and M5 is Low and M10 is Medium THEN TargetSpeed is TS6}
-% 	\item \texttt{IF Front is Low and M5 is Low and M10 is Low THEN TargetSpeed is TS7}\\
-% }
-%
-% In addition, a crisp rule is added to obtain a maximum value of the target speed when the three input variables are as big as possible:\\
-% {\small	
-% \item \texttt{IF Front = MAXDISTSPEED or M5 = MAXDISTSPEED or M10 = MAXDISTSPEED THEN TargetSpeed = MAXSPEED}
-% }
-% \end{itemize}
-%
-% MAXDISTSPEED is the longest possible value for the track sensors, and MAXSPEED is the maximal speed for the specific car. 
-% The output value is encoded by seven singletons TS1 to TS7, being respectively: 280, 240, 220, 180, 120, 60 and 30.\\
+In addition, a crisp rule is added to obtain a maximum value of the target speed when the three input variables are as big as possible:\\
+ {\small	
+ \item \texttt{IF Front = MAXDISTSPEED or M5 = MAXDISTSPEED or M10 = MAXDISTSPEED THEN TargetSpeed = MAXSPEED}
+ }
+ \end{itemize}
+
+ MAXDISTSPEED is the longest possible value for the track sensors, and MAXSPEED is the maximal speed for the specific car. 
+ The output value is encoded by seven singletons TS1 to TS7, being respectively: 280, 240, 220, 180, 120, 60 and 30.\\
 %
 %
 % %***********************************************
@@ -718,6 +714,7 @@ border. These rules can be consulted in \cite{salem_evo17}.
 % \textbf{Fuzzy steering control sub-controller}\\
 % %
 %
+
 The second is the \textbf{fuzzy steering sub-controller}, which aims to define the steer angle estimating and determining the target position of the car. 
 %
 The structure of this sub-controller is similar to the speed one, but it has the steering as output. Thus, the set of sensors considered is the same as in the speed case.
@@ -726,27 +723,22 @@ Then, as general rules: if the car is in a straight line, it will set as target 
 
 In order to detect the curves, the controller focuses on the sensor values (M10, M5, and Front). So, if the value on Front sensor is the longest, there is a straight road; whereas if the values of M5 and M10 with positive angles (+5 and +10) are the longest, there is right curve; and the other way round.
 
-It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{salem_evo17}.
+It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{salem_evo17}, namely:
 
-%, so, for this controller:
-% Antonio - TODO: Include the rules if there is available space?
+ {\small
+ \begin{itemize}		
+ 	\item \texttt{IF Front is High THEN steer is S1}
+ 	\item \texttt{IF Front is Medium AND M10 is High THEN  steer is S2}
+ 	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Medium THEN steer is S2}
+ 	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Low THEN steer is S3}
+ 	\item \texttt{IF Front is Low AND M10 is High THEN steer is S3}
+ 	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Medium THEN steer is S4}
+ 	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Low THEN steer is S4}
+ \end{itemize}	
+ }
 
-% {\small
-% \begin{itemize}		
-% 	\item \texttt{IF Front is High THEN steer is S1}
-% 	\item \texttt{IF Front is Medium AND M10 is High THEN  steer is S2}
-% 	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Medium THEN steer is S2}
-% 	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Low THEN steer is S3}
-% 	\item \texttt{IF Front is Low AND M10 is High THEN steer is S3}
-% 	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Medium THEN steer is S4}
-% 	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Low THEN steer is S4}
-% \end{itemize}	
-% }
-
-% The values for S1 to S4 are respectively: 0, 0.25, 0.5, and 1.
-% When M10=Track[7] we will take negative values of the steer (steer=-steer).
-
-% These controllers were defined with our own criteria, but they could be far from being optimal, so, in the following section we apply a Genetic Algorithm for their improvement.
+The values for S1 to S4 are respectively: 0, 0.25, 0.5, and 1.
+When M10=Track[7] we will take negative values of the steer (steer=-steer).
 
 
 As stated, the designed fuzzy controllers have trapezoidal membership functions given by Equation \ref{eq:trapmf}.
@@ -779,16 +771,14 @@ with:
 \end{equation}
 This MF function is defined by four parameters $x_{1}$, $x_{2}$,
 $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
-	b]}.% (See Figure \ref{fig:trapeze}).
+	b]} (See Figure \ref{fig:trapeze}).
 
 \begin{figure}[!ht] 
 	\begin{center}
-		\includegraphics[scale=0.5]{fig/trapese}
+		\includegraphics[scale=0.8]{fig/trapese}
 		\caption {Trapezoidal MFs}
 		\label{fig:trapeze}
 	\end{center}
-	% Mohammed: Could we remove this figure?
-	% Antonio - if we need space, yes, otherwise, it does not matter I think
 \end{figure}
 And a fuzzy partition with \textit{n} trapezoidal membership functions
 is defined by \textit{2n} variables ($x_{1}$,$x_{2}
@@ -797,7 +787,7 @@ the representation is given by Figure \ref{fig:at}.
 
 \begin{figure}[!ht] 
 	\begin{center}
-		\includegraphics[scale=0.4]{fig/trapezoidal.png}
+		\includegraphics[scale=0.7]{fig/trapezoidal.png}
 		\caption {Trapezoidal-shaped MFs coding}
 		\label{fig:at}
 	\end{center}
@@ -846,111 +836,115 @@ This is the base of the optimization conducted by the Genetic Algorithm, as it i
 
 % ----------------------------- We need to rewrite most of this
 % ---------------
+% Antonio - done. I have rewritten it
 
-% We proposed an optimization approach based in Genetic Algorithms (GAs) \cite{GAs_Goldberg89} aiming to find the optimal parameters of the membership functions of the two sub-controllers previously introduced. 
+As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GAs) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
 
-% Thus, every individual/chromosome is a vector of 18 values/parameters, 6 per variable, as Figure \ref {fig:cromosome} shows.
+The followed process is shown in Figure \ref{fig:ga}. 
 
-% \begin{figure*}[!ht]	
-% 	\begin{center}
-% 		\includegraphics[width=10cm]{fig/chromosome2.png}
-% 		\caption{Chromosome description}
-% 		\label{fig:cromosome}	
-% 	\end{center}	
-% \end{figure*}
+ \begin{figure}[!ht]
+ 	\label{fig:ga}
+ 	\begin{center}
+ 		\includegraphics[width=9cm]{fig/flowchart}
+ 	\end{center}
+ 	\caption{Flowchart of the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Average Speed and Damage. Individual's fitness value is computed using these values.}
+ \end{figure}
 
-% The initialization of the chromosomes (first population) is performed by assigning random values inside a range of variation ($[0,100]$)
-% \cite{GAs_Goldberg89}, in order to start from feasible values
-% \cite{salem_evo17}. Since our work requires some precision and the variation interval of each parameter is not well known, we have considered a real coding
-% implementation \cite{elsayed13} in a vector that includes all variables to optimize.
+In our approach, every individual or chromosome is a vector of 18 values/parameters, 6 per variable (see Figure \ref {fig:cromosome}), coded using real values aiming to have some precision \cite{elsayed13}.
 
-% The overall process is summarized in Figure \ref{fig:ga}. As it can be seen, TORCS is used during the evaluation step of every individual in the evolutionary process.
+ \begin{figure*}[!ht]	
+ 	\begin{center}
+ 		\includegraphics[width=10cm]{fig/chromosome2.png}
+ 		\caption{Chromosome description}
+ 		\label{fig:cromosome}	
+ 	\end{center}	
+ \end{figure*}
 
-% \begin{figure}[!ht]
-% 	\label{fig:ga}
-% 	\begin{center}
-% 		\includegraphics[width=9cm]{fig/flowchart}
-% 	\end{center}
-% 	\caption{Flowchart of  the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Damage, Top Speed and Mean Lap Time. Individual's fitness value is computed using these values.}
-% \end{figure}
+Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
-% The evaluation of the individuals is based in different fitness functions, which we have tested in previous works \cite{salem_evo18}. In this study we will consider the one which yielded the best results in our previous paper \cite{salem_cig2018}, namely:
+As it can be seen in Figure \ref{fig:ga}, TORCS is used for the evaluation of every individual. This evaluation is based on different fitness functions, which we have tested in previous works \cite{salem_evo18}. 
+However, in this study we will consider the function which obtained the best results in our previous paper \cite{salem_cig2018}, namely:
 
-% \begin{equation} \label{fit2}
-% 	\begin{array}{lll}
-% 		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
-% 	\end{array}
-% \end{equation}	
+ \begin{equation} \label{fit2}
+ 	\begin{array}{lll}
+ 		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
+ 	\end{array}
+ \end{equation}	
 
-% It is a parameter-less approach (no weights in the terms) \cite{Harik-ParameterLess99}, which is also more focused on the real objectives for a driver during a race, rather than the overall target of winning or not,
-% in order to obtain more `human-like' controllers. It depends on two variables, so the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage:
+Following the usual recommendations in the literature \cite{Harik-ParameterLess99}, we have defined a parameter-less function, where there are no weights in the terms.
+At the same time, this fitness expression is closer to a `human-like' approach, given that it is focused on the real objectives for a driver during a race, rather than on the overall target of winning or not. 
 
-% \begin{itemize}
-% 	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
-% 	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
-% \end{itemize} 
+It depends on two variables:
 
-% So, the fitness of each candidate solution is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. The defined autonomous controller is used to drive a
-% car in a 20 laps race in a circuit without opponents, and the results (Maximum, Minimum and Average speed, Damage) are used to compute the fitness value. 
-% As the objective of the car controller is to win as many races as
-% possible, we tried to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of noise/uncertainty due to the participation of other controllers \cite{merelo2016statistical}.
-% The selected track for this evaluation will be one with a combination of curves and straight parts in order to obtain an `all-terrain behaviour'.
+ \begin{itemize}
+ 	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
+ 	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
+ \end{itemize} 
 
-% With regard to the genetic operators, mutation has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
+So the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage to the vehicle.
+
+As it is shown in Figure \ref{fig:ga}, the fitness of each candidate solution (individual) is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. Then, the defined autonomous controller drives a car in a 20 laps race in a circuit without opponents, and the obtained results (Average Speed and Damage) are used to compute the fitness value. 
+Given that the objective of the car controller is to win as many races as
+possible, we decided to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of \textit{noise/uncertainty} due to the participation of other controllers \cite{merelo2016statistical}.
+
+In addition, we have considered the same track as in previous works \cite{salem_cig2018} for this evaluation, because it has a proper combination of curves and straight parts. This will aid to obtain an `all-terrain behaviour' for the controllers.
+
+Regarding the genetic operators, \textit{mutation} has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
 
 % We need to summarize this and refer to previous papers
 % -------------------------
 
+% Antonio - I have rewritten all this part. 
+% Moreover, according to the invitation, this paper must be an extended version of the one published at CoG 2019, and I think it should contain a complete description of the main parts, as the Genetic algorithm proposed. I personally hate papers where you have to move to another 3 papers in order to understand the contents.
+
 % I find "race-based selection" a very bad name. REALLY bad. Either we
 % don't mention it, or do it some other way  - JJ
+% Antonio - I think it is much more accurate than Pole-Position selection, which is not what we do. Anyway, I'm very bad baptising things. If you can find a better name, please, let us know and we could update the name of the selection mechanism. ;)
 
 % Besides, this is also in the other paper - JJ ----------------------
 
-% A new \textbf{Pole Position Selection policy} (or race-based
-% selection) has been implemented in this approach, aiming to get better
-% or more reliable individuals/controllers to be parents of the
-% following population. To this end all the individuals are arranged in
-% groups of 10, then some different races of  several laps are simulated
-% using every individual as a controller (with the same car) in a track
-% of TORCS. After every race, the participants obtain different scores
-% depending on their position in the final rank. The best 5 controllers
-% in the sum of all the races are selected as parents for the following
-% offspring. 
+% Antonio - Again, this must be an extended version and this is the main contribution. It should be here. I rewrite this.
 
-% This way, the best individuals will be selected to reproduce with higher probability. It is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. Thus, we think that this proposed selection mechanism would benefit getting a good optimization process.
-% %Due to the high-demanding time this method is, this race-based selection process is just conducted every 5 generations (not in all of them).
+This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as it allows to obtain better controllers overall.
 
+The first technique is a \textbf{Race-based Selection policy}, which aims to select more reliable individuals/controllers to be parents of the following population, i.e. better deal with the uncertainty surrounding the election of an actual good individual. The mechanism arranges groups of 10 controllers (using the same car) and then different races of several laps are simulated in the same track of TORCS. After every race, the contenders obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following generation. 
 
-% \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008} has also been added to the GA (instead of previous two-point operator). 
-% The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the
-% $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
+As it can be noticed, the application of this approach will be independent of the fitness value, so it can be considered as a \textit{fitness-less proposal}.
+Thanks to this mechanism the best individuals will be more likely selected to reproduce. Of course, it is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. 
 
-% \begin{figure}[!ht]	
-% 	\begin{center}
-% 		\includegraphics[width=5cm]{fig/blxalpha.jpg}
-% 		\caption{Blend crossover operator ($BLX-\alpha$)}
-% 		\label{fig:blxalpha}	
-% 	\end{center}	
-% \end{figure}
+On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of race-based selection, considering a different number of generations where to apply it.
 
-% Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
-% This operator is suitable for real coded genetic algorithms and it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
+The second technique implemented in our GA is the \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
-% In the Blend crossover operator, the $\alpha$ parameter values can control the exploration/exploitation rate. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
+The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
-% In GAs, the search process needs a high exploration rate in the first generations to explore multiple parts of the search space so to obtain high diversity but in the last generations, high exploitation is preferred to ensure the optimal solution.
+ \begin{figure}[!ht]	
+ 	\begin{center}
+ 		\includegraphics[width=5cm]{fig/blxalpha.jpg}
+ 		\caption{Blend crossover operator ($BLX-\alpha$)}
+ 		\label{fig:blxalpha}	
+ 	\end{center}	
+ \end{figure}
 
-% We have considered two different approaches in the experiments, one taking a  constant value of $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
+Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
+This operator is suitable for real coded genetic algorithms where it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
 
-% \begin{equation}
-% 	\label{eqalpha}
-% 	\alpha =1-\frac{g}{g_{max}}
-% \end{equation}
+$\alpha$ parameter allows to control the exploration of the space of solutions, depending on its value. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
 
-% Where $g$ is the current generation and $g_{max}$ is the maximum number pf generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions may be reached.
+In GAs, the search process needs a high exploration rate in the first generations (high diversity) in order to explore multiple parts of the search space. But in the last generations, high exploitation is preferred to ensure the convergence to the optimal solution.
+
+Given this, we have considered two different approaches in the experiments: one taking a constant value for $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
+
+ \begin{equation}
+ 	\label{eqalpha}
+ 	\alpha =1-\frac{g}{g_{max}}
+ \end{equation}
+
+Where $g$ is the current generation and $g_{max}$ is the maximum number of generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions (better controllers) may be obtained.
 
 % All this is also from the other paper and does not really correspond
 % to what we are doing in this paper - JJ
+% Antonio - Yes, we have done the same here, but extending the experiments with other configurations for the Race-based selection. ;)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -967,7 +961,7 @@ On the basis of the results of our previous paper \cite{salem_cig2018}, the sele
 
 \begin{figure}[!ht]	
 	\begin{center}
-		\includegraphics[width=3cm]{fig/alpine2.jpg}
+		\includegraphics[width=6cm]{fig/alpine2.jpg}
 		\caption{Alpine 2 Track: Slow mountain road. Length: 3773.57m, Width: 10m}
 		\label{fig:alpine2_track}	
 	\end{center}	
