@@ -322,7 +322,7 @@
 % Do not put math or special symbols in the title.
 	%\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
 %
-\title{Overtaking Uncertainty with Evolutionary Drivers for TORCS: Combining BLX-$\alpha$ Operator and Race-based Selection}
+\title{Overtaking Uncertainty with Evolutionary Drivers for TORCS: Combining BLX-$\alpha$ Operator and Grand Prix Selection}
 
 \author{Mohammed~Salem, Antonio~M.~Mora, and~Juan~J.~Merelo% <-this % stops a space
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Salem was with the Department of Computer Sciences, University of Mascara, Algeria.\protect\\
@@ -399,13 +399,13 @@ Email: jmerelo@geneura.ugr.es
 \begin{abstract}
 Uncertainty, also called \textit{noise}, is one of the principal issues to address in the construction of algorithms to improve autonomous drivers. This effect means that a specific controller can be evaluated as very good or on the contrary as very bad, depending on `external' conditions, such as the behaviour of the competitors (other controllers) in the race, or the track status, for instance.
 The evolutionary fuzzy-based driver proposed in previous works by the authors also suffered from that problem. It was composed of two fuzzy subcontrollers: one for selecting the best wheel steering angle and another to set the car target speed at the next simulation tick. Both where refined by applying a genetic algorithm on their parameterization.
-Thus, in this paper we propose the improvement of our previous controller by means of two techniques. First, a Blend Crossover (\textit{BLX-$\alpha$}) operator has been applied during the search, in order to enhance diversity in the population of solutions. Together with this operator, a novel fitness-less selection mechanism has been considered: \textit{Race-Based selection}. It is based on conducting a set of races involving some individuals (potential controllers) in order to select the winners as parents for the next generation.
+Thus, in this paper we propose the improvement of our previous controller by means of two techniques. First, a Blend Crossover (\textit{BLX-$\alpha$}) operator has been applied during the search, in order to enhance diversity in the population of solutions. Together with this operator, a novel fitness-less selection mechanism has been considered: \textit{Grand Prix selection}. It is based on conducting a set of races involving some individuals (potential controllers) in order to select the winners as parents for the next generation.
 The effectiveness of those mechanisms has been studied in several experiments, aiming to see the impact of each of them in the quality of the obtained controllers, as well as to determine the best configuration for an autonomous driver to win other existing controllers from the literature.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Race-based Selection, Uncertainty.
+Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Grand Prix Selection, Uncertainty.
 \end{IEEEkeywords}}
 
 
@@ -530,8 +530,8 @@ the evolution process.
 % to be effectively included in the final fitness function. 
 
 
-% The two new techniques introduced in this paper, namely, \textit{``Pole'' Position selection} (race-based) and $BLX-\alpha$ crossover, try to improve on previous results by first relying less on the surrogacy of the fitness function
-% to select the best individuals. The Pole selection will use a parameter-less fitness function to select a few individuals that will race against each other; racing will {\em smooth out} randomness in the fitness by putting them in a
+% The two new techniques introduced in this paper, namely, \textit{Grand Prix selection} (GPS) and $BLX-\alpha$ crossover, try to improve on previous results by first relying less on the surrogacy of the fitness function
+% to select the best individuals. The GPS will use a parameter-less fitness function to select a few individuals that will race against each other; racing will {\em smooth out} randomness in the fitness by putting them in a
 % more real environment; racing cars against each other will offer a
 % result that varies much less than simply comparing fitness. But, even
 % so, uncertainty is present in the fitness and we should avoid
@@ -611,14 +611,14 @@ the evolution process.
 % 1. First and foremost, uncertainty in evolution, since it's in the
 % title of the paper.
 % 2. Second, alternative selection operators used in games, similar to
-% the Pole Position selection.
+% the Grand Prix selection.
 % 3. State of the art in TORCS since our last paper (CoG 2019)
 
 In this study we build on this last approach, focusing on the best
 fitness function to date and the final selection process, but also
 involving two new mechanisms during the evolution: a \textit{Blend or
 BLX-$\alpha$ Crossover operator} to control the balance between
-exploration and exploitation, and a \textit{Pole Position Selection policy of
+exploration and exploitation, and a \textit{Grand Prix Selection policy of
 parents} inspired by the Joust selection mentioned above and aiming to
 choose real good drivers in races, rather than just select those with
 the highest fitness values.
@@ -897,9 +897,6 @@ Regarding the genetic operators, \textit{mutation} has remained the same as in p
 % Antonio - I have rewritten all this part. 
 % Moreover, according to the invitation, this paper must be an extended version of the one published at CoG 2019, and I think it should contain a complete description of the main parts, as the Genetic algorithm proposed. I personally hate papers where you have to move to another 3 papers in order to understand the contents.
 
-% I find "race-based selection" a very bad name. REALLY bad. Either we
-% don't mention it, or do it some other way  - JJ
-% Antonio - I think it is much more accurate than Pole-Position selection, which is not what we do. Anyway, I'm very bad baptising things. If you can find a better name, please, let us know and we could update the name of the selection mechanism. ;)
 
 % Besides, this is also in the other paper - JJ ----------------------
 
@@ -907,12 +904,12 @@ Regarding the genetic operators, \textit{mutation} has remained the same as in p
 
 This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as it allows to obtain better controllers overall.
 
-The first technique is a \textbf{Race-based Selection policy}, which aims to select more reliable individuals/controllers to be parents of the following population, i.e. better deal with the uncertainty surrounding the election of an actual good individual. The mechanism arranges groups of 10 controllers (using the same car) and then different races of several laps are simulated in the same track of TORCS. After every race, the contenders obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following generation. 
+The first technique is a \textbf{Grand Prix Selection policy} (GPS), which aims to select more reliable individuals/controllers to be parents of the following population, i.e. better deal with the uncertainty surrounding the election of an actual good individual. The mechanism arranges groups of 10 controllers (using the same car) and then different races of several laps are simulated in the same track of TORCS. After every race, the contenders obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following generation. 
 
 As it can be noticed, the application of this approach will be independent of the fitness value, so it can be considered as a \textit{fitness-less proposal}.
 Thanks to this mechanism the best individuals will be more likely selected to reproduce. Of course, it is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. 
 
-On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of race-based selection, considering a different number of generations where to apply it.
+On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering a different number of generations where to apply it.
 
 The second technique implemented in our GA is the \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
@@ -944,7 +941,7 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number of gener
 
 % All this is also from the other paper and does not really correspond
 % to what we are doing in this paper - JJ
-% Antonio - Yes, we have done the same here, but extending the experiments with other configurations for the Race-based selection. ;)
+% Antonio - Yes, we have done the same here, but extending the experiments with other configurations for the GPS. ;)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -952,8 +949,8 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number of gener
 \label{sec:results}
 
 % >>>>>> TODO: Explain the new experiments and results -> Mohammed  <<<<<<<<<<
-% TODO: Results with Race-based selection (no BLX-Alpha crossover)
-% TODO: Results with Race-Based selection and BLX-Alpha crossover
+% TODO: Results with GPS (no BLX-Alpha crossover)
+% TODO: Results with GPS and BLX-Alpha crossover
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
@@ -971,25 +968,25 @@ As in our others studies, we have used the vehicle \textit{car1-tbr1} for our co
 
 We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness function: $f_{AVS}$ (Equation \ref{fit2}). We have run the algorithm with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
 
-New pole position selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
+New Grand Prix Selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
 We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.\\
 
-To analyze the influence of the new introduced pole position based selection  and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization process based on the pole position  selection: the first one uses the  with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
-In each process, three experimentations are achieved, the pole position selection is applied in every generation in the first experimentation, only in the last generation the second and each 5 generations in the last one.
+To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization process based on the GPS: the first one uses the  with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
+In each process, three experimentations are achieved, the GPS is applied in every generation in the first experimentation, only in the last generation the second and each 5 generations in the last one.
  
-When race-based selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
+When Grand Prix selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate bunches of runs to obtain the following controllers:
 \begin{itemize}
-	\item $GFC-RS5$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-RSL$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection once in the last generation and fitness $f_{AVS}$ in the others. 
-	\item $GFC-RSE$: A controller obtained by applying the classical two points crossover operator (as in previous works) and race-based selection every generation. 
+	\item $GFC-RS5$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSL$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once in the last generation and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSE$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS every generation. 
 	 
-	\item $GFC-RSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once in the last generation and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once in the last generation and fitness $f_{AVS}$ in the others. 
 	 
-	\item $GFC-RSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection once every 5 generations and fitness $f_{AVS}$ in the others. 
+	\item $GFC-RSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others. 
 	 
-	\item $GFC-RSVAE$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and race-based selection every generation. 
+	\item $GFC-RSVAE$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS every generation. 
 	
 		\item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
 	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and fitness $f_{AVS}$. 	
@@ -1182,7 +1179,7 @@ exactly to 0, meaning that, even if uncertainty can be
 approached by a normal distribution, that approximation
 would only be correct for the latest generations\cite{noisylunch2015}.
 Another remarkable fact is the faster the convergence is in the case of $GFC-VARSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
-This convergence speed is the result of the combination of $Alpha-BLX$ operator and the pole selection which highly pressure the chromosomes.
+This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions and Future Work} 
@@ -1198,7 +1195,7 @@ fitness-based evolution, and second, keep the balance between
 exploration and exploitation high, and also variable, by using a fixed
 and adaptive version of the BLX-$\alpha$ operator.
 
-The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and reliable bot, we proposed to apply a \textit{Pole Position Selection policy} where the selection of parents in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.
+The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and reliable bot, we proposed to apply a \textit{Grand Prix Selection policy} where the selection of parents in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.
 At the same time, and aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values of the $\alpha$ parameter throughout the generations.
 
 The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, yielding very good results.
