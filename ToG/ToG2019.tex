@@ -550,62 +550,6 @@ Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algo
 \section{State of the Art}
 \label{sec:soa}
 
-% I am going to comment out the whole section so that it's clear that
-% we have to rewrite it from scratch - JJ
-
-% This is almost the same as the last one, if not exactly the same. We
-% should really change it more than introduction or other things. - JJ
-% TORCS has become one of the main environments for research on AI since its launch in 2007 \cite{torcs4}. {\em Autonomous} cars, or {\em bots}, created to win races in this environment need to set the optimal parameters for the
-% cars \cite{Kole-ParamCarTunning12} with the ultimate objective of
-% participating in one of the Simulated Racing Car Competitions
-% \cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010}. However, the
-% problem of racing a car itself is a challenge, and thus it has been used as a subject of research from the beginning even without the intention of
-% participating in the competition; in any case, published controllers
-% are always used as the state of the art reference, and any new bot
-% should be compared against at least those that are available.
-
-% % This should be much more systematic. It should say:
-% % These are the kind of controllers there are; these are the kind of
-% % techniques that are used, these are the results obtained
-% There are many possible ways of approaching the design of an automatic
-% driver for a car, and through the use of different simulators and
-% techniques, they have probably been pursued in one way or the
-% other. They have to provide for a way to drive the car, in real time, from the inputs gathered by the car. TORCS offer a rich array of sensors, but it also includes vision \cite{zhu2018driving}, although most papers do rely only on the sensors, since they offer enough information for driving the car.
-
-% The way sensors and effectors are connected also varies. The simulator
-% itself offers a baseline controller, but that is also configurable and
-% you can choose to wire it in some other way
-% \cite{cussat2016dangerousness}. While this might be effective for some
-% specific purposes like the one used in the paper, evaluate the
-% dangerousness of the track, in general working with an already wired
-% controller that is able, for instance, to work towards a target speed
-% instead of dealing directly with throttle and braking is much more
-% convenient. This default controller, as a matter of fact, lets you
-% choose what you actually want to change or optimize. Some people opt for changing just the steering \cite{CarRacing_Pelta09,Nikulin:2018:EAC:3205455.3205547,LFAG}.
-
-% Although you can simply create a controller and optimize a series of
-% probabilities or rates by hand, generally metaheuristics such as
-% neural networks \cite{zhu2018driving} or fuzzy controllers
-% \cite{armagan2017fuzzy}. Besides, working towards the automatic
-% configuration via optimization of the steering wheel and the target speed also allows a bit of more leverage to obtain the maximum performance out of the
-% racing cars \cite{PerezEvolvingFuzzy09,Autopia2012}. The main intention of these authors was to imitate human driving patterns; however, in our case, we aim to optimize the performance.
-
-% Evolutionary algorithms have been often used as an optimization
-% mechanism, but any optimization mechanism must take into account the
-% uncertainty in selecting the best. For instance, Fern\'andez-Ares et
-% al. \cite{DBLP:conf/evoW/Fernandez-AresG16} use a mechanism called
-% {\em Joust} selection, avoiding inherently noisy fitness by subsuming
-% selection in a situation as close to real as possible. Several
-% different mechanisms have been applied in the context of TORCS racing
-% including application of filters \cite{preuss2011torcs} and averaging
-% \cite{Shi-DE13}.
-% Our own work tried to take the state of the art further by introducing
-% a fuzzy controller evolved via evolutionary algorithms in
-% \cite{salem_evo18}, which evolved a fuzzy-based driver considering the
-% target speed in addition to controlling steering (two fuzzy
-% sub-controllers). We optimized the parameters of the membership functions by means of a real coded genetic algorithm, obtaining a noticeable improvement in
-% performance. Lately, we presented \cite{salem_cig2018} an improvement on our proposal considering parameter-less fitness functions and a final selection of the best based in additional races involving the top 4 individuals and other rivals.
-
 
 % We have to focus the state of the art in three different things
 % 1. First and foremost, uncertainty in evolution, since it's in the
@@ -614,14 +558,6 @@ Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algo
 % the Grand Prix selection.
 % 3. State of the art in TORCS since our last paper (CoG 2019)
 
-% In this study we build on this last approach, focusing on the best
-% fitness function to date and the final selection process, but also
-% involving two new mechanisms during the evolution: a \textit{Blend or
-% BLX-$\alpha$ Crossover operator} to control the balance between
-% exploration and exploitation, and a \textit{Grand Prix Selection policy of
-% parents} inspired by the Joust selection mentioned above and aiming to
-% choose real good drivers in races, rather than just select those with
-% the highest fitness values.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
