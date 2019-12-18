@@ -1008,7 +1008,16 @@ had been ``trained'' in the same conditions.
 	\end{center}	
 \end{figure}
 
-As in our others studies, we have used the vehicle \textit{car1-trb1} for our controllers, since it has a moderate performance, which will lead our controller to be prepared to drive in the most usual conditions.
+As in our others studies, we have used the vehicle \textit{car1-trb1},
+which is a well balanced, NASCAR type car \footnote{See description in
+  the TORCS racing board web page,
+  \url{http://www.berniw.org/trb/cars/car_view.php?viewcarid=5}},
+which we have used also in our previous papers, and also by many
+winning bots along the history of the TORCS championship
+\cite{torcs5} as well as other authors
+\cite{auteur2010,li2019reinforcement}. This matches well the selection
+of racing track, but being as it is a balanced car, allows driving to
+fit itself to the controllers we are developing.
 
 New Grand Prix Selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
 We have defined a score function based in Formula 1 Grand prix schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.\\
