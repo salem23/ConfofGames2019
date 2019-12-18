@@ -552,8 +552,13 @@ fuzzy controllers were improved using an evolutionary algorithm; that
 algorithm was improved in \cite{DBLP:conf/ipmu/SalemMGG18}. However,
 we still had to deal with uncertainty, as well as a not so good
 exploration of the parameter space; the issue that we were using a
-surrogate of the real bot capacity by doing solo races was improved
-slightly by introducing real races from every few generations in
+surrogate of the real bot capacity by doing solo races was tackled by
+trying to use different fitness functions, but also by racing the best
+individuals in the last generation, which we introduced in
+\cite{salem_cig2018}. Introducing races in the selection of the
+``winner'', even if it was in the last generation, improved results,
+so this kind of competitive selection was extended by introducing real
+races from every few generations in 
 \cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$. The
 results were the best obtained so far, so in this paper we are testing
 a kind of fitness-less selection, which we call Grand Prix, combined
@@ -972,7 +977,12 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number of gener
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
-On the basis of the results of our previous paper \cite{salem_cig2018}, the selection of an appropriate track for training is an important factor in order to obtain competitive bots. \textit{Alpine 2} circuit has been selected for the experiments, since it combines multiple turns with straight parts (See Figure \ref{fig:alpine2_track}).
+As we proved in our previous paper, 
+\cite{salem_cig2018}, the selection of an appropriate track for
+training is an important factor in order to obtain competitive
+bots. \textit{Alpine 2} circuit has been selected for the experiments,
+since it combines multiple turns with straight parts (See Figure
+\ref{fig:alpine2_track}), making it a 
 
 \begin{figure}[!ht]	
 	\begin{center}
