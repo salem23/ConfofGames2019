@@ -977,12 +977,24 @@ Where $g$ is the current generation and $g_{max}$ is the maximum number of gener
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 
-As we proved in our previous paper, 
-\cite{salem_cig2018}, the selection of an appropriate track for
-training is an important factor in order to obtain competitive
-bots. \textit{Alpine 2} circuit has been selected for the experiments,
-since it combines multiple turns with straight parts (See Figure
-\ref{fig:alpine2_track}), making it a 
+In this kind of problems, it is essential to select the correct
+training track so that bots are able to work in a wide range of
+conditions. Usually a single track, out of all the existing TORCS
+ones, is selected, since evaluation in a single track takes some time
+and using several of them would make evaluation too onerous. For
+several papers already \cite{salem_cig2018,DBLP:conf/cig/SalemMG19},
+we have been using the \textit{Alpine 2} track (See Figure
+\ref{fig:alpine2_track}). This track has several characteristics that
+are essential for evaluating a bot: it has got many turns, some of
+them with 180 degrees, which makes
+it a good test bed for good turning and collision avoidance
+strategies, but also a few straight segments which allow the car to
+speed ahead, reaching high speeds. This same track has been repeatedly
+used for training as well as for testing and has been described as
+``technical and complex'' \cite{AG}, for instance in
+\cite{cardamone2010applying,CarRacing_Pelta09}; in \cite{AG} it had
+the third lowest lap time, after Alpine 1 and Olethros, implying it
+has got a good balance between hardness and speed.
 
 \begin{figure}[!ht]	
 	\begin{center}
