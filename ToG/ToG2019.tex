@@ -549,7 +549,16 @@ have found in this line of research, that started with
 introduced fuzzy controllers for driving the car and continued with
 \cite{10.1007/978-3-319-77538-8_24}, where the shape and values of the
 fuzzy controllers were improved using an evolutionary algorithm; that
-algorithm was improved in \cite{DBLP:conf/ipmu/SalemMGG18}.
+algorithm was improved in \cite{DBLP:conf/ipmu/SalemMGG18}. However,
+we still had to deal with uncertainty, as well as a not so good
+exploration of the parameter space; the issue that we were using a
+surrogate of the real bot capacity by doing solo races was improved
+slightly by introducing real races from every few generations in
+\cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$. The
+results were the best obtained so far, so in this paper we are testing
+a kind of fitness-less selection, which we call Grand Prix, combined
+with others or by itself, as the only way for car controllers to be
+selected for the next generation.
 
 %The rest of the paper is organized as follows. Next we present the
 %state of the art, to be followed by a description of the TORCS
