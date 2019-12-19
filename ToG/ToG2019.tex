@@ -748,6 +748,64 @@ the following controllers: % Clarify which ones have been used for the
                                 % also in cig2018? - JJ
 \end{itemize}
 
+
+\subsection{Uncertainty in fitness evaluation}
+
+We need first to find out how different kind of selection procedures
+affect uncertainty in scores. Better selection procedures should be
+able to reduce it, making evolved controllers as centrally distributed
+as possible; other kind of selections should keep distribution of
+scores (for a single controller) skewed and lopsided; this is why we
+have done an study of the distribution  of the genetic individuals of
+three evolution processes $GFC$, $GFC-GPSE$ and $GFC-VAGPS5$. 
+The skewness and kurtosis are computed for 1 in 5 individuals in the
+population chosen randomly, and measured fitness values after the
+first, the 20th and the last generation for the three controllers (See
+Figure \ref{fig:gfcsk},\ref{fig:gfcrsesk} and Figure
+\ref{fig:gfcvarsesk}). % Which fitness score are we using? - JJ
+
+
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfc.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC$}
+		\label{fig:gfcsk}	
+	\end{center}	
+\end{figure}
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfcrse.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC-GPSE$}
+		\label{fig:gfcrsesk}	
+	\end{center}	
+\end{figure}
+\begin{figure}[!ht]	
+	\begin{center}
+		\includegraphics[width=10cm]{fig/gfcvarse.jpg}
+		\caption{Skewness and kurtosis for fitness in several generations
+			of the  $GFC-VAGPSE$}
+		\label{fig:gfcvarsesk}	
+	\end{center}	
+\end{figure}
+
+When comparing the three figures, a clear convergence, 
+is observed as generations pass but without reaching, the normal distribution; in the first
+generations, values of skewness and kurtosis are quite
+high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
+approach zero. However, they do not converge
+exactly to 0, meaning that, even if uncertainty can be
+approached by a normal distribution, that approximation
+would only be correct for the latest generations\cite{noisylunch2015}.
+Another remarkable fact is the faster the convergence is in the case of $GFC-VAGPSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
+This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
+
+
+
+\subsection{Testing Grand Prix selection and BLX-$\alpha$ controllers}
+
+
 Once the 10 runs have finished, the obtained best controllers from the previous evolution processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$, and between $GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$.
 Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}
 %% Process 1 : GPS without Alpha
@@ -917,50 +975,11 @@ optimization for 50 generations for 10 runs.
 The two $GFC-VAGPSE$ and $GFC-GPSE$ controllers were the best where they are ranked 1st and 2nd but they are very expensive in runtime where they have performed around 2490 laps in Alpine 2, which is a huge learning time.
 The proposed selection policy is effective but in return requires a lot of time.
 
-Another point that we can highlight is that the controllers with $BLX-\alpha$ have reach the optimal solution in few generations (between the 10th and the 20th) while the other methods required more generations
+Another point that we can highlight is that the controllers with
+$BLX-\alpha$ have reach the optimal solution in few generations
+(between the 10th and the 20th) while the other methods required more
+generations. 
 
-
-%%TODO upload  the results of skewness and kurtosis of the evolution expermientations
-
-An analysis study of the distribution  of the genetic individuals of three evolution processes $GFC$, $GFC-GPSE$ and $GFC-VAGPS5$.
-The skewness and kurtosis are computed for $20\%$ chosen randomly fitness values after the first, the 20th and the last generation for the three controllers (See Figure \ref{fig:gfcsk},\ref{fig:gfcrsesk} and Figure \ref{fig:gfcvarsesk})
-
-
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=10cm]{fig/gfc.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC$}
-		\label{fig:gfcsk}	
-	\end{center}	
-\end{figure}
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=10cm]{fig/gfcrse.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC-GPSE$}
-		\label{fig:gfcrsesk}	
-	\end{center}	
-\end{figure}
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=10cm]{fig/gfcvarse.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC-VAGPSE$}
-		\label{fig:gfcvarsesk}	
-	\end{center}	
-\end{figure}
-
-When comparing the three figures, a clear convergence, 
-is observed as generations pass but without reaching, the normal distribution; in the first
-generations, values of skewness and kurtosis are quite
-high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
-approach zero. However, they do not converge
-exactly to 0, meaning that, even if uncertainty can be
-approached by a normal distribution, that approximation
-would only be correct for the latest generations\cite{noisylunch2015}.
-Another remarkable fact is the faster the convergence is in the case of $GFC-VAGPSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
-This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions and Future Work} 
