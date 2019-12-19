@@ -723,20 +723,32 @@ last generation the second and each 5 generations in the last one. % Rewrite thi
 When Grand Prix selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. The last 10 individuals  in the GPS selection are replaced with new ones in the next generation. The winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate groups of runs to obtain
-the following controllers: 
+the following controllers: % Clarify which ones have been used for the
+                           % first time in this paper; make references
+                           % to the rest - JJ
 \begin{itemize}
-	\item $GFC-GPS5$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once every 5 generations and fitness $f_{AVS}$ in the others. 
-	\item $GFC-GPSL$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once in the last generation and fitness $f_{AVS}$ in the others. 
+	\item $GFC-GPS5$: A controller obtained by applying the
+          classical two points crossover operator (as in previous
+          works) and GPS once every 5 generations and fitness
+          $f_{AVS}$ in the others. % This was in a previous paper,
+                                % please cite it - JJ
+	\item $GFC-GPSL$: A controller obtained by applying the
+          classical two points crossover operator (as in previous
+          works) and GPS once in the last generation and fitness
+          $f_{AVS}$ in the others. % This was in a previous paper - JJ
 	\item $GFC-GPSE$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS every generation. 
-	 
+
 	\item $GFC-GPSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once in the last generation and fitness $f_{AVS}$ in the others. 
-	 
+
 	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others. 
-	 
+
 	\item $GFC-GPSVAE$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS every generation. 
-	
-		\item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and fitness $f_{AVS}$. 	
+
+        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
+          crossover operator with a varying value of $\alpha$ using
+          Equation \ref{eqalpha} and fitness $f_{AVS}$. % wasn't this
+                                % also in cig2018? - JJ
 \end{itemize}
 
 Once the 10 runs have finished, the obtained best controllers from the previous evolution processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$, and between $GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$.
