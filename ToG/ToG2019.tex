@@ -709,7 +709,12 @@ We have defined a score function based in Formula 1 Grand prix schema, so the ob
 
 To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization processes based on the GPS: the first one uses the GPS with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
 In the generations where the GPS is not used, the controllers are evaluated using the fitness function: $f_{AVS}$ (Equation \ref{fit2}).
-We have run the algorithms with a population size of 60 individuals. The rest of parameters are: Generations=50, Crossover rate=0.85, Mutation rate=0.09, and 10 different runs per configuration.
+We have run the algorithms with a population size of 60
+individuals. The rest of parameters are: Generations=50, Crossover
+rate=0.85, Mutation rate=0.09, and 10 different runs per
+configuration. % this should probably go to a table, and also needs
+               % some kind of justification. Does crossover rate
+               % include BLX-alpha? - JJ
 
 In each process, three experimentations are achieved, the GPS is applied in every generation in the first experimentation, only in the last generation the second and each 5 generations in the last one.
  
