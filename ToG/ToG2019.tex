@@ -382,10 +382,20 @@ The followed process is shown in Figure \ref{fig:ga}.
  	\begin{center}
  		\includegraphics[width=9cm]{fig/flowchart}
  	\end{center}
- 	\caption{Flowchart of the optimization process of a TORCS fuzzy controller. To evaluate an individual we put the parameter values of the two sub-controllers in the corresponding chromosome, then we launch a race in TORCS with this configuration, obtaining the resulting values of Average Speed and Damage. Individual's fitness value is computed using these values.}
+ 	\caption{Flowchart of the optimization process of a TORCS
+          fuzzy controller. To evaluate an individual we put the
+          parameter values of the two sub-controllers in the
+          corresponding chromosome, then we launch a race in TORCS
+          with this configuration, obtaining the resulting values of
+          Average Speed and Damage. Individual's fitness value is
+          computed using these values.} % This needs to be rewritten,
+                                % since it's in the previous paper. - JJ
  \end{figure}
 
-In our approach, every individual or chromosome is a vector of 18 values/parameters, 6 per variable (see Figure \ref {fig:cromosome}), coded using real values aiming to have some precision \cite{elsayed13}.
+In our approach, every individual or chromosome is a vector of 18
+values/parameters, 6 per variable (see Figure \ref {fig:cromosome}),
+coded using real values aiming to have some precision
+\cite{elsayed13}. 
 
  \begin{figure*}[!ht]	
  	\begin{center}
@@ -412,17 +422,28 @@ At the same time, this fitness expression is closer to a `human-like' approach, 
 It depends on two variables:
 
  \begin{itemize}
- 	\item $AVG(Speed)$: pursues a combination of good driving in the difficult zones of the tracks (e.g. curves) and also on easy or straight parts; i.e. considers the overall behavior in the whole track.
- 	\item $Damage$: aims to create `safe' controllers, as it is mandatory being able to finish the race.
+ 	\item $AVG(Speed)$: pursues a combination of good driving in
+          the difficult zones of the tracks (e.g. curves) and also on
+          easy or straight parts; i.e. considers the overall behavior
+          in the whole track. % needs to be rewritten. 
+ 	\item $Damage$: aims to create `safe' controllers, as it is
+          mandatory being able to finish the race. % Also needs to be
+                                % rewritten. 
  \end{itemize} 
 
+ %% ----------------------- This needs to be rewritten since it's
+ %% taken from another paper
 So the function aims to obtain drivers reaching the highest average speed as possible on the whole track while avoiding damage to the vehicle.
 
 As it is shown in Figure \ref{fig:ga}, the fitness of each candidate solution (individual) is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. Then, the defined autonomous controller drives a car in a 20 laps race in a circuit without opponents, and the obtained results (Average Speed and Damage) are used to compute the fitness value. 
 Given that the objective of the car controller is to win as many races as
 possible, we decided to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of \textit{noise/uncertainty} due to the participation of other controllers \cite{merelo2016statistical}.
 
-In addition, we have considered the same track as in previous works \cite{salem_cig2018} for this evaluation, because it has a proper combination of curves and straight parts. This will aid to obtain an `all-terrain behaviour' for the controllers.
+In addition, we have considered the same track as in previous works
+\cite{salem_cig2018} for this evaluation, because it has a proper
+combination of curves and straight parts. This will aid to obtain an
+`all-terrain behaviour' for the controllers.
+% Up to here ----- JJ
 
 Regarding the genetic operators, \textit{mutation} has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
 
@@ -441,8 +462,16 @@ This paper proposes the inclusion of two different mechanisms into the algorithm
 
 The first technique is a \textbf{Grand Prix Selection policy} (GPS), which aims to select more reliable individuals/controllers to be parents of the following population, i.e. better deal with the uncertainty surrounding the election of an actual good individual. The mechanism arranges groups of 10 controllers (using the same car) and then different races of several laps are simulated in the same track of TORCS. After every race, the contenders obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following generation. 
 
+% Most of this paragraph needs to be rewritten - JJ
 As it can be noticed, the application of this approach will be independent of the fitness value, so it can be considered as a \textit{fitness-less proposal}.
-Thanks to this mechanism the best individuals will be more likely selected to reproduce. Of course, it is not possible to assure they are absolutely the best, due to the uncertainty present in this type of environments, i.e. games against non-deterministic opponents \cite{merelo2016statistical}. However, we argue that this selection policy will be `less sensitive' to that uncertainty (or noise), and thus, it will be fairer and more reliable than an approach purely based on the fitness values. 
+Thanks to this mechanism the best individuals will be more likely
+selected to reproduce. Of course, it is not possible to assure they
+are absolutely the best, due to the uncertainty present in this type
+of environments, i.e. games against non-deterministic opponents
+\cite{merelo2016statistical}. However, we argue that this selection
+policy will be `less sensitive' to that uncertainty (or noise), and
+thus, it will be fairer and more reliable than an approach purely
+based on the fitness values.  
 
 On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering a different number of generations where to apply it.
 
@@ -458,6 +487,7 @@ The Blend crossover operator starts by choosing randomly a number from the inter
  	\end{center}	
  \end{figure}
 
+ % Paragraphs to rewrite - JJ
 Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
 This operator is suitable for real coded genetic algorithms where it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
 
@@ -474,9 +504,12 @@ Given this, we have considered two different approaches in the experiments: one 
 
 Where $g$ is the current generation and $g_{max}$ is the maximum number of generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions (better controllers) may be obtained.
 
+% Up to here... - JJ
 % All this is also from the other paper and does not really correspond
 % to what we are doing in this paper - JJ
-% Antonio - Yes, we have done the same here, but extending the experiments with other configurations for the GPS. ;)
+% Antonio - Yes, we have done the same here, but extending the
+% experiments with other configurations for the GPS. ;)
+% Needs to be rewritten anyway. - JJ
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -724,7 +757,13 @@ Better speed in solo racing is not a criterion of a good driver, the
 best is the one who wins races. The new selection policy allows you to
 select the winners on the field and not the possible winners. 
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
-The best controllers obtained from the two main optimization processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like championship against the references five TORCS bots and the $GFC-VA$ and $GFC$ controllers. We have considered also an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
+The best controllers obtained from the two main optimization
+processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like
+championship against the references five TORCS bots and the $GFC-VA$
+and $GFC$ controllers. We have considered also an opponent from the
+state of the art, which participated in several Simulated Car Racing
+Competitions in past editions.  % Rewrite this paragraph too, from "We
+                                % have considered" - JJ
 It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
 %
 \begin{table*}[ht]
