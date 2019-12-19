@@ -603,7 +603,7 @@ the following controllers: % Clarify which ones have been used for the
 	\item $GFC-GPS5$: A controller obtained by applying the
           classical two points crossover operator (as in previous
           works) and GPS once every 5 generations and fitness
-          $f_{AVS}$ in the others. % This was in a previous paper,
+          $f_{AVS}$ in the others \cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper,
                                 % please cite it - JJ
 	\item $GFC-GPSL$: A controller obtained by applying the
           classical two points crossover operator (as in previous
@@ -615,7 +615,7 @@ the following controllers: % Clarify which ones have been used for the
 	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
 
 
-        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}) \cite{salem_cig2018}.
+        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
 	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
           crossover operator with a varying value of $\alpha$ using
           Equation \ref{eqalpha} and fitness $f_{AVS}$ \cite{DBLP:conf/cig/SalemMG19}.
@@ -669,7 +669,7 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 		\includegraphics[width=10cm]{fig/gfc.jpg}
 		\caption{Skewness ($y$ axis) and kurtosis ($x$ axis)
                   for the fitness score in an experiment with the
-                  $GFC$ method.}
+                  $GFC$ method \cite{salem_cig2018}.}
 		\label{fig:gfcsk}	
 	\end{center}	
 \end{figure}
@@ -748,11 +748,11 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				\hline
 				\hline
 				
-			$GFC-GPS5$&	75	&74&	149\\
+			$GFC-GPS5$\cite{DBLP:conf/cig/SalemMG19}&	75	&74&	149\\
 			$GFC-GPSE$&	98	&93&	{\bf 191}\\
-			$GFC-GPSL$&	77	&81&	{\em 158}\\
-			$GFC$	&	56	&50&	106\\
-			$GFC-VA$	&	46	&7&		53\\
+			$GFC-GPSL$\cite{DBLP:conf/cig/SalemMG19}&	77	&81&	{\em 158}\\
+			$GFC$ \cite{salem_cig2018}	&	56	&50&	106\\
+			$GFC-VA$\cite{DBLP:conf/cig/SalemMG19}	&	46	&7&		53\\
 			$inferno1$&	9	&8&		17\\
 			$inferno2$&		20	&51&	71\\
 			$berniw1$&	16	&24&	40\\
@@ -783,11 +783,11 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
 				\hline	
-				$GFC-VAGPS5$&	82&	82&	{\em 164}\\
+				$GFC-VAGPS5$ \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
 				$GFC-VAGPSE$&	108&    101&	{\bf 209}\\
-				$GFC-VAGPSL$&	77&	73&	150\\
-				$GFC$&	56&	50&	106\\
-				$GFC-VA$&	46&	7&	53\\
+				$GFC-VAGPSL$\cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
+				$GFC$  \cite{salem_cig2018}&	56&	50&	106\\
+				$GFC-VA$ \cite{DBLP:conf/cig/SalemMG19}&	46&	7&	53\\
 				$inferno1$&	9&	8&	17\\
 				$inferno2$&	20&	49&	69\\
 				$berniw1$&	16&	24&	40\\
@@ -816,8 +816,8 @@ select the winners on the field and not the possible winners.
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
 The best controllers obtained from the two main optimization
 processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like
-championship against the references five TORCS bots and the $GFC-VA$
-and $GFC$ controllers. We have considered also an opponent from the
+championship against the references five TORCS bots and the $GFC-VA$\cite{DBLP:conf/cig/SalemMG19}
+and $GFC$ controllers  \cite{salem_cig2018}. We have considered also an opponent from the
 state of the art, which participated in several Simulated Car Racing
 Competitions in past editions.  % Rewrite this paragraph too, from "We
                                 % have considered" - JJ
@@ -844,9 +844,9 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 				\hline
 $GFC-GPSE$&	85&	82&	{\em 167}\\
 $GFC-VAGPSE$&111&101&            {\bf 212}\\
-$GFC$&		48&	55&	103\\
-$PSRI$&		53&	48&	101\\
-$GFC-VA$&	78&	64&	142\\
+$GFC$  \cite{salem_cig2018}&		48&	55&	103\\
+$PSRI$\cite{PerezEvolvingFuzzy09}&		53&	48&	101\\
+$GFC-VA$ \cite{DBLP:conf/cig/SalemMG19}&	78&	64&	142\\
 $inferno1$&	9&	8&	17\\
 $inferno2$&	20&	40&	60\\
 $berniw1$&	16&	24&	40\\
@@ -887,13 +887,13 @@ optimization for 50 generations for 10 runs.
 % Is this number of laps or running time? - Jj
 %Mohammed %% each lap in Alpine 2  takes between 90s and 120s
 %% number of completed laps ,  I prefered the laps number to high values of average running time values ( 123800s for instance) 
-                  \hline \textbf{\textbf{$GFC$}}&296 &34-39\\
-			\hline \textbf{$GFC-VA$}&298	&10-18\\	
-			\hline \textbf{$GFC-GPSL$}& 322&23-38\\	
-			\hline \textbf{$GFC-GPS5$}&689	&24-38\\	
+                  \hline \textbf{\textbf{$GFC$}} \cite{salem_cig2018}&296 &34-39\\
+			\hline \textbf{$GFC-VA$} \cite{DBLP:conf/cig/SalemMG19}&298	&10-18\\	
+			\hline \textbf{$GFC-GPSL$} \cite{DBLP:conf/cig/SalemMG19}& 322&23-38\\	
+			\hline \textbf{$GFC-GPS5$} \cite{DBLP:conf/cig/SalemMG19}&689	&24-38\\	
 			\hline \textbf{$GFC-GPSE$}&	2488&22-40\\	
-			\hline \textbf{$GFC-VAGPSL$}&321	&9-15\\	
-			\hline\textbf{$GFC-VAGPS5$}&	691&8-17\\	
+			\hline \textbf{$GFC-VAGPSL$} \cite{DBLP:conf/cig/SalemMG19}&321	&9-15\\	
+			\hline\textbf{$GFC-VAGPS5$} \cite{DBLP:conf/cig/SalemMG19}&	691&8-17\\	
 			\hline\textbf{$GFC-VAGPSE$}&2489	&11-18\\					
 			\hline 
 		\end{tabular}
