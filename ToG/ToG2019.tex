@@ -659,38 +659,41 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=10cm]{fig/gfc.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC$}
+		\caption{Skewness ($y$ axis) and kurtosis ($x$ axis)
+                  for the fitness score in an experiment with the
+                  $GFC$ method.}
 		\label{fig:gfcsk}	
 	\end{center}	
 \end{figure}
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=10cm]{fig/gfcrse.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC-GPSE$}
+		\caption{Score skewness ($y$) and kurtosis ($x$) for
+                  the fitless-ness method $GFC-GPSE$.}
 		\label{fig:gfcrsesk}	
 	\end{center}	
 \end{figure}
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=10cm]{fig/gfcvarse.jpg}
-		\caption{Skewness and kurtosis for fitness in several generations
-			of the  $GFC-VAGPSE$}
+		\caption{Skewness ($y$) and kurtosis ($x$) for
+                  $GFC-VAGPSE$, which is fitless-ness and also uses
+                  adaptive BLX$\alpha$ crossover.}
 		\label{fig:gfcvarsesk}	
 	\end{center}	
 \end{figure}
 
-When comparing the three figures, a clear convergence, 
-is observed as generations pass but without reaching, the normal distribution; in the first
-generations, values of skewness and kurtosis are quite
-high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
-approach zero. However, they do not converge
-exactly to 0, meaning that, even if uncertainty can be
-approached by a normal distribution, that approximation
-would only be correct for the latest generations\cite{noisylunch2015}.
-Another remarkable fact is the faster the convergence is in the case of $GFC-VAGPSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
-This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
+
+% When comparing the three figures, a clear convergence, 
+% is observed as generations pass but without reaching, the normal distribution; in the first
+% generations, values of skewness and kurtosis are quite
+% high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
+% approach zero. However, they do not converge
+% exactly to 0, meaning that, even if uncertainty can be
+% approached by a normal distribution, that approximation
+% would only be correct for the latest generations\cite{noisylunch2015}.
+% Another remarkable fact is the faster the convergence is in the case of $GFC-VAGPSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
+% This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
 
 
 
