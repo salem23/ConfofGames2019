@@ -354,17 +354,23 @@ The sensor values are considered by any TORCS autonomous controller, or
 steering wheel, the accelerator, the brake pedal and the gearbox.   
 
 
-%*****************************  FUZZY CONTROLLER  ******************************
-
-\section{Fuzzy sub-controllers}
-\label{sec:subcontrollers}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Evolutionary Algorithm}
 \label{sec:GA_optimization}
+
+An evolutionary algorithm is used to evolve the two fuzzy
+subcontrollers, which take care of speed and steering
+\cite{DBLP:conf/evoW/SalemMMG17}. What is evolved is the shape of the
+fuzzy system, that is, the linguistic variables used as input. These
+variables are encoded in 18 real-valued parameters. The low-level
+details of this part has been explained extensively in
+\cite{DBLP:conf/cig/SalemMG19}. As mentioned, these fuzzy controllers
+proved to be a good platform for the evolution of racing car
+controllers, and have not essentially changed since our first
+paper. As a matter of fact, the methods presented in this paper could
+be applied to any kind of controller, as long as it can be fully
+encoded and evolved using an evolutionary algorithm.
 
 % ----------------------------- We need to rewrite most of this
 % ---------------
@@ -722,7 +728,11 @@ a method for finding high-performance controllers.
 \subsection{Testing Grand Prix selection and BLX-$\alpha$ controllers}
 
 
-Once the 10 runs have finished, the obtained best controllers from the previous evolution processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$, and between $GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$.
+Once the 10 runs have finished, the obtained best controllers from the
+previous evolution processes compete again in a similar set of races,
+in order to choose the best controller overall per approach, i.e. the
+best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$, and between
+$GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$. 
 Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}
 %% Process 1 : GPS without Alpha
 %% Process 2  : GPS with Alpha
