@@ -666,7 +666,7 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 		\includegraphics[width=9cm]{fig/GFC__.jpg}
 		\caption{Skewness ($y$ axis) and kurtosis ($x$ axis)
                   for the fitness score or chosen individuals in an experiment with the
-                  $GFC$ method \cite{salem_cig2018}.}
+                  {\sf GFC} method \cite{salem_cig2018}.}
 		\label{fig:gfcsk}	
 	\end{center}	
 \end{figure}
@@ -674,7 +674,7 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 	\begin{center}
 		\includegraphics[width=9cm]{fig/GFCRSE__.jpg}
 		\caption{Individual score skewness ($y$) and kurtosis ($x$) for
-                  the fitless-ness method $GFC-GPSE$.}
+                  the fitless-ness method {\sf GFC-GPSE}.}
 		\label{fig:gfcrsesk}	
 	\end{center}	
 \end{figure}
@@ -683,7 +683,7 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 		\includegraphics[width=9cm]{fig/GFCVARSE__.jpg}
 		\caption{Skewness ($y$) and kurtosis ($x$) for a
                   sample of individuals evolved with 
-                  $GFC-VAGPSE$, which is fitless-ness and also uses
+                  {\sf GFC-VAGPSE}, which is fitless-ness and also uses
                   adaptive BLX$\alpha$ crossover.}
 		\label{fig:gfcvarsesk}	
 	\end{center}	
@@ -703,22 +703,20 @@ are not.
 The two fitless-ness methods, {\sf GFC-GPSE} and {\sf GFC−VAGPSE}, are
 notably similar, with selection eventually concentrating individuals
 close to a Gaussian distribution, although slighly skewed to the
-right, and with a positive fat tail.
+right, and with a positive fat tail. However, {\sf GFC-VAGPSE} is able
+to find solutions with lower skewness, always between -0.5 and 1,
+although kurtosis is slightly higher for the last generation. Since
+this method exploits more found solutions, it seems that it is able to
+generate new solutions with a more reliable expected value around the
+middle of the area the variable covers, but decreasing more slowly
+towards values further away from the center. For the time being,
+we can affirm that fitness-less methods tend to evolve individuals
+with a score that is less uncertain, and thus more robust and whose
+expected results are more reliable.
 
-% Continue here -- JJ
-
-
-% When comparing the three figures, a clear convergence, 
-% is observed as generations pass but without reaching, the normal distribution; in the first
-% generations, values of skewness and kurtosis are quite
-% high and correspond to arbitrary uniform distribution, however, as the simulation proceeds, values
-% approach zero. However, they do not converge
-% exactly to 0, meaning that, even if uncertainty can be
-% approached by a normal distribution, that approximation
-% would only be correct for the latest generations\cite{noisylunch2015}.
-% Another remarkable fact is the faster the convergence is in the case of $GFC-VAGPSE$ where it reaches its optimal values around the 20th generation to confirm the results of Table \ref{tab:time} where this controller evolution process has given the best individual between the eleventh and the eighteenth generation.
-% This convergence speed is the result of the combination of $Alpha-BLX$ operator and the GPS which highly pressure the chromosomes.
-
+ In the next subsection we
+will see how this kind of selection has an influence in the success as
+a method for finding high-performance controllers.
 
 
 \subsection{Testing Grand Prix selection and BLX-$\alpha$ controllers}
