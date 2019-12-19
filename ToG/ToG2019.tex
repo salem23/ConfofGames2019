@@ -372,6 +372,8 @@ steering wheel, the accelerator, the brake pedal and the gearbox.
 % ----------------------------- We need to rewrite most of this
 % ---------------
 % Antonio - done. I have rewritten it
+% No, you haven't. It's still pretty much the same. Marked paragraphs
+% that are taken from the other paper - JJ
 
 As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GAs) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
 
@@ -407,7 +409,13 @@ coded using real values aiming to have some precision
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
-As it can be seen in Figure \ref{fig:ga}, TORCS is used for the evaluation of every individual. This evaluation is based on different fitness functions, which we have tested in previous works \cite{salem_evo18}. 
+As it can be seen in Figure \ref{fig:ga}, TORCS is used for the
+evaluation of every individual. This evaluation is based on different
+fitness functions, which we have tested in previous works
+\cite{salem_evo18}.  % This paragraph no longer applies, because in
+                     % many cases we are using selection. It would be
+                     % better to just rewrite the whole thing, taking
+                     % into account the new GPS - JJ
 However, in this study we will consider the function which obtained the best results in our previous paper \cite{salem_cig2018}, namely:
 
  \begin{equation} \label{fit2}
@@ -621,12 +629,32 @@ as possible; other kind of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done an study of the distribution  of the genetic individuals of
 three evolution processes $GFC$, $GFC-GPSE$ and $GFC-VAGPS5$. 
-The skewness and kurtosis are computed for 1 in 5 individuals in the
-population chosen randomly, and measured fitness values after the
-first, the 20th and the last generation for the three controllers (See
-Figure \ref{fig:gfcsk},\ref{fig:gfcrsesk} and Figure
-\ref{fig:gfcvarsesk}). % Which fitness score are we using? - JJ
 
+
+Skewness is related to how symmetric the distribution of fitness
+scores is. There are several strategies that deal with this kind of
+uncertain (usually called {\em noisy} fitness functions; but a simple
+one is to re-evaluate ({\em re-sample}) the score every generation. A
+skewed distribution mean that it will more likely to sample a value
+that is different from the average, but it might be better or worse
+than average; in any case, different from the score we would expect to
+achieve in other circumstances. On the other hand, kurtosis measures
+the amount of values that are far from the average, creating either a
+heavy-tailed or too-lightly-tailed distribution. In the first case, it
+will mean that values far from what would be expected are likely to
+show up in the fitness score.
+
+This is why we are interested in how these two statistical measures
+are going to change with evolution; they will both affect
+selectability of an individual, so that, in general, they will select
+individuals with lower kurtosis and skewness, since they are more
+likely to draw a consistent value and thus go ahead to the next
+generation. However, different selection procedures will affect this
+in different ways. This is why we have computed skewness and kurtosis for 1 in 5 individuals in the
+population chosen randomly, and measured fitness values after the
+first, the 20th and the last generation for the three controllers;
+results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
+\ref{fig:gfcvarsesk}). % Which fitness score are we using? - JJ
 
 \begin{figure}[!ht]	
 	\begin{center}
