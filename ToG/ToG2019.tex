@@ -188,7 +188,7 @@ Email: jmerelo@geneura.ugr.es
     combination with them, and see its effects on overall
     performance. In general, results will show that these combined
     improvements establish a new level of performance of evolved
-    controllers, being able to beat, standard and previously evolved controllers, as well as a high-ranked driver of TORCS competitions.
+    controllers, being able to beat, both standard and previously evolved controllers, as well as a high-ranked driver of TORCS competitions.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -228,9 +228,11 @@ Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algo
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
+% Antonio - Is somebody writing this? I guess it is incomplete (something is missing before)... :_D
+
 In a simulated and
     realistic racing car environment, however, racing car scores are a
-    statistical varibable whose value will vary depending on track and
+    statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
     that score in a training track will always be a surrogate of its
     actual score when racing against other cars in different tracks,
@@ -383,176 +385,178 @@ steering wheel, the accelerator, the brake pedal and the gearbox.
 
 % This section should probably be eliminated except. There's no part that's original. We should just summarize it in the next section, and make a reference to published papers - JJ
 
-% We initially proposed a controller \cite{salem_evo17} with the same modular architecture as the simple TORCS driver; however, the target speed and
-% steering angle are computed by means of two modular and specialized
-% fuzzy sub-controllers, which consider five position sensors. This is
-% the controller which will be improved by means of a GA in this
-% work.
+% Antonio - As I said previously, This was our initial proposal, not previously published in a journal and I personally prefer give a self-content publication. Because it is a mess to go to another 3 papers before being able to read and understand this one. Of course we cite previous papers, but I feel this information is needed here.
 
-% The \textbf{fuzzy target speed sub-controller} aims to estimate the
-% optimal target speed of the car, both in straight parts and curves of
-% the track, taking into account two criteria: move as fast as possible
-% and be safe. This estimation is based on two general cases: if the car
-% is in a straight line, the target speed will take a maximum value
-% (\textit{maxSpeed} km/h). However, if it is close to a curve, the
-% controller will decrease the current speed to a value included in the
-% interval \textit{[minSpeed, maxSpeed]} km/h. 
+We initially proposed a controller \cite{salem_evo17} with the same modular architecture as the simple TORCS driver; however, the target speed and
+ steering angle are computed by means of two modular and specialized
+ fuzzy sub-controllers, which consider five position sensors. This is
+ the controller which will be improved by means of a GA in this
+ work.
 
-% This fuzzy controller has an output, the speed, and three input values (See Figure \ref{fig:torcs-sensors}):
-% \begin{itemize}
-% 	\item Front = Track\_9: front distance to the track border (angle 0\textdegree).  
-% 	\item M5 = max (Track\_8, Track\_10): max distance to the track border in an angle of +5\textdegree and -5\textdegree with respect to Front.
-% 	\item M10 = max (Track\_7, Track\_11): max distance to track border in an angle of +10\textdegree and -10\textdegree.
-% \end{itemize}
+ The \textbf{fuzzy target speed sub-controller} aims to estimate the
+ optimal target speed of the car, both in straight parts and curves of
+ the track, taking into account two criteria: move as fast as possible
+ and be safe. This estimation is based on two general cases: if the car
+ is in a straight line, the target speed will take a maximum value
+ (\textit{maxSpeed} km/h). However, if it is close to a curve, the
+ controller will decrease the current speed to a value included in the
+ interval \textit{[minSpeed, maxSpeed]} km/h. 
 
-% It is a Mamdani-based fuzzy system \cite{iancu2012} with three
-% trapezoidal Membership Functions (MF) for every input variable. 
-% %The description of these fuzzy inputs and output are represented in Table
-% %\ref{tab:flouevar}. 
-% In \cite{salem_evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
+ This fuzzy controller has an output, the speed, and three input values (See Figure \ref{fig:torcs-sensors}):
+ \begin{itemize}
+ 	\item Front = Track\_9: front distance to the track border (angle 0\textdegree).  
+ 	\item M5 = max (Track\_8, Track\_10): max distance to the track border in an angle of +5\textdegree and -5\textdegree with respect to Front.
+ 	\item M10 = max (Track\_7, Track\_11): max distance to track border in an angle of +10\textdegree and -10\textdegree.
+ \end{itemize}
 
-% Moreover, the controller is based in a set of fuzzy rules, designed to
-% maximize the car speed depending on the distance to the track
-% border. These rules are \cite{salem_evo17}:
-%  \begin{itemize}
-%  {\small
-%  	\item \texttt{IF Front is High THEN TargetSpeed is TS1}
-%  	\item \texttt{IF Front is Medium THEN TargetSpeed is TS2}
-%  	\item \texttt{IF Front is Low and M5 is High THEN TargetSpeed is TS3}
-%  	\item \texttt{IF Front is Low and M5 is Medium THEN TargetSpeed is TS4}
-%  	\item \texttt{IF Front is Low and M5 is Low and M10 is High THEN TargetSpeed is TS5}
-%  	\item \texttt{IF Front is Low and M5 is Low and M10 is Medium THEN TargetSpeed is TS6}
-%  	\item \texttt{IF Front is Low and M5 is Low and M10 is Low THEN TargetSpeed is TS7}\\
-%  }
-% %
-% In addition, a crisp rule is added to obtain a maximum value of the target speed when the three input variables are as big as possible:\\
-%  {\small	
-%  \item \texttt{IF Front = MAXDISTSPEED or M5 = MAXDISTSPEED or M10 = MAXDISTSPEED THEN TargetSpeed = MAXSPEED}
-%  }
-%  \end{itemize}
+ It is a Mamdani-based fuzzy system \cite{iancu2012} with three
+ trapezoidal Membership Functions (MF) for every input variable. 
+ %The description of these fuzzy inputs and output are represented in Table
+ %\ref{tab:flouevar}. 
+ In \cite{salem_evo18} the different sets of parameters which define the membership functions were improved using a Genetic Algorithm to obtain the best results.
 
-%  MAXDISTSPEED is the longest possible value for the track sensors, and MAXSPEED is the maximal speed for the specific car. 
-%  The output value is encoded by seven singletons TS1 to TS7, being respectively: 280, 240, 220, 180, 120, 60 and 30.\\
-% %
-% %
-% % %***********************************************
-% % \noindent
-% % \textbf{Fuzzy steering control sub-controller}\\
-% % %
-% %
+ Moreover, the controller is based in a set of fuzzy rules, designed to
+ maximize the car speed depending on the distance to the track
+ border. These rules are \cite{salem_evo17}:
+  \begin{itemize}
+  {\small
+  	\item \texttt{IF Front is High THEN TargetSpeed is TS1}
+  	\item \texttt{IF Front is Medium THEN TargetSpeed is TS2}
+  	\item \texttt{IF Front is Low and M5 is High THEN TargetSpeed is TS3}
+  	\item \texttt{IF Front is Low and M5 is Medium THEN TargetSpeed is TS4}
+  	\item \texttt{IF Front is Low and M5 is Low and M10 is High THEN TargetSpeed is TS5}
+  	\item \texttt{IF Front is Low and M5 is Low and M10 is Medium THEN TargetSpeed is TS6}
+  	\item \texttt{IF Front is Low and M5 is Low and M10 is Low THEN TargetSpeed is TS7}\\
+  }
+ %
+ In addition, a crisp rule is added to obtain a maximum value of the target speed when the three input variables are as big as possible:\\
+  {\small	
+  \item \texttt{IF Front = MAXDISTSPEED or M5 = MAXDISTSPEED or M10 = MAXDISTSPEED THEN TargetSpeed = MAXSPEED}
+  }
+  \end{itemize}
 
-% The second is the \textbf{fuzzy steering sub-controller}, which aims to define the steer angle estimating and determining the target position of the car. 
-% %
-% The structure of this sub-controller is similar to the speed one, but it has the steering as output. Thus, the set of sensors considered is the same as in the speed case.
+  MAXDISTSPEED is the longest possible value for the track sensors, and MAXSPEED is the maximal speed for the specific car. 
+  The output value is encoded by seven singletons TS1 to TS7, being respectively: 280, 240, 220, 180, 120, 60 and 30.\\
+ %
+ %
+ % %***********************************************
+ % \noindent
+ % \textbf{Fuzzy steering control sub-controller}\\
+ % %
+ %
 
-% Then, as general rules: if the car is in a straight line, it will set as target position half width of the race track (central position of the lane). Whereas, if the car is near a right curve, it will approach the path leading to the right, with a space between the car and the border of the track to avoid the loss of control. The same approach is considered if the car is near a left curve.
+ The second is the \textbf{fuzzy steering sub-controller}, which aims to define the steer angle estimating and determining the target position of the car. 
+ %
+ The structure of this sub-controller is similar to the speed one, but it has the steering as output. Thus, the set of sensors considered is the same as in the speed case.
 
-% In order to detect the curves, the controller focuses on the sensor values (M10, M5, and Front). So, if the value on Front sensor is the longest, there is a straight road; whereas if the values of M5 and M10 with positive angles (+5 and +10) are the longest, there is right curve; and the other way round.
+ Then, as general rules: if the car is in a straight line, it will set as target position half width of the race track (central position of the lane). Whereas, if the car is near a right curve, it will approach the path leading to the right, with a space between the car and the border of the track to avoid the loss of control. The same approach is considered if the car is near a left curve.
 
-% It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{salem_evo17}, namely:
+ In order to detect the curves, the controller focuses on the sensor values (M10, M5, and Front). So, if the value on Front sensor is the longest, there is a straight road; whereas if the values of M5 and M10 with positive angles (+5 and +10) are the longest, there is right curve; and the other way round.
 
-%  {\small
-%  \begin{itemize}		
-%  	\item \texttt{IF Front is High THEN steer is S1}
-%  	\item \texttt{IF Front is Medium AND M10 is High THEN  steer is S2}
-%  	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Medium THEN steer is S2}
-%  	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Low THEN steer is S3}
-%  	\item \texttt{IF Front is Low AND M10 is High THEN steer is S3}
-%  	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Medium THEN steer is S4}
-%  	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Low THEN steer is S4}
-%  \end{itemize}	
-%  }
+ It uses a base of rules which has been defined trying to model the behavior of a human driver \cite{salem_evo17}, namely:
 
-% The values for S1 to S4 are respectively: 0, 0.25, 0.5, and 1.
-% When M10=Track[7] we will take negative values of the steer (steer=-steer).
+  {\small
+  \begin{itemize}		
+  	\item \texttt{IF Front is High THEN steer is S1}
+  	\item \texttt{IF Front is Medium AND M10 is High THEN  steer is S2}
+  	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Medium THEN steer is S2}
+  	\item \texttt{IF Front is Medium AND M10 is Medium AND M5 is Low THEN steer is S3}
+  	\item \texttt{IF Front is Low AND M10 is High THEN steer is S3}
+  	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Medium THEN steer is S4}
+  	\item \texttt{IF Front is Low AND M10 is Medium AND M5 is Low THEN steer is S4}
+  \end{itemize}	
+  }
+
+ The values for S1 to S4 are respectively: 0, 0.25, 0.5, and 1.
+ When M10=Track[7] we will take negative values of the steer (steer=-steer).
 
 
-% As stated, the designed fuzzy controllers have trapezoidal membership functions given by Equation \ref{eq:trapmf}.
-% In such a controller, fuzzy rules are applied to linguistic
-% terms. These terms, which qualify a linguistic variable, are defined
-% through membership functions, which, in turn, depend on a set of
-% parameters that `describes' their shape (and operation). Using a GA we
-% will optimize the parameters of the membership functions that
-% constitute the fuzzy partition of the linguistic variable
-% \cite{ThangG08}. The input linguistic variables in our problem,
-% \textit{Front, Max5} and \textit{Max10}, are represented by three
-% trapezoidal membership functions. 
+ As stated, the designed fuzzy controllers have trapezoidal membership functions given by Equation \ref{eq:trapmf}.
+ In such a controller, fuzzy rules are applied to linguistic
+ terms. These terms, which qualify a linguistic variable, are defined
+ through membership functions, which, in turn, depend on a set of
+ parameters that `describes' their shape (and operation). Using a GA we
+ will optimize the parameters of the membership functions that
+ constitute the fuzzy partition of the linguistic variable
+ \cite{ThangG08}. The input linguistic variables in our problem,
+ \textit{Front, Max5} and \textit{Max10}, are represented by three
+ trapezoidal membership functions. 
 
-% A trapezoidal membership function in a finite universe of discourse \textit{[a, b]} can be defined by:
+ A trapezoidal membership function in a finite universe of discourse \textit{[a, b]} can be defined by:
 
-% \begin{equation}
-% 	\mu_{A}(x)= \left \{
-% 	\begin{array}{ll}
-% 		\frac{x - x_{1}}{x_{2} - x_{1}},& x_{1} \leq x \leq x_{2}\\
-% 		1 , &x_{2} \leq x \leq x_{3}\\
-% 		\frac{x_{4} - x}{x_{4} - x_{3}},& x_{3} \leq x \leq x_{4}\\
-% 		0        ,& else\\	
-% 	\end{array}
-% 	\right.
-% 	\label{eq:trapmf}
-% \end{equation}
-% with:
-% \begin{equation}
-% 	x_{1} \leq x_{2} \leq x_{3} \leq x_{4}
-% \end{equation}
-% This MF function is defined by four parameters $x_{1}$, $x_{2}$,
-% $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
-% 	b]} (See Figure \ref{fig:trapeze}).
+ \begin{equation}
+ 	\mu_{A}(x)= \left \{
+ 	\begin{array}{ll}
+ 		\frac{x - x_{1}}{x_{2} - x_{1}},& x_{1} \leq x \leq x_{2}\\
+ 		1 , &x_{2} \leq x \leq x_{3}\\
+ 		\frac{x_{4} - x}{x_{4} - x_{3}},& x_{3} \leq x \leq x_{4}\\
+ 		0        ,& else\\	
+ 	\end{array}
+ 	\right.
+ 	\label{eq:trapmf}
+ \end{equation}
+ with:
+ \begin{equation}
+ 	x_{1} \leq x_{2} \leq x_{3} \leq x_{4}
+ \end{equation}
+ This MF function is defined by four parameters $x_{1}$, $x_{2}$,
+ $x_{3}$ and $x_{4}$ taking their values in the interval \textit{[a,
+ 	b]} (See Figure \ref{fig:trapeze}).
 
-% \begin{figure}[!ht] 
-% 	\begin{center}
-% 		\includegraphics[scale=0.8]{fig/trapese}
-% 		\caption {Trapezoidal MFs}
-% 		\label{fig:trapeze}
-% 	\end{center}
-% \end{figure}
-% And a fuzzy partition with \textit{n} trapezoidal membership functions
-% is defined by \textit{2n} variables ($x_{1}$,$x_{2}
-% $,. .., $x_{2n} $ )(Equation \ref{eq:e1}). In this case,
-% the representation is given by Figure \ref{fig:at}.
+ \begin{figure}[!ht] 
+ 	\begin{center}
+ 		\includegraphics[scale=0.8]{fig/trapese}
+ 		\caption {Trapezoidal MFs}
+ 		\label{fig:trapeze}
+ 	\end{center}
+ \end{figure}
+ And a fuzzy partition with \textit{n} trapezoidal membership functions
+ is defined by \textit{2n} variables ($x_{1}$,$x_{2}
+ $,. .., $x_{2n} $ )(Equation \ref{eq:e1}). In this case,
+ the representation is given by Figure \ref{fig:at}.
 
-% \begin{figure}[!ht] 
-% 	\begin{center}
-% 		\includegraphics[scale=0.7]{fig/trapezoidal.png}
-% 		\caption {Trapezoidal-shaped MFs coding}
-% 		\label{fig:at}
-% 	\end{center}
-% \end{figure}
-% With:
-% \begin{equation}
-% 	x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n} 	
-% \end{equation}		
-% The first variable $x_{1}$ is chosen to be equal to the lower boundary of the range (\textit{a} while $x_{2n}$ is equal to \textit {b}.
-% \begin{equation} 
-% 	\begin{tabular}{l}
-% 		$\mu_{A1}(x)=  \left \{
-% 		\begin{array}{ll}
-% 		1, &x_{1} \leq x \leq x_{2}\\
-% 		\frac{x_{3} - x}{x_{3} - x_{2}}, &x_{2} \leq x \leq x_{3}\\
-% 		0        , &x > x_{3}\\
-% 		\end{array} 
-% 		\right.$		\\ 	
-% 		$\mu_{Ai}(x)= \left \{
-% 		\begin{array}{ll} 
-% 		0, &x \leq x_{2i-2}\\
-% 		\frac{x - x_{2i-2}}{x_{2i-1} - x_{2i-2}}, &x_{2i-2} \leq x \leq x_{2i-1},n=2,...,i-1\\
-% 		1, & x_{2i-1} \leq x \leq x_{2i}\\
-% 		\frac{x_{2i+1} - x}{x_{2i+1} - x_{2i}},& x_{2i} \leq x \leq x_{2i+1}\\
-% 		0  , &x > x_{2i+1}\\
-% 		\end{array}  
-% 		\right.	$		\\
-% 		$\mu_{An}(x)= \left \{
-% 		\begin{array}{ll} 
-% 		0, &x \leq x_{2n-2}\\
-% 		\frac{x - x_{2n-2}}{x_{2n-1} - x_{2n-2}},& x_{2n-2} \leq x \leq x_{2n-1}\\
-% 		1 ,& x > x_{2n-1} 
-% 		\end{array} 
-% 		\right.$\\
-% 		\label{eq:e1}
-% 	\end{tabular}
-% \end{equation}
+ \begin{figure}[!ht] 
+ 	\begin{center}
+ 		\includegraphics[scale=0.7]{fig/trapezoidal.png}
+ 		\caption {Trapezoidal-shaped MFs coding}
+ 		\label{fig:at}
+ 	\end{center}
+ \end{figure}
+ With:
+ \begin{equation}
+ 	x_{1} \leq x_{2} \leq...\leq x_{2n-1} \leq x_{2n} 	
+ \end{equation}		
+ The first variable $x_{1}$ is chosen to be equal to the lower boundary of the range (\textit{a} while $x_{2n}$ is equal to \textit {b}.
+ \begin{equation} 
+ 	\begin{tabular}{l}
+ 		$\mu_{A1}(x)=  \left \{
+ 		\begin{array}{ll}
+ 		1, &x_{1} \leq x \leq x_{2}\\
+ 		\frac{x_{3} - x}{x_{3} - x_{2}}, &x_{2} \leq x \leq x_{3}\\
+ 		0        , &x > x_{3}\\
+ 		\end{array} 
+ 		\right.$		\\ 	
+ 		$\mu_{Ai}(x)= \left \{
+ 		\begin{array}{ll} 
+ 		0, &x \leq x_{2i-2}\\
+ 		\frac{x - x_{2i-2}}{x_{2i-1} - x_{2i-2}}, &x_{2i-2} \leq x \leq x_{2i-1},n=2,...,i-1\\
+ 		1, & x_{2i-1} \leq x \leq x_{2i}\\
+ 		\frac{x_{2i+1} - x}{x_{2i+1} - x_{2i}},& x_{2i} \leq x \leq x_{2i+1}\\
+ 		0  , &x > x_{2i+1}\\
+ 		\end{array}  
+ 		\right.	$		\\
+ 		$\mu_{An}(x)= \left \{
+ 		\begin{array}{ll} 
+ 		0, &x \leq x_{2n-2}\\
+ 		\frac{x - x_{2n-2}}{x_{2n-1} - x_{2n-2}},& x_{2n-2} \leq x \leq x_{2n-1}\\
+ 		1 ,& x > x_{2n-1} 
+ 		\end{array} 
+ 		\right.$\\
+ 		\label{eq:e1}
+ 	\end{tabular}
+ \end{equation}
 
-% This is the base of the optimization conducted by the Genetic Algorithm, as it is described in the following section.
+ This is the base of the optimization conducted by the Genetic Algorithm, as it is described in the following section.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
