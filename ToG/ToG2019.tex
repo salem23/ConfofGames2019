@@ -716,11 +716,14 @@ configuration. % this should probably go to a table, and also needs
                % some kind of justification. Does crossover rate
                % include BLX-alpha? - JJ
 
-In each process, three experimentations are achieved, the GPS is applied in every generation in the first experimentation, only in the last generation the second and each 5 generations in the last one.
+In each process, three experimentations are performed, the GPS is
+applied in every generation in the first experimentation, only in the
+last generation the second and each 5 generations in the last one. % Rewrite this and use acronyms as defined above - JJ
  
 When Grand Prix selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. The last 10 individuals  in the GPS selection are replaced with new ones in the next generation. The winner will be selected as the best controller of the run.
 
-The evolution process was applied in separate bunches of runs to obtain the following controllers:
+The evolution process was applied in separate groups of runs to obtain
+the following controllers: 
 \begin{itemize}
 	\item $GFC-GPS5$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once every 5 generations and fitness $f_{AVS}$ in the others. 
 	\item $GFC-GPSL$: A controller obtained by applying the classical two points crossover operator (as in previous works) and GPS once in the last generation and fitness $f_{AVS}$ in the others. 
@@ -817,8 +820,12 @@ From Table \ref{tab:RSresults},it is clear that the controller $GFC-VAGPSE$, whe
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying the GPS selection alone have won the competition.
  
 This results is evident when comparing the points obtained by GPS controllers and GFC.
-Indeed, we have made the selection process  realistic by eliminating the classical fitness function based on the speed and damage average and replacing it by points obtained in direct races.//
-Better speed in solo racing is not a criterion of a good driver, the best is the one who wins races. The new selection policy allows you to select the winners on the field and not the possible winners..//
+Indeed, we have made the selection process  realistic by eliminating
+the classical fitness function based on the speed and damage average
+and replacing it by points obtained in direct races. 
+Better speed in solo racing is not a criterion of a good driver, the
+best is the one who wins races. The new selection policy allows you to
+select the winners on the field and not the possible winners. 
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
 The best controllers obtained from the two main optimization processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like championship against the references five TORCS bots and the $GFC-VA$ and $GFC$ controllers. We have considered also an opponent from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
 It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
@@ -826,7 +833,10 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-GPSVAE$ and $GFC-GPSE$ controller in a mini-championship with 10 drivers and 10
+		\caption{ Results of $GFC-GPSVAE$ and $GFC-GPSE$
+                  controller in a mini-championship with 10 drivers
+                  and 10 % you use driver here, controller
+                         % elsewhere. Use always one or the other - JJ
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}.  {\bf Boldface} is
