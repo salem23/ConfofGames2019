@@ -171,29 +171,27 @@ Email: jmerelo@geneura.ugr.es
 
 
 \IEEEtitleabstractindextext{%
-\begin{abstract}
-% Uncertainty, also called \textit{noise}, is one of the principal
-% issues to address in the construction of autonomous driving
-% algorithms; when using scores to evaluate a controller, they will
-% follow a statistical distribution instead of having a single value.  The
-% evolutionary fuzzy-based driver proposed in previous works by the
-% authors also suffered from that problem. It was composed of two fuzzy
-% subcontrollers: one for selecting the best wheel steering angle and
-% another to set the car target speed at the next simulation tick. Both
-% where refined by applying a genetic algorithm on their
-% parameterization.  Thus, in this paper we propose the improvement of
-% our previous controller by means of two techniques. First, a Blend
-% Crossover (\textit{BLX-$\alpha$}) operator has been applied during the
-% search, in order to enhance diversity in the population of
-% solutions. Together with this operator, a novel fitness-less selection
-% mechanism has been considered: \textit{Grand Prix selection}. It is
-% based on conducting a set of races involving some individuals
-% (potential controllers) in order to select the winners as parents for
-% the next generation.  The effectiveness of those mechanisms has been
-% studied in several experiments, aiming to see the impact of each of
-% them in the quality of the obtained controllers, as well as to
-% determine the best configuration for an autonomous driver to win other
-% existing controllers from the literature.
+  \begin{abstract}
+    Evolution is a powerful problem-solving technique, and it has been
+    extensively used for designing racing car controllers. It present
+    a series of challenges: it needs an evaluation function that is
+    able to separate the best controllers from the rest, and it needs
+    a series of operators that are able to explore many different
+    possibilities in the controller search space. But racing scores
+    are variable and also depend on adversaries and the actual track,
+    and this uncertainty also means that it is much more important to
+    maintain a high diversity. Building on the experience drawn from
+    our previous work, in this paper we evaluate a kind of fitlessness
+    selection based on competition and called Grand Prix Selection (GPS), which should be able to reduce
+    uncertainty by using something more realistic than solo race
+    scores to select individuals; however, uncertainty has the
+    unintended side effect of increasing diversity, so we will
+    evaluate the diversity-increasing BLX-$alpha$ operator in
+    combination with them, and see its effects on overall
+    performance. In general, results will show that these combined
+    improvements establish a new level of performance of evolved
+    controllers, being able to beat previously evolved controllers, as
+    well as winners of TORCS competitions.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -233,94 +231,13 @@ Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algo
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-% -------------- Comments this out since this is in other papers and
-% off focus ----------------------------------------------------------
-
-% Games are, in many cases, closed and controlled environments, mini or
-% simulated worlds that allow you to test techniques that will then
-% eventually be applied in real life, probably combined with other
-% different technologies to tackle its complexity and variability. Car
-% racing simulation includes many of the factors that are present in
-% autonomous driving: tracks are very different and not known in
-% advance, there are other vehicles present on the track, and the
-% conditions change according to weather, and car deteriorates with
-% damage. Car is also aware of this only through a set of limited
-% sensors, and it will have to take a decision on speed and steering that is optimal in several different senses \cite{Autodriv2006}, including, depending on the context, the possibility of beating a set of opponents in a simulated race.
-
-% Since testing different autonomous driving methodologies in real life is
-% usually reserved to just a few big players, methodologies 
-% as well as algorithms are usually tested in simulated environments;
-% these simulated environments, at the same time, offer the incentive of
-% competition among your system and others. In this paper, we will be
-% using The Open Racing Car Simulator (TORCS) \cite{torcs4}, a very
-% realistic racing simulator which offers a great testbed for the
-% implementation and evaluation of autonomous drivers.  
-% It has been used several times for the celebration of Artificial
-% Intelligence (AI) competitions, where the aim is to create the best
-% autonomous driver for racing
-% \cite{SimulatedCarRacing-2008,SimulatedCarRacing-2010,manualTORCS}. Besides being able to test your car against other cars that have been published, it can be used as a standalone environment to optimize driving in a
-% solo race. 
-
-% Evolutionary Algorithms (EAs) \cite{EAs_Back96} have been frequently
-% applied as a general-purpose optimization method in this area,
-% generally combined with behavioural engines that rule different parts
-% of the car
-% \cite{CarRacing_Pelta09,SAES2012,Autopia2012}. These
-% driving engines have included lately fuzzy controllers
-% \cite{Guadarrama2008, LFAG, PerezEvolvingFuzzy09}. These controllers
-% use fuzzy Logic \cite{Fuzzy2011}, a  technique that is quite suitable
-% for defining this kind of autonomous agents, since they are in part
-% inspired by the human reasoning when driving. A fuzzy controller works
-% with linguistic variables, and will for instance turn {\em slightly}
-% to the right when the next curve is {\em close}, but these controllers
-% have to be designed to map properly inputs to desired outputs in
-% particular situations. 
-% --------------------------------------------------------------------
-
-
-
-% -------------- This is also the same, but more to the point-------
-% Need to rewrite anyway -------------------------------------------
-
-% From the point of view of optimization, one of the main problems is
-% that the environment is always going to change; this is correctly
-% reflected in the simulator used, and it means that the score (and
-% thus the ranking, if that's the eventual target) will always change,
-% making selection of the {\em best} or {\em winning} controller
-% probabilistic at best. This uncertainty is a challenge from two points
-% of view: non optimal (non-winning) controllers might be selected just
-% by chance, since they were assigned a score favored by that
-% uncertainty, and, once they are selected, that might make the
-% algorithm explore zones around some controllers that have been
-% selected just casually, and leave others unexplored. For these two
-% reasons, there are two challenges that we intend to approach in this
-% paper: reduce uncertainty in the selection of the ``best'', and keep
-% diversity high to not exploit just the areas around those individuals
-% whose score might have been favored by chance at a certain point in
-% the evolution process.
-% --------------------------------------------------------------------
-
-% % Antonio - Previous works
-% Previously, the authors presented an approach combining two specialized fuzzy controllers, designed by hand, that were able to decide the car's proper steering angle and desired speed at every single point (or tick) during a race \cite{salem_evo17}. This driver was later improved \cite{salem_evo18} optimizing the parameters of their membership functions by means of a Genetic Algorithm
-% \cite{GAs_Goldberg89}; this automated design improved manual one
-% obtaining several controllers that were able to beat the initial
-% hand-designed controller in a race, as well as other published
-% controllers. Finally, the authors enhanced the controller in the last paper \cite{salem_cig2018} by means of the definition of new fitness functions. The selection of the best controller at the end of the evolution was based on a set of races among the best 4 solutions, getting a better driver than in previous studies.
-
-% This proved that evolutionary algorithms were able to get the fuzzy
-% controller parameters better than a hand-made design, but at the same
-% time revealed several challenges. In general, evolutionary algorithms
-% optimize the fitness function that is used; evolved fuzzy controllers
-% (hereafter FCs) will be eventually as good as the fitness function allows. 
-% But in this particular case we cannot use as fitness function the position
-% obtained by the FC in every possible race on every possible track with
-% every possible opponent, so we have to settle for a {\em surrogate} of
-% the fitness in a very limited environment. First we opted for
-% eliminating opponents and making evaluations in solo races; then we
-% chose a particular track that combined straight segments as well as
-% some curves and did not take too long to run, and eventually we had to
-% decide what factors related to speed, damage and lap time were going
-% to be effectively included in the final fitness function. 
+In a simulated and
+    realistic racing car environment, however, racing car scores are a
+    statistical varibable whose value will vary depending on track and
+    (simulated) atmospheric conditions; and we should never forget
+    that score in a training track will always be a surrogate of its
+    actual score when racing against other cars in different tracks,
+    which adds another layer of uncertainty.
 
 
 % The two new techniques introduced in this paper, namely, \textit{Grand Prix selection} (GPS) and $BLX-\alpha$ crossover, try to improve on previous results by first relying less on the surrogacy of the fitness function
@@ -331,10 +248,6 @@ Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous Drivers, Genetic Algo
 % excessive exploitation of the results. The $BLX-\alpha$ crossover we
 % have introduced takes care of this aspect.
 
-% With these methods we aim to obtain more reliable and competitive
-% controllers and we will test them against some tough opponents,
-% including a controller from the state of the art in Simulated Car
-% Racing Competitions.
 
 The algorithm proposed in this paper overcomes most of the problems we
 have found in this line of research, that started with
