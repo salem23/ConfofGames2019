@@ -884,7 +884,11 @@ optimization for 50 generations for 10 runs.
 			Controller& \textbf{Average Runtime}&\textbf{Generation}\\
 % Is this number of laps or running time? - Jj
 %Mohammed %% each lap in Alpine 2  takes between 90s and 120s
-%% number of completed laps ,  I prefered the laps number to high values of average running time values ( 123800s for instance) 
+%% number of completed laps ,  I prefered the laps number to high
+%% values of average running time values ( 123800s for instance)
+                  % But still all cars run the same amount of laps in
+                  % every race. It probably makes sense to use time
+                  % here - JJ
                   \hline \textbf{\textbf{$GFC$}} \cite{salem_cig2018}&296 &34-39\\
 			\hline \textbf{$GFC-VA$} \cite{DBLP:conf/cig/SalemMG19}&298	&10-18\\	
 			\hline \textbf{$GFC-GPSL$} \cite{DBLP:conf/cig/SalemMG19}& 322&23-38\\	
@@ -899,8 +903,13 @@ optimization for 50 generations for 10 runs.
 	}
 \end{table} 
 
-The two $GFC-VAGPSE$ and $GFC-GPSE$ controllers were the best where they are ranked 1st and 2nd but they are very expensive in runtime where they have performed around 2490 laps in Alpine 2, which is a huge learning time.
-The proposed selection policy is effective but in return requires a lot of time.
+The two $GFC-VAGPSE$ and $GFC-GPSE$ controllers were the best where
+they are ranked 1st and 2nd but they are very expensive in runtime
+where they have performed around 2490 laps in Alpine 2, which is a
+huge learning time. % Don't all individuals use the same amount of
+                    % laps to race? - JJ
+The proposed selection policy is effective but in return it requires a
+lot of time. 
 
 Another point that we can highlight is that the controllers with
 $BLX-\alpha$ have reach the optimal solution in few generations
