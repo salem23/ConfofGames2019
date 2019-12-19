@@ -138,8 +138,8 @@ Email: jmerelo@geneura.ugr.es
 
 
 % The paper headers
-\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
-{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
 % The only time the second header will appear is for the odd numbered pages
 % after the title page when using the twoside option.
 % 
@@ -170,18 +170,30 @@ Email: jmerelo@geneura.ugr.es
 %\IEEEspecialpapernotice{(Invited Paper)}
 
 
-
-% for Computer Society papers, we must declare the abstract and index terms
-% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
-% command as these need to go into the title area created by \maketitle.
-% As a general rule, do not put math, special symbols or citations
-% in the abstract or keywords.
 \IEEEtitleabstractindextext{%
 \begin{abstract}
-Uncertainty, also called \textit{noise}, is one of the principal issues to address in the construction of algorithms to improve autonomous drivers. This effect means that a specific controller can be evaluated as very good or on the contrary as very bad, depending on `external' conditions, such as the behaviour of the competitors (other controllers) in the race, or the track status, for instance.
-The evolutionary fuzzy-based driver proposed in previous works by the authors also suffered from that problem. It was composed of two fuzzy subcontrollers: one for selecting the best wheel steering angle and another to set the car target speed at the next simulation tick. Both where refined by applying a genetic algorithm on their parameterization.
-Thus, in this paper we propose the improvement of our previous controller by means of two techniques. First, a Blend Crossover (\textit{BLX-$\alpha$}) operator has been applied during the search, in order to enhance diversity in the population of solutions. Together with this operator, a novel fitness-less selection mechanism has been considered: \textit{Grand Prix selection}. It is based on conducting a set of races involving some individuals (potential controllers) in order to select the winners as parents for the next generation.
-The effectiveness of those mechanisms has been studied in several experiments, aiming to see the impact of each of them in the quality of the obtained controllers, as well as to determine the best configuration for an autonomous driver to win other existing controllers from the literature.
+% Uncertainty, also called \textit{noise}, is one of the principal
+% issues to address in the construction of autonomous driving
+% algorithms; when using scores to evaluate a controller, they will
+% follow a statistical distribution instead of having a single value.  The
+% evolutionary fuzzy-based driver proposed in previous works by the
+% authors also suffered from that problem. It was composed of two fuzzy
+% subcontrollers: one for selecting the best wheel steering angle and
+% another to set the car target speed at the next simulation tick. Both
+% where refined by applying a genetic algorithm on their
+% parameterization.  Thus, in this paper we propose the improvement of
+% our previous controller by means of two techniques. First, a Blend
+% Crossover (\textit{BLX-$\alpha$}) operator has been applied during the
+% search, in order to enhance diversity in the population of
+% solutions. Together with this operator, a novel fitness-less selection
+% mechanism has been considered: \textit{Grand Prix selection}. It is
+% based on conducting a set of races involving some individuals
+% (potential controllers) in order to select the winners as parents for
+% the next generation.  The effectiveness of those mechanisms has been
+% studied in several experiments, aiming to see the impact of each of
+% them in the quality of the obtained controllers, as well as to
+% determine the best configuration for an autonomous driver to win other
+% existing controllers from the literature.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
