@@ -645,7 +645,7 @@ able to reduce it, making evolved controllers as centrally distributed
 as possible; other kind of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done an study of the distribution  of the genetic individuals of
-three evolution processes $GFC$, $GFC-GPSE$ and $GFC-VAGPS5$. 
+three evolution processes {\sf GFC}, {\sf{GFC-GPSE}} and {\sf{GFC-VAGPS5}}. 
 
 
 Skewness is related to how symmetric the distribution of fitness
@@ -738,8 +738,8 @@ a method for finding high-performance controllers.
 Once the 10 runs have finished, the obtained best controllers from the
 previous evolution processes compete again in a similar set of races,
 in order to choose the best controller overall per approach, i.e. the
-best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$; and also between
-$GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$. 
+best between {\sf{GFC-GPSL}}, {\sf{GFC-GPSE}} and {\sf{GFC-GPS5}}; and also between {\sf{GFC-GPSVAL}}
+,{\sf{GFC-GPSVAE}} and {\sf{GFC-GPSVA5}}.
 Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}
 %% Process 1 : GPS without Alpha
 %% Process 2  : GPS with Alpha
@@ -748,7 +748,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-GPS$ controllers in a mini-championship with 10 controllers and 10
+		\caption{ Results of {\sf{GFC-GPS}} controllers in a mini-championship with 10 controllers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. We use {\bf boldface}
@@ -784,7 +784,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-VAGPS$ controllers in a mini-championship with 10 controllers and 10
+		\caption{ Results of {\sf{GFC-VAGPS}} controllers in a mini-championship with 10 controllers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. {\bf Boldface}
@@ -813,9 +813,9 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 	}
 \end{table*}
 %
-As it could be noticed in the Table \ref{tab:RSresults}, the controller $GFC-VGPSAE$ has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
+As it could be noticed in the Table \ref{tab:RSresults}, the controller {\sf{GFC-VGPSAE}} has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
-From Table \ref{tab:RSresults},it is clear that the controller $GFC-VAGPSE$, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
+From Table \ref{tab:RSresults},it is clear that the controller {\sf{GFC-VAGPSE}}, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
 
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying the GPS selection alone have won the competition.
  
@@ -828,9 +828,9 @@ best is the one who wins races. The new selection policy allows you to
 select the winners on the field and not the possible winners. 
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
 The best controllers obtained from the two main optimization
-processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like
-championship against the references five TORCS bots and the $GFC-VA$\cite{DBLP:conf/cig/SalemMG19}
-and $GFC$ controllers  \cite{salem_cig2018}. We have considered also an opponent from the
+processes: {\sf{GFC-VAGPSE}} and {\sf{GFC-GPSE}} are evaluated in formula like
+championship against the references five TORCS bots and the {\sf{GFC-VA}} \cite{DBLP:conf/cig/SalemMG19}
+and {\sf{GFC}} controllers  \cite{salem_cig2018}. We have considered also an opponent from the
 state of the art, which participated in several Simulated Car Racing
 Competitions in past editions.  % Rewrite this paragraph too, from "We
                                 % have considered" - JJ
@@ -875,8 +875,8 @@ $tita1$&	26&	18&	44\\
 
 
 
-The above competition clearly demonstrates the superiority of the $GFC-VAGPSE$ controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the $GFC-GPSE$ controller far behind it. The reference conductors, namely $GFC-VA$ and $GFC$  are classified 3rd and 5th.
-The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of $GFC-GPSE$.
+The above competition clearly demonstrates the superiority of the {\sf{GFC-VAGPSE}} controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the  {\sf{GFC-GPSE}} controller far behind it. The reference conductors, namely {\sf{GFC-VA}} and {\sf{GFC}} are classified 3rd and 5th.
+The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of {\sf{GFC-GPSE}}.
 
 To evaluate the cost of the proposed controllers, the table \ref{tab:time} shows the average number of laps % Isn't this
 % average running time? - JJ
@@ -918,7 +918,7 @@ optimization for 50 generations for 10 runs.
 	}
 \end{table} 
 
-The two $GFC-VAGPSE$ and $GFC-GPSE$ controllers were the best where
+The two {\sf{GFC-VAGPSE}} and {\sf{GFC-GPSE}} controllers were the best where
 they are ranked 1st and 2nd but they are very expensive in runtime
 where they have performed around 2490 laps in Alpine 2, which is a
 huge learning time. % Don't all individuals use the same amount of
