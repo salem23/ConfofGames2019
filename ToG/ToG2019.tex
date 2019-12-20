@@ -518,7 +518,7 @@ we have been using the \textit{Alpine 2} track (See Figure
 are essential for evaluating a bot: it has got many turns, some of
 them with 180 degrees, steep segments, and some very challenging parts
 like the entrance of a tunnel at an square angle. All these features makes
-it a good test bed for good turning and collision avoidance
+it a good testbed for good turning and collision avoidance
 strategies, but also a few straight segments which allow the car to
 speed ahead, reaching high speeds. This same track has been repeatedly
 used for training as well as for testing and has been described as
@@ -569,40 +569,74 @@ last generation the second and each 5 generations in the last one. % Rewrite thi
 When Grand Prix selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. The last 10 individuals  in the GPS selection are replaced with new ones in the next generation. The winner will be selected as the best controller of the run.
 
 The evolution process was applied in separate groups of runs to obtain
-the following controllers: % Clarify which ones have been used for the
+the  controllers in Table\ref{tab:drivers}. The first two are proposed in this paper: % Clarify which ones have been used for the
                            % first time in this paper; make references
                            % to the rest - JJ
-\begin{itemize}
-	
-	\item $GFC-GPSVAE$: A proposed controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS every generation. 
-	\item $GFC-GPSE$: The proposed controller in this paper and obtained by applying the classical two points crossover operator (as in previous works) and GPS every generation. 
-	
-	\item $GFC-GPS5$: A controller obtained by applying the
-          classical two points crossover operator (as in previous
-          works) and GPS once every 5 generations and fitness
-          $f_{AVS}$ in the others \cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper,
-                                % please cite it - JJ
-	\item $GFC-GPSL$: A controller obtained by applying the
-          classical two points crossover operator (as in previous
-          works) and GPS once in the last generation and fitness
-          $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper - JJ
+                           
 
-	\item $GFC-GPSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once in the last generation and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
+\begin{table*}[ht]
+	\centering
+	{\scriptsize
+		\caption{ Description of the controllers.}
+		{
+			\begin{tabular}{|c|c|c||c|}
+				\hline
+				Controller&Fitness & GPS frequency&Crossover operator \\
+				\hline
+				\hline
+{\sf{GFC-GPSVAE}}&GPS&every generations&BLX$-\alpha$\\
+{\sf{GFC-GPSE}}&GPS&every generation&Classical crossover\\
+{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&GPS&5 generations&Classical crossover\\
+{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&GPS&Last generation &Classical crossover\\
 
-	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
+{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&GPS&5 generations&BLX$-\alpha$\\
+		
+{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&GPS&Last generation&BLX$-\alpha$\\
+							
+{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}& $f_{AVS}$ (Equation \ref{fit2})&/&BLX$-\alpha$\\
+{\sf{GFC}}\cite{salem_cig2018}& $f_{AVS}$ (Equation \ref{fit2})&/&Classical crossover\\
+\hline
+				
+			\end{tabular}
+		}\label{tab:drivers}
+	}
+\end{table*}
+%
 
 
-        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
-	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
-          crossover operator with a varying value of $\alpha$ using
-          Equation \ref{eqalpha} and fitness $f_{AVS}$ \cite{DBLP:conf/cig/SalemMG19}.
-         
-          
-               % wasn't this
-                                % also in cig2018? - JJ
-                                %% yes,  V is for varying alpha
-\end{itemize}
-
+                           
+%                           
+%\begin{itemize}
+%	
+%	\item {\sf{GFC-GPSVAE}}: A proposed controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS every generation. 
+%	\item $GFC-GPSE$: The proposed controller in this paper and obtained by applying the classical two points crossover operator (as in previous works) and GPS every generation. 
+%	
+%	\item $GFC-GPS5$: A controller obtained by applying the
+%          classical two points crossover operator (as in previous
+%          works) and GPS once every 5 generations and fitness
+%          $f_{AVS}$ in the others \cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper,
+%                                % please cite it - JJ
+%	\item $GFC-GPSL$: A controller obtained by applying the
+%          classical two points crossover operator (as in previous
+%          works) and GPS once in the last generation and fitness
+%          $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper - JJ
+%
+%	\item $GFC-GPSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once in the last generation and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
+%
+%	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
+%
+%
+%        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+%	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
+%          crossover operator with a varying value of $\alpha$ using
+%          Equation \ref{eqalpha} and fitness $f_{AVS}$ \cite{DBLP:conf/cig/SalemMG19}.
+%         
+%          
+%               % wasn't this
+%                                % also in cig2018? - JJ
+%                                %% yes,  V is for varying alpha
+%\end{itemize}
+%
 
 \subsection{Uncertainty in fitness evaluation}
 
