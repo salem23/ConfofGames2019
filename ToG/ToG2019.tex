@@ -219,13 +219,6 @@ selected for the next generation.
 %After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in Section \ref{sec:conclusions}.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{The Open Racing Car Simulator}
-\label{sec:torcs}
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{State of the Art}
 \label{sec:soa}
@@ -328,7 +321,13 @@ or angle; these
 measurements are connected to car sensors \cite{manualTORCS}, which
 are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
 these sensor values as input to the car controller, which is what we
-are going to be evolving in this paper.
+are going to be evolving in this paper. Other open source simulators, mentioned in
+\cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
+if more focused in 3D realism, and Speed Dreams is actually a fork of
+TORCS. Although our results are not TORCS specific, we have been
+working on this since it has got all the telemetry and simulation
+tools that we need, and besides it has been repeatedly used in
+competitions, for which we could, eventually, submit our evolved bots.
 
 \begin{figure}[!ht]
   \label{fig:ga}
@@ -364,23 +363,6 @@ encoded and evolved using an evolutionary algorithm.
 % that are taken from the other paper - JJ
 
 As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GAs) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
-
-The followed process is shown in Figure \ref{fig:ga}. 
-
- \begin{figure}[!ht]
- 	\label{fig:ga}
- 	\begin{center}
- 		\includegraphics[width=9cm]{fig/flowchart}
- 	\end{center}
- 	\caption{Flowchart of the optimization process of a TORCS
-          fuzzy controller. To evaluate an individual we put the
-          parameter values of the two sub-controllers in the
-          corresponding chromosome, then we launch a race in TORCS
-          with this configuration, obtaining the resulting values of
-          Average Speed and Damage. Individual's fitness value is
-          computed using these values.} % This needs to be rewritten,
-                                % since it's in the previous paper. - JJ
- \end{figure}
 
 In our approach, every individual or chromosome is a vector of 18
 values/parameters, 6 per variable (see Figure \ref {fig:cromosome}),
