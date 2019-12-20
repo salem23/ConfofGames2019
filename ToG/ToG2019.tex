@@ -130,61 +130,48 @@ Email: jmerelo@geneura.ugr.es
 \IEEEtitleabstractindextext{%
   \begin{abstract}
     Evolution is a powerful problem-solving technique, and it has been
-    extensively used for designing racing car controllers. It present
-    a series of challenges: it needs an evaluation function that is
-    able to separate the best controllers from the rest, and it needs
-    a series of operators that are able to explore many different
-    possibilities in the controller search space. But racing scores
-    are variable and also depend on adversaries and the actual track,
-    and this uncertainty also means that it is much more important to
-    maintain a high diversity. Building on the experience drawn from
-    our previous work, in this paper we evaluate a kind of fitnessless
-    selection based on competition and called Grand Prix Selection (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals; however, uncertainty has the
-    unintended side effect of increasing diversity, so we will
-    evaluate the diversity-increasing BLX-$alpha$ operator in
-    combination with them, and see its effects on overall
-    performance. In general, results will show that these combined
-    improvements establish a new level of performance of evolved
-    controllers, being able to beat, both standard and previously evolved controllers, as well as a high-ranked controller of TORCS competitions.
+extensively used for designing racing car controllers. It present a
+series of challenges: it needs an evaluation function that is able to
+separate the best controllers from the rest, and it needs a series of
+operators that are able to explore many different possibilities in the
+controller search space. But racing scores are variable and also
+depend on adversaries and the actual track, and this uncertainty also
+means that it is much more important to maintain a high
+diversity. Building on the experience drawn from our previous work, in
+this paper we evaluate a kind of fitnessless selection based on
+competition and called Grand Prix Selection (GPS), which should be
+able to reduce uncertainty by using something more realistic than solo
+race scores to select individuals; however, uncertainty has the
+unintended side effect of increasing diversity, so we will evaluate
+the diversity-increasing BLX-$alpha$ operator in combination with
+them, and see its effects on overall performance. In general, results
+will show that these combined improvements establish a new level of
+performance of evolved controllers, being able to beat, both standard
+and previously evolved controllers, as well as a high-ranked
+controller of TORCS competitions.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous controllers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover, Grand Prix Selection, Fitnessless, Uncertainty
+Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous
+controllers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover,
+Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness 
 \end{IEEEkeywords}}
 
 % make the title area
 \maketitle
 
 
-% To allow for easy dual compilation without having to reenter the
-% abstract/keywords data, the \IEEEtitleabstractindextext text will
-% not be used in maketitle, but will appear (i.e., to be "transported")
-% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
-% or transmag modes are not selected <OR> if conference mode is selected 
-% - because all conference papers position the abstract like regular
-% papers do.
 \IEEEdisplaynontitleabstractindextext
-% \IEEEdisplaynontitleabstractindextext has no effect when using
-% compsoc or transmag under a non-conference mode.
-
-
-
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
 
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-% Antonio - Is somebody writing this? I guess it is incomplete (something is missing before)... :_D
+% Antonio - Is somebody writing this? I guess it is incomplete 
+% (something is missing before)... :_D
+% Are you? - JJ
 
 In a simulated and
     realistic racing car environment, however, racing car scores are a
@@ -237,26 +224,6 @@ selected for the next generation.
 \section{The Open Racing Car Simulator}
 \label{sec:torcs}
 
-The framework in which this study has been conducted is TORCS \cite{torcs4}. It is an open source, multi-player, modular and portable racing simulator that allows users to compete against other computer-controlled opponents.
-Its high degree of modularity and portability, together with the
-realistic and real-time driving simulation, make it an ideal testbed
-for artificial intelligence research, as stated in previous section.
-
-Every car in TORCS includes  a large set of sensors \cite{manualTORCS},
-whose values the car can use during a race, such as distances to track borders, to rivals, current fuel, current gear, position in the race, speed, or damage, among others. See Figure \ref{fig:torcs-sensors}.
-
-\begin{figure}[!ht] 
-	\begin{center}
-		\includegraphics[scale=0.35]{fig/torcs-sensors}
-		\caption {TORCS capture showing some of the sensors that the car includes.}
-		\label{fig:torcs-sensors}
-	\end{center}
-\end{figure}
-
-
-The sensor values are considered by any TORCS autonomous driver, or
-{\em controller}, to manage the car using actuators \cite{manualTORCS}: the
-steering wheel, the accelerator, the brake pedal and the gearbox.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -338,12 +305,48 @@ use vision, using TORCS as a testbed for a different kind of algorithms.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Evolutionary Algorithm}
-\label{sec:GA_optimization}
+\section{Methods and tools}
+\label{sec:methods}
+%
+\begin{figure}[!ht] 
+	\begin{center}
+		\includegraphics[scale=0.35]{fig/torcs-sensors}
+		\caption {TORCS capture showing some of the sensors
+                  used by the fuzzy controllers. Figure from \cite{DBLP:conf/cig/SalemMG19}.}
+		\label{fig:torcs-sensors}
+	\end{center}
+\end{figure}
 
-An evolutionary algorithm is used to evolve the two fuzzy
-subcontrollers, which take care of speed and steering
-\cite{DBLP:conf/evoW/SalemMMG17}. What is evolved is the shape of the
+
+As meny other studies in the area of autnomous driving or simulated
+racing car evolution, we are using The Open Racing Car Simulator
+(TORCS) \cite{torcs4}, which is free software, and offers realistic
+physics, as well as telemetry that is used by the car controllers to
+gauge their position with respect to the track, the position of the
+rest of the players, and self-measurements like speed, damage incurred
+or angle; these
+measurements are connected to car sensors \cite{manualTORCS}, which
+are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
+these sensor values as input to the car controller, which is what we
+are going to be evolving in this paper.
+
+\begin{figure}[!ht]
+  \label{fig:ga}
+  \begin{center}
+    \includegraphics[width=9cm]{fig/flowchart}
+  \end{center}
+  \caption{Schema of the two controllers that will be evolved by the
+    evolutionary algorithm (GA), and evaluated by TORCS, which will
+    return average and top speed, damages and lap times. Figure taken
+    from \cite{salem_evo18}.}
+\end{figure}
+%
+The two fuzzy subcontrollers we evolve take care of speed and steering
+\cite{DBLP:conf/evoW/SalemMMG17}; these are shown in Figure
+\ref{fig:ga}. The speed controller takes as input sensor values, and
+outputs the target speed; the steering controller uses the same sensor
+values to output steering orders.
+What is evolved is the shape of the
 fuzzy system, that is, the linguistic variables used as input. These
 variables are encoded in 18 real-valued parameters. The low-level
 details of this part has been explained extensively in
