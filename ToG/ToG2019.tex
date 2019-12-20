@@ -549,27 +549,27 @@ winning bots along the history of the TORCS championship
 of racing track, but being as it is a balanced car, allows driving to
 fit itself to the controllers we are developing.
 
-New Grand Prix Selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
-We have defined a score function based in Formula 1 Grand prix schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.\\
 
 To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization processes based on the GPS: the first one uses the GPS with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
-In the generations where the GPS is not used, the controllers are evaluated using the fitness function: $f_{AVS}$ (Equation \ref{fit2}).
+In each process, three configurations are considered, for the first one , GPS is applied in every generation giving the new proposed controllers {\sf{GFC-GPSVAE}} and
+{\sf{GFC-GPSE}}. In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
+{\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and in the last generation for  {\sf{GFC-GPSL}} and 
+{\sf{GFC-GPSVAL}}.
+Also  and for comparison purpose, two controllers from previous papers are used, {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function: $f_{AVS}$ (Equation \ref{fit2}).
+These controllers are detailed in Table\ref{tab:drivers}. 
 We have run the algorithms with a population size of 60
 individuals. The rest of parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
-configuration. % this should probably go to a table, and also needs
+configuration.  We kept the same evolutionary parameters as our previous controllers  to be able to compare them. % this should probably go to a table, and also needs
                % some kind of justification. Does crossover rate
                % include BLX-alpha? - JJ
                % no 
 
-In each process, three experimentations are performed, the GPS is
-applied in every generation in the first experimentation, only in the
-last generation the second and each 5 generations in the last one. % Rewrite this and use acronyms as defined above - JJ
+%In each process, three experimentations are performed, the GPS is
+%applied in every generation in the first experimentation, only in the
+%last generation the second and each 5 generations in the last one. % Rewrite this and use acronyms as defined above - JJ
  
-When Grand Prix selection process is applied as in previous work \cite{salem_cig2018}, the individuals of the population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. The last 10 individuals  in the GPS selection are replaced with new ones in the next generation. The winner will be selected as the best controller of the run.
-
-The evolution process was applied in separate groups of runs to obtain
-the  controllers in Table\ref{tab:drivers}. The first two are proposed in this paper: % Clarify which ones have been used for the
+ % Clarify which ones have been used for the
                            % first time in this paper; make references
                            % to the rest - JJ
                            
@@ -577,7 +577,7 @@ the  controllers in Table\ref{tab:drivers}. The first two are proposed in this p
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Description of the controllers.}
+		\caption{ Description of the controllers. The first and the second are propositions of this work}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
@@ -602,8 +602,7 @@ the  controllers in Table\ref{tab:drivers}. The first two are proposed in this p
 	}
 \end{table*}
 %
-
-
+To carry out the Grand Prix Selection with 5 races and 20 laps per race. In order to rank the participants, we considered score function based in Formula 1 Grand prix ranking, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The starting grid (initial positions of cars) on these races was set randomly.\\
                            
 %                           
 %\begin{itemize}
