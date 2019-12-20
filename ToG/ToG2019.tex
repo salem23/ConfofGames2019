@@ -299,33 +299,36 @@ use vision, using TORCS as a testbed for a different kind of algorithms.
 % as one of the factors to use this fitnessless strategy.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Methods and tools}
 \label{sec:methods}
+
+This section presents the environment where the study has been conducted, i.e. the simulator named TORCS, as well as the fuzzy subcontrollers designed in previous works and which will be the `target' of the optimization process conducted in this paper.
+
+%-------------------------------  TORCS ----------------------------
 %
+\subsection{Problem environment}
+
 \begin{figure}[!ht] 
 	\begin{center}
 		\includegraphics[scale=0.35]{fig/torcs-sensors}
 		\caption {TORCS capture showing some of the sensors
-                  used by the fuzzy controllers. Figure from \cite{DBLP:conf/cig/SalemMG19}.}
+                used by the autonomous drivers (controllers). Figure from \cite{DBLP:conf/cig/SalemMG19}.}
 		\label{fig:torcs-sensors}
 	\end{center}
 \end{figure}
 
-
-As meny other studies in the area of autnomous driving or simulated
+As many other studies in the area of autonomous driving or simulated
 racing car evolution, we are using The Open Racing Car Simulator
 (TORCS) \cite{torcs4}, which is free software, and offers realistic
 physics, as well as telemetry that is used by the car controllers to
 gauge their position with respect to the track, the position of the
 rest of the players, and self-measurements like speed, damage incurred
-or angle; these
-measurements are connected to car sensors \cite{manualTORCS}, which
-are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
-these sensor values as input to the car controller, which is what we
-are going to be evolving in this paper. Other open source simulators, mentioned in
-\cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
+or angle; these measurements are connected to car sensors \cite{manualTORCS}, which are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
+these sensor values as input to the car controller and these will be used to manage the car by means of actuators such as brake, accelerator, steering wheel or gearbox. 
+
+Other open source simulators, mentioned in \cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
 if more focused in 3D realism, and Speed Dreams is actually a fork of
 TORCS, same as Gym-TORCS \cite{yoshida2016gym}, which is a Python
 wrapper which is specially designed to test controllers based on
@@ -334,7 +337,14 @@ reinforcement learning.
 Although our results are not TORCS specific, we have been
 working on this since it has got all the telemetry and simulation
 tools that we need, and besides it has been repeatedly used in
-competitions, for which we could, eventually, submit our evolved bots.
+competitions, so it is a good testbed to evaluate the performance of new controllers.
+% Antonio - The competitions are over since 2014 or 2015.
+
+
+%----------------------------  FUZZY SUBCONTROLLERS ----------------------------
+
+\subsection{Fuzzy Subcontrollers}
+\label{subsec:fuzzy-controllers}
 
 \begin{figure}[!ht]
   \label{fig:ga}
@@ -343,13 +353,14 @@ competitions, for which we could, eventually, submit our evolved bots.
   \end{center}
   \caption{Schema of the two controllers that will be evolved by the
     evolutionary algorithm (GA), and evaluated by TORCS, which will
-    return average and top speed, damages and lap times. Figure taken
-    from \cite{salem_evo18}.}
+    return the values for the car's average speed on the whole race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.}
 \end{figure}
 %
 The two fuzzy subcontrollers we evolve take care of speed and steering
 \cite{DBLP:conf/evoW/SalemMMG17}; these are shown in Figure
-\ref{fig:ga}. The speed controller takes as input sensor values, and
+\ref{fig:ga}. 
+
+The speed controller takes as input sensor values, and
 outputs the target speed; the steering controller uses the same sensor
 values to output steering orders.
 What is evolved is the shape of the
@@ -363,11 +374,16 @@ paper. As a matter of fact, the methods presented in this paper could
 be applied to any kind of controller, as long as it can be fully
 encoded and evolved using an evolutionary algorithm.
 
-% ----------------------------- We need to rewrite most of this
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Optimizing Subcontrollers with a Genetic Algorithm}
+\label{sec:ga}
+
+% Antonio - I think it is more clear if we describe the GA in a separate section, as it is the main contribution of the paper (well, the operators actually, but they would be even more hidden inside a subsection than in a section).
+
+% ------------------- We need to rewrite most of this
 % ---------------
-% Antonio - done. I have rewritten it
-% No, you haven't. It's still pretty much the same. Marked paragraphs
-% that are taken from the other paper - JJ
+% Antonio - I'm going to rewrite this
 
 As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GAs) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
 
@@ -524,8 +540,7 @@ speed ahead, reaching high speeds. This same track has been repeatedly
 used for training as well as for testing and has been described as
 ``technical and complex'' \cite{AG} and ``presenting a challenge even
 at low speeds'' \cite{vrajitoru2018global}, for instance in
-\cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had
-the third lowest lap time, after Alpine 1 and Olethros, implying it
+\cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after Alpine 1 and Olethros, implying it
 has got a good balance between hardness and speed. Since we also used
 it in our previous papers, it allowed us to compare racing bots that
 had been ``trained'' in the same conditions.
