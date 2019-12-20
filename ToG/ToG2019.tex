@@ -254,6 +254,9 @@ selected for the next generation.
 % \cite{verma2018programmatically} uses CG-Track 2 as a test track for
 % transfer learning.
 
+% \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
+% deterministic policy gradient) that uses images to learn behaviors
+% for specific racing scenarios.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -324,7 +327,11 @@ these sensor values as input to the car controller, which is what we
 are going to be evolving in this paper. Other open source simulators, mentioned in
 \cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
 if more focused in 3D realism, and Speed Dreams is actually a fork of
-TORCS. Although our results are not TORCS specific, we have been
+TORCS, same as Gym-TORCS \cite{yoshida2016gym}, which is a Python
+wrapper which is specially designed to test controllers based on
+reinforcement learning.
+
+Although our results are not TORCS specific, we have been
 working on this since it has got all the telemetry and simulation
 tools that we need, and besides it has been repeatedly used in
 competitions, for which we could, eventually, submit our evolved bots.
