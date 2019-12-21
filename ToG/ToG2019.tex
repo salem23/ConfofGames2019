@@ -358,9 +358,9 @@ competitions, so it is a good testbed to evaluate the performance of new control
   \begin{center}
     \includegraphics[width=9cm]{fig/flowchart}
   \end{center}
-  \caption{Schema of the two controllers that will be evolved by the
+  \caption{Schema of the two controllers that will be evolved by the proposed 
     evolutionary algorithm (GA), and evaluated by TORCS, which will
-    return the values for the car's average speed on the whole race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.}
+    return the values for the car's average speed on the complete race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.}
 \end{figure}
 %
 The two fuzzy sub-controllers we evolve take care of target speed and steering angle. These controllers were introduced by the authors in a previous paper \cite{DBLP:conf/evoW/SalemMMG17}, and share the same structure as the standard TORCS driver but they consider five different sensors (see Figure \ref{fig:torcs-sensors}). These controllers are shown in Figure \ref{fig:ga}. 
@@ -369,15 +369,14 @@ The two fuzzy sub-controllers we evolve take care of target speed and steering a
 The \textit{speed controller} takes as input sensor values, and
 outputs the target speed; aiming to maximize it straight parts and curves of the circuit. The \textit{steering controller} uses the same sensor values to output the optimal steering angle in order to reach the desired target position with the car.
 
-As aforementioned the sub-controllers use three linguistic variables as inputs, derived from the sensors: one from Frontal, one from Sensors 8 and 10 ($\pm 5$\textdegree) and one from Sensors 7 and 11 ($\pm 10$\textdegree). These variables compose a Mamdani-based fuzzy system \cite{iancu2012} with three trapezoidal Membership Functions (MF) for every one.
+As aforementioned the sub-controllers use three linguistic variables as inputs, derived from the sensors: one from Frontal named \texttt{FRONT}, one from Sensors 8 and 10 ($\pm 5$\textdegree) named \texttt{MAX5}, and one from Sensors 7 and 11 ($\pm 10$\textdegree) named \texttt{MAX10}. These variables compose a Mamdani-based fuzzy system \cite{iancu2012} with three trapezoidal Membership Functions (MF) for each variable.
+Then, the controller is defined using a set of fuzzy rules which combine the fuzzy values for these inputs to get an output: target speed or steering angle.
 
-Then, the controller is defined using a set of fuzzy rules which combine the fuzzy values for these inputs to get to an output: target speed or steering angle.
+Thus, what will be evolved with the algorithm proposed in Section \ref{sec:ga} is the shape of the whole fuzzy system, which is encoded in 18 real-valued parameters (related to the different membership functions). The low-level details of this part was explained extensively in \cite{DBLP:conf/cig/SalemMG19}. 
 
-Thus, what will be evolved with the algorithm proposed in Section \ref{sec:ga} is the shape of the whole fuzzy system, which is encoded in 18 real-valued parameters (related to the different membership functions). The low-level details of this part has been explained extensively in \cite{DBLP:conf/cig/SalemMG19}. 
-
-As mentioned, these fuzzy controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
+As mentioned, these fuzzy sub-controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
 be applied to any kind of controller, as long as it can be fully
-encoded and evolved using an Evolutionary Algorithm.
+encoded and evolved using an Evolutionary Algorithm (a GA).
 
 
 
@@ -392,31 +391,32 @@ encoded and evolved using an Evolutionary Algorithm.
 % ---------------
 % Antonio - I'm going to rewrite this
 
-As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GAs) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
+% -------------------------------------------------------------------
+\subsection{General description}
 
-In our approach, every individual or chromosome is a vector of 18
-values/parameters, 6 per variable (see Figure \ref {fig:cromosome}),
-coded using real values aiming to have some precision
-\cite{elsayed13}. 
+As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GA) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
+
+GA is a type of Evolutionary Algorithm (EA) \cite{EAs_Back96}, i.e. a technique inspired in the evolution of species in nature, where the fittest have higher chances of survive. Thus, an EA aims to evolve a population of possible solutions for a problem following a process of selection of the best, recombination and mutation, in order to create a new population of better individuals on average. This is repeated a number of times to get to an optimal solution or to a sub-optimal one.
+GAs have been widely used to solve combinatorial optimisation problems, in which the solutions are modelled as a vector of numeric values, as this is the case.
+
+As it can be seen in Figure \ref {fig:cromosome}, in the proposed algorithm every individual (called chromosome) is a vector of 18 values/parameters (called genes), 6 per variable. They have been coded using real values, aiming to have more precision \cite{elsayed13}. 
 
  \begin{figure*}[!ht]	
  	\begin{center}
  		\includegraphics[width=10cm]{fig/chromosome2.png}
- 		\caption{Chromosome description}
+ 		\caption{GA chromosome description. There are 6 genes (values) per fuzzy variable, modelling the 3 different membership functions.}
  		\label{fig:cromosome}	
  	\end{center}	
  \end{figure*}
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
-As it can be seen in Figure \ref{fig:ga}, TORCS is used for the
-evaluation of every individual. This evaluation is based on different
-fitness functions, which we have tested in previous works
-\cite{salem_evo18}.  % This paragraph no longer applies, because in
-                     % many cases we are using selection. It would be
-                     % better to just rewrite the whole thing, taking
-                     % into account the new GPS - JJ
-However, in this study we will consider the function which obtained the best results in our previous paper \cite{salem_cig2018}, namely:
+One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value to the best individual.
+
+As Figure \ref{fig:ga} shows, the evaluation of every individual (controller indeed) is conducted using TORCS. Thus each controller is placed in the simulator, i.e. its gene values are injected to the parameters of the membership functions of the two fuzzy sub-controllers. Then, it competes in several races to evaluate its performance.
+Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation.
+
+The first method considers the fitness function which was defined in a previous work \cite{salem_cig2018}, because it was the most successful among some others proposed \cite{salem_evo18}. It is described in the next equation:
 
  \begin{equation} \label{fit2}
  	\begin{array}{lll}
@@ -424,47 +424,26 @@ However, in this study we will consider the function which obtained the best res
  	\end{array}
  \end{equation}	
 
-Following the usual recommendations in the literature \cite{Harik-ParameterLess99}, we have defined a parameter-less function, where there are no weights in the terms.
-At the same time, this fitness expression is closer to a `human-like' approach, given that it is focused on the real objectives for a controller during a race, rather than on the overall target of winning or not. 
+Where $AVG(Speed)$ is the average speed of the car along the complete race. This factor represents the overall performance of the controller combining difficult (e.g. curves) and easy (e.g. straight) parts of the tracks. $Damage$ value is taken into account in order to preserve the car integrity, which is required to finish the race.
 
-It depends on two variables:
+Following the usual recommendations in the literature \cite{Harik-ParameterLess99}, we have defined a parameterless function, where there are no weights in the terms.
+At the same time, this fitness expression is closer to a `human-like' approach, since it considers the same prioritary factors that a human driver would do.
 
- \begin{itemize}
- 	\item $AVG(Speed)$: pursues a combination of good driving in
-          the difficult zones of the tracks (e.g. curves) and also on
-          easy or straight parts; i.e. considers the overall behavior
-          in the whole track. % needs to be rewritten. 
- 	\item $Damage$: aims to create `safe' controllers, as it is
-          mandatory being able to finish the race. % Also needs to be
-                                % rewritten. 
- \end{itemize} 
-
- %% ----------------------- This needs to be rewritten since it's
- %% taken from another paper
-So the function aims to obtain controllers reaching the highest average speed as possible on the whole track while avoiding damage to the vehicle.
-
-As it is shown in Figure \ref{fig:ga}, the fitness of each candidate solution (individual) is computed by injecting its gene values to the parameters of the membership functions of the two fuzzy sub-controllers. Then, the defined autonomous controller drives a car in a 20 laps race in a circuit without opponents, and the obtained results (Average Speed and Damage) are used to compute the fitness value. 
-Given that the objective of the car controller is to win as many races as
-possible, we decided to optimize the most general case by carrying out solo {\em training races}, which will be less sensitive to the presence of \textit{noise/uncertainty} due to the participation of other controllers \cite{merelo2016statistical}.
+The evaluation of the individuals (controllers) is done driving a car in a 20 laps race on a circuit without opponents inside TORCS. The reason to consider solo-races is to avoid in part the presence of \textit{noise/uncertainty} due to the participation of other controllers \cite{merelo2016statistical} in the races.
 
 In addition, we have considered the same track as in previous works
-\cite{salem_cig2018} for this evaluation, because it has a proper
-combination of curves and straight parts. This will aid to obtain an
-`all-terrain behaviour' for the controllers.
-% Up to here ----- JJ
+\cite{salem_cig2018} for this evaluation, because it has a good mixture of 
+curves and straight parts, aiming to optimise the controllers for a more general behaviour, able to deal with different configurations in real circuits.
 
-Regarding the genetic operators, \textit{mutation} has remained the same as in previous approaches of our genetic controller, i.e. \textbf{non uniform mutation} \cite{mutation1997}. 
-
-% We need to summarize this and refer to previous papers
-% -------------------------
-
-% Antonio - I have rewritten all this part. 
-% Moreover, according to the invitation, this paper must be an extended version of the one published at CoG 2019, and I think it should contain a complete description of the main parts, as the Genetic algorithm proposed. I personally hate papers where you have to move to another 3 papers in order to understand the contents.
+\textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
 
 
-% Besides, this is also in the other paper - JJ ----------------------
+% Antonio - I have rewritten until here. I'll continue tomorrow, but if someone wants to do it... :D
 
-% Antonio - Again, this must be an extended version and this is the main contribution. It should be here. I rewrite this.
+% -------------------------------------------------------------------
+\subsection{Novel operators}
+
+% TODO: Rewrite this and clarify all the features of GPS and BLX-alpha
 
 This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as it allows to obtain better controllers overall.
 
