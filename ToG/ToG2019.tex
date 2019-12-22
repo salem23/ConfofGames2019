@@ -387,24 +387,27 @@ usual race car driving rules.
 
 % Antonio - I don't understand the last sentence.
 % Please check this - JJ 
-% Antonio - Yes, the variables and values, as well as the outputs, have been always the same, we just evolve the MF parameters.
+% Antonio - Yes, the variables and values, as well as the outputs,
+% have been always the same, we just evolve the MF parameters.
+% The first paper mentioned fixed rules were designed taking into
+% account real rules.
 %
 \begin{table*}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for speed controller output. Values of TS1 to TS7 are respectively:
-    	280, 240, 220, 180, 120, 60 and 30.\label{tab:output:speed}}
+    \caption{Rules for speed controller output.\label{tab:output:speed}}
     \begin{tabular}{|c|c|c||c|}
 \hline
-      Value Front & Value MAX5 & Value MAX10 & Target Speed \\
+      Value Front & Value MAX5 & Value MAX10 & Target Speed \\ % what
+                                % are units for target speed? - JJ
       \hline
-    	 High & / & / & TS1 \\
-      Medium & / & / & TS2 \\
-      Low & High & / & TS3 \\
-      Low & Medium & / & TS4 \\
-      Low & Low & High & TS5 \\
-      Low & Low & Medium & TS6 \\           
-      Low & Low & Low & TS7 \\     
+    	 High & / & / & 280 \\
+      Medium & / & / & 240 \\
+      Low & High & / & 220 \\
+      Low & Medium & / & 180 \\
+      Low & Low & High & 120 \\
+      Low & Low & Medium & 60 \\           
+      Low & Low & Low & 30 \\     
 \hline
 \hline
 \end{tabular}
