@@ -210,9 +210,10 @@ so this kind of competitive selection was extended by introducing real
 races from every few generations in 
 \cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$. The
 results were the best obtained so far, so in this paper we are testing
-a kind of fitnessless selection, which we call Grand Prix, combined
-with others or by itself, as the only way for car controllers to be
+a kind of fitnessless selection, which we have called \textit{Grand Prix}, combined with others or by itself, as the only way for car controllers to be
 selected for the next generation.
+
+% TODO - *** Explain the noise/uncertainty problem, which is one of the issues we have addressed in the paper ***
 
 %The rest of the paper is organized as follows. Next we present the
 %state of the art, to be followed by a description of the TORCS
@@ -329,37 +330,8 @@ rest of the players, and self-measurements like speed, damage incurred
 or angle; these measurements are connected to car sensors \cite{manualTORCS}, which are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
 these sensor values as input to the car controller and these will be
 used to manage the car by means of actuators such as brake,
-accelerator, steering wheel or gearbox. The controller output is not
-evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:ouput:steer}. This has not been
-varied along this line of research, and has been designed following
-usual race car driving rules. % Please check this - JJ
-%
-\begin{table*}[h!tb]
-  \centering
-  {\scriptsize
-    \caption{Rules for speed controller output.\label{tab:output:speed}}
-    \begin{tabular}{|c|c|c||c|}
-\hline
-      Value Front & Value M5 & Value M10 & Target Speed \\
-\hline
-\hline
-\end{tabular}
-}
-\end{table*}
-%
-%
-\begin{table*}[h!tb]
-  \centering
-  {\scriptsize
-    \caption{Rules for steering controller output.\label{tab:output:steer}}
-    \begin{tabular}{|c|c|c||c|}
-\hline
-      Value Front & Value M5 & Value M10 & Steer \\
-\hline
-\hline
-\end{tabular}
-}
-\end{table*}
+accelerator, steering wheel or gearbox. 
+
 %All these sensors refer to different angles. The sensors considered in this work are:
 %\begin{itemize}
 %	\item Sensor 9 (frontal distance): straight distance to the track border (or another vehicle) in an angle of 0\textdegree.
@@ -404,6 +376,42 @@ outputs the target speed; aiming to maximize it straight parts and curves of the
 As aforementioned the sub-controllers use three linguistic variables as inputs, derived from the sensors: one from Frontal named \texttt{FRONT}, one from Sensors 8 and 10 ($\pm 5$\textdegree) named \texttt{MAX5}, and one from Sensors 7 and 11 ($\pm 10$\textdegree) named \texttt{MAX10}. These variables compose a Mamdani-based fuzzy system \cite{iancu2012} with three trapezoidal Membership Functions (MF) for each variable.
 Then, the controller is defined using a set of fuzzy rules which combine the fuzzy values for these inputs to get an output: target speed or steering angle.
 
+% Antonio - I move this text and tables to the sub-controllers section, since these variables have been defined to be used in the fuzzy rules. Moreover, the variables are introduced for the first time in this section. 
+The controller output is not evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:output:steer}. This has not been
+varied along this line of research, and has been designed following
+usual race car driving rules. % Antonio - I don't understand the last sentence.
+% Please check this - JJ 
+% Antonio - Yes, the variables and values, as well as the outputs, have been always the same, we just evolve the MF parameters.
+%
+\begin{table*}[h!tb]
+  \centering
+  {\scriptsize
+    \caption{Rules for speed controller output.\label{tab:output:speed}}
+    \begin{tabular}{|c|c|c||c|}
+\hline
+      Value Front & Value MAX5 & Value MAX10 & Target Speed \\
+\hline
+\hline
+\end{tabular}
+}
+\end{table*}
+%
+%
+\begin{table*}[h!tb]
+  \centering
+  {\scriptsize
+    \caption{Rules for steering controller output.\label{tab:output:steer}}
+    \begin{tabular}{|c|c|c||c|}
+\hline
+      Value Front & Value MAX5 & Value MAX10 & Steer Angle \\
+\hline
+\hline
+\end{tabular}
+}
+\end{table*}
+
+
+
 Thus, what will be evolved with the algorithm proposed in Section \ref{sec:ga} is the shape of the whole fuzzy system, which is encoded in 18 real-valued parameters (related to the different membership functions). The low-level details of this part was explained extensively in \cite{DBLP:conf/cig/SalemMG19}. 
 
 As mentioned, these fuzzy sub-controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
@@ -428,24 +436,19 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 % You always need to write a description before starting
 % subsections. This general description can be it, except we have to
 % introduce the other subsections at the end.  
+% Antonio - Ok, done.
 
-We have been using an evolutionary algorithm (EA) \cite{GAs_Goldberg89,EAs_Back96} to
-optimize the parameters of the membership functions of the fuzzy
-sub-controllers we have been using in this line of research. EAs are
-nature inspired methods that evolve populations of possible (encoded)
-solutions for a problem following a process of selection of the best,
+We have applied a genetic algorithm (GA) \cite{GAs_Goldberg89}, i.e. a type of evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research. 
+
+EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
 recombination and mutation, in order to create a new population of
 better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
-applied to solve regression problems and fuzzy systems
-\cite{hoffmann2001evolutionary}; in this kind of problem the
-solutions are modelled as a vector of numeric values, as is the
-case in this paper. We show Figure \ref{fig:cromosome} how we
-represent every individual (chromosome) as a vector of 18
-values/parameters (genes), 6 per variable. They have been coded using
-real values, looking for higher precision \cite{elsayed13}. We started
-to use this encoding in \cite{10.1007/978-3-319-77538-8_24}.
+applied to solve a huge amount of optimization problems, including regression and fuzzy systems \cite{hoffmann2001evolutionary}; in this kind of problem the solutions are modelled as a vector of numeric values, as is the
+case in this paper. 
+
+We show in Figure \ref{fig:cromosome} how we represent every individual (chromosome) as a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, looking for higher precision \cite{elsayed13}. We started to use this encoding in \cite{10.1007/978-3-319-77538-8_24}.
 
  \begin{figure*}[!ht]	
  	\begin{center}
@@ -464,11 +467,11 @@ Following standard implementations \cite{GAs_Goldberg89}, in the first step of t
 One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value to the best individual.
 
 As Figure \ref{fig:ga} shows, the evaluation of every individual (controller indeed) is conducted using TORCS. Thus each controller is placed in the simulator, i.e. its gene values are injected to the parameters of the membership functions of the two fuzzy sub-controllers. Then, it competes in several races to evaluate its performance.
-Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation.
+Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation (that will be explained in Section \ref{subsec:novel_operators}).
 
 The first method considers the fitness function which was defined in a previous work \cite{salem_cig2018}, because it was the most successful among some others proposed \cite{salem_evo18}. It is described in the next equation:
 
- \begin{equation} \label{fit2}
+ \begin{equation} \label{fit_avg}
  	\begin{array}{lll}
  		f_{AVS}= \frac{AVG(Speed)}{Damage+1}
  	\end{array}
@@ -487,29 +490,31 @@ curves and straight parts, aiming to optimise the controllers for a more general
 
 \textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
 
+In the following section we describe two new operators, designed and implemented aiming to improve the algorithm performance, as well as the final quality of the evolved controllers. These are namely a fitnessless selection policy and an extended real-value crossover operator able to manage the balance between exploration and exploitation during the evolution.
 
 % -------------------------------------------------------------------
 \subsection{Novel operators}
+\label{subsec:novel_operators}
 
-This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as they allow to obtain better controllers overall.
+%This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as they allow to obtain better controllers overall.
 
-The first operator is a \textbf{Grand Prix Selection} policy (GPS), which aims to choose more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm.
-It is a fitnessless approach (independent of the fitness value) designed to better deal with the uncertainty present in the election of an actual good individual. 
+The first operator presented is a \textbf{Grand Prix Selection} policy (GPS), which aims to choose more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm.
+It is a fitnessless approach, independent of the aforementioned fitness function (see Equation \ref{fit_avg}), designed to better deal with the uncertainty present in the election of an actual good individual.
 
-The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races of several laps are simulated. Thus, they compete, using the same car (i.e. in the same conditions). After every race, the controllers get a score according to their position in the final rank. This is a score function based in Formula 1 Grand Prix ranking, so the obtained punctuations per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
+The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based in Formula 1 Grand Prix ranking, so the obtained punctuations per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
 
 The objective of this operator is to really select the best individuals of the population. However, given the existing uncertainty \cite{merelo2016statistical} due to the competition against other non-deterministic controllers, it is not possible to ensure they are doubtlessly the best.
 
-In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability.
+In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
 
-On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering a different number of generations where to apply it.
+However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
 % ************************
 % Antonio - I have written until here. I'll continue tomorrow.
 % ************************
 
-The second technique implemented in our GA is the \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
+The second operator implemented in our GA is the \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
 The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
@@ -606,7 +611,7 @@ In each process, three configurations are considered, for the first one, GPS is 
 $GFC-GPSE$. In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
 {\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and in the last generation for  {\sf{GFC-GPSL}} and 
 {\sf{GFC-GPSVAL}}.
-Also  and for comparison purpose, two controllers from previous papers are used, {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function: $f_{AVS}$ (Equation \ref{fit2}).
+Also  and for comparison purpose, two controllers from previous papers are used, {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function: $f_{AVS}$ (Equation \ref{fit_avg}).
 These controllers are detailed in Table\ref{tab:drivers}. 
 We have run the algorithms with a population size of 60
 individuals. The rest of parameters are: Generations=50, Crossover
@@ -633,8 +638,8 @@ configuration.  We kept the same evolutionary parameters as our previous control
 		
 {\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&GPS&Last generation&BLX$-\alpha$\\
 							
-{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}& $f_{AVS}$ (Equation \ref{fit2})&/&BLX$-\alpha$\\
-{\sf{GFC}}\cite{salem_cig2018}& $f_{AVS}$ (Equation \ref{fit2})&/&Classical crossover\\
+{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}& $f_{AVS}$ (Equation \ref{fit_avg})&/&BLX$-\alpha$\\
+{\sf{GFC}}\cite{salem_cig2018}& $f_{AVS}$ (Equation \ref{fit_avg})&/&Classical crossover\\
 \hline
 				
 			\end{tabular}
@@ -666,7 +671,7 @@ We carried out the Grand Prix Selection with 5 races and 20 laps per race. In or
 %	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
 %
 %
-%        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit2}).
+%        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit_avg}).
 %	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
 %          crossover operator with a varying value of $\alpha$ using
 %          Equation \ref{eqalpha} and fitness $f_{AVS}$ \cite{DBLP:conf/cig/SalemMG19}.
