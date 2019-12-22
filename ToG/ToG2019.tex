@@ -398,10 +398,18 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 % subsections. This general description can be it, except we have to
 % introduce the other subsections at the end.  
 
-As aforementioned, the proposed fuzzy sub-controllers were optimised by means of a Genetic Algorithm (GA) \cite{GAs_Goldberg89}, aiming to find the optimal parameter values of their respective membership functions.
-
-GA is a type of Evolutionary Algorithm (EA) \cite{EAs_Back96}, i.e. a technique inspired in the evolution of species in nature, where the fittest have higher chances of survive. Thus, an EA aims to evolve a population of possible solutions for a problem following a process of selection of the best, recombination and mutation, in order to create a new population of better individuals on average. This is repeated a number of times to get to an optimal solution or to a sub-optimal one.
-GAs have been widely applied to solve combinatorial optimisation problems, in which the solutions are modelled as a vector of numeric values, as this is the case.
+We have been using an evolutionary algorithm (EA) \cite{GAs_Goldberg89,EAs_Back96} to
+optimize the parameters of the membership functions of the fuzzy
+sub-controllers we have been using in this line of research. EAs are
+nature inspired methods that evolve populations of possible (encoded)
+solutions for a problem following a process of selection of the best,
+recombination and mutation, in order to create a new population of
+better individuals on average. This is repeated a number of times
+(generations) to get to a solution that meets our requirements, or the
+budget we have for evaluation of solutions. EAs have been widely
+applied to solve regression problems, in which the
+solutions are modelled as a vector of numeric values, as is the
+case in this paper; 
 
 As it can be seen in Figure \ref{fig:cromosome}, in the proposed algorithm every individual (chromosome) is a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, aiming to have more precision \cite{elsayed13}. 
 
