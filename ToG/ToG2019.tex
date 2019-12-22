@@ -1,4 +1,3 @@
-
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 
 % Some very useful LaTeX packages include:
@@ -379,17 +378,29 @@ Then, the controller is defined using a set of fuzzy rules which combine the fuz
 % Antonio - I move this text and tables to the sub-controllers section, since these variables have been defined to be used in the fuzzy rules. Moreover, the variables are introduced for the first time in this section. 
 The controller output is not evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:output:steer}. This has not been
 varied along this line of research, and has been designed following
-usual race car driving rules. % Antonio - I don't understand the last sentence.
+usual race car driving rules. 
+
+
+% Antonio - I don't understand the last sentence.
 % Please check this - JJ 
 % Antonio - Yes, the variables and values, as well as the outputs, have been always the same, we just evolve the MF parameters.
 %
 \begin{table*}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for speed controller output.\label{tab:output:speed}}
+    \caption{Rules for speed controller output. Values of TS1 to TS7 are respectively:
+    	280, 240, 220, 180, 120, 60 and 30.\label{tab:output:speed}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Target Speed \\
+      \hline
+    	 High & / & / & TS1 \\
+      Medium & / & / & TS2 \\
+      Low & High & / & TS3 \\
+      Low & Medium & / & TS4 \\
+      Low & Low & High & TS5 \\
+      Low & Low & Medium & TS6 \\           
+      Low & Low & Low & TS7 \\     
 \hline
 \hline
 \end{tabular}
@@ -400,11 +411,19 @@ usual race car driving rules. % Antonio - I don't understand the last sentence.
 \begin{table*}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for steering controller output.\label{tab:output:steer}}
+    \caption{Rules for steering controller, Values for S1 to S4 are respectively: 0, 0.25, 0.5, and 1. output.\label{tab:output:steer}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Steer Angle \\
 \hline
+      High & / & / & S1 \\
+      Medium & / & High & S2 \\
+      Medium & Medium & Medium & S2 \\
+      Medium & Low & Medium & S3 \\
+      Low & / & High & S3 \\
+      Low & Medium & Medium & S4 \\           
+      Low & Low & Medium & S4 \\       
+      
 \hline
 \end{tabular}
 }
@@ -647,7 +666,6 @@ configuration.  We kept the same evolutionary parameters as our previous control
 	}
 \end{table*}
 %
-We carried out the Grand Prix Selection with 5 races and 20 laps per race. In order to rank the participants, we considered score function based in Formula 1 Grand prix ranking, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The starting grid (initial positions of cars) on these races was set randomly.\\
 
                            
 %                           
@@ -1036,5 +1054,3 @@ Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio
 
 % that's all folks
 \end{document}
-
-
