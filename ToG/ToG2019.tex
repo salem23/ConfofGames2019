@@ -327,8 +327,39 @@ physics, as well as telemetry that is used by the car controllers to
 gauge their position with respect to the track, the position of the
 rest of the players, and self-measurements like speed, damage incurred
 or angle; these measurements are connected to car sensors \cite{manualTORCS}, which are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
-these sensor values as input to the car controller and these will be used to manage the car by means of actuators such as brake, accelerator, steering wheel or gearbox. 
-
+these sensor values as input to the car controller and these will be
+used to manage the car by means of actuators such as brake,
+accelerator, steering wheel or gearbox. The controller output is not
+evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:ouput:steer}. This has not been
+varied along this line of research, and has been designed following
+usual race car driving rules. % Please check this - JJ
+%
+\begin{table*}[h!tb]
+  \centering
+  {\scriptsize
+    \caption{Rules for speed controller output.\label{tab:output:speed}}
+    \begin{tabular}{|c|c|c||c|}
+\hline
+      Value Front & Value M5 & Value M10 & Target Speed \\
+\hline
+\hline
+\end{tabular}
+}
+\end{table*}
+%
+%
+\begin{table*}[h!tb]
+  \centering
+  {\scriptsize
+    \caption{Rules for steering controller output.\label{tab:output:steer}}
+    \begin{tabular}{|c|c|c||c|}
+\hline
+      Value Front & Value M5 & Value M10 & Steer \\
+\hline
+\hline
+\end{tabular}
+}
+\end{table*}
 %All these sensors refer to different angles. The sensors considered in this work are:
 %\begin{itemize}
 %	\item Sensor 9 (frontal distance): straight distance to the track border (or another vehicle) in an angle of 0\textdegree.
