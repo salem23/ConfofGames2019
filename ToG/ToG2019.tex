@@ -407,16 +407,23 @@ recombination and mutation, in order to create a new population of
 better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
-applied to solve regression problems, in which the
+applied to solve regression problems and fuzzy systems
+\cite{hoffmann2001evolutionary}; in this kind of problem the
 solutions are modelled as a vector of numeric values, as is the
-case in this paper; 
-
-As it can be seen in Figure \ref{fig:cromosome}, in the proposed algorithm every individual (chromosome) is a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, aiming to have more precision \cite{elsayed13}. 
+case in this paper. We show Figure \ref{fig:cromosome} how we
+represent every individual (chromosome) as a vector of 18
+values/parameters (genes), 6 per variable. They have been coded using
+real values, looking for higher precision \cite{elsayed13}. We started
+to use this encoding in \cite{10.1007/978-3-319-77538-8_24}.
 
  \begin{figure*}[!ht]	
  	\begin{center}
  		\includegraphics[width=12cm]{fig/chromosome2.png}
- 		\caption{GA chromosome description. There are 6 genes (values) per fuzzy variable, modelling the 3 different membership functions.}
+ 		\caption{GA chromosome description. There are 6 genes
+                  (values) per fuzzy variable, modelling the 3
+                  different membership functions. The membership
+                  functions are trapezoidal, needing only two values
+                  for every one.}
  		\label{fig:cromosome}	
  	\end{center}	
  \end{figure*}
