@@ -400,7 +400,7 @@ As aforementioned, the proposed fuzzy sub-controllers were optimised by means of
 GA is a type of Evolutionary Algorithm (EA) \cite{EAs_Back96}, i.e. a technique inspired in the evolution of species in nature, where the fittest have higher chances of survive. Thus, an EA aims to evolve a population of possible solutions for a problem following a process of selection of the best, recombination and mutation, in order to create a new population of better individuals on average. This is repeated a number of times to get to an optimal solution or to a sub-optimal one.
 GAs have been widely applied to solve combinatorial optimisation problems, in which the solutions are modelled as a vector of numeric values, as this is the case.
 
-As it can be seen in Figure \ref{fig:cromosome}, in the proposed algorithm every individual (called chromosome) is a vector of 18 values/parameters (called genes), 6 per variable. They have been coded using real values, aiming to have more precision \cite{elsayed13}. 
+As it can be seen in Figure \ref{fig:cromosome}, in the proposed algorithm every individual (chromosome) is a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, aiming to have more precision \cite{elsayed13}. 
 
  \begin{figure*}[!ht]	
  	\begin{center}
@@ -439,29 +439,26 @@ curves and straight parts, aiming to optimise the controllers for a more general
 \textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
 
 
-% Antonio - I have rewritten until here. I'll continue tomorrow, but if someone wants to do it... :D
-
 % -------------------------------------------------------------------
 \subsection{Novel operators}
 
-% TODO: Rewrite this and clarify all the features of GPS and BLX-alpha
+This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as they allow to obtain better controllers overall.
 
-This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as it allows to obtain better controllers overall.
+The first operator is a \textbf{Grand Prix Selection} policy (GPS), which aims to choose more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm.
+It is a fitnessless approach (independent of the fitness value) designed to better deal with the uncertainty present in the election of an actual good individual. 
 
-The first technique is a \textbf{Grand Prix Selection policy} (GPS), which aims to select more reliable individuals/controllers to be parents of the following population, i.e. better deal with the uncertainty surrounding the election of an actual good individual. The mechanism arranges groups of 10 controllers (using the same car) and then different races of several laps are simulated in the same track of TORCS. After every race, the contenders obtain different scores depending on their position in the final rank. The best 5 controllers in the sum of all the races are selected as parents for the following generation. 
+The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races of several laps are simulated. Thus, they compete, using the same car (i.e. in the same conditions). After every race, the controllers get a scores according to their position in the final rank. This is a score function based in Formula 1 Grand Prix ranking, so the obtained punctuations per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
+Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
 
-% Most of this paragraph needs to be rewritten - JJ
-As it can be noticed, the application of this approach will be independent of the fitness value, so it can be considered as a \textit{fitnessless proposal}.
-Thanks to this mechanism the best individuals will be more likely
-selected to reproduce. Of course, it is not possible to assure they
-are absolutely the best, due to the uncertainty present in this type
-of environments, i.e. games against non-deterministic opponents
-\cite{merelo2016statistical}. However, we argue that this selection
-policy will be `less sensitive' to that uncertainty (or noise), and
-thus, it will be fairer and more reliable than an approach purely
-based on the fitness values.  
+The objective of this operator is to really select the best individuals of the population. However, given the existing uncertainty \cite{merelo2016statistical}, due to the competition against other non-deterministic controllers, it is not possible to ensure they are doubtlessly the best.
+
+In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability.
 
 On the other hand, the application of this method consumes much higher computation time, so it could be combined with the classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering a different number of generations where to apply it.
+
+% ************************
+% Antonio - I have written until here. I'll continue tomorrow.
+% ************************
 
 The second technique implemented in our GA is the \textbf{BLX-$\alpha$ Crossover operator} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
