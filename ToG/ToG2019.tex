@@ -701,17 +701,19 @@ configuration.  We kept the same evolutionary parameters as our previous control
 				Controller&Fitness & GPS frequency&Crossover operator \\
 				\hline
 				\hline
-{\sf{GFC-GPSVAE}}&GPS&every generations&BLX$-\alpha$\\
-{\sf{GFC-GPSE}}&GPS&every generation&Standard crossover\\
-{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&GPS&5 generations&Standard crossover\\
-{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&GPS&Last generation &Standard crossover\\
+{\sf{GFC-GPSE}}&Fitnessless&Every generation&Standard crossover\\
+{\sf{GFC-GPSVAE}}&Fitnessless&Every generations&BLX$-\alpha$\\
 
-{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&GPS&5 generations&BLX$-\alpha$\\
-		
-{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&GPS&Last generation&BLX$-\alpha$\\
-							
-{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}& $f_{AVS}$ (Equation \ref{fit_avg})&/&BLX$-\alpha$\\
-{\sf{GFC}}\cite{salem_cig2018}& $f_{AVS}$ (Equation \ref{fit_avg})&/&Standard crossover\\
+{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&5 generations&Standard crossover\\
+{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&5 generations&BLX$-\alpha$\\
+
+{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&Last generation &Standard crossover\\
+	
+{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&Last generation&BLX$-\alpha$\\
+{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&Standard crossover\\							
+{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&BLX$-\alpha$\\
+
+
 \hline
 				
 			\end{tabular}
