@@ -169,27 +169,45 @@ Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-% Antonio - Is somebody writing this? I guess it is incomplete 
-% (something is missing before)... :_D
-% Are you? - JJ
+Driving a car is a problem in which you have to map inputs that
+include data about the environment we're driving in as well as car
+data, to the output: throttling and steering. Car controllers have to
+be designed so that cars do not crash, and are able to run at a
+reasonable speed. Additionally, in a racing car the controller has to
+be designed so that the car wins in as many races as possible.
 
-In a simulated and
-    realistic racing car environment, however, racing car scores are a
+There are so many variables in this problem, that eventually some of
+them are chosen using heuristic rules, while the rest are open to
+optimization. For instance, deciding the type of controller is usually
+done before the desing process begin, and a single, parametrized one
+is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers
+are often used; additional to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
+race, so that it can adapt itself to new, and not seen before,
+scenarios and competitors, or it can be fixed by training the
+controllers in advance. We have been using genetically-optimized fuzzy
+controllers in this line of work, with increasing success.
+
+In a simulated and realistic racing car environment like the one we use, however, racing car scores are a
     statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
     that score in a training track will always be a surrogate of its
     actual score when racing against other cars in different tracks,
-    which adds another layer of uncertainty.
+    which adds another layer of uncertainty. This is why optimization
+    in this environment is quite hard. If training is done before the
+    race, and the controllers are fixed via an optimization process,
+    the uncertainty in the evaluation of every controller will make
+    the result of scores in unknow tracks with unknown competitors
+    uncertain at best.
 
-
-% The two new techniques introduced in this paper, namely, \textit{Grand Prix selection} (GPS) and $BLX-\alpha$ crossover, try to improve on previous results by first relying less on the surrogacy of the fitness function
-% to select the best individuals. The GPS will use a parameter-less fitness function to select a few individuals that will race against each other; racing will {\em smooth out} randomness in the fitness by putting them in a
-% more real environment; racing cars against each other will offer a
-% result that varies much less than simply comparing fitness. But, even
-% so, uncertainty is present in the fitness and we should avoid
-% excessive exploitation of the results. The $BLX-\alpha$ crossover we
-% have introduced takes care of this aspect.
-
+The best way to reduce uncertainty is to make the evaluation process
+as close as possible as the environment in which the controller will
+eventually work, in a race with other competitors. By totally
+eliminating fitness, in a fitness-less environment, we also eliminate
+a source of uncertainty. We also reduce this even more by repeating
+races several times. A single (and uncertain) fitness is thus
+substituted by a podium in which car controllers that win the most
+races will proceed to the next generation, while those that do not
+will simply be eliminated from the genetic pool. 
 
 The algorithm proposed in this paper overcomes most of the problems we
 have found in this line of research, that started with
@@ -212,12 +230,35 @@ results were the best obtained so far, so in this paper we are testing
 a kind of fitnessless selection, which we have called \textit{Grand Prix}, combined with others or by itself, as the only way for car controllers to be
 selected for the next generation.
 
-% TODO - *** Explain the noise/uncertainty problem, which is one of the issues we have addressed in the paper ***
+In this paper, then, we will check how this Grand Prix selection works
+compared with mixed fitness-less and fitness races, or simply using a
+selection for those controllers that have the highest fitness in the
+last generation. This reduction of uncertainty has been proved also to
+reduce diversity in the genetic pool
+\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. In our previous paper,
+  \cite{DBLP:conf/cig/SalemMG19}, we introduced the BLX-$\alpha$
+  operator which works, at the same time, as exploratory and exploits
+  the existing space of solutions. For this kind of Grand Prix
+  selection, however, it will probably be much more convenient for the
+  last phase of the races to just exploit existing solutions by
+  combining them, so that we introduce an adaptive version of
+  BLX-$\alpha$ that behaves in that way.
 
-%The rest of the paper is organized as follows. Next we present the
-%state of the art, to be followed by a description of the TORCS
-%simulator \ref{sec:torcs}, the defined fuzzy controllers \ref{sec:subcontrollers} and a deep explanation of the Genetic Algorithm implemented and tested in this work in Section \ref{sec:GA_optimization}. 
-%After it, the experiments conducted and the obtained results are described in Section \ref{sec:results}. Finally, conclusions and future lines of work will be presented in Section \ref{sec:conclusions}.
+These two new techniques, Grand Prix selection (GPS) and a decreasing
+$\alpha$ BLX-$\alpha$ operator will be cross compared in different
+combinations, with the experiments proving that the combination of
+both yields the best controllers we have been able to evolve so far. 
+
+The rest of the paper is organized as follows. Next we present the
+state of the art, to be followed by a description of the TORCS
+simulator \ref{sec:torcs}, the defined fuzzy controllers
+\ref{sec:subcontrollers} and a explanation of the evolutionary
+algorithm implemented and tested in this work in Section
+\ref{sec:GA_optimization}, including the new selection method and
+the new version of the BLX-$\alpha$ crossover operator. After it, the
+experiments conducted and the obtained results are described in
+Section \ref{sec:results}. Finally, conclusions and future lines of
+work will be presented in Section \ref{sec:conclusions}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
