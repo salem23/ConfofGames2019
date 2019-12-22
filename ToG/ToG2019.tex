@@ -305,11 +305,11 @@ use vision, using TORCS as a testbed for a different kind of algorithms.
 \section{Methods and tools}
 \label{sec:methods}
 
-This section presents the environment where the study has been conducted, i.e. the simulator named TORCS, as well as the fuzzy sub-controllers designed in previous works and which will be the `target' of the optimization process conducted in this paper.
+This section presents the environment where the study has been conducted, i.e. the simulator named TORCS, as well as the fuzzy sub-controllers designed in previous works and which will be the `target' of the optimization process conducted in this paper. 
 
 %-------------------------------  TORCS ----------------------------
 %
-\subsection{Problem environment}
+\subsection{Simulation environment}
 
 \begin{figure}[!ht] 
 	\begin{center}
@@ -347,9 +347,13 @@ reinforcement learning.
 Although our results are not TORCS specific, we have been
 working on this since it has got all the telemetry and simulation
 tools that we need, and besides it has been repeatedly used in
-competitions, so it is a good testbed to evaluate the performance of new controllers.
+competitions, so it is a good testbed to evaluate the performance of new controllers, in case the competitions came back.
 % Antonio - The competitions are over since 2014 or 2015.
+% OK, I've added a phrase at the end.
 
+TORCS does not impose a specific way for programming the controllers;
+it can be done via any system that maps inputs to outputs. We decided
+to use fuzzy sub-controllers, which will be described next.
 
 %---------------------------  FUZZY SUB-CONTROLLERS ----------------------------
 
