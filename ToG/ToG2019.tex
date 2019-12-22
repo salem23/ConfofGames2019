@@ -395,7 +395,10 @@ usual race car driving rules.
 \begin{table*}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for speed controller output.\label{tab:output:speed}}
+    \caption{Rules for speed controller output. Additionally, when
+      the front, right and left sensors have the maximum value
+      possible, a crisp rule that tries to set the max speed
+      fires. These rules have been used since \cite{salem_evo18}. \label{tab:output:speed}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Target Speed \\ % what
@@ -418,7 +421,8 @@ usual race car driving rules.
 \begin{table*}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for steering controller.\label{tab:output:steer}}
+    \caption{Rules for steering controller. Angles will be reversed
+      if the M10 is equal to Track 7. These rules were established for \cite{salem_evo18}. \label{tab:output:steer}}
 % We need to specify what turning values mean.
     \begin{tabular}{|c|c|c||c|}
 \hline
@@ -429,8 +433,8 @@ usual race car driving rules.
       Medium & Medium & Medium & 0.25 \\
       Medium & Low & Medium & 0.5 \\
       Low & / & High & 0.5 \\
-      Low & Medium & Medium & 1 \\           
-      Low & Low & Medium & 1 \\       
+      Low & Medium & Medium & 1 \\
+      Low & Low & Medium & 1 \\ 
       
 \hline
 \end{tabular}
