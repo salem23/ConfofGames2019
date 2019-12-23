@@ -165,8 +165,7 @@ race, so that it can adapt itself to new, and not seen before,
 scenarios and competitors, or it can be fixed by training the
 controllers in advance. We have been using genetically-optimized fuzzy
 controllers in this line of work, with increasing success.
-
-In a simulated and realistic racing car environment like the one we use, however, racing car scores are a
+However, in a simulated and realistic racing car environment like the one we use, racing car scores are a
     statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
     that score in a training track will always be a surrogate of its
@@ -180,7 +179,7 @@ In a simulated and realistic racing car environment like the one we use, however
 
 The best way to reduce uncertainty is to make the evaluation process
 as close as possible as the environment in which the controller will
-eventually work, in a race with other competitors. By totally
+eventually compete, in a race with other competitors. By totally
 eliminating fitness, in a fitness-less environment, we also eliminate
 a source of uncertainty. We also reduce this even more by repeating
 races several times. A single (and uncertain) fitness is thus
@@ -427,6 +426,7 @@ usual race car driving rules.
                                 % are units for target speed? - JJ
 										  % Antonio - if I'm not wrong km/h. Is this 						
 										  % Mohammed?
+										  % yes it is Mohammed
       \hline
     	 High & - & - & 280 \\
       Medium & - & - & 240 \\
@@ -450,6 +450,9 @@ usual race car driving rules.
 % We need to specify what turning values mean.
 % Antonio - I don't exactly remember, but I guess they are 0 -> no turn, 1 -> 90 degrees, however I think there is also a negative sign (to turn on the left).
 % Mohammed, please clarify this and maybe write the angles instead of these values (as we did in the speed).
+
+% Mohammed: yes there are negative values ( these values are th sinus of the steering angle)
+%%when  M10=Track[7](nagative), we will take negative values of the steer (sterr=-steer)
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Steer Angle \\
@@ -522,6 +525,7 @@ We show in Figure \ref{fig:cromosome} how we represent every individual (chromos
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
 One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value to the best individual.
+%Mohammed : in maximization problems, not in all cases
 
 As Figure \ref{fig:ga} shows, the evaluation of every individual (controller indeed) is conducted using TORCS. Thus each controller is placed in the simulator, i.e. its gene values are injected to the parameters of the membership functions of the two fuzzy sub-controllers. Then, it competes in several races to evaluate its performance.
 Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation (that will be explained in Section \ref{subsec:novel_operators}).
