@@ -120,7 +120,8 @@ competition and called Grand Prix Selection (GPS), which should be
 able to reduce uncertainty by using something more realistic than solo
 race scores to select individuals; however, uncertainty has the
 unintended side effect of increasing diversity, so we will evaluate
-the diversity-increasing BLX-$alpha$ operator in combination with
+the diversity-increasing BLX-$alpha$ operator, with varying value of
+$\alpha$, in combination with
 them, and see its effects on overall performance. In general, results
 will show that these combined improvements establish a new level of
 performance of evolved controllers, being able to beat, both standard
@@ -549,8 +550,14 @@ In the following section we describe two new operators, designed and implemented
 
 %This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as they allow to obtain better controllers overall.
 
-The first operator presented is a \textbf{Grand Prix Selection} policy (GPS), which aims to choose more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm.
-It is a fitnessless approach, independent of the aforementioned fitness function (see Equation \ref{fit_avg}), designed to better deal with the uncertainty present in the election of an actual good individual.
+The first operator presented is a \textbf{Grand Prix Selection} policy
+(GPS), which aims to choose more reliable individuals/controllers as
+parents to combine their genes for creating new individuals in the
+following generation of the algorithm, as well as use them as a basis
+for exploration of new solutions. It is a fitnessless approach,
+independent of the aforementioned fitness function (see Equation
+\ref{fit_avg}), designed to better deal with the uncertainty present
+in the election of an actual good individual. 
 
 The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based in Formula 1 Grand Prix ranking, so the obtained punctuations per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
@@ -657,9 +664,16 @@ fit itself to the controllers we are developing.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out  two main optimization processes based on the GPS: the first one uses the GPS with the two point crossover operator while the second uses the varying $BLX-\alpha$. \\
-In each process, three configurations are considered, for the first one, GPS is applied in every generation giving the new proposed controllers $GFC-GPSVAE$ and
-$GFC-GPSE$. In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
+To analyze the influence of the new introduced Grand Prix Selection
+(GPS) and the crossover operator on the performance of the fuzzy
+controller, we have carried out  two main optimization processes based
+on the GPS: the first one uses the GPS with the two point crossover
+operator while the second uses  BLX with varying $\alpha$.
+
+For every kind of crossover, three configurations are considered: for
+the first one, GPS is applied in every generation giving the new
+proposed controllers {\sf GFC-GPSVAE} and
+{\sf GFC-GPSE}. In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
 {\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and in the last generation for  {\sf{GFC-GPSL}} and 
 {\sf{GFC-GPSVAL}}.
 Also  and for comparison purpose, two controllers from previous papers are used, {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function: $f_{AVS}$ (Equation \ref{fit_avg}).
@@ -686,14 +700,14 @@ the focus of this paper.
 				\hline
 				\hline
 {\sf{GFC-GPSE}}&Fitnessless&Every generation&Standard crossover\\
-{\sf{GFC-GPSVAE}}&Fitnessless&Every generations&BLX$-\alpha$\\
+{\sf{GFC-GPSVAE}}&Fitnessless&Every generation&BLX$-\alpha$\\
 
-{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&5 generations&Standard crossover\\
-{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&5 generations&BLX$-\alpha$\\
+{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&Standard crossover\\
+{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&BLX$-\alpha$\\
 
-{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&Last generation &Standard crossover\\
+{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation &Standard crossover\\
 	
-{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Mixed fitness&Last generation&BLX$-\alpha$\\
+{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation&BLX$-\alpha$\\
 {\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&Standard crossover\\							
 {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&BLX$-\alpha$\\
 
