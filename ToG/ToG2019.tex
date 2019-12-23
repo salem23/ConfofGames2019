@@ -594,7 +594,7 @@ The Blend crossover operator starts by choosing randomly a number from the inter
  \end{figure}
 
  % Paragraphs to rewrite - JJ
-Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. Three generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
+Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. These generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
 This operator is suitable for real coded genetic algorithms where it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
 
 $\alpha$ parameter allows to control the exploration of the space of solutions, depending on its value. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
@@ -677,7 +677,7 @@ To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out  two main optimization processes based
 on the GPS: the first one uses the GPS with the two point crossover
-operator while the second uses  BLX with varying $\alpha$.
+operator while the second uses   adaptive BLX-$\alpha$.
 
 For every kind of crossover, three configurations are considered: for
 the first one, GPS is applied in every generation giving the new
@@ -692,6 +692,7 @@ individuals. The rest of parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
 configuration. % Clarify if crossover rate means BLX-alpha crossover
                % or there's another crossover too - JJ
+
 We kept the same evolutionary parameters as our
 previous controllers  to be able to compare them in the same
 conditions, but also because they yielded good results are not really
@@ -727,40 +728,6 @@ the focus of this paper.
 		}\label{tab:drivers}
 	}
 \end{table*}
-%
-
-                           
-%                           
-%\begin{itemize}
-%	
-%	\item {\sf{GFC-GPSVAE}}: A proposed controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS every generation. 
-%	\item $GFC-GPSE$: The proposed controller in this paper and obtained by applying the classical two points crossover operator (as in previous works) and GPS every generation. 
-%	
-%	\item $GFC-GPS5$: A controller obtained by applying the
-%          classical two points crossover operator (as in previous
-%          works) and GPS once every 5 generations and fitness
-%          $f_{AVS}$ in the others \cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper,
-%                                % please cite it - JJ
-%	\item $GFC-GPSL$: A controller obtained by applying the
-%          classical two points crossover operator (as in previous
-%          works) and GPS once in the last generation and fitness
-%          $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. % This was in a previous paper - JJ
-%
-%	\item $GFC-GPSVAL$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once in the last generation and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
-%
-%	\item $GFC-GPSVA5$: A controller obtained by applying $BLX-\alpha$ crossover operator with a varying value of $\alpha$ using Equation \ref{eqalpha} and GPS once every 5 generations and fitness $f_{AVS}$ in the others\cite{DBLP:conf/cig/SalemMG19}. 
-%
-%
-%        \item $GFC$: Controller  from our previous work \cite{salem_cig2018} with fitness  $f_{AVS}$ (Equation \ref{fit_avg}).
-%	\item $GFC-VA$: A controller obtained by applying $BLX-\alpha$
-%          crossover operator with a varying value of $\alpha$ using
-%          Equation \ref{eqalpha} and fitness $f_{AVS}$ \cite{DBLP:conf/cig/SalemMG19}.
-%         
-%          
-%               % wasn't this
-%                                % also in cig2018? - JJ
-%                                %% yes,  V is for varying alpha
-%\end{itemize}
 %
 
 \subsection{Uncertainty in fitness evaluation}
