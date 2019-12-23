@@ -264,11 +264,7 @@ However, it's not the only kind of soft computing method
 used. \cite{mirus2019short} uses neuromorphic architecture, namely,
 spiking neural networks, but using, the same way we do, a single track
 for training. The kind of data used for the design of racing cars is
-also different depending on the author; for instance \cite{8833873}
-uses deep learning, working with real images instead of sensor values,
-the way we do, \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
-deterministic policy gradient) that uses images to learn behaviors
-for specific racing scenarios. We think that, in general, successful racing will only
+also different depending on the author. We think that, in general, successful racing will only
 need these sensor values to drive the car, since they give enough
 information to avoid collisions, drive as close as possible to the
 center of the track, and drive as fast as possible when needed.
@@ -281,13 +277,18 @@ called ``transfer learning''. This is the technique used by
 \cite{verma2018programmatically}. 
 
 
-
-% \cite{vrajitoru2019trajectory,vrajitorugenetic} maps the trajectory using the first lap and then optimizes it using an evolutionary algorithm.
+Evolution can also be used directly to map the trajectory after ``test
+laps''. This is what \cite{vrajitoru2019trajectory,vrajitorugenetic}
+does, using then an evolutionary algorithm to optimize driving within
+that specific track. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The TORCS racing simulator continues to be one of the main platforms
+All the different approaches would not have been possible without a
+racing car simulator that could be the testbed for them all, which was
+TORCS (The Open Racing Car Simulator) \cite{torcs4}. The TORCS racing simulator
+continues to be one of the main platforms  
 for testing different autonomous driving or bot creation strategies,
 which are, by and themselves, also a hot topic in the gaming arena as
 well as by itself, at least since DARPA created their autonomous car
@@ -309,21 +310,49 @@ going, or just use sensors, which only check the most immediate
 scenario, but on the other hand are more precise and easy to check; in
 our case, we have opted for the latter, although other papers like the,
 ones authored by Zhu et al. \cite{zhu2018driving,zhu2019vision,neurone} rather
-use vision, using TORCS as a testbed for a different kind of algorithms.
+use vision, using TORCS as a testbed for a different kind of
+algorithms, on the other hand \cite{8833873}
+uses deep learning, working with real images instead of sensor values,
+the way we do, \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
+deterministic policy gradient) that uses images to learn behaviors
+for specific racing scenarios.
 
+TORCS, being a realistic simulator, is able to introduce noise into
+the track conditions, so that races will never be the same. In
+general, this is the case for most games: there are sources of
+uncertainty either in the game environment itself, or in the behavior
+of non-playing characters that act as adversaries in the game; the
+game bot or controller itself can also have non-deterministic rules,
+which is an additional source of uncertainty. Plus games are games,
+and the best way of checking how good a bot or controller is by
+playing the game. This way of evolving bots was called fitnessless
+coevolution: and was defined in
+\cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to our
+Grand Prix selection, which we present in this paper, whose essence is
+to get rid of a fitness score resulting from evaluation of an
+individual, substituting it by a score obtained by the controller in
+more realistic competitive conditions.
 
-% Fitnessless coevolution: playing games to select, defined in
-% \cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to our
-% "grand prix" selection. That article cites
-% \cite{Angeline:1993:CEE:645513.657590} as the first reference,
-% calling it "competitive fitness environment", and later developed in
-% \cite{rosin1995methods}, but it's been also used in GP by Tettamanzi
-% in \cite{tettamanzi1996genetic}. First time used in
-% games in \cite{luke1998genetic}, but later used extensively, like
-% \cite{Jaśkowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using}. As recently as 2017, an ELO-based ranking
-% strategy was introduced for selecting winning bots in a fighting
-% game \cite{7792145}. The first one mentions "imperfect information"
-% as one of the factors to use this fitnessless strategy.
+The concept, however, was goes way back at leat to
+\cite{Angeline:1993:CEE:645513.657590}, which calles it a "competitive
+fitness environment". Fitnessless evolution was further developed in
+\cite{rosin1995methods}, but it's been also used in genetic
+programming by Tettamanzi in \cite{tettamanzi1996genetic}.
+
+However, the competitions played in those works were not, strictly,
+games. The first time fitness-less evolution was used in  games was by
+\cite{luke1998genetic}; however, it was later used extensively, like
+\cite{Jaśkowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriqving
+which individuals are the best from these races, taking into account
+the {\em noisy} environment we have mentioned, is not trivial
+either. As recently as 2017, an ELO-based ranking strategy was
+introduced for selecting winning bots in a fighting game
+\cite{7792145}. The first one mentions "imperfect information",
+previsely, as one of the factors to use this fitnessless strategy.
+
+Since we are working with racing games, we will introduce a score that
+is closer to the one used in that kind of games. This will be
+presented after the rest of the methods and tools used in this paper. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1101,7 +1130,7 @@ This work has been supported in part by: Ministerio espa\~{n}ol de
 Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio) and TEC2015-68752 (also funded by FEDER), as well as project RTI2018-102002-A-I00 (Ministerio espa\~{n}ol de Ciencia, Innovaci\'{\o}n y Universidades).
 
 \bibliographystyle{IEEEtranS}
-\bibliography{fuzzy_torcs,geneura,uncertainty}
+\bibliography{fuzzy_torcs,geneura,uncertainty,fitnessless}
 
 
 % Antonio - This should be included once it is accepted
