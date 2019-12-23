@@ -251,10 +251,8 @@ both yields the best controllers we have been able to evolve so far.
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
-simulator \ref{sec:torcs}, the defined fuzzy controllers
-\ref{sec:subcontrollers} and a explanation of the evolutionary
-algorithm implemented and tested in this work in Section
-\ref{sec:GA_optimization}, including the new selection method and
+simulator and the previously defined fuzzy controllers in Section
+\ref{sec:methods}. After this, the evolutionary algorithm implemented is explained in Section \ref{sec:ga}, including the new selection method and
 the new version of the BLX-$\alpha$ crossover operator. After it, the
 experiments conducted and the obtained results are described in
 Section \ref{sec:results}. Finally, conclusions and future lines of
@@ -442,13 +440,15 @@ usual race car driving rules.
       fires. These rules have been used since \cite{salem_evo18}. \label{tab:output:speed}}
     \begin{tabular}{|c|c|c||c|}
 \hline
-      Value Front & Value MAX5 & Value MAX10 & Target Speed \\ % what
+      Value Front & Value MAX5 & Value MAX10 & Target Speed (km/h) \\ % what
                                 % are units for target speed? - JJ
+										  % Antonio - if I'm not wrong km/h. Is this 						
+										  % Mohammed?
       \hline
-    	 High & / & / & 280 \\
-      Medium & / & / & 240 \\
-      Low & High & / & 220 \\
-      Low & Medium & / & 180 \\
+    	 High & - & - & 280 \\
+      Medium & - & - & 240 \\
+      Low & High & - & 220 \\
+      Low & Medium & - & 180 \\
       Low & Low & High & 120 \\
       Low & Low & Medium & 60 \\           
       Low & Low & Low & 30 \\     
@@ -465,15 +465,17 @@ usual race car driving rules.
     \caption{Rules for steering controller. Angles will be reversed
       if the M10 is equal to Track 7. These rules were established for \cite{salem_evo18}. \label{tab:output:steer}}
 % We need to specify what turning values mean.
+% Antonio - I don't exactly remember, but I guess they are 0 -> no turn, 1 -> 90 degrees, however I think there is also a negative sign (to turn on the left).
+% Mohammed, please clarify this and maybe write the angles instead of these values (as we did in the speed).
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Steer Angle \\
 \hline
-      High & / & / & 0 \\
-      Medium & / & High & 0.25 \\
+      High & - & - & 0 \\
+      Medium & - & High & 0.25 \\
       Medium & Medium & Medium & 0.25 \\
       Medium & Low & Medium & 0.5 \\
-      Low & / & High & 0.5 \\
+      Low & - & High & 0.5 \\
       Low & Medium & Medium & 1 \\
       Low & Low & Medium & 1 \\ 
       
