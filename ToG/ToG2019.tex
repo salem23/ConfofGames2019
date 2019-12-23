@@ -107,23 +107,20 @@ Email: jmerelo@geneura.ugr.es
 
 \IEEEtitleabstractindextext{%
   \begin{abstract}
-    Evolution is a powerful problem-solving technique, and it has been
-extensively used for designing racing car controllers. It present a
+    Evolution is a powerful problem-solving technique, which has been
+extensively used for designing racing car controllers. It presents a
 series of challenges: it needs an evaluation function that is able to
 separate the best controllers from the rest, and it needs a series of
 operators that are able to explore many different possibilities in the
-controller search space. But racing scores are variable and also
-depend on adversaries and the actual track, and this uncertainty also
-means that it is much more important to maintain a high
-diversity. Building on the experience drawn from our previous work, in
-this paper we evaluate a kind of fitnessless selection based on
-competition and called Grand Prix Selection (GPS), which should be
-able to reduce uncertainty by using something more realistic than solo
-race scores to select individuals; however, uncertainty has the
-unintended side effect of increasing diversity, so we will evaluate
-the diversity-increasing BLX-$alpha$ operator, with varying value of
-$\alpha$, in combination with
-them, and see its effects on overall performance. In general, results
+controller (solutions) search space. But racing scores are variable and also
+depend on adversaries and the actual track features and conditions. 
+% This uncertainty also means that it is much more important to maintain a  high diversity. 
+% Antonio - this is also said below
+This adds to the problem an uncertainty that the designer of the algorithms must address or, at least, take into consideration.
+Thus, building on the experience drawn from our previous work, in this paper we evaluate two novel operators in an evolutionary algorithm designed to optimize a controller for TORCS simulator. First, a kind of fitnessless selection policy based on competition and called \textit{Grand Prix Selection} (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals. However, uncertainty has the unintended side effect of increasing diversity, so we will also evaluate the diversity-increasing BLX-$alpha$ operator, with varying value of $\alpha$, in combination with them, 
+% Antonio - what does "them" refer to? GPS?
+and see its % their?
+effects on overall performance. In general, results
 will show that these combined improvements establish a new level of
 performance of evolved controllers, being able to beat, both standard
 and previously evolved controllers, as well as a high-ranked
