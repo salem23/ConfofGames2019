@@ -260,25 +260,27 @@ in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in 
 case, the method used is called asynchronous advantage actor-critic
 reinforcement algorithm.
 
-However, it's not the only kind of soft computing method used. \cite{mirus2019short} uses neuromorphic architecture, namely,
-% spiking neural networks. Choses one training, one validation track
-% only. Tracks "that show similar characteristics in road width and
-% occurring curvatures." Uses CGTrack 2 for training
+However, it's not the only kind of soft computing method
+used. \cite{mirus2019short} uses neuromorphic architecture, namely,
+spiking neural networks, but using, the same way we do, a single track
+for training. The kind of data used for the design of racing cars is
+also different depending on the author; for instance \cite{8833873}
+uses deep learning, working with real images instead of sensor values,
+the way we do, \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
+deterministic policy gradient) that uses images to learn behaviors
+for specific racing scenarios. We think that, in general, successful racing will only
+need these sensor values to drive the car, since they give enough
+information to avoid collisions, drive as close as possible to the
+center of the track, and drive as fast as possible when needed.
 
-% \cite{8833873} uses CG Track 2 and "deep learning", working with
-% real images instead of sensors.
+Soft computing has been combined also with evolutionary algorithms in
+several occasions: \cite{10.1371/journal.pone.0213193} uses
+neuroevolution, for instance; instead of evolving, controllers trained
+in one track are briefly re-trained for use in other cars, in what is
+called ``transfer learning''. This is the technique used by
+\cite{verma2018programmatically}. 
 
-% \cite{10.1371/journal.pone.0213193} uses neuroevolution, and also
-% CG-TRACK1
 
-% \cite{Kole-ParamCarTunning12} mentions CG-Track 2 is "relatively
-% harder", with E-Track 3 the hardest,
-% \cite{verma2018programmatically} uses CG-Track 2 as a test track for
-% transfer learning.
-
-% \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
-% deterministic policy gradient) that uses images to learn behaviors
-% for specific racing scenarios.
 
 % \cite{vrajitoru2019trajectory,vrajitorugenetic} maps the trajectory using the first lap and then optimizes it using an evolutionary algorithm.
 
