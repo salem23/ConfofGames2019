@@ -250,7 +250,7 @@ work will be presented in Section \ref{sec:conclusions}.
 % the Grand Prix selection.
 % 3. State of the art in TORCS since our last paper (CoG 2019)
 
-The problem of designign controllers for racing cars has been
+The problem of designing controllers for racing cars has been
 approached using soft computing since the first papers were
 published; however, they differ in the way the specific controlled
 works. In many cases, they learn during the race; reinforcement
@@ -404,7 +404,7 @@ Then, the controller is defined using a set of fuzzy rules which combine the fuz
 % Antonio - I move this text and tables to the sub-controllers section, since these variables have been defined to be used in the fuzzy rules. Moreover, the variables are introduced for the first time in this section. 
 The controller output is not evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:output:steer}. This has not been
 varied along this line of research, and has been designed following
-usual race car driving rules. 
+usual human-like race car driving rules. 
 
 
 % Antonio - I don't understand the last sentence.
@@ -413,6 +413,7 @@ usual race car driving rules.
 % have been always the same, we just evolve the MF parameters.
 % The first paper mentioned fixed rules were designed taking into
 % account real rules.
+% Antonio - Ok, I guess the rules are those which a human follows. ;)
 %
 \begin{table*}[h!tb]
   \centering
@@ -515,8 +516,9 @@ We show in Figure \ref{fig:cromosome} how we represent every individual (chromos
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
-One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value to the best individual.
+One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value (in maximization problems) to the best individual.
 %Mohammed : in maximization problems, not in all cases
+% Antonio - right. ;)
 
 As Figure \ref{fig:ga} shows, the evaluation of every individual (controller indeed) is conducted using TORCS. Thus each controller is placed in the simulator, i.e. its gene values are injected to the parameters of the membership functions of the two fuzzy sub-controllers. Then, it competes in several races to evaluate its performance.
 Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation (that will be explained in Section \ref{subsec:novel_operators}).
@@ -572,13 +574,11 @@ In this respect, the authors argue that this operator will provide better indivi
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-% ************************
-% Antonio - I have written until here. I'll continue tomorrow.
-% ************************
 
-The second operator implemented in our GA is the adaptive \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
-The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
+The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. As stated before, one of the side effects of uncertainty is the higher diversification factor which it means. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
+
+It is based on the random selection of values from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
  \begin{figure}[!ht]	
  	\begin{center}
@@ -588,29 +588,25 @@ The Blend crossover operator starts by choosing randomly a number from the inter
  	\end{center}	
  \end{figure}
 
- % Paragraphs to rewrite - JJ
-Thus, this operator is based on the random generation of genes from the associated neighborhood of the genes in the parents. These generated descendants are different among them and also among them and their parents, leading to a higher exploration factor in the generation of the offspring.
-This operator is suitable for real coded genetic algorithms where it has proved to achieve a good balance between exploration and exploitation \cite{blx2008}.
+Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
-$\alpha$ parameter allows to control the exploration of the space of solutions, depending on its value. So, in order to ensure the balance between exploitation and exploration of the search space, $\alpha = 0.5$ could be selected.
+$\alpha$ parameter allows to control the search on the space of solutions, depending on its value, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
 
-In GAs, the search process needs a high exploration rate in the first generations (high diversity) in order to explore multiple parts of the search space. But in the last generations, high exploitation is preferred to ensure the convergence to the optimal solution.
+Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
-Given this, we have considered two different approaches in the experiments: one taking a constant value for $\alpha$, and another with a variable scheme, in which the value of $\alpha$ is decreased over the generations (getting sequentially more exploitation and less exploration). Thus, its value is obtained as:
+To this end, we have implemented an \textit{adaptive BLX-$\alpha$} approach, which considers a variable value for $\alpha$. Thus, the value of this parameter is decreased over the generations, following the expression:
 
  \begin{equation}
  	\label{eqalpha}
  	\alpha =1-\frac{g}{g_{max}}
  \end{equation}
 
-Where $g$ is the current generation and $g_{max}$ is the maximum number of generations. We think that this approach can achieve an effective balance between exploitation and exploration and therefore, better solutions (better controllers) may be obtained.
+Where $g$ is the current generation and $g_{max}$ is the maximum number of generations. 
 
-% Up to here... - JJ
-% All this is also from the other paper and does not really correspond
-% to what we are doing in this paper - JJ
-% Antonio - Yes, we have done the same here, but extending the
-% experiments with other configurations for the GPS. ;)
-% Needs to be rewritten anyway. - JJ
+This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
+
+We argue that this operator, in conjunction with GPS will aid the algorithm to find better controllers, so we will test several combinations and configurations of both techniques in the experiments conducted in next section. We will also study their impact from different perspectives, both considering their performance and also from the uncertainty influence point of view.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
