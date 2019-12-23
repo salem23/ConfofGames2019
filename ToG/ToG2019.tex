@@ -155,9 +155,9 @@ reasonable speed. Additionally, in a racing car the controller has to
 be designed so that the car wins in as many races as possible.
 
 There are so many variables in this problem, that eventually some of
-them are chosen using heuristic rules, while the rest are open to
+them are decided using heuristic rules, while the rest are open to
 optimization. For instance, deciding the type of controller is usually
-done before the desing process begin, and a single, parametrized one
+done before the design process begin, and a single, parametrized one
 is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers
 are often used; additional to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
 race, so that it can adapt itself to new, and not seen before,
@@ -174,7 +174,7 @@ In a simulated and realistic racing car environment like the one we use, however
     in this environment is quite hard. If training is done before the
     race, and the controllers are fixed via an optimization process,
     the uncertainty in the evaluation of every controller will make
-    the result of scores in unknow tracks with unknown competitors
+    the result of scores in unknown tracks with unknown competitors
     uncertain at best.
 
 The best way to reduce uncertainty is to make the evaluation process
@@ -203,7 +203,7 @@ individuals in the last generation, which we introduced in
 ``winner'', even if it was in the last generation, improved results,
 so this kind of competitive selection was extended by introducing real
 races from every few generations in 
-\cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$. The
+\cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$ operator. The
 results were the best obtained so far, so in this paper we are testing
 a kind of fitnessless selection, which we have called \textit{Grand Prix}, combined with others or by itself, as the only way for car controllers to be
 selected for the next generation.
@@ -474,7 +474,7 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Optimising Sub-controllers with a Genetic Algorithm}
+\section{Optimizing Sub-controllers with a Genetic Algorithm}
 \label{sec:ga}
 
 % Antonio - I think it is more clear if we describe the GA in a separate section, as it is the main contribution of the paper (well, the operators actually, but they would be even more hidden inside a subsection than in a section).
@@ -538,7 +538,7 @@ The evaluation of the individuals (controllers) is done driving a car in a 20 la
 
 In addition, we have considered the same track as in previous works
 \cite{salem_cig2018} for this evaluation, because it has a good mixture of 
-curves and straight parts, aiming to optimise the controllers for a more general behaviour, able to deal with different configurations in real circuits.
+curves and straight parts, aiming to optimize the controllers for a more general behaviour, able to deal with different configurations in real circuits.
 
 \textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
 
@@ -559,14 +559,14 @@ independent of the aforementioned fitness function (see Equation
 \ref{fit_avg}), designed to better deal with the uncertainty present
 in the election of an actual good individual. 
 
-The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based in Formula 1 Grand Prix ranking, so the obtained punctuations per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
+The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based in Formula 1 Grand Prix ranking, so the obtained scores per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
 
 The objective of this operator is to really select the best individuals of the population. However, given the existing uncertainty \cite{merelo2016statistical} due to the competition against other non-deterministic controllers, it is not possible to ensure they are doubtlessly the best.
 
 In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
 
-However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analysed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
+However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
 % ************************
 % Antonio - I have written until here. I'll continue tomorrow.
@@ -762,7 +762,7 @@ able to reduce it, making evolved controllers as centrally distributed
 as possible; other kind of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done an study of the distribution  of the genetic individuals of
-three evolution processes $GFC$, $GFC-GPSE$ and $GFC-VAGPS5$. 
+three evolution processes $GFC$, $GFC-GPSE$ and $GFC-GPSVAE5$. 
 
 
 Skewness is related to how symmetric the distribution of fitness
@@ -813,7 +813,7 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 		\includegraphics[width=9cm]{fig/GFCVARSE__.jpg}
 		\caption{Skewness ($y$) and kurtosis ($x$) for a
                   sample of individuals evolved with 
-                  {\sf GFC-VAGPSE}, which is fitnessless and also uses
+                  {\sf GFC-GPSVAE}, which is fitnessless and also uses
                   adaptive BLX$\alpha$ crossover.}
 		\label{fig:gfcvarsesk}	
 	\end{center}	
@@ -830,10 +830,10 @@ generation 30 to 50, so as a matter of fact individuals with a high
 and skewed variability are selected as {\em winners} when in fact they
 are not.
 
-The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VAGPSE}, are
+The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VA-GPSE}, are
 notably similar, with selection eventually concentrating individuals
 close to a Gaussian distribution, although slightly skewed to the
-right, and with a positive fat tail. However, {\sf GFC-VAGPSE} is able
+right, and with a positive fat tail. However, {\sf GFC-GPSVAE} is able
 to find solutions with lower skewness, always between -0.5 and 1,
 although kurtosis is slightly higher for the last generation. Since
 this method exploits more found solutions, it seems that it is able to
@@ -901,7 +901,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-VAGPS$ controllers in a mini-championship with 10 controllers and 10
+		\caption{ Results of $GFC-GPSVAE$ controllers in a mini-championship with 10 controllers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. {\bf Boldface}
@@ -930,9 +930,9 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 	}
 \end{table*}
 %
-As it could be noticed in the Table \ref{tab:RSresults}, the controller $GFC-VGPSAE$ has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
+As it could be noticed in the Table \ref{tab:RSresults}, the controller $GFC-GPSVAE$ has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
-From Table \ref{tab:RSresults},it is clear that the controller $GFC-VAGPSE$, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
+From Table \ref{tab:RSresults},it is clear that the controller $GFC-GPSVAE$, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
 
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying the GPS selection alone have won the competition.
  
@@ -945,13 +945,13 @@ best is the one who wins races. The new selection policy allows you to
 select the winners on the field and not the possible winners. 
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
 The best controllers obtained from the two main optimization
-processes: $GFC-VAGPSE$ and $GFC-GPSE$ are evaluated in formula like
+processes: $GFC-GPSVAE$ and $GFC-GPSE$ are evaluated in formula like
 championship against the references five TORCS bots and the $GFC-VA$\cite{DBLP:conf/cig/SalemMG19}
 and $GFC$ controllers  \cite{salem_cig2018}. We have considered also an opponent from the
 state of the art, which participated in several Simulated Car Racing
 Competitions in past editions.  % Rewrite this paragraph too, from "We
                                 % have considered" - JJ
-It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptised it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
+It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptized it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
 %
 \begin{table*}[ht]
 	\centering
@@ -973,7 +973,7 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 				\hline
 				\hline
 $GFC-GPSE$&	85&	82&	{\em 167}\\
-$GFC-VAGPSE$&111&101&            {\bf 212}\\
+$GFC-GPSVAE$&111&101&            {\bf 212}\\
 $GFC$  \cite{salem_cig2018}&		48&	55&	103\\
 $PSRI$\cite{PerezEvolvingFuzzy09}&		53&	48&	101\\
 $GFC-VA$ \cite{DBLP:conf/cig/SalemMG19}&	78&	64&	142\\
@@ -992,17 +992,17 @@ $tita1$&	26&	18&	44\\
 
 
 
-The above competition clearly demonstrates the superiority of the $GFC-VAGPSE$ controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the $GFC-GPSE$ controller far behind it. The reference conductors, namely $GFC-VA$ and $GFC$  are classified 3rd and 5th.
+The above competition clearly demonstrates the superiority of the $GFC-GPSVAE$ controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the $GFC-GPSE$ controller far behind it. The reference conductors, namely $GFC-VA$ and $GFC$  are classified 3rd and 5th.
 The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of $GFC-GPSE$.
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
-The structure of the winner controller $GFC-VAGPSE$ is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
+The structure of the winner controller $GFC-GPSVAE$ is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
 
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=9cm]{fig/FRONT.jpg}
 		\caption{Front input membership for 
-			{\sf GFC-VAGPSE}.}
+			{\sf GFC-GPSVAE}.}
 		\label{fig:frontmfs}	
 	\end{center}	
 \end{figure}
@@ -1010,7 +1010,7 @@ The structure of the winner controller $GFC-VAGPSE$ is depicted in Figures \ref{
 	\begin{center}
 		\includegraphics[width=9cm]{fig/MAX5.jpg}
 		\caption{MAX5 input membership for 
-			{\sf GFC-VAGPSE}.}
+			{\sf GFC-GPSVAE}.}
 		\label{fig:max5mfs}	
 	\end{center}	
 \end{figure}
@@ -1018,7 +1018,7 @@ The structure of the winner controller $GFC-VAGPSE$ is depicted in Figures \ref{
 	\begin{center}
 		\includegraphics[width=9cm]{fig/MAX10.jpg}
 		\caption{MAX10 input membership for 
-			{\sf GFC-VAGPSE}.}
+			{\sf GFC-GPSVAE}.}
 		\label{fig:max10mfs}	
 	\end{center}	
 \end{figure}
@@ -1057,14 +1057,14 @@ optimization for 50 generations for 10 runs.
 			\hline \textbf{$GFC-GPSE$}&	2488&22-40\\	
 			\hline \textbf{$GFC-VAGPSL$} \cite{DBLP:conf/cig/SalemMG19}&321	&9-15\\	
 			\hline\textbf{$GFC-VAGPS5$} \cite{DBLP:conf/cig/SalemMG19}&	691&8-17\\	
-			\hline\textbf{$GFC-VAGPSE$}&2489	&11-18\\					
+			\hline\textbf{$GFC-GPSVAE$}&2489	&11-18\\					
 			\hline 
 		\end{tabular}
 		
 	}
 \end{table} 
 
-The two $GFC-VAGPSE$ and $GFC-GPSE$ controllers were the best where
+The two $GFC-GPSVAE$ and $GFC-GPSE$ controllers were the best where
 they are ranked 1st and 2nd but they are very expensive in runtime
 where they have performed around 2490 laps in Alpine 2, which is a
 huge learning time. % Don't all individuals use the same amount of
