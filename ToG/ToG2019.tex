@@ -250,14 +250,17 @@ work will be presented in Section \ref{sec:conclusions}.
 % the Grand Prix selection.
 % 3. State of the art in TORCS since our last paper (CoG 2019)
 
-% \cite{loiacono2010learning} cites for the first time reinforcement
-% learning. Still one of the most popular methods, like
-% \cite{giani2019desing,remondaformula,waghdistributed}; in the last
-% case, the method is called asynchronous advantage actor-critic
-% reinforcement algorithm.
+The problem of designign controllers for racing cars has been
+approached using soft computing since the first papers were
+published; however, they differ in the way the specific controlled
+works. In many cases, they learn during the race; reinforcement
+learning has that specific capability, and it was used by Loiacono et
+al. \cite{loiacono2010learning} in the first paper that uses it. It is still one of the most popular methods, as is shown
+in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in the last
+case, the method used is called asynchronous advantage actor-critic
+reinforcement algorithm.
 
-% \cite{vrajitoru2019trajectory,vrajitorugenetic} maps the trajectory using the first lap and then optimizes it using an evolutionary algorithm.
-% \cite{mirus2019short} uses neuromorphic architecture, namely,
+However, it's not the only kind of soft computing method used. \cite{mirus2019short} uses neuromorphic architecture, namely,
 % spiking neural networks. Choses one training, one validation track
 % only. Tracks "that show similar characteristics in road width and
 % occurring curvatures." Uses CGTrack 2 for training
@@ -276,6 +279,9 @@ work will be presented in Section \ref{sec:conclusions}.
 % \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
 % deterministic policy gradient) that uses images to learn behaviors
 % for specific racing scenarios.
+
+% \cite{vrajitoru2019trajectory,vrajitorugenetic} maps the trajectory using the first lap and then optimizes it using an evolutionary algorithm.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -366,8 +372,6 @@ Although our results are not TORCS specific, we have been
 working on this since it has got all the telemetry and simulation
 tools that we need, and besides it has been repeatedly used in
 competitions, so it is a good testbed to evaluate the performance of new controllers, in case the competitions came back.
-% Antonio - The competitions are over since 2014 or 2015.
-% OK, I've added a phrase at the end.
 
 TORCS does not impose a specific way for programming the controllers;
 it can be done via any system that maps inputs to outputs. We decided
@@ -527,14 +531,18 @@ The first method considers the fitness function which was defined in a previous 
 
 Where $AVG(Speed)$ is the average speed of the car along the complete race. This factor represents the overall performance of the controller combining difficult (e.g. curves) and easy (e.g. straight) parts of the tracks. $Damage$ value is taken into account in order to preserve the car integrity, which is required to finish the race.
 
-Following the usual recommendations in the literature \cite{Harik-ParameterLess99}, we have defined a parameterless function, where there are no weights in the terms.
-At the same time, this fitness expression is closer to a `human-like' approach, since it considers the same prioritary factors that a human driver would do.
+Following the usual recommendations in the literature
+\cite{Harik-ParameterLess99}, we have defined a parameterless
+selection method, where there are no weights in the terms.
+At the same time, this way of evaluating different cars is closer to a `human-like'
+approach, since it considers the same prioritary factors that a human
+driver would do. 
 
-The evaluation of the individuals (controllers) is done driving a car in a 20 laps race on a circuit without opponents inside TORCS. The reason to consider solo-races is to avoid in part the presence of \textit{noise/uncertainty} due to the participation of other controllers \cite{merelo2016statistical} in the races.
-
-In addition, we have considered the same track as in previous works
-\cite{salem_cig2018} for this evaluation, because it has a good mixture of 
-curves and straight parts, aiming to optimize the controllers for a more general behaviour, able to deal with different configurations in real circuits.
+The evaluation of the individuals (controllers) is done driving a car
+in a 20 laps race on a circuit without opponents inside TORCS. The
+reason to consider solo-races is to avoid in part the presence of
+\textit{noise/uncertainty} due to the participation of other
+controllers \cite{merelo2016statistical} in the races. 
 
 \textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
 
@@ -636,6 +644,18 @@ at low speeds'' \cite{vrajitoru2018global}, for instance in
 has got a good balance between hardness and speed. Since we also used
 it in our previous papers, it allowed us to compare racing bots that
 had been ``trained'' in the same conditions.
+
+Alpine 2 track is probably one of the most popular tracks used for
+training; CGTrack 2 has similar features, and it's used by
+\cite{mirus2019short,8833873,verma2018programmatically},
+in this last case for transfer learning. \cite{Kole-ParamCarTunning12}
+mentions CG-Track 2 is "relatively harder", with E-Track 3 the
+hardest. On the other hand, \cite{10.1371/journal.pone.0213193} uses
+CG Track 1. There are several differences between CGTrack 2 and Alpine
+1, the one we use, but the main one is that turns are relatively
+easier and straight segments are longer, favoring fast cars over
+balanced ones; this is why we have chosen Alpine 2 for training, since
+it offers the best generalization for cars trained using it.
 
 \begin{figure}[!ht]	
 	\begin{center}
