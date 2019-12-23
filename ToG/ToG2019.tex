@@ -333,8 +333,8 @@ to get rid of a fitness score resulting from evaluation of an
 individual, substituting it by a score obtained by the controller in
 more realistic competitive conditions.
 
-The concept, however, was goes way back at leat to
-\cite{Angeline:1993:CEE:645513.657590}, which calles it a "competitive
+The concept, however, was goes way back at least to
+\cite{Angeline:1993:CEE:645513.657590}, which calls it a "competitive
 fitness environment". Fitnessless evolution was further developed in
 \cite{rosin1995methods}, but it's been also used in genetic
 programming by Tettamanzi in \cite{tettamanzi1996genetic}.
@@ -342,7 +342,7 @@ programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 However, the competitions played in those works were not, strictly,
 games. The first time fitness-less evolution was used in  games was by
 \cite{luke1998genetic}; however, it was later used extensively, like
-\cite{Jaśkowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriqving
+\cite{Jaśkowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriving
 which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
@@ -1006,32 +1006,32 @@ The above competition clearly demonstrates the superiority of the $GFC-GPSVAE$ c
 The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of $GFC-GPSE$.
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
-The structure of the winner controller $GFC-GPSVAE$ is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
-
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=9cm]{fig/FRONT.jpg}
-		\caption{Front input membership for 
-			{\sf GFC-GPSVAE}.}
-		\label{fig:frontmfs}	
-	\end{center}	
-\end{figure}
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=9cm]{fig/MAX5.jpg}
-		\caption{MAX5 input membership for 
-			{\sf GFC-GPSVAE}.}
-		\label{fig:max5mfs}	
-	\end{center}	
-\end{figure}
-\begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=9cm]{fig/MAX10.jpg}
-		\caption{MAX10 input membership for 
-			{\sf GFC-GPSVAE}.}
-		\label{fig:max10mfs}	
-	\end{center}	
-\end{figure}
+%The structure of the winner controller $GFC-GPSVAE$ is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
+%
+%\begin{figure}[!ht]	
+%	\begin{center}
+%		\includegraphics[width=9cm]{fig/FRONT.jpg}
+%		\caption{Front input membership for 
+%			{\sf GFC-GPSVAE}.}
+%		\label{fig:frontmfs}	
+%	\end{center}	
+%\end{figure}
+%\begin{figure}[!ht]	
+%	\begin{center}
+%		\includegraphics[width=9cm]{fig/MAX5.jpg}
+%		\caption{MAX5 input membership for 
+%			{\sf GFC-GPSVAE}.}
+%		\label{fig:max5mfs}	
+%	\end{center}	
+%\end{figure}
+%\begin{figure}[!ht]	
+%	\begin{center}
+%		\includegraphics[width=9cm]{fig/MAX10.jpg}
+%		\caption{MAX10 input membership for 
+%			{\sf GFC-GPSVAE}.}
+%		\label{fig:max10mfs}	
+%	\end{center}	
+%\end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To evaluate the cost of the proposed controllers, the table \ref{tab:time} shows the average number of laps % Isn't this
@@ -1044,7 +1044,8 @@ optimization for 50 generations for 10 runs.
 \begin{table}[!ht]
 	\centering
 	{\scriptsize
-          \caption{Average number of laps per generation %  Isn't this
+          \caption{Average runtime (s) in 10 runs
+          	 %  Isn't this
                                 %  average running time? - JJ
             and
                   generation where the best individual was spawned.}
@@ -1060,14 +1061,22 @@ optimization for 50 generations for 10 runs.
                   % But still all cars run the same amount of laps in
                   % every race. It probably makes sense to use time
                   % here - JJ
-                  \hline \textbf{\textbf{$GFC$}} \cite{salem_cig2018}&296 &34-39\\
-			\hline \textbf{$GFC-VA$} \cite{DBLP:conf/cig/SalemMG19}&298	&10-18\\	
-			\hline \textbf{$GFC-GPSL$} \cite{DBLP:conf/cig/SalemMG19}& 322&23-38\\	
-			\hline \textbf{$GFC-GPS5$} \cite{DBLP:conf/cig/SalemMG19}&689	&24-38\\	
-			\hline \textbf{$GFC-GPSE$}&	2488&22-40\\	
-			\hline \textbf{$GFC-VAGPSL$} \cite{DBLP:conf/cig/SalemMG19}&321	&9-15\\	
-			\hline\textbf{$GFC-VAGPS5$} \cite{DBLP:conf/cig/SalemMG19}&	691&8-17\\	
-			\hline\textbf{$GFC-GPSVAE$}&2489	&11-18\\					
+                  \hline \textbf{\textbf{$GFC$}} \cite{salem_cig2018}&294000
+                   &34-39\\
+			\hline \textbf{$GFC-VA$} \cite{DBLP:conf/cig/SalemMG19}&279000
+			 	&10-18\\	
+			\hline \textbf{$GFC-GPSL$} \cite{DBLP:conf/cig/SalemMG19}& 282945
+			 &23-38\\	
+			\hline \textbf{$GFC-GPS5$} \cite{DBLP:conf/cig/SalemMG19}&331320
+				&24-38\\	
+			\hline \textbf{$GFC-GPSE$}&	276600
+			 &22-40\\	
+			\hline \textbf{$GFC-VAGPSL$} \cite{DBLP:conf/cig/SalemMG19}& 270923
+				&9-15\\	
+			\hline\textbf{$GFC-VAGPS5$} \cite{DBLP:conf/cig/SalemMG19}&	326520
+			 &8-17\\	
+			\hline\textbf{$GFC-GPSVAE$}& 273000
+				&11-18\\					
 			\hline 
 		\end{tabular}
 		
@@ -1075,16 +1084,20 @@ optimization for 50 generations for 10 runs.
 \end{table} 
 
 The two $GFC-GPSVAE$ and $GFC-GPSE$ controllers were the best where
-they are ranked 1st and 2nd but they are very expensive in runtime
-where they have performed around 2490 laps in Alpine 2, which is a
+they are ranked $1^st$ and $2^nd$ but they are very expensive in runtime
+where they have performed around 273000s and 276600s respectively, which is a
 huge learning time. % Don't all individuals use the same amount of
                     % laps to race? - JJ
+                    
+                 % Mohammed : in fitnessless  case , time of a race is the time of the worst individual 
+                 % Time of BLX based aproaches, ind are close to each other, so the difference between the best and the wort is less, this factor, decreases the whole runtime
+                 
 The proposed selection policy is effective but in return it requires a
-lot of time. 
+lot of time, this drawback was reduced using parallel computing.
 
 Another point that we can highlight is that the controllers with
 $BLX-\alpha$ have reach the optimal solution in few generations
-(between the 10th and the 20th) while the other methods required more
+(between the $10^th$ and the $20^th$) while the other methods required more
 generations. 
 
 
