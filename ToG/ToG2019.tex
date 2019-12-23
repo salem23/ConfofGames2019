@@ -57,7 +57,8 @@
 % Do not put math or special symbols in the title.
 	%\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
 %
-\title{Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX-$\alpha$ Operator and Grand Prix Selection}
+\title{Overtaking Uncertainty with Evolutionary TORCS controllers:
+  Combining adaptive BLX-$\alpha$ Operator and Grand Prix Selection}
 
 \author{Mohammed~Salem, Antonio~M.~Mora, Juan~J.~Merelo% <-this % stops a space
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Salem was with the Department of Computer Sciences, University of Mascara, Algeria.\protect\\
@@ -219,22 +220,23 @@ reduce diversity in the genetic pool
 \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. In our previous paper,
   \cite{DBLP:conf/cig/SalemMG19}, we introduced the BLX-$\alpha$
   operator which works, at the same time, as exploratory and exploits
-  the existing space of solutions. For this kind of Grand Prix
-  selection, however, it will probably be much more convenient for the
-  last phase of the races to just exploit existing solutions by
-  combining them, so that we introduce an adaptive version of
-  BLX-$\alpha$ that behaves in that way.
+  the existing space of solutions, and tested it with fixed or varying
+  $\alpha$. This last configuration yielded better results, so in this
+  paper we will evaluate it in combination with this kind of Grand Prix
+  selection, comparing it with a classical crossover, as well as
+  different degrees of application of the same technique, from using
+  no competition for selection, just the fitness scores, to
+  introducing phases of GPS selection every five generations or only
+  at the end.
 
-These two new techniques, Grand Prix selection (GPS) and a decreasing
-$\alpha$ BLX-$\alpha$ operator will be cross compared in different
-combinations, with the experiments proving that the combination of
-both yields the best controllers we have been able to evolve so far. 
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
 simulator and the previously defined fuzzy controllers in Section
-\ref{sec:methods}. After this, the evolutionary algorithm implemented is explained in Section \ref{sec:ga}, including the new selection method and
-the new version of the BLX-$\alpha$ crossover operator. After it, the
+\ref{sec:methods}. After this, the evolutionary algorithm implemented
+is explained in Section \ref{sec:ga}, including the new selection
+method  and an extensive explanation of the BLX-$\alpha$ crossover
+operator. After it, the 
 experiments conducted and the obtained results are described in
 Section \ref{sec:results}. Finally, conclusions and future lines of
 work will be presented in Section \ref{sec:conclusions}. 
@@ -575,7 +577,7 @@ However, the application of this method consumes much higher computation time, s
 % Antonio - I have written until here. I'll continue tomorrow.
 % ************************
 
-The second operator implemented in our GA is the \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
+The second operator implemented in our GA is the adaptive \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}, which allows to control the balance between exploration and exploitation along the generations.
 
 The Blend crossover operator starts by choosing randomly a number from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
 
