@@ -443,15 +443,9 @@ usual race car driving rules.
   {\scriptsize
     \caption{Rules for steering controller. Angles will be reversed
       if the M10 is equal to Track 7. These rules were established for \cite{salem_evo18}. \label{tab:output:steer}}
-% We need to specify what turning values mean.
-% Antonio - I don't exactly remember, but I guess they are 0 -> no turn, 1 -> 90 degrees, however I think there is also a negative sign (to turn on the left).
-% Mohammed, please clarify this and maybe write the angles instead of these values (as we did in the speed).
-
-% Mohammed: yes there are negative values ( these values are th sinus of the steering angle)
-%%when  M10=Track[7](nagative), we will take negative values of the steer (sterr=-steer)
     \begin{tabular}{|c|c|c||c|}
 \hline
-      Value Front & Value MAX5 & Value MAX10 & Steer Angle \\
+      Value Front & Value MAX5 & Value MAX10 & $sin$(Steer Angle) \\
 \hline
       High & - & - & 0 \\
       Medium & - & High & 0.25 \\
