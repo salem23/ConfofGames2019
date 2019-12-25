@@ -117,9 +117,12 @@ depend on adversaries and the actual track features and conditions.
 % This uncertainty also means that it is much more important to maintain a  high diversity. 
 % Antonio - this is also said below
 This adds to the problem an uncertainty that the designer of the algorithms must address or, at least, take into consideration.
-Thus, building on the experience drawn from our previous work, in this paper we evaluate two novel operators in an evolutionary algorithm designed to optimize a controller for TORCS simulator. First, a kind of fitnessless selection policy based on competition and called \textit{Grand Prix Selection} (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals. However, uncertainty has the unintended side effect of increasing diversity, so we will also evaluate the diversity-increasing BLX-$alpha$ operator, with varying value of $\alpha$, in combination with them, 
+Thus, building on the experience drawn from our previous work, in this paper we evaluate two novel operators in an evolutionary algorithm designed to optimize a controller for TORCS simulator. First, a kind of fitnessless selection policy based on competition and called \textit{Grand Prix Selection} (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals. However, uncertainty has the unintended side effect of increasing diversity,
+%%Mohammed: U mean uncertainty increases the diversity?? if so, how it does?
+ so we will also evaluate the diversity-increasing BLX-$alpha$ operator, with varying value of $\alpha$, in combination with them, 
 % Antonio - what does "them" refer to? GPS?
 and see its % their?
+%Mohammed :  it!!!
 effects on overall performance. In general, results
 will show that these combined improvements establish a new level of
 performance of evolved controllers, being able to beat, both standard
