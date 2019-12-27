@@ -261,27 +261,23 @@ in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in 
 case, the method used is called asynchronous advantage actor-critic
 reinforcement algorithm.
 
-However, it's not the only kind of soft computing method
-used. \cite{mirus2019short} uses neuromorphic architecture, namely,
-spiking neural networks, but using, the same way we do, a single track
-for training. The kind of data used for the design of racing cars is
-also different depending on the author. We think that, in general, successful racing will only
-need these sensor values to drive the car, since they give enough
-information to avoid collisions, drive as close as possible to the
+However, it is not the only kind of soft computing method
+used. \cite{mirus2019short} uses a neuromorphic architecture, namely,
+spiking neural networks, but using, the same way we do in our works, a single track for training. The kind of data used for the design of racing cars is
+also different depending on the author. We think that, in general, successful racing will only need these sensor values to drive the car, since they give enough information to avoid collisions, drive as close as possible to the
 center of the track, and drive as fast as possible when needed.
 
-Soft computing has been combined also with evolutionary algorithms in
-several occasions: \cite{10.1371/journal.pone.0213193} uses
+Soft computing has been combined also with evolutionary algorithms 
+% Antonio - EAs are also a kind of Soft Computing method, aren't they?
+in several occasions: \cite{10.1371/journal.pone.0213193} uses
 neuroevolution, for instance; instead of evolving, controllers trained
 in one track are briefly re-trained for use in other cars, in what is
-called ``transfer learning''. This is the technique used by
+called ``transfer learning''. This is the technique applied by the authors in 
 \cite{verma2018programmatically}. 
 
 
 Evolution can also be used directly to map the trajectory after ``test
-laps''. This is what \cite{vrajitoru2019trajectory,vrajitorugenetic}
-does, using then an evolutionary algorithm to optimize driving within
-that specific track. 
+laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory,vrajitorugenetic}, using then an evolutionary algorithm to optimize driving within that specific track. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -293,32 +289,32 @@ continues to be one of the main platforms
 for testing different autonomous driving or bot creation strategies,
 which are, by and themselves, also a hot topic in the gaming arena as
 well as by itself, at least since DARPA created their autonomous car
-challenge \cite{badue2019selfdriving};
-only in the last year (2019) there are around 200 articles that
+challenge \cite{badue2019selfdriving}.
+
+
+Only in the last year (2019) there are around 200 articles that
 mention it; during  \cite{schiavullo2019torcs} of its
 applications for the last 20 years; they are but one of the possible
 platforms that are used for this kind of problem; a good review
 (focused on reinforcement learning) was made by
-\cite{abuzekry2comparative}. Fuzzy controllers are mentioned in around
-15\% of them, while around 30\% mention evolutionary algorithms; very
-few, however, around 7\%, use both, and most of them are not actually
-using TORCS.
+\cite{abuzekry2comparative}. 
+% Antonio - I don't understand this paragraph above, so cannot rewrite it properly to clarify what it means.
+
+Fuzzy controllers are mentioned in around 15\% of them, while around 30\% mention evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS.
+% Antonio - But they are mentioned on one of the papers which mention TORCS?? So, they mention TORCS but do not use it?
 
 There are several possible approaches to autonomous driving and its
 solution using TORCS: you can use vision to have more complete,
-although more complicated, view of where the car is and where it's
+although more complicated, view of where the car is and where it is
 going, or just use sensors, which only check the most immediate
-scenario, but on the other hand are more precise and easy to check; in
-our case, we have opted for the latter, although other papers like the,
-ones authored by Zhu et al. \cite{zhu2018driving,zhu2019vision,neurone} rather
-use vision, using TORCS as a testbed for a different kind of
-algorithms, on the other hand \cite{8833873}
-uses deep learning, working with real images instead of sensor values,
-the way we do, \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep
-deterministic policy gradient) that uses images to learn behaviors
-for specific racing scenarios.
+scenario, but on the other hand are more precise and easy to check. 
 
-TORCS, being a realistic simulator, is able to introduce noise into
+In our case, we have opted for the latter, although other papers like the
+ones authored by Zhu et al. \cite{zhu2018driving,zhu2019vision,neurone} rather
+consider vision, using TORCS as a testbed for a different kind of
+algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient) that uses images to learn behaviors for specific racing scenarios.
+
+TORCS, being a realistic simulator, is able to introduce `noise' into
 the track conditions, so that races will never be the same. In
 general, this is the case for most games: there are sources of
 uncertainty either in the game environment itself, or in the behavior
@@ -335,20 +331,19 @@ individual, substituting it by a score obtained by the controller in
 more realistic competitive conditions.
 
 The concept, however, was goes way back at least to
-\cite{Angeline:1993:CEE:645513.657590}, which calls it a "competitive
-fitness environment". Fitnessless evolution was further developed in
+\cite{Angeline:1993:CEE:645513.657590}, which calls it a ``competitive
+fitness environment''. Fitnessless evolution was further developed in
 \cite{rosin1995methods}, but it has been also used in genetic
 programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 
 However, the competitions played in those works were not, strictly,
 games. The first time fitnessless evolution was used in  games was by
 \cite{luke1998genetic}; however, it was later used extensively, like
-\cite{Jaskowski:2008:FC:1389095.1389161,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriving
-which individuals are the best from these races, taking into account
+\cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using,DBLP:conf/evoW/Fernandez-AresG16}. Deriving which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
 introduced for selecting winning bots in a fighting game
-\cite{7792145}. The first one mentions "imperfect information",
+\cite{7792145}. The first one mentions ``imperfect information'',
 previsely, as one of the factors to use this fitnessless strategy.
 
 Since we are working with racing games, we will introduce a score that
@@ -361,7 +356,7 @@ presented after the rest of the methods and tools used in this paper.
 \section{Methods and tools}
 \label{sec:methods}
 
-This section presents the environment where the study has been conducted, i.e. the simulator named TORCS, as well as the fuzzy sub-controllers designed in previous works and which will be the `target' of the optimization process conducted in this paper. 
+This section presents the environment where the study has been conducted, i.e. the simulator TORCS, as well as the fuzzy sub-controllers designed in previous works and which will be the `target' of the optimization process conducted in this paper. 
 
 %-------------------------------  TORCS ----------------------------
 %
