@@ -119,6 +119,7 @@ depend on adversaries and the actual track features and conditions.
 This adds to the problem an uncertainty that the designer of the algorithms must address or, at least, take into consideration.
 Thus, building on the experience drawn from our previous work, in this paper we evaluate two novel operators in an evolutionary algorithm designed to optimize a controller for TORCS simulator. First, a kind of fitnessless selection policy based on competition and called \textit{Grand Prix Selection} (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals. However, uncertainty has the unintended side effect of increasing diversity,
 %%Mohammed: U mean uncertainty increases the diversity?? if so, how it does?
+% Antonio - It was written by JJ, I guess he meant that dealing with uncertainty must require to have a more diverse population... "of increasing"-> "of requiring to increase"??
  so we will also evaluate the diversity-increasing BLX-$alpha$ operator, with varying value of $\alpha$, in combination with them, 
 % Antonio - what does "them" refer to? GPS?
 and see its % their?
@@ -149,22 +150,22 @@ Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
 Driving a car is a problem in which you have to map inputs that
-include data about the environment we're driving in as well as car
+include data about the environment we are driving in as well as car
 data, to the output: throttling and steering. Car controllers have to
 be designed so that cars do not crash, and are able to run at a
-reasonable speed. Additionally, in a racing car the controller has to
-be designed so that the car wins in as many races as possible.
+reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins in as many races as possible.
 
 There are so many variables in this problem, that eventually some of
 them are decided using heuristic rules, while the rest are open to
 optimization. For instance, deciding the type of controller is usually
 done before the design process begin, and a single, parametrized one
-is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers
-are often used; additional to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
+is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09} are often used. 
+Additionally to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
 race, so that it can adapt itself to new, and not seen before,
 scenarios and competitors, or it can be fixed by training the
-controllers in advance. We have been using genetically-optimized fuzzy
-controllers in this line of work, with increasing success.
+controllers in advance. 
+
+We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success.
 However, in a simulated and realistic racing car environment like the one we use, racing car scores are a
     statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
@@ -180,7 +181,7 @@ However, in a simulated and realistic racing car environment like the one we use
 The best way to reduce uncertainty is to make the evaluation process
 as close as possible as the environment in which the controller will
 eventually compete, in a race with other competitors. By totally
-eliminating fitness, in a fitness-less environment, we also eliminate
+eliminating fitness, in a fitnessless environment, we also eliminate
 a source of uncertainty. We also reduce this even more by repeating
 races several times. A single (and uncertain) fitness is thus
 substituted by a podium in which car controllers that win the most
@@ -203,31 +204,28 @@ individuals in the last generation, which we introduced in
 ``winner'', even if it was in the last generation, improved results,
 so this kind of competitive selection was extended by introducing real
 races from every few generations in 
-\cite{DBLP:conf/cig/SalemMG19} we introduced the BLX-$alpha$ operator,
-and checked two different configurations using a fixed and a
-decreasing $\alpha$. The
-results with a decreasing $\alpha$ were the best obtained so far, so
-in this paper we are testing 
-a kind of fitnessless selection, which we have called \textit{Grand Prix}, combined with others or by itself, as the only way for car controllers to be
-selected for the next generation.
+\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$ operator, and checked two different configurations using a fixed and a decreasing $\alpha$. This operator works, at the same time, exploring and exploiting the existing space of solutions, and let the designer to establish the balance between both factors in the search. The results with decreasing $\alpha$ were the best obtained so far.
 
-In this paper, then, we will check how this Grand Prix selection works
-compared with mixed fitness-less and fitness races, or simply using a
-selection for those controllers that have the highest fitness in the
-last generation. This reduction of uncertainty has been proved also to
-reduce diversity in the genetic pool
-\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. In our previous paper,
-  \cite{DBLP:conf/cig/SalemMG19}, we introduced the BLX-$\alpha$
-  operator which works, at the same time, as exploratory and exploits
-  the existing space of solutions, and tested it with fixed or varying
-  $\alpha$. This last configuration yielded better results, so in this
-  paper we will evaluate it in combination with this kind of Grand Prix
-  selection, comparing it with a classical crossover, as well as
-  different degrees of application of the same technique, from using
-  no competition for selection, just the fitness scores, to
-  introducing phases of GPS selection every five generations or only
-  at the end.
+Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS), combined with other selection policies or by itself, as the only way for car controllers to be selected for the next generation.
 
+This work also presents an exhaustive study, where we have checked how this Grand Prix selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  This reduction of uncertainty has been proved also to reduce diversity in the genetic pool
+\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. 
+In addition, we have compared the influence of the BLX-$\alpha$ on the performance of the evolved controllers with those yielded using standard crossover operators.
+
+% Antonio - part of this was said before, so I have completed the paragraph above with this text also and removed this.
+%In our previous paper,
+%  \cite{DBLP:conf/cig/SalemMG19}, we introduced the BLX-$\alpha$
+%  operator which works, at the same time, exploring and exploiting
+%  the existing space of solutions, and tested it with fixed or varying
+%  $\alpha$. This last configuration yielded better results, so in this
+%  paper we will evaluate it in combination with this kind of Grand Prix
+%  selection, comparing it with a classical crossover, as well as
+%  different degrees of application of the same technique, from using
+%  no competition for selection, just the fitness scores, to
+%  introducing phases of GPS selection every five generations or only
+%  at the end.
+
+% Antonio - TODO: Add here an outline of the obtained results.
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
@@ -339,13 +337,13 @@ more realistic competitive conditions.
 The concept, however, was goes way back at least to
 \cite{Angeline:1993:CEE:645513.657590}, which calls it a "competitive
 fitness environment". Fitnessless evolution was further developed in
-\cite{rosin1995methods}, but it's been also used in genetic
+\cite{rosin1995methods}, but it has been also used in genetic
 programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 
 However, the competitions played in those works were not, strictly,
-games. The first time fitness-less evolution was used in  games was by
+games. The first time fitnessless evolution was used in  games was by
 \cite{luke1998genetic}; however, it was later used extensively, like
-\cite{Jaśkowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriving
+\cite{Jaskowski:2008:FC:1389095.1389161,10.1007/978-3-540-78671-9_2,alhejali2011using}. Deriving
 which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
