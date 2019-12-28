@@ -572,7 +572,7 @@ It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
 are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and
 $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
-
+%
  % \begin{figure}[!ht]	
  % 	\begin{center}
  % 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
@@ -645,13 +645,13 @@ it offers the best generalization for cars trained using it.
 
 \begin{figure}[!ht]	
 	\begin{center}
-		\includegraphics[width=5cm]{fig/alpine2.jpg}
+		\includegraphics[width=4.5cm]{fig/alpine2.jpg}
 		\caption{Alpine 2 Track. Length: 3773.57m, Width: 10m.}
 		\label{fig:alpine2_track}	
 	\end{center}	
 \end{figure}
 
-As in our others studies, we have used the vehicle \textit{car1-trb1},
+We have again used the vehicle \textit{car1-trb1},
 which is a well balanced, NASCAR type car \footnote{See description in
   the TORCS racing board web page,
   \url{http://www.berniw.org/trb/cars/car_view.php?viewcarid=5}},
@@ -904,7 +904,10 @@ and {\sf GFC} controllers  \cite{salem_cig2018}. We have considered also an oppo
 state of the art, which participated in several Simulated Car Racing
 Competitions in past editions.  % Rewrite this paragraph too, from "We
                                 % have considered" - JJ
-It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{EvolvingRuleSystem08} and later refined in the work \cite{PerezEvolvingFuzzy09}. We have baptized it as PSRI in honor of its authors' surnames.Results are in Table \ref{tab:allsresults}
+It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi
+\cite{EvolvingRuleSystem08} and later refined in the work
+\cite{PerezEvolvingFuzzy09}. We have baptized it as PSRI in honor of
+its authors' surnames; results in Table \ref{tab:allsresults}.
 %
 \begin{table*}[ht]
 	\centering
@@ -1036,10 +1039,11 @@ huge learning time. % Don't all individuals use the same amount of
                  % Time of BLX based aproaches, ind are close to each other, so the difference between the best and the wort is less, this factor, decreases the whole runtime
                  
 The proposed selection policy is effective but in return it requires a
-lot of time, this drawback was reduced using parallel computing.
-
+lot of time, this drawback was reduced using parallel computing. % We
+                                % used parallel computing?? -- JJ
+%
 Another point that we can highlight is that the controllers with
-$BLX-\alpha$ have reach the optimal solution in few generations
+$BLX-\alpha$ have reached the optimal solution in few generations
 (between the $10^th$ and the $20^th$) while the other methods required more
 generations. 
 
