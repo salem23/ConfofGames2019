@@ -1069,31 +1069,31 @@ which combination yields the best competitive results.
 % decisions and track state where we would be forced to handle
 % non-deterministic fitness values. 
 
-We tried in a previous work to design a fitness which eliminates this uncertainty or reduces it by looking for the parameters which most affect the behavior of the controllers but the results obtained were not sufficiently satisfactory. In this paper, we started from a simple hypothesis: what if we let nature make the selection? Indeed, since the objective is to find the parameters of a winning controller, why not get rid of fitness and let nature do the rest.
-The main idea of this work is to overcome uncertainty by using a selection policy based on a system similar to Grand Prix championships where the score of a controller is the sum of the points collected during a set of races and in order to speed up the optimization process, we have introduced a new crossover operator: BLX-$\alpha$ which improves exploration.
-A statistical study has led us to affirm that the proposal makes it possible to face uncertainty thus giving a robust and reliable controller and the introduction of the operator BLX-$\alpha$ has allowed a clear acceleration of the process of genetic optimization while the comparison of the optimized controller with other ones from the literature has shown the robustness of the fuzzy controller where it has won the majority of races being the first in the general ranking. 
+% -------------------- this is reiterative and does not add anything -----
+% We tried in a previous work to design a fitness which eliminates this uncertainty or reduces it by looking for the parameters which most affect the behavior of the controllers but the results obtained were not sufficiently satisfactory. In this paper, we started from a simple hypothesis: what if we let nature make the selection? Indeed, since the objective is to find the parameters of a winning controller, why not get rid of fitness and let nature do the rest.
+% The main idea of this work is to overcome uncertainty by using a
+% selection policy based on a system similar to Grand Prix championships
+% where the score of a controller is the sum of the points collected
+% during a set of races and in order to speed up the optimization
+% process, we have introduced a new crossover operator: BLX-$\alpha$
+% which improves exploration.
+% ----------------------------------------------------------------
+
+A statistical study has led us to affirm that the proposal makes it
+possible to face uncertainty thus giving a robust and reliable
+controller and the introduction of the operator BLX-$\alpha$ has
+allowed a clear acceleration of the process of genetic optimization
+while the comparison of the optimized controller with other ones from
+the literature has shown the robustness of the fuzzy controller where
+it has won the majority of races being the first in the general
+ranking.
+
+
+% ---------------- future work --------------------------------------------
 This work can be extended in several ways; we can consider optimizing the outputs of the fuzzy controllers and also the rules.
 Another line of research may be the application of this policy to assess a co-evolution of fuzzy and neural controllers.
 
-% In this paper we have tried to get winning racing car controllers by
-% first improving the selection process so that, from time to time,
-% uncertainty is eliminated by using actual competitions instead of
-% fitness-based evolution, and second, keep the balance between
-% exploration and exploitation high, and also variable, by using a fixed
-% and adaptive version of the BLX-$\alpha$ operator.
 
-% The fuzzy genetic controller is subject to uncertainties in the track especially in case of presence of rivals so in order to overcome this problem and thus design a robust and reliable bot, we proposed to apply a \textit{Grand Prix Selection policy} where the selection of parents in the evolutionary process is carried out according to the results of a set of mini-championships organized among the individuals of the population, which looks like a car racing tournament selection.
-% At the same time, and aiming to intensify the exploration process in the search space, we used the $BLX-\alpha$ crossover operator with decreasing values of the $\alpha$ parameter throughout the generations.
-
-% The evaluation was performed by comparing the proposed controller with bots of the TORCS platform, yielding very good results.
-% The other evaluation of our controller was a confrontation with a real bot ($PSRI$ controller), which participated in several Simulated Car Racing Competitions. In this case, the BLX operator and the new selection policy have had a lot of impact in helping our controller to win three quarters of the races by getting the lowest damage, average speed and maximum speed values.
-
-% These results let us to think that our controller could have reached a very good rank in the Simulated Car Racing Competition, which is unfortunately over since 2013. Anyway, we think that the findings of this study (and previous ones) could be applied successfully to other car racing simulators, such as those used in current eSports Competitions, such as iRace (https://www.iracing.com/).
-
-% As future lines of work, this controller can be improved in some ways:
-% We can extend the selection policy to all generations while overcoming the computation time drawback by means of a parallel implementation.
-% We can also explore other parameter-less fitness functions to evaluate individuals including other factors affecting the performance of the car.
-% Another perspective is to use multiple tracks (instead of just one) in the selection process in order to train a more general controller, able to deal with many different situations.
 
 \section*{Acknowledgments}
 
