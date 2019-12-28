@@ -482,7 +482,7 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 % introduce the other subsections at the end.  
 % Antonio - Ok, done.
 
-We have applied a genetic algorithm (GA) \cite{GAs_Goldberg89}, i.e. a type of evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research. 
+We have applied an evolutionary algorithm (EA) \cite{EAs_Back96} to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research. 
 
 EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
 recombination and mutation, in order to create a new population of
@@ -593,7 +593,7 @@ value of this parameter is decreased over the generations, following
 the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
-This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
+This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents will be wider. On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
 
 We argue that this operator, in conjunction with GPS will aid the algorithm to find better controllers, so we will test several combinations and configurations of both techniques in the experiments conducted in next section. We will also study their impact from different perspectives, both considering their performance and also from the uncertainty influence point of view.
 
