@@ -731,7 +731,7 @@ able to reduce it, making evolved controllers as centrally distributed
 as possible; other kind of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done an study of the distribution  of the genetic individuals of
-three evolution processes $GFC$, $GFC-GPSE$ and $GFC-GPSVAE5$. 
+three evolution processes {\sf GFC}, {\sf GFC-GPSE} and {\sf GFC-GPSVA5}. 
 
 
 Skewness is related to how symmetric the distribution of fitness
@@ -808,8 +808,8 @@ a method for finding high-performance controllers.
 Once the 10 runs have finished, the obtained best controllers from the
 previous evolution processes compete again in a similar set of races,
 in order to choose the best controller overall per approach, i.e. the
-best between $GFC-GPSL$, $GFC-GPSE$ and $GFC-GPS5$; and also between
-$GFC-GPSVAL$,$GFC-GPSVAE$ and $GFC-GPSVA5$. 
+best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between
+{\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. 
 Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}
 %% Process 1 : GPS without Alpha
 %% Process 2  : GPS with Alpha
@@ -818,7 +818,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-GPS$ controllers in a mini-championship with 10 controllers and 10
+		\caption{ Results of controllers using GPS in a mini-championship with 10 controllers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. We use {\bf boldface}
@@ -831,11 +831,11 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				\hline
 				\hline
 				
-			$GFC-GPS5$\cite{DBLP:conf/cig/SalemMG19}&	75	&74&	149\\
-			$GFC-GPSE$&	98	&93&	{\bf 191}\\
-			$GFC-GPSL$\cite{DBLP:conf/cig/SalemMG19}&	77	&81&	{\em 158}\\
-			$GFC$ \cite{salem_cig2018}	&	56	&50&	106\\
-			$GFC-VA$\cite{DBLP:conf/cig/SalemMG19}	&	46	&7&		53\\
+			{\sf GFC-GPS5}\cite{DBLP:conf/cig/SalemMG19}&	75	&74&	149\\
+			{\sf GFC-GPSE}&	98	&93&	{\bf 191}\\
+			{\sf GFC-GPSL}\cite{DBLP:conf/cig/SalemMG19}&	77	&81&	{\em 158}\\
+			{\sf GFC} \cite{salem_cig2018}	&	56	&50&	106\\
+			{\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19}	&	46	&7&		53\\
 			$inferno1$&	9	&8&		17\\
 			$inferno2$&		20	&51&	71\\
 			$berniw1$&	16	&24&	40\\
@@ -854,7 +854,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-GPSVAE$ controllers in a mini-championship with 10 controllers and 10
+		\caption{ Results of {\sf GFC-GPSVAE} controllers in a mini-championship with 10 controllers and 10
 			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
 				inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. {\bf Boldface}
@@ -866,11 +866,11 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
 				\hline	
-				$GFC-VAGPS5$ \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
-				$GFC-VAGPSE$&	108&    101&	{\bf 209}\\
-				$GFC-VAGPSL$\cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
-				$GFC$  \cite{salem_cig2018}&	56&	50&	106\\
-				$GFC-VA$ \cite{DBLP:conf/cig/SalemMG19}&	46&	7&	53\\
+				{\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
+				{\sf GFC-GPSVAE} &	108&    101&	{\bf 209}\\
+				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
+				{\sf GFC}  \cite{salem_cig2018}&	56&	50&	106\\
+				{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	46&	7&	53\\
 				$inferno1$&	9&	8&	17\\
 				$inferno2$&	20&	49&	69\\
 				$berniw1$&	16&	24&	40\\
@@ -883,9 +883,9 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 	}
 \end{table*}
 %
-As it could be noticed in the Table \ref{tab:RSresults}, the controller $GFC-GPSVAE$ has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
+As it could be noticed in the Table \ref{tab:RSresults}, the controller {\sf GFC-GPSVAE} has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
-From Table \ref{tab:RSresults},it is clear that the controller $GFC-GPSVAE$, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
+From Table \ref{tab:RSresults},it is clear that the controller {\sf GFC-GPSVAE}, where GPS selection has been applied in every generation, has won the majority of possible points in the two previous tracks even the unknown \textit{E-Track 5}  track.
 
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying the GPS selection alone have won the competition.
  
@@ -898,9 +898,9 @@ best is the one who wins races. The new selection policy allows you to
 select the winners on the field and not the possible winners. 
 The following experimentation is dedicated to detect the impact of the $BLX-\alpha$.
 The best controllers obtained from the two main optimization
-processes: $GFC-GPSVAE$ and $GFC-GPSE$ are evaluated in formula like
-championship against the references five TORCS bots and the $GFC-VA$\cite{DBLP:conf/cig/SalemMG19}
-and $GFC$ controllers  \cite{salem_cig2018}. We have considered also an opponent from the
+processes: {\sf GFC-GPSVAE} and {\sf GFC-GPSE} are evaluated in formula like
+championship against the references five TORCS bots and the {\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19}
+and {\sf GFC} controllers  \cite{salem_cig2018}. We have considered also an opponent from the
 state of the art, which participated in several Simulated Car Racing
 Competitions in past editions.  % Rewrite this paragraph too, from "We
                                 % have considered" - JJ
@@ -909,7 +909,7 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of $GFC-GPSVAE$ and $GFC-GPSE$
+		\caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
                   controller in a mini-championship with 10 controllers
                   and 10 % you use driver here, controller
                          % elsewhere. Use always one or the other - JJ
@@ -925,11 +925,11 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi \cite{Evolvi
 				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
 				\hline
 				\hline
-$GFC-GPSE$&	85&	82&	{\em 167}\\
-$GFC-GPSVAE$&111&101&            {\bf 212}\\
-$GFC$  \cite{salem_cig2018}&		48&	55&	103\\
+{\sf GFC-GPSE}&	85&	82&	{\em 167}\\
+{\sf GFC-GPSVAE}&111&101&            {\bf 212}\\
+{\sf GFC}  \cite{salem_cig2018}&		48&	55&	103\\
 $PSRI$\cite{PerezEvolvingFuzzy09}&		53&	48&	101\\
-$GFC-VA$ \cite{DBLP:conf/cig/SalemMG19}&	78&	64&	142\\
+{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	78&	64&	142\\
 $inferno1$&	9&	8&	17\\
 $inferno2$&	20&	40&	60\\
 $berniw1$&	16&	24&	40\\
@@ -945,11 +945,11 @@ $tita1$&	26&	18&	44\\
 
 
 
-The above competition clearly demonstrates the superiority of the $GFC-GPSVAE$ controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the $GFC-GPSE$ controller far behind it. The reference conductors, namely $GFC-VA$ and $GFC$  are classified 3rd and 5th.
-The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of $GFC-GPSE$.
+The above competition clearly demonstrates the superiority of the {\sf GFC-GPSVAE} controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference conductors, namely {\sf GFC-VA} and {\sf GFC}  are classified 3rd and 5th.
+The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of {\sf GFC-GPSE}.
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
-%The structure of the winner controller $GFC-GPSVAE$ is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
+%The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
 %
 %\begin{figure}[!ht]	
 %	\begin{center}
@@ -1004,21 +1004,21 @@ optimization for 50 generations for 10 runs.
                   % But still all cars run the same amount of laps in
                   % every race. It probably makes sense to use time
                   % here - JJ
-                  \hline \textbf{\textbf{$GFC$}} \cite{salem_cig2018}&294000
+                  \hline \textbf{\textbf{{\sf GFC}}} \cite{salem_cig2018}&294000
                    &34-39\\
-			\hline \textbf{$GFC-VA$} \cite{DBLP:conf/cig/SalemMG19}&279000
+			\hline \textbf{{\sf GFC-VA}} \cite{DBLP:conf/cig/SalemMG19}&279000
 			 	&10-18\\	
-			\hline \textbf{$GFC-GPSL$} \cite{DBLP:conf/cig/SalemMG19}& 282945
+			\hline \textbf{{\sf GFC-GPSL}} \cite{DBLP:conf/cig/SalemMG19}& 282945
 			 &23-38\\	
-			\hline \textbf{$GFC-GPS5$} \cite{DBLP:conf/cig/SalemMG19}&331320
+			\hline \textbf{{\sf GFC-GPS5}} \cite{DBLP:conf/cig/SalemMG19}&331320
 				&24-38\\	
-			\hline \textbf{$GFC-GPSE$}&	276600
+			\hline \textbf{{\sf GFC-GPSE}}&	276600
 			 &22-40\\	
-			\hline \textbf{$GFC-VAGPSL$} \cite{DBLP:conf/cig/SalemMG19}& 270923
+			\hline \textbf{{\sf GFC-GPSVAL}} \cite{DBLP:conf/cig/SalemMG19}& 270923
 				&9-15\\	
-			\hline\textbf{$GFC-VAGPS5$} \cite{DBLP:conf/cig/SalemMG19}&	326520
+			\hline\textbf{{\sf GFC-GPSVA5}} \cite{DBLP:conf/cig/SalemMG19}&	326520
 			 &8-17\\	
-			\hline\textbf{$GFC-GPSVAE$}& 273000
+			\hline\textbf{{\sf GFC-GPSVAE}}& 273000
 				&11-18\\					
 			\hline 
 		\end{tabular}
@@ -1026,7 +1026,7 @@ optimization for 50 generations for 10 runs.
 	}
 \end{table} 
 
-The two $GFC-GPSVAE$ and $GFC-GPSE$ controllers were the best where
+The two {\sf GFC-GPSVAE} and {\sf GFC-GPSE} controllers were the best where
 they are ranked $1^st$ and $2^nd$ but they are very expensive in runtime
 where they have performed around 273000s and 276600s respectively, which is a
 huge learning time. % Don't all individuals use the same amount of
@@ -1079,14 +1079,22 @@ which combination yields the best competitive results.
 % which improves exploration.
 % ----------------------------------------------------------------
 
-A statistical study has led us to affirm that the proposal makes it
-possible to face uncertainty thus giving a robust and reliable
-controller and the introduction of the operator BLX-$\alpha$ has
-allowed a clear acceleration of the process of genetic optimization
-while the comparison of the optimized controller with other ones from
-the literature has shown the robustness of the fuzzy controller where
-it has won the majority of races being the first in the general
-ranking.
+% --------------- this is just a repetition of results, not a
+% conclusion --- 
+% A statistical study has led us to affirm that the proposal makes it
+% possible to face uncertainty thus giving a robust and reliable
+% controller and the introduction of the operator BLX-$\alpha$ has
+% allowed a clear acceleration of the process of genetic optimization
+% while the comparison of the optimized controller with other ones from
+% the literature has shown the robustness of the fuzzy controller where
+% it has won the majority of races being the first in the general
+% ranking.
+
+In races performed in the training, and other, tracks, the controller
+that has evolved using competitive (fitness-less) selection and the
+variable $\alpha$ BLX crossover operator has proved superior to not
+only other controllers evolved previously by us, but also other
+competitive entries. As a matter of fact, % continue here.
 
 
 % ---------------- future work --------------------------------------------
