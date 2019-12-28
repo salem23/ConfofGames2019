@@ -1049,7 +1049,26 @@ generations.
 \label{sec:conclusions}
 
 % >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
-This paper is dedicated to present a new selection policy to replace the use of standard fitness in genetic algorithms to optimize a fuzzy controller for racing cars in the TORCS simulator. The performance of this type of algorithm fully depends on the choice of the appropriate fitness function and on certain operators’ parameters such as crossover and mutation. Furthermore, in car racing, we have an additional difficulty which is the uncertainty caused by opponents decisions and track state where we would be forced to handle non-deterministic fitness values.
+In this paper, and in order to avoid the impedance between using solo
+racing scores and performance in competitive races, we hace
+incorporated this competition into the selection of individuals in an
+evolutionary algorithm that evolves fuzzy controllers in the TORCS
+game, and evaluated it in combination with hybrid methods that use
+that selection only part of the time, and an adaptive BlX-$\alpha$ and
+a normal crossover algorithm, to assess how it interacts with them and
+which combination yields the best competitive results.
+
+% Rewritten above --- ^^^ ---
+% This paper is dedicated to present a new selection policy to replace
+% the use of standard fitness in genetic algorithms that optimize a
+% fuzzy controller for racing cars in the TORCS simulator. The
+% performance of this type of algorithm fully depends on the choice of
+% the appropriate fitness function and on certain operators’ parameters
+% such as crossover and mutation. Furthermore, in car racing, we have an
+% additional difficulty which is the uncertainty caused by opponents
+% decisions and track state where we would be forced to handle
+% non-deterministic fitness values. 
+
 We tried in a previous work to design a fitness which eliminates this uncertainty or reduces it by looking for the parameters which most affect the behavior of the controllers but the results obtained were not sufficiently satisfactory. In this paper, we started from a simple hypothesis: what if we let nature make the selection? Indeed, since the objective is to find the parameters of a winning controller, why not get rid of fitness and let nature do the rest.
 The main idea of this work is to overcome uncertainty by using a selection policy based on a system similar to Grand Prix championships where the score of a controller is the sum of the points collected during a set of races and in order to speed up the optimization process, we have introduced a new crossover operator: BLX-$\alpha$ which improves exploration.
 A statistical study has led us to affirm that the proposal makes it possible to face uncertainty thus giving a robust and reliable controller and the introduction of the operator BLX-$\alpha$ has allowed a clear acceleration of the process of genetic optimization while the comparison of the optimized controller with other ones from the literature has shown the robustness of the fuzzy controller where it has won the majority of races being the first in the general ranking. 
