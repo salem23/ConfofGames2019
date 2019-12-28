@@ -490,21 +490,19 @@ better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
 applied to solve a huge amount of optimization problems, including regression and fuzzy systems \cite{hoffmann2001evolutionary}; in this kind of problem the solutions are modelled as a vector of numeric values, as is the
-case in this paper. 
+case in this paper; in our case we will use 18 floating point values/parameters (genes), 6 per variable \cite{10.1007/978-3-319-77538-8_24}.
 
-We show in Figure \ref{fig:cromosome} how we represent every individual (chromosome) as a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, looking for higher precision \cite{elsayed13}. We started to use this encoding in \cite{10.1007/978-3-319-77538-8_24}.
-
- \begin{figure*}[!ht]	
- 	\begin{center}
- 		\includegraphics[width=12cm]{fig/chromosome2.png}
- 		\caption{GA chromosome description. There are 6 genes
-                  (values) per fuzzy variable, modelling the 3
-                  different membership functions. The membership
-                  functions are trapezoidal, needing only two values
-                  for every one.}
- 		\label{fig:cromosome}	
- 	\end{center}	
- \end{figure*}
+ % \begin{figure*}[!ht]	
+ % 	\begin{center}
+ % 		\includegraphics[width=12cm]{fig/chromosome2.png}
+ % 		\caption{GA chromosome description. There are 6 genes
+ %                  (values) per fuzzy variable, modelling the 3
+ %                  different membership functions. The membership
+ %                  functions are trapezoidal, needing only two values
+ %                  for every one.}
+ % 		\label{fig:cromosome}	
+ % 	\end{center}	
+ % \end{figure*}
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
@@ -648,7 +646,7 @@ it offers the best generalization for cars trained using it.
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=5cm]{fig/alpine2.jpg}
-		\caption{Alpine 2 Track: Slow mountain road. Length: 3773.57m, Width: 10m}
+		\caption{Alpine 2 Track. Length: 3773.57m, Width: 10m.}
 		\label{fig:alpine2_track}	
 	\end{center}	
 \end{figure}
