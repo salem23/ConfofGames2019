@@ -1094,12 +1094,54 @@ In races performed in the training, and other, tracks, the controller
 that has evolved using competitive (fitness-less) selection and the
 variable $\alpha$ BLX crossover operator has proved superior to not
 only other controllers evolved previously by us, but also other
-competitive entries. As a matter of fact, % continue here.
+competitive entries. As a matter of fact, using GPS has the greatest 
+influence in the results: {\sf GPSVAE} and {\sf GPSE}, whose only
+difference lies in the kind of crossover operator they use, create the
+best controllers, finishing first and second in competitive races and,
+in the first case, obtain twice the score of the non-evolved
+competitor, $berniw2$. The variable-$\alpha$ BLX operator seems to
+have also a positive influence in the outcome, outperforming the fixed
+BLX-$\alpha$ in a race, as shown in the competitive races presented in
+this paper. The decreasing amount of exploration that adaptive
+BLX-$\alpha$ boasts explores in a more efficient way the space of
+controllers, finding very competitive solutions.
 
+Another advantage of these combined methods is that they don't
+increase total training time, and are also able to find a good
+solution in the first stages of evolution, which, if needed, allows to
+cut the training short. {\sf GFC-GPSVAE} needs at most 18 generations
+(which is around one third of the maximum number of generations) to
+find a good solution. Running GPS every generation needs more
+genrations that if it's run every 5 generations, or just at the end,
+but the problem is that in those cases the solution found is less
+competitive. However, {\sf GPS-VA5} is quite competitive, and in the
+case of a limited evaluation budget, it could be a very good
+compromise.
 
-% ---------------- future work --------------------------------------------
-This work can be extended in several ways; we can consider optimizing the outputs of the fuzzy controllers and also the rules.
-Another line of research may be the application of this policy to assess a co-evolution of fuzzy and neural controllers.
+As a conclusion, in this paper we have proved that combining a
+fitness-less evolutionary algorithm with an adaptive, floating point,
+crossover operator, consistently obtains the best results so far in
+TORCS. The sets of choices of running track, car, controller and
+actually parts of it that are evolving are thus also validated by
+these results.
+
+However, results are probably independent of the fact that we are using a
+set of fuzzy controllers. The result could be generalized to any kind
+of controllers, as long as they have the possibility to explore the
+space of controllers in the same, efficient, way. This is a possible
+way of extending the work: substituting fuzzy controllers by simple
+neural nets could be a way of proving that the fitness-less approach
+is able to find good results independently of the low-level algorithms
+using to drive the car. Fuzzy and neural controllers could be also
+mixed, even coevolved, to try and find the best ones. 
+
+Additionally, we have been using heuristic rules for computing outputs
+from the fuzzy rule activation. We could, however, consider optimizing
+the outputs of the fuzzy controllers, as well as the rules.
+
+The implementation could also be optimized. Right now, training takes
+a long time. This optimization could go from parallelization, to basic
+program-level improvement. All this is left as future work.
 
 
 
