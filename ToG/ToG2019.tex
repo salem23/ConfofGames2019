@@ -568,30 +568,30 @@ However, the application of this method consumes much higher computation time, s
 
 The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. As stated before, one of the side effects of uncertainty is the higher diversification factor which it means. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
 
-It is based on the random selection of values from the interval $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$ are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and $x_i < y_i$. See Figure \ref{fig:blxalpha}.
+It is based on the random selection of values from the interval
+$[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
+are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and
+$x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
- \begin{figure}[!ht]	
- 	\begin{center}
- 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
- 		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
- 		\label{fig:blxalpha}	
- 	\end{center}	
- \end{figure}
-
+ % \begin{figure}[!ht]	
+ % 	\begin{center}
+ % 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
+ % 		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
+ % 		\label{fig:blxalpha}	
+ % 	\end{center}	
+ % \end{figure}
+%
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
 $\alpha$ parameter allows to control the search on the space of solutions, depending on its value, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
 
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
-To this end, we have implemented an \textit{adaptive BLX-$\alpha$} approach, which considers a variable value for $\alpha$. Thus, the value of this parameter is decreased over the generations, following the expression:
-
- \begin{equation}
- 	\label{eqalpha}
- 	\alpha =1-\frac{g}{g_{max}}
- \end{equation}
-
-Where $g$ is the current generation and $g_{max}$ is the maximum number of generations. 
+To this end, we have implemented an \textit{adaptive BLX-$\alpha$}
+approach, which considers a variable value for $\alpha$. Thus, the
+value of this parameter is decreased over the generations, following
+the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
+current generation and $g_{max}$ is the maximum number of generations.
 
 This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
 
