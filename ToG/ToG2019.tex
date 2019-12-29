@@ -390,32 +390,30 @@ The two fuzzy sub-controllers we evolve take care of target speed and steering a
 The \textit{speed controller} takes as input sensor values, and
 outputs the target speed; aiming to maximize it straight parts and curves of the circuit. The \textit{steering controller} uses the same sensor values to output the optimal steering angle in order to reach the desired target position with the car.
 
-As aforementioned the sub-controllers use three linguistic variables as inputs, derived from the sensors: one from Frontal named \texttt{FRONT}, one from Sensors 8 and 10 ($\pm 5$\textdegree) named \texttt{MAX5}, and one from Sensors 7 and 11 ($\pm 10$\textdegree) named \texttt{MAX10}. These variables compose a Mamdani-based fuzzy system \cite{iancu2012} with three trapezoidal Membership Functions (MF) for each variable.
-Then, the controller is defined using a set of fuzzy rules which combine the fuzzy values for these inputs to get an output: target speed or steering angle.
-
+The two sub-controllers use the same three linguistic variables as
+inputs, one for every sensor: one for the frontal sensor,
+\texttt{FRONT}, another for Sensors 8 and 10 ($\pm 5$\textdegree),
+\texttt{MAX5}, and finally from Sensors 7 and 11 ($\pm
+10$\textdegree), \texttt{MAX10}. These variables compose a Mamdani-based fuzzy
+system \cite{iancu2012} with three trapezoidal Membership Functions
+(MFs) for each variable. The controller uses a set of fuzzy rules
+which combine the fuzzy values for these inputs to compute outputs:
+target speed or steering angle.
+% 
 % Antonio - I move this text and tables to the sub-controllers section, since these variables have been defined to be used in the fuzzy rules. Moreover, the variables are introduced for the first time in this section. 
-The controller output is not evolved, and is shown in Tables \ref{tab:output:speed} and \ref{tab:output:steer}. This has not been
-varied along this line of research, and has been designed following
-usual human-like race car driving rules. 
+These rules were designed following usual human-like race car driving
+rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
 
 
-% Antonio - I don't understand the last sentence.
-% Please check this - JJ 
-% Antonio - Yes, the variables and values, as well as the outputs,
-% have been always the same, we just evolve the MF parameters.
-% The first paper mentioned fixed rules were designed taking into
-% account real rules.
-% Antonio - Ok, I guess the rules are those which a human follows. ;)
-%
 \begin{table}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for speed (top) and steering (bottom) controller output. Additionally, when
+    \caption{Rules  \cite{salem_evo18} for speed (top) and steering
+      (bottom) controller output. Additionally, when 
       the front, right and left sensors have the maximum value
       possible, a crisp rule that tries to set the max speed
       fires.  Angles will be reversed
-      if the M10 is equal to Track 7 in the steering controller.
-      These rules have been used since \cite{salem_evo18}. \label{tab:output:speed}\label{tab:output:steer}}
+      if the M10 is equal to Track 7 in the steering controller. \label{tab:output}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Target Speed (km/h) \\
