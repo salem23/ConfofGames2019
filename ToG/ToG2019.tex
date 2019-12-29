@@ -481,7 +481,9 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 % introduce the other subsections at the end.  
 % Antonio - Ok, done.
 
-We have applied an evolutionary algorithm (EA) \cite{EAs_Back96} to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research. 
+We have applied a genetic algorithm (GA) \cite{GAs_Goldberg89}, i.e. a type of evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research.
+% Antonio - I put this text back as we are working with a GA (the title of the section says this), so it is clearer to say what is it. Moreover, the reference is also used in other places, so it is not removed to save space indeed. 
+% In addition, there is free available space now. ;)
 
 EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
 recombination and mutation, in order to create a new population of
@@ -489,19 +491,22 @@ better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
 applied to solve a huge amount of optimization problems, including regression and fuzzy systems \cite{hoffmann2001evolutionary}; in this kind of problem the solutions are modelled as a vector of numeric values, as is the
-case in this paper; in our case we will use 18 floating point values/parameters (genes), 6 per variable \cite{10.1007/978-3-319-77538-8_24}.
+case in this paper.
 
- % \begin{figure*}[!ht]	
- % 	\begin{center}
- % 		\includegraphics[width=12cm]{fig/chromosome2.png}
- % 		\caption{GA chromosome description. There are 6 genes
- %                  (values) per fuzzy variable, modelling the 3
- %                  different membership functions. The membership
- %                  functions are trapezoidal, needing only two values
- %                  for every one.}
- % 		\label{fig:cromosome}	
- % 	\end{center}	
- % \end{figure*}
+We show in Figure \ref{fig:cromosome} how we represent every individual (chromosome) as a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, looking for higher precision \cite{elsayed13}. We started to use this encoding in \cite{10.1007/978-3-319-77538-8_24}.
+
+ \begin{figure*}[!ht]	
+ 	\begin{center}
+ 		\includegraphics[width=12cm]{fig/chromosome2.png}
+ 		\caption{GA chromosome description. There are 6 genes
+                  (values) per fuzzy variable, modelling the 3
+                  different membership functions. The membership
+                  functions are trapezoidal, needing only two values
+                  for every one.}
+ 		\label{fig:cromosome}	
+ 	\end{center}	
+ \end{figure*}
+
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
@@ -563,23 +568,22 @@ In this respect, the authors argue that this operator will provide better indivi
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-
-
 The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. As stated before, one of the side effects of uncertainty is the higher diversification factor which it means. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
 
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
 are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and
-$x_i < y_i$. % See Figure \ref{fig:blxalpha}.
-%
- % \begin{figure}[!ht]	
- % 	\begin{center}
- % 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
- % 		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
- % 		\label{fig:blxalpha}	
- % 	\end{center}	
- % \end{figure}
-%
+$x_i < y_i$. See Figure \ref{fig:blxalpha}.
+
+\begin{figure}[!ht]	
+ 	\begin{center}
+ 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
+ 		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
+ 		\label{fig:blxalpha}	
+ 	\end{center}	
+ \end{figure}
+% Antonio - I include again the figure, because I consider it as very ilustrative to understand how BLX-alpha works. And now we have enough free space.
+
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
 $\alpha$ parameter allows to control the search on the space of solutions, depending on its value, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
@@ -592,7 +596,9 @@ value of this parameter is decreased over the generations, following
 the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
-This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents will be wider. On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
+This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendents, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. 
+% Antonio - Referencing again Figure. Anyway, the text without this reference was not correct.
+On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
 
 We argue that this operator, in conjunction with GPS will aid the algorithm to find better controllers, so we will test several combinations and configurations of both techniques in the experiments conducted in next section. We will also study their impact from different perspectives, both considering their performance and also from the uncertainty influence point of view.
 
