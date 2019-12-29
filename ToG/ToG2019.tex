@@ -971,7 +971,7 @@ The introduction of the $BLX-\alpha$ operator allows the parameters of the contr
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
 The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figure \ref{fig:frontmfs}. % Some comments are needed.
-
+%
 \begin{figure}[!ht]	
   \begin{center}
     \includegraphics[width=9cm]{fig/FRONT.jpg}
@@ -999,17 +999,31 @@ The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figure \r
 %		\label{fig:max10mfs}	
 %	\end{center}	
 %\end{figure}
+%
+If we take into account the rules already set in Table
+\ref{tab:output}, the shape of the obtained MFs  is in accordance with
+what a human driver would have done: favor speed as much as possible
+in the straight sections and brake as late as possible in the turns. 
+According to the figures, we have more than three quarters of
+probability that the first three rules will activate; these rules
+would make the car very aggressive especially in the straight sections
+of the track. The MFs for the FRONT sensor are for most of the values
+either Medium or High, which means that the target speed output will
+be over 240 km/h for the majority of the sensor range. That situation
+is similar for the MAX5 and MAX10 MFs: turning will be done smoothly,
+and only in a very extreme situation (with the FRONT sensor in LOW and
+the other two sensors or medium or high, it will take a sharp turn;
+considering the physics of the simulator, these sharp turns might lead
+to getting off track and thus damage to the car.
 
-
-If we take into account the rules already set in Table \ref{}, the shape of the obtained MFs  is in accordance with what a human driver would have done: favor speed as much as possible in the straight sections and brake as late as possible in the turns.
-According to the figures, we have more than three quarters of probability that the first three rules will activate, these rules would make the car very aggressive especially in the straight sections of the track.
+Since these MFs lead to a very reliable performance in the car, it
+validates our approach of using fixed rules to compute out. It should
+also be noted that the fact that we are using fuzzy controllers allows
+us for an easy interpretation of the behavior of the car, something
+that would not be possible if other black-box heuristics were used.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-To evaluate the cost of the proposed controllers, the table \ref{tab:time} shows the average number of laps % Isn't this
-% average running time? - JJ
-%% each lap in Alpine 2  takes between 90s and 120s
-%%  I prefered the laps number to high time values ( 123800s for instance) 
-and the range of the generation where the best individual is found of all the considered controllers. These results are obtained by running genetic
+To evaluate the cost of the proposed controllers, the table \ref{tab:time} shows the average number of laps and the range of the generation where the best individual is found of all the considered controllers. These results are obtained by running genetic
 optimization for 50 generations for 10 runs.  
 
 \begin{table}[!ht]
