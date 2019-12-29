@@ -410,10 +410,12 @@ usual human-like race car driving rules.
 \begin{table}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules for speed controller output. Additionally, when
+    \caption{Rules for speed (top) and steering (bottom) controller output. Additionally, when
       the front, right and left sensors have the maximum value
       possible, a crisp rule that tries to set the max speed
-      fires. These rules have been used since \cite{salem_evo18}. \label{tab:output:speed}}
+      fires.  Angles will be reversed
+      if the M10 is equal to Track 7 in the steering controller.
+      These rules have been used since \cite{salem_evo18}. \label{tab:output:speed}\label{tab:output:steer}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Target Speed (km/h) \\
@@ -427,16 +429,9 @@ usual human-like race car driving rules.
       Low & Low & Low & 30 \\     
 \hline
 \end{tabular}
-}
-\end{table}
-%
-%
-\begin{table}[h!tb]
-  \centering
-  {\scriptsize
-    \caption{Rules for steering controller. Angles will be reversed
-      if the M10 is equal to Track 7. These rules were established for \cite{salem_evo18}. \label{tab:output:steer}}
-    \begin{tabular}{|c|c|c||c|}
+\vspace{1em} \\
+ \\
+\begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & $sin$(Steer Angle) \\
 \hline
