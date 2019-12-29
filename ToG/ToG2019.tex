@@ -621,29 +621,27 @@ ones, is selected, since evaluation in a single track takes some time
 and using several of them would make evaluation too onerous. For
 several papers already \cite{salem_cig2018,DBLP:conf/cig/SalemMG19},
 we have been using the \textit{Alpine 2} track (See Figure
-\ref{fig:alpine2_track}). This track has several characteristics that
+\ref{fig:alpine2_track}). This circuit has several characteristics that
 are essential for evaluating a bot: it has got many turns, some of
 them with 180 degrees, steep segments, and some very challenging parts
-like the entrance of a tunnel at an square angle. All these features makes
+like the entrance of a tunnel at a square angle. All these features make
 it a good testbed for good turning and collision avoidance
-strategies, but also a few straight segments which allow the car to
-speed ahead, reaching high speeds. This same track has been repeatedly
-used for training as well as for testing and has been described as
-``technical and complex'' \cite{AG} and ``presenting a challenge even
-at low speeds'' \cite{vrajitoru2018global}, for instance in
+strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. 
+
+This same track has been also repeatedly used by other authors for training as well as for testing and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}, for instance in
 \cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after Alpine 1 and Olethros, implying it
 has got a good balance between hardness and speed. Since we also used
 it in our previous papers, it allowed us to compare racing bots that
 had been ``trained'' in the same conditions.
 
 Alpine 2 track is probably one of the most popular tracks used for
-training; CGTrack 2 has similar features, and it's used by
+training; CG-Track 2 has similar features, and it is used by
 \cite{mirus2019short,8833873,verma2018programmatically},
 in this last case for transfer learning. \cite{Kole-ParamCarTunning12}
 mentions CG-Track 2 is "relatively harder", with E-Track 3 the
 hardest. On the other hand, \cite{10.1371/journal.pone.0213193} uses
-CG Track 1. There are several differences between CGTrack 2 and Alpine
-1, the one we use, but the main one is that turns are relatively
+CG-Track 1. There are several differences between CG-Track 2 and Alpine
+2, the one we use, but the main one is that turns are relatively
 easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.
@@ -662,45 +660,42 @@ which is a well balanced, NASCAR type car \footnote{See description in
   \url{http://www.berniw.org/trb/cars/car_view.php?viewcarid=5}},
 which we have used also in our previous papers, and also by many
 winning bots along the history of the TORCS championship
-\cite{torcs5} as well as other authors
+\cite{torcs5} as well as other authors in the literature
 \cite{auteur2010,li2019reinforcement}. This matches well the selection
 of racing track, but being as it is a balanced car, allows driving to
 fit itself to the controllers we are developing.
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out  two main optimization processes based
 on the GPS: the first one uses the GPS with the two point crossover
-operator while the second uses   adaptive BLX-$\alpha$.
+operator while the second uses adaptive BLX-$\alpha$.
 
 For every kind of crossover, three configurations are considered: for
 the first one, GPS is applied in every generation giving the new
-proposed controllers {\sf GFC-GPSVAE} and
-{\sf GFC-GPSE}. In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
-{\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and in the last generation for  {\sf{GFC-GPSL}} and 
-{\sf{GFC-GPSVAL}}.
-Also  and for comparison purpose, two controllers from previous papers are used, {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function: $f_{AVS}$ (Equation \ref{fit_avg}).
-These controllers are detailed in Table\ref{tab:drivers}. 
+proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}. 
+In the second an third configuration, we retrained our previous four  controllers\cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
+{\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and in the last generation for  {\sf{GFC-GPSL}} and {\sf{GFC-GPSVAL}}.
+Also and for comparison purpose, two controllers from previous papers have been considered: {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function $f_{AVS}$ (Equation \ref{fit_avg}).
+All these controllers are summarized in Table \ref{tab:drivers}. 
+
 We have run the algorithms with a population size of 60
 individuals. The rest of parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
 configuration. % Clarify if crossover rate means BLX-alpha crossover
                % or there's another crossover too - JJ
 
-We kept the same evolutionary parameters as our
-previous controllers  to be able to compare them in the same
-conditions, but also because they yielded good results are not really
-the focus of this paper.
+We kept the same values for the evolutionary parameters as in our previous works for two reasons: first, because they yielded good results (and are not really the focus of this paper), and second, in order to compare previous controllers with the new ones in the same conditions.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table*}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Description of the controllers.}
+		\caption{ Description of the controllers tested in the experiments.}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
@@ -716,8 +711,8 @@ the focus of this paper.
 {\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation &Standard crossover\\
 	
 {\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation&BLX$-\alpha$\\
-{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&Standard crossover\\							
-{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})&/&BLX$-\alpha$\\
+{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&Standard crossover\\							
+{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&BLX$-\alpha$\\
 
 
 \hline
@@ -727,6 +722,8 @@ the focus of this paper.
 	}
 \end{table*}
 %
+
+% ---------------------------------------------------------------------------
 
 \subsection{Uncertainty in fitness evaluation}
 
@@ -806,6 +803,8 @@ expected results are more reliable.
 will see how this kind of selection has an influence in the success as
 a method for finding high-performance controllers.
 
+
+% ---------------------------------------------------------------------------
 
 \subsection{Testing Grand Prix selection and BLX-$\alpha$ controllers}
 
