@@ -839,9 +839,11 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
                       for the best value, {\em italics} for the second
                     best. }
 		{
-			\begin{tabular}{|c|c|c||c|}
-				\hline
-				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
+                  \begin{tabular}{|c|c|c||c|}
+                    \hline
+                    & \multicolumn{2}{|c|}{Score in} & \\
+                    \hline
+                    Controller&\textit{Alpine 2} track &\textit{E-Track 5} track &Total\\
 				\hline
 				\hline
 				
@@ -868,20 +870,22 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 \begin{table}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of {\sf GFC-GPSVAE} controllers in a mini-championship with 10 controllers and 10
-			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
-				inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}. {\bf Boldface}
-                      for the absolute winner, {\em italics} for the second
-                    best.}
-		{
-			\begin{tabular}{|c|c|c||c|}
-				\hline
-				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
-				\hline
-				\hline	
-				{\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
-				{\sf GFC-GPSVAE} &	108&    101&	{\bf 209}\\
+          \caption{ Results of {\sf GFC-GPSVAE} controllers in a mini-championship with 10 controllers and 10
+            races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
+              inferno} are example controllers included with the TORCS
+            simulator \cite{torcs4}. {\bf Boldface}
+            for the absolute winner, {\em italics} for the second
+            best.}
+          {
+            \begin{tabular}{|c|c|c||c|}
+              \hline
+              & \multicolumn{2}{|c|}{Score in} & \\
+              \hline
+              Controller& \textit{Alpine 2} track & \textit{E-Track 5} track &Total\\
+              \hline
+              \hline	
+              {\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
+              {\sf GFC-GPSVAE} &	108&    101&	{\bf 209}\\
 				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
 				{\sf GFC}  \cite{salem_cig2018}&	56&	50&	106\\
 				{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	46&	7&	53\\
@@ -924,24 +928,26 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi
 its authors' surnames; results in Table \ref{tab:allsresults}.
 %
 \begin{table}[ht]
-	\centering
-	{\scriptsize
-		\caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
-                  controller in a mini-championship with 10 controllers
-                  and 10 % you use driver here, controller
-                         % elsewhere. Use always one or the other - JJ
-                         %% mOhammed ok 
-			races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
-				inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}.  {\bf Boldface} is
-                        used to highlight the best value, {\em italics} for the second
-                    best.}
-		{
-			\begin{tabular}{|c|c|c||c|}
-				\hline
-				controller&Score in \textit{Alpine 2} track &Score in \textit{E-Track 5} track &Total\\
-				\hline
-				\hline
+  \centering
+  {\scriptsize
+    \caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
+      controller in a mini-championship with 10 controllers
+      and 10 % you use driver here, controller
+      % elsewhere. Use always one or the other - JJ
+      %% mOhammed ok 
+      races in two different tracks(20 laps each). {\tt tita}, {\tt berniw} and {\tt
+        inferno} are example controllers included with the TORCS
+      simulator \cite{torcs4}.  {\bf Boldface} is
+      used to highlight the best value, {\em italics} for the second
+      best.}
+    {
+      \begin{tabular}{|c|c|c||c|}
+        \hline
+        & \multicolumn{2}{|c|}{Score in} & \\
+        \hline
+        Controller&\textit{Alpine 2} track &\textit{E-Track 5} track &Total\\
+        \hline
+        \hline
 {\sf GFC-GPSE}&	85&	82&	{\em 167}\\
 {\sf GFC-GPSVAE}&111&101&            {\bf 212}\\
 {\sf GFC}  \cite{salem_cig2018}&		48&	55&	103\\
@@ -966,15 +972,15 @@ The above competition clearly demonstrates the superiority of the {\sf GFC-GPSVA
 The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of {\sf GFC-GPSE}.
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
-The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}. % Some comments are needed.
+The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figure \ref{fig:frontmfs}. % Some comments are needed.
 
 \begin{figure}[!ht]	
 	\begin{center}
 		\includegraphics[width=9cm]{fig/FRONT.jpg}
 		\includegraphics[width=9cm]{fig/MAX5.jpg}
 		\includegraphics[width=9cm]{fig/MAX10.jpg}		
-		\caption{Front input membership for 
-			{\sf GFC-GPSVAE}.}
+		\caption{Front, Max5 and Max10 input membership functions for a controller obtained with the 
+			{\sf GFC-GPSVAE} method.}
 		\label{fig:frontmfs}	
 	\end{center}	
 \end{figure}
