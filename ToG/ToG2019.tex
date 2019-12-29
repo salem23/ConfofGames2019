@@ -413,12 +413,14 @@ rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
       the front, right and left sensors have the maximum value
       possible, a crisp rule that tries to set the max speed
       fires.  Angles will be reversed
-      if the M10 is equal to Track 7 in the steering controller. \label{tab:output}}
+      if the M10 is equal to Track 7 in the steering controller. The
+      actual output will be the centroid of the output of all functions
+      that are activated. \label{tab:output}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value Front & Value MAX5 & Value MAX10 & Target Speed (km/h) \\
       \hline
-    	 High & - & - & 280 \\
+      High & - & - & 280 \\
       Medium & - & - & 240 \\
       Low & High & - & 220 \\
       Low & Medium & - & 180 \\
@@ -447,11 +449,15 @@ rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
 
 
 
-Thus, what will be evolved with the algorithm proposed in Section \ref{sec:ga} is the shape of the whole fuzzy system, which is encoded in 18 real-valued parameters (related to the different membership functions). The low-level details of this part was explained extensively in \cite{DBLP:conf/cig/SalemMG19}. 
+Thus, what will be evolved with the algorithm proposed in Section
+\ref{sec:ga} is the shape of the whole fuzzy system, which is encoded
+in 18 real-valued parameters (related to the different membership
+functions). The low-level details of this part was explained
+extensively in \cite{DBLP:conf/cig/SalemMG19}. 
 
 As mentioned, these fuzzy sub-controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
 be applied to any kind of controller, as long as it can be fully
-encoded and evolved using an Evolutionary Algorithm (a GA).
+encoded and evolved using an Evolutionary Algorithm (a GA). 
 
 
 
@@ -460,22 +466,11 @@ encoded and evolved using an Evolutionary Algorithm (a GA).
 \section{Optimizing Sub-controllers with a Genetic Algorithm}
 \label{sec:ga}
 
-% Antonio - I think it is more clear if we describe the GA in a separate section, as it is the main contribution of the paper (well, the operators actually, but they would be even more hidden inside a subsection than in a section).
-
-% ------------------- We need to rewrite most of this
-% ---------------
-% Antonio - I'm going to rewrite this
-
-% -------------------------------------------------------------------
-%\subsection{General description}
-% You always need to write a description before starting
-% subsections. This general description can be it, except we have to
-% introduce the other subsections at the end.  
-% Antonio - Ok, done.
-
-We have applied a genetic algorithm (GA) \cite{GAs_Goldberg89}, i.e. a type of evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research.
+We have applied am genetic algorithm (GA) \cite{GAs_Goldberg89}, i.e. a type of evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research.
 % Antonio - I put this text back as we are working with a GA (the title of the section says this), so it is clearer to say what is it. Moreover, the reference is also used in other places, so it is not removed to save space indeed. 
 % In addition, there is free available space now. ;)
+% You don't way why this is a GA and not an EA, and why it's relevant
+% to make this distinction. But whatever. - JJ
 
 EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
 recombination and mutation, in order to create a new population of
@@ -517,14 +512,17 @@ case in this paper; we use 18 floating-point values, 6 per variable, 2 values pe
 
 Following standard implementations \cite{GAs_Goldberg89}, in the first step of the algorithm \cite{salem_evo17} a population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
 
-One of the main factors in EAs is the definition of a function able to determine how good every individual is, this is the \textit{Evaluation Function} or \textbf{Fitness Function}, which must assign the highest value (in maximization problems) to the best individual.
-%Mohammed : in maximization problems, not in all cases
-% Antonio - right. ;)
+In general, an evoolutionary algorithm will need to evaluate every
+individual so that they can be compared with each other and decide
+which ones will go ahead to the next generation. We use TORCS for this
+purpose, as is shown in Figure \ref{fig:ga}: out of the encoded fuzzy
+MF values we create a controller, that is assigned to the car, but
+evaluation is done in two different ways.
 
-As Figure \ref{fig:ga} shows, the evaluation of every individual (controller indeed) is conducted using TORCS. Thus each controller is placed in the simulator, i.e. its gene values are injected to the parameters of the membership functions of the two fuzzy sub-controllers. Then, it competes in several races to evaluate its performance.
-Two different approaches have been considered here: one based on a fitness computation and also a fitnessless implementation (that will be explained in Section \ref{subsec:novel_operators}).
-
-The first method considers the fitness function which was defined in a previous work \cite{salem_cig2018}, because it was the most successful among some others proposed \cite{salem_evo18}. It is described in the next equation:
+The first method considers the fitness function already used
+previously \cite{salem_cig2018}, because it was the most successful 
+among some others proposed \cite{salem_evo18}. It is described in the
+next equation: 
 
  \begin{equation} \label{fit_avg}
  	\begin{array}{lll}
@@ -532,44 +530,70 @@ The first method considers the fitness function which was defined in a previous 
  	\end{array}
  \end{equation}	
 
-Where $AVG(Speed)$ is the average speed of the car along the complete race. This factor represents the overall performance of the controller combining difficult (e.g. curves) and easy (e.g. straight) parts of the tracks. $Damage$ value is taken into account in order to preserve the car integrity, which is required to finish the race.
+Where $AVG(Speed)$ is the average speed of the car along the complete
+race. This factor represents the overall performance of the controller
+combining difficult (e.g. curves) and easy (e.g. straight) parts of
+the tracks. $Damage$ value is taken into account in order to preserve
+the car integrity, which is required to finish the race. 
 
 Following the usual recommendations in the literature
 \cite{Harik-ParameterLess99}, we have defined a parameterless
 selection method, where there are no weights in the terms.
 At the same time, this way of evaluating different cars is closer to a `human-like'
 approach, since it considers the same prioritary factors that a human
-driver would do. 
+driver would do.
 
-The evaluation of the individuals (controllers) is done driving a car
-in a 20 laps race on a circuit without opponents inside TORCS. The
-reason to consider solo-races is to avoid in part the presence of
-\textit{noise/uncertainty} due to the participation of other
-controllers \cite{merelo2016statistical} in the races. 
+That fitness is computed in a solo race with 20 laps in the chosen circuit. In this
+paper, however, we also introduce Grand Prix Selection or GPS. In this
+selection, a controller is evaluated in terms of races with the rest
+of the controllers in the same generation. Fitness is then not
+computed directly from telemetry in a solo race, but out of the score
+obtained in a championship with several races, where every controller
+in a generation participates. This will be describe more extensively
+in the next subsection.
 
-\textbf{non uniform mutation} \cite{mutation1997} has been used as the \textit{mutation operator} in the GA, because it was considered in previous approaches of our controllers. 
+\textbf{non uniform mutation} \cite{mutation1997} has been used as the
+\textit{mutation operator} in the GA, because it was considered in
+previous approaches of our controllers. 
 
-In the following section we describe two new operators, designed and implemented aiming to improve the algorithm performance, as well as the final quality of the evolved controllers. These are namely a fitnessless selection policy and an extended real-value crossover operator able to manage the balance between exploration and exploitation during the evolution.
+The next section will describe the two methods we are presenting in
+this paper: a fitnessless selection policy and an extended real-value
+crossover operator able to manage the balance between exploration and
+exploitation during the evolution. 
 
 % -------------------------------------------------------------------
-\subsection{Novel operators}
+\subsection{Grand Prix Selection and adaptive-$\alpha$ BLX crossover operator}
 \label{subsec:novel_operators}
 
-%This paper proposes the inclusion of two different mechanisms into the algorithm in order to improve its performance, as well as they allow to obtain better controllers overall.
+% I don't think putting these things together in a section makes
+% sense, just because they are new, but whatever - JJ
 
-The first operator presented is a \textbf{Grand Prix Selection} policy
-(GPS), which aims to choose more reliable individuals/controllers as
+%This paper proposes the inclusion of two different mechanisms into
+%the algorithm in order to improve its performance, as well as they
+%allow to obtain better controllers overall. 
+
+As introduced in the previous subsection, the \textbf{Grand Prix Selection} policy
+(GPS)  aims to select, in every generation, more reliable individuals/controllers as 
 parents to combine their genes for creating new individuals in the
 following generation of the algorithm, as well as use them as a basis
 for exploration of new solutions. It is a fitnessless approach,
 independent of the aforementioned fitness function (see Equation
 \ref{fit_avg}), designed to better deal with the uncertainty present
-in the election of an actual good individual. 
+in the election of an actual good individual using solo races, which
+is a good surrogate for the actual objective of evolution, winning
+competitive races, as has been proved in our papers so far. However,
+in this paper we will examine if using real races for evolution can be
+a better option in terms of performance, and also of evaluation
+budget. 
 
 The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based in Formula 1 Grand Prix ranking, so the obtained scores per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
 
-The objective of this operator is to really select the best individuals of the population. However, given the existing uncertainty \cite{merelo2016statistical} due to the competition against other non-deterministic controllers, it is not possible to ensure they are doubtlessly the best.
+The objective of this operator is to really select the best
+individuals of the population. However, given the existing uncertainty
+\cite{merelo2016statistical} due to the competition against other
+non-deterministic controllers, it is not possible to ensure they are
+doubtlessly the best. 
 
 In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
 
@@ -746,7 +770,7 @@ three evolution processes {\sf GFC}, {\sf GFC-GPSE} and {\sf GFC-GPSVA5}.
 
 Skewness is related to how symmetric the distribution of fitness
 scores is. There are several strategies that deal with this kind of
-uncertain (usually called {\em noisy} fitness functions; but a simple
+uncertain (usually called {\em noisy} fitness functions); but a simple
 one is to re-evaluate ({\em re-sample}) the score every generation. A
 skewed distribution mean that it will more likely to sample a value
 that is different from the average, but it might be better or worse
