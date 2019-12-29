@@ -407,7 +407,7 @@ usual human-like race car driving rules.
 % account real rules.
 % Antonio - Ok, I guess the rules are those which a human follows. ;)
 %
-\begin{table*}[h!tb]
+\begin{table}[h!tb]
   \centering
   {\scriptsize
     \caption{Rules for speed controller output. Additionally, when
@@ -426,13 +426,12 @@ usual human-like race car driving rules.
       Low & Low & Medium & 60 \\           
       Low & Low & Low & 30 \\     
 \hline
-\hline
 \end{tabular}
 }
-\end{table*}
+\end{table}
 %
 %
-\begin{table*}[h!tb]
+\begin{table}[h!tb]
   \centering
   {\scriptsize
     \caption{Rules for steering controller. Angles will be reversed
@@ -452,7 +451,7 @@ usual human-like race car driving rules.
 \hline
 \end{tabular}
 }
-\end{table*}
+\end{table}
 
 
 
@@ -762,9 +761,9 @@ results are shown in Figures \ref{fig:gfcsk},\ref{fig:gfcrsesk} and
 
 \begin{figure}[!ht]	
 	\begin{center}
-          \includegraphics[width=9cm]{fig/GFC__.jpg}
-          \includegraphics[width=9cm]{fig/GFCRSE__.jpg}
-          \includegraphics[width=9cm]{fig/GFCVARSE__.jpg}
+          \includegraphics[width=9.5cm]{fig/GFC__.jpg}
+          \includegraphics[width=9.5cm]{fig/GFCRSE__.jpg}
+          \includegraphics[width=9.5cm]{fig/GFCVARSE__.jpg}
 		\caption{Skewness ($y$ axis) and kurtosis ($x$ axis)
                   for the fitness score or chosen individuals in an experiment with the
                   {\sf GFC} method \cite{salem_cig2018} (top), {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}
@@ -815,7 +814,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 %% Process 2  : GPS with Alpha
 %%  GFC and VA are used only in comparaison purpose
 
-\begin{table*}[ht]
+\begin{table}[ht]
 	\centering
 	{\scriptsize
 		\caption{ Results of controllers using GPS in a mini-championship with 10 controllers and 10
@@ -846,12 +845,12 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 			\end{tabular}
 		}\label{tab:RSresults}
 	}
-\end{table*}
+\end{table}
 %
 
 
 %
-\begin{table*}[ht]
+\begin{table}[ht]
 	\centering
 	{\scriptsize
 		\caption{ Results of {\sf GFC-GPSVAE} controllers in a mini-championship with 10 controllers and 10
@@ -881,7 +880,7 @@ Results are shown in Tables\ref{tab:RSresults} and \ref{tab:VaryingalphaRSresult
 			\end{tabular}
 		}\label{tab:VaryingalphaRSresults}
 	}
-\end{table*}
+\end{table}
 %
 As it could be noticed in the Table \ref{tab:RSresults}, the controller {\sf GFC-GPSVAE} has win the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. //
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
@@ -909,7 +908,7 @@ It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi
 \cite{PerezEvolvingFuzzy09}. We have baptized it as PSRI in honor of
 its authors' surnames; results in Table \ref{tab:allsresults}.
 %
-\begin{table*}[ht]
+\begin{table}[ht]
 	\centering
 	{\scriptsize
 		\caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
@@ -943,7 +942,7 @@ $tita1$&	26&	18&	44\\
 			\end{tabular}
 		}\label{tab:allsresults}
 	}
-\end{table*}
+\end{table}
 %
 
 
