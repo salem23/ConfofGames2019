@@ -582,7 +582,6 @@ The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
 are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and
-<<<<<<< HEAD
 $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
 % \begin{figure}[!ht]	
@@ -594,18 +593,6 @@ $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 %  \end{figure}
 %  Antonio - I include again the figure, because I consider it as very ilustrative to understand how BLX-alpha works. And now we have enough free space.
 % It's not the objective of the paper, and it's not even our figure. - JJ
-=======
-$x_i < y_i$. See Figure \ref{fig:blxalpha}.
-%
-%\begin{figure}[!ht]	
-% 	\begin{center}
-% 		\includegraphics[width=7cm]{fig/blxalpha.jpg}
-% 		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
-% 		\label{fig:blxalpha}	
-% 	\end{center}	
-% \end{figure}
-% Antonio - I include again the figure, because I consider it as very ilustrative to understand how BLX-alpha works. And now we have enough free space.
->>>>>>> 50504e03136483ea399b9f3f9d44e5b59f55a561
 
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
@@ -979,7 +966,7 @@ The above competition clearly demonstrates the superiority of the {\sf GFC-GPSVA
 The introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and  increases diversification in the optimization process, which has led to better results than those of {\sf GFC-GPSE}.
 
 %%%%%%%%%%Add  controller GFC-VAGPSE MFs
-The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}
+The structure of the winner controller {\sf GFC-GPSVAE} is depicted in Figures \ref{fig:frontmfs}, \ref{fig:max5mfs} and \ref{fig:max10mfs}. % Some comments are needed.
 
 \begin{figure}[!ht]	
 	\begin{center}
