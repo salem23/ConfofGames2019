@@ -37,63 +37,26 @@ Email: jmerelo@geneura.ugr.es
 }% <-this % stops an unwanted space
 \thanks{Manuscript received December XX, 2019; revised XXXX, 2020.}}
 
-% note the % following the last \IEEEmembership and also \thanks - 
-% these prevent an unwanted space from occurring between the last author name
-% and the end of the author line. i.e., if you had this:
-% 
-% \author{....lastname \thanks{...} \thanks{...} }
-%                     ^------------^------------^----Do not want these spaces!
-%
-% a space would be appended to the last name and could cause every name on that
-% line to be shifted left slightly. This is one of those "LaTeX things". For
-% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
-% "AB" then you have to do: "\textbf{A}\textbf{B}"
-% \thanks is no different in this regard, so shield the last } of each \thanks
-% that ends a line with a % and do not let a space in before the next \thanks.
-% Spaces after \IEEEmembership other than the last one are OK (and needed) as
-% you are supposed to have spaces between the names. For what it is worth,
-% this is a minor point as most people would not even notice if the said evil
-% space somehow managed to creep in.
-
-
-
-% The paper headers
-%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
-%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
-% The only time the second header will appear is for the odd numbered pages
-% after the title page when using the twoside option.
-% 
-% *** Note that you probably will NOT want to include the author's ***
-% *** name in the headers of peer review papers.                   ***
-% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
-% you desire.
-
-
 
 \IEEEtitleabstractindextext{%
   \begin{abstract}
-    Evolution is a powerful problem-solving technique, which has been
-extensively used for designing racing car controllers. It presents a
-series of challenges: it needs an evaluation function that is able to
-separate the best controllers from the rest, and it needs a series of
-operators that are able to explore many different possibilities in the
-controller (solutions) search space. But racing scores are variable and also
-depend on adversaries and the actual track features and conditions. 
-% This uncertainty also means that it is much more important to maintain a  high diversity. 
-% Antonio - this is also said below
-This adds to the problem an uncertainty that the designer of the algorithms must address or, at least, take into consideration.
-Thus, building on the experience drawn from our previous work, in this paper we evaluate two novel operators in an evolutionary algorithm designed to optimize a controller for TORCS simulator. First, a kind of fitnessless selection policy based on competition and called \textit{Grand Prix Selection} (GPS), which should be able to reduce uncertainty by using something more realistic than solo race scores to select individuals. However, uncertainty has the unintended side effect of requiring to increase diversity,
-%%Mohammed: U mean uncertainty increases the diversity?? if so, how it does?
-% Antonio - It was written by JJ, I guess he meant that dealing with uncertainty must require to have a more diverse population... "of increasing"-> "of requiring to increase"??
- so we will also evaluate the diversity-increasing BLX-$alpha$ operator, with varying value of $\alpha$, in combination with GPS, 
-% Antonio - what does "them" refer to? GPS?
-and see their % their?
-%Mohammed :  it!!!
-effects on overall performance. In general, results
-will show that these combined improvements establish a new level of
-performance of evolved controllers, being able to beat, both standard
-and previously evolved controllers, as well as a high-ranked
-controller of TORCS competitions.
+    Evolution is a powerful problem-solving technique, extensively
+used for designing racing car controllers, but with a series of
+challenges: an evaluation function that is able to separate the best
+controllers from the rest, and a series of operators that are able to
+explore different possibilities in the controller search space. Within
+the context of the TORCS racing simulator, in this paper we introduce
+a kind of fitnessless selection policy based on competition and called
+\textit{Grand Prix Selection} (GPS), which should be able to reduce
+uncertainty by using something more realistic than solo race scores to
+select individuals. Additionally, we increase the exploitative power
+of this kind of selection via an adaptive BLX-$\alpha$ operator. We
+compare these new selection and operator with hybrid approaches that
+apply GPS only part of the time, as well as other classical crossover
+operators. In general, experimens show that these combined
+improvements establish a new level of performance of evolved
+controllers, being able to beat, both standard and previously evolved
+ones, as well as a high-ranked controller of TORCS competitions.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
