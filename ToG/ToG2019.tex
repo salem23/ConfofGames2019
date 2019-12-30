@@ -285,7 +285,7 @@ to get rid of a fitness score resulting from evaluation of an
 individual, substituting it by a score obtained by the controller in
 more realistic competitive conditions.
 
-The concept, however, was goes way back at least to
+The concept, however, goes back at least to
 \cite{Angeline:1993:CEE:645513.657590}, which calls it a ``competitive
 fitness environment''. Fitnessless evolution was further developed in
 \cite{rosin1995methods}, but it has been also used in genetic
@@ -700,7 +700,7 @@ operator while the second uses adaptive BLX-$\alpha$.
 For every kind of crossover, three configurations are considered: for
 the first one, GPS is applied in every generation giving the new
 proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}. 
-In the second an third configuration, we retrained our previous four  controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
+In the second and third configuration, we retrained our previous four  controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}} and 
 {\sf{GFC-GPSVA5}} where GPS selection is used every 5 generation and just in the last generation for {\sf{GFC-GPSL}} and {\sf{GFC-GPSVAL}}.
 Also and for comparison purpose, two controllers from previous papers have been considered: {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC-VA}}\cite{salem_cig2018}, they both use the fitness function $f_{AVS}$ (Equation \ref{fit_avg}) value for selection.
 All these controllers are summarized in Table \ref{tab:drivers}. 
@@ -902,12 +902,12 @@ races. Results are shown in Table \ref{tab:VaryingalphaRSresults}.
               {\sf GFC-GPSVAE} &	108&    101&	{\bf 209}\\
 				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
 				{\sf GFC}  \cite{salem_cig2018}&	56&	50&	106\\
-				{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	46&	7&	53\\
-				$inferno1$&	9&	8&	17\\
+				{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	50&	7&	57\\
+				$inferno1$&	11&	16&	27\\
 				$inferno2$&	20&	49&	69\\
-				$berniw1$&	16&	24&	40\\
+				$berniw1$&	16&	22&	38\\
 				$berniw2$&	59&	73&	132\\
-				$tita1$&	32&	38&	70\\			
+				$tita1$&	32&	26&	58\\			
 				\hline
 				
 			\end{tabular}
@@ -964,7 +964,7 @@ $tita1$&	26&	18&	44\\
 %
 
 
-This final competition clearly demonstrates the superiority of the {\sf GFC-GPSVAE} controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference drivers, namely {\sf GFC-VA} and {\sf GFC}  are classified 3rd and 5th.
+This final competition clearly demonstrates the superiority of the {\sf GFC-GPSVAE} controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference drivers, namely {\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $5^{th}$.
 
 
 %%%%%%%%%%  controller GFC-VAGPSE MFs
