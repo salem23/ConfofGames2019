@@ -620,7 +620,12 @@ This will mean a higher diversification factor in the first generations, because
 % Antonio - Referencing again Figure. Anyway, the text without this reference was not correct.
 On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
 
-We argue that this operator, in conjunction with GPS will aid the algorithm to find better controllers, so we will test several combinations and configurations of both techniques in the experiments conducted in next section. We will also study their impact from different perspectives, both considering their performance and also from the uncertainty influence point of view.
+We argue that this operator, in conjunction with GPS will aid the
+algorithm to find better controllers, so we will test several
+combinations and configurations of both techniques in the experiments
+conducted in next section. We will also study their impact from
+different perspectives, both considering their performance and also
+from the uncertainty influence point of view. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -870,9 +875,11 @@ These results come to confirm the influence of the proposed selection policy whe
 Indeed, we have made the selection process realistic by eliminating
 the classical fitness function based on the speed and damage average
 and replacing it by points obtained in direct races. 
-Better speed in solo racing is not a criterion for a good controller, the
-best is the one who wins races. Thus, the new selection policy allows us to
-select actual winners on the field and not potential winners. 
+Performance in solo racing can be an acceptable criterion for a good
+controller, as proved so far, but at the end of the day, the best car
+is the one that wins races. Thus, the new selection policy allows us
+to select actual winners on the field and not controllers that perform
+well in {\em training} races and could, thus, be potential winners.
 
 % ----------------
 
@@ -1119,7 +1126,7 @@ simulator. This selection policy, called GPS, has been evaluated in combination 
 
 In races performed in the training, and other tracks, the controller
 that has evolved using competitive (fitnessless) selection and the
-variable BLX-$\alpha$ crossover operator has proved superior to not
+variable $\alpha$ BLX crossover operator has proved superior to not
 only other controllers evolved previously by us, but also other
 competitive entries. As a matter of fact, using GPS has the greatest 
 influence in the results: {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, whose only
@@ -1130,8 +1137,15 @@ competitor. % $berniw2$. % Antonio berniw is not ours
 
 %The variable-$\alpha$ BLX operator seems to have also a positive influence in the outcome, outperforming the fixed BLX-$\alpha$ in a race, as shown in the competitive races presented in this paper. 
 % Antonio - we do not compare here fixed and variable BLX-alpha
+% Variable BLX-$\alpha$ means nothing. Variable $\alpha$ means that,
+% well, the alpha is variable. Please don't break what others have
+% written - JJ
 
-The adaptive BLX-$\alpha$ operator seems to have also a positive influence in the outcome, outperforming the standard crossover results. Thus, the decreasing amount of exploration that adaptive BLX-$\alpha$ boasts explores in a more efficient way the space of controllers, finding very competitive solutions.
+The adaptive BLX-$\alpha$ operator seems to have also a positive
+influence in the outcome, outperforming the standard crossover
+results. Thus, the decreasing amount of exploration that adaptive
+BLX-$\alpha$ boasts explores in a more efficient way the space of
+controllers, finding very competitive solutions. 
 
 Another advantage of these combined selection and crossover is that they do not
 increase too much the total training time, and are also able to find a good solution in the first stages of evolution, which, if needed, allows to cut the training short. {\sf GFC-GPSVAE} needs at most 18 generations (which is around one third of the maximum number of generations defined) to find a good solution. Running GPS every generation needs more generations to get to the best that if it is run every 5 generations, or just at the end, but the problem is that in those cases the solution found is less competitive. However, {\sf GFC-GPSVA5} is quite competitive, and in the case of a limited evaluation budget, it could be a very good compromise.
