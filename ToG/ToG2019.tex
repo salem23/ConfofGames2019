@@ -6,7 +6,8 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{url}
-
+\usepackage{caption}
+\usepackage{subcaption}
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 %\setcounter{biburllcpenalty}{7000}
@@ -600,29 +601,43 @@ from the uncertainty influence point of view.
 % TODO: Comparison against the standard controllers in TORCS
 % TODO: Comparison against S&PL controller (of all our controllers, if possible)
 %
+%\begin{figure}[!ht]	
+%	\begin{center}
+%		\includegraphics[width=3cm]{fig/alpine2.jpg}
+%		\includegraphics[width=3cm]{fig/wheel2.jpg}
+%		\caption{Alpine 2 Track. Length: 3773.57m, Width: 10m.}
+%		\label{fig:alpine2_track}	
+%	\end{center}	
+%      \end{figure}
+%%     
 \begin{figure}[!ht]	
-	\begin{center}
-		\includegraphics[width=4cm]{fig/alpine2.jpg}
-		\caption{Alpine 2 Track. Length: 3773.57m, Width: 10m.}
-		\label{fig:alpine2_track}	
-	\end{center}	
-      \end{figure}
-%      
+\centering
+\begin{subfigure}[b]{0.15\textwidth}
+	\centering
+	\includegraphics[width=3cm]{fig/alpine2.jpg}
+	\caption{Alpine 2 Track.  Length: 3773.57m, Width: 10m.}
+	\label{fig:y equals x}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.15\textwidth}
+	\centering
+	\includegraphics[width=3cm]{fig/wheel2.jpg}
+	\caption{Wheel 2 Track.  Length: 6205.46m, Width: 12m.}
+	\label{fig:three sin x}
+\end{subfigure}
+\caption{Training tracks}
+\label{fig:three graphs}
+\end{figure}
+
+
 In this kind of problems, it is essential to select the correct
 training track so that bots are able to work in a wide range of
-conditions. Usually a single track, out of all the existing TORCS
-ones, is selected, since evaluation in a single track takes some time
-and using several of them would make evaluation too onerous. For
-several papers already \cite{salem_cig2018,DBLP:conf/cig/SalemMG19},
-we have been using the \textit{Alpine 2} track (See Figure
-\ref{fig:alpine2_track}). This circuit has several characteristics that
+conditions. Since using several tracks would make evaluation too onerous, we chose to select two tracks to train our solution. The first track is \textit{Alpine 2} track, the one already used in several papers  \cite{salem_cig2018,DBLP:conf/cig/SalemMG19}. This circuit has several characteristics that
 are essential for evaluating a bot: it has got many turns, some of
 them with 180 degrees, steep segments, and some very challenging parts
 like the entrance of a tunnel at a square angle. All these features make
 it a good testbed for good turning and collision avoidance
-strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. 
-
-This same track has been also repeatedly used by other authors for training as well as for testing and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}, for instance in
+strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. This same track has been also repeatedly used by other authors for training as well as for testing and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}, for instance in
 \cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after Alpine 1 and Olethros, implying it
 has got a good balance between hardness and speed. Since we also used
 it in our previous papers, it allowed us to compare racing bots that
@@ -639,6 +654,7 @@ CG-Track 1. There are several differences between CG-Track 2 and Alpine
 easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.
+The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is hairpin turn.It was  described   in \cite{wheel2track_chen} as ' a more difficult track with many fast turns'(See Figure \ref{fig:alpine2_track}).
 
 We have again used the vehicle \textit{car1-trb1},
 which is a well balanced, NASCAR type car \footnote{See description in
@@ -673,7 +689,7 @@ individuals. The rest of parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
 configuration. % Clarify if crossover rate means BLX-alpha crossover
                % or there's another crossover too - JJ
-
+For every optimization's race, the track is selected randomly from Alpine2 and Wheel 2 tracks.
 We kept the same values for the evolutionary parameters as in our previous works for two reasons: first, because they yielded good results (and are not really the focus of this paper), and second, in order to compare previous controllers with the new ones in the same conditions.
 
 
@@ -788,7 +804,7 @@ In the next subsection we will see how this kind of selection has an influence i
 
 
 Once the 10 runs have finished, the obtained best controllers from the
-previous evolutionary processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection is considered. Results are shown in Tables \ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}.
+previous evolutionary processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection is considered. We run the selected controllers in 10 races of 20 laps for each of the two training tracks :Alpine 2  and Wheel 2  and  for each of the two testing tracks: E-Track 5 and Street 1. Results are shown in Tables \ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}.
 %% Process 1 : GPS without Alpha
 %% Process 2  : GPS with Alpha
 %%  GFC and VA are used only in comparaison purpose
@@ -796,29 +812,35 @@ previous evolutionary processes compete again in a similar set of races, in orde
 \begin{table}[ht]
 	\centering
 	{\scriptsize
-		\caption{ Results of GPS controllers in a mini-championship with 10 controllers and 10 races in two different tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with the TORCS
+		\caption{ Results of GPS controllers in a mini-championship
+			with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. We mark in {\bf boldface}
                       the best value, and in {\em italics} the second best.}
 		{
-                  \begin{tabular}{|c|c|c||c|}
+                  \begin{tabular}{|c|c|c|c|c||c|}
                     \hline
-                    & \multicolumn{2}{|c|}{Score in} & \\
+                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
                     \hline
-                    Controller&\textit{Alpine 2} track &\textit{E-Track 5} track &Total\\
+                    Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
 				\hline
 				\hline
-				
-			{\sf GFC-GPS5}\cite{DBLP:conf/cig/SalemMG19}&	75	&74&	149\\
-			{\sf GFC-GPSE}&	98	&93&	{\bf 191}\\
-			{\sf GFC-GPSL}\cite{DBLP:conf/cig/SalemMG19}&	77	&81&	{\em 158}\\
-			{\sf GFC} \cite{salem_cig2018}	&	56	&50&	106\\
-			{\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19}	&	46	&7&		53\\
-			$inferno1$&	9	&8&		17\\
-			$inferno2$&		20	&51&	71\\
-			$berniw1$&	16	&24&	40\\
-			$berniw2$&	76	&79&	155\\
-			$tita1$&32	&38&	70\\		
+			{\sf GFC-GPSE}&216&222&236&222&{\bf 896}\\	
+			{\sf GFC-GPS5}\cite{DBLP:conf/cig/SalemMG19}&170&162&176&180&{\em688}\\
+			
+			{\sf GFC-GPSL}\cite{DBLP:conf/cig/SalemMG19}&164&154&156&156&630\\
+			{\sf GFC} \cite{salem_cig2018}	&140&116& 86&114&456\\
+			{\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19}	&102&102& 68& 90&362\\
+
+
+
+			$berniw2$	& 84&100&100& 72&356\\
+			$tita1$	&44 & 64& 58& 60&226\\
+			$inferno2$& 50& 34& 72& 50&206\\				
+			$berniw1$	& 24& 26& 42& 52&144\\			
+			$inferno1$& 16& 30& 16& 14& 76\\			
+			
 				\hline
+
 				
 			\end{tabular}
 		}\label{tab:RSresults}
@@ -826,9 +848,9 @@ previous evolutionary processes compete again in a similar set of races, in orde
 \end{table}
 %
 
-As it could be noticed in Table \ref{tab:RSresults}, the controller {\sf GFC-GPSVAE} has won the Grand Prix championship obtaining 98 points from 125 in the track used in the training, it has also ranked first in the track  \textit{E-Track 5}. 
+As it could be noticed in Table \ref{tab:RSresults}, the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Street 2}. 
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
-From Table \ref{tab:RSresults}, it is clear that the controller {\sf GFC-GPSVAE}, where GPS selection has been applied in every generation, has won the majority of possible points in the two tracks, even in the unknown (not trained) \textit{E-Track 5} track.
+From Table \ref{tab:RSresults}, it is clear that the controller {\sf GFC-GPSE}, where GPS selection has been applied in every generation, has won the majority of possible points in the four tracks, even in the unknown (not trained) \textit{E-Track 5}  and \textit{Street 1} tracks.
 
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying only the GPS selection have won the competition. It can be seen comparing the points obtained by GPS controllers and GFC.
 Indeed, we have made the selection process realistic by eliminating
@@ -852,27 +874,30 @@ races. Results are shown in Table \ref{tab:VaryingalphaRSresults}.
 \begin{table}[ht]
 	\centering
 	{\scriptsize
-          \caption{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}
+          \caption{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with with 10 controllers
+          	and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}
           {
-            \begin{tabular}{|c|c|c||c|}
+            \begin{tabular}{|c|c|c|c|c||c|}
               \hline
-              & \multicolumn{2}{|c|}{Score in} & \\
+                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
               \hline
-              Controller& \textit{Alpine 2} track & \textit{E-Track 5} track &Total\\
+                    Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
               \hline
               \hline	
-              {\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&	82&	82&	{\em 164}\\
-              {\sf GFC-GPSVAE} &	108&    101&	{\bf 209}\\
-				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&	77&	73&	150\\
-				{\sf GFC}  \cite{salem_cig2018}&	56&	50&	106\\
-				{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	50&	7&	57\\
-				$inferno1$&	11&	16&	27\\
-				$inferno2$&	20&	49&	69\\
-				$berniw1$&	16&	22&	38\\
-				$berniw2$&	59&	73&	132\\
-				$tita1$&	32&	26&	58\\			
-				\hline
+              {\sf GFC-GPSVAE} &236&	236&250&	236&{\bf 958}\\
+              {\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&170&	188&162&	188&	{\em 708}\\
+
+				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&152&	156&146&	156&	610\\
+
 				
+				
+		{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&124&	96 &102&	108&	430\\		
+		{\sf GFC}  \cite{salem_cig2018}&102&	96 &88 &	100&	386\\
+		$berniw2$	 &76 &	88 &74 &	76 &	314\\
+		$tita1$	 	&52 &	60 &56 &	56 &	224\\
+		$inferno2$ &40 &	44 &80 &	24 &	188\\		
+		$berniw1$	 &36 &	24 &30 &	48 &	138\\	
+		$inferno1$ &22 &	22 &18 &	18 &	80\\					\hline			
 			\end{tabular}
 		}\label{tab:VaryingalphaRSresults}
 	}
@@ -898,37 +923,43 @@ Table \ref{tab:allsresults} shows the obtained results.
   {\scriptsize
     \caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
       in a mini-championship with 10 controllers
-      and 10 races in two different tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS
+      and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS
       simulator \cite{torcs4}.  {\bf Boldface} is used to highlight the best value, {\em italics} for the second best.}
     {
-      \begin{tabular}{|c|c|c||c|}
+            \begin{tabular}{|c|c|c|c|c||c|}
+	\hline
+	& \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
+	\hline
+	Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
         \hline
-        & \multicolumn{2}{|c|}{Score in} & \\
         \hline
-        Controller&\textit{Alpine 2} track &\textit{E-Track 5} track &Total\\
-        \hline
-        \hline
-{\sf GFC-GPSVAE}&111&101&            {\bf 212}\\        
-{\sf GFC-GPSE}&	85&	82&	{\em 167}\\
-{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&	78&	64&	142\\
-$berniw2$&	59&	69&	128\\
-{\sf GFC}  \cite{salem_cig2018}&		48&	55&	103\\
 
-$PSRI$\cite{PerezEvolvingFuzzy09}&		53&	48&	101\\
-$inferno2$&	20&	40&	60\\
-$tita1$&	26&	18&	44\\
-$berniw1$&	16&	24&	40\\
-$inferno1$&	9&	8&	17\\
+
+
+{\sf GFC-GPSVAE}	&222&	236&	236&	222&	 {\bf 916}\\
+{\sf GFC-GPSE}	&176&	196&	162&	190&	{\em 724}\\
+
+{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&172&	146&	134&	152& 	604\\
+{\sf GFC}  \cite{salem_cig2018}	&108&	120&	110&	112&	450\\
+$PSRI$\cite{PerezEvolvingFuzzy09}&102&	88 &	104&	86 &    380\\
+$berniw2$		&88	&	84 &	92 &	72 &	336\\
+$inferno2$	&58	&	34 &	80 &	50 &	222\\
+$tita1$		&34 &	64 &	36 &	60 &	194\\
+$berniw1$		&32	&	26 &	48 &	52 &	158\\
+$inferno1$	&18	&	30 &	16 &	14 &	78\\
 \hline
-				
-			\end{tabular}
-		}\label{tab:allsresults}
-	}
+
+\end{tabular}
+}\label{tab:allsresults}
+}
 \end{table}
-%
 
 
-This final competition clearly demonstrates the superiority of the {\sf GFC-GPSVAE} controller where it clearly leads in the points. It collected most of the points in the two tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference drivers, namely {\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $5^{th}$.
+
+
+
+
+This final competition clearly demonstrates the superiority of the {\sf GFC-GPSVAE} controller where it clearly leads in the points. It collected most of the points in the four tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference drivers, namely {\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $4^{th}$.
 
 
 %%%%%%%%%%  controller GFC-VAGPSE MFs
@@ -1007,32 +1038,33 @@ To evaluate the cost of the proposed controllers, Table \ref{tab:time} shows the
                   % here - JJ
 \hline
 \hline 	 
- \textbf{{\sf GFC-GPSVAL}} \cite{DBLP:conf/cig/SalemMG19}& 270923
-&9-15\\	
-\textbf{{\sf GFC-GPSVAE}}& 273000
-&11-18\\
- \textbf{{\sf GFC-GPSE}}&	276600
-&22-40\\
-\textbf{{\sf GFC-VA}} \cite{DBLP:conf/cig/SalemMG19}&279000
-&10-18\\
- \textbf{{\sf GFC-GPSL}} \cite{DBLP:conf/cig/SalemMG19}& 282945
-&23-38\\
-\textbf{\textbf{{\sf GFC}}} \cite{salem_cig2018}&294000
-                   &34-39\\
-\textbf{{\sf GFC-GPSVA5}} \cite{DBLP:conf/cig/SalemMG19}&	326520
-&8-17\\	
+ \textbf{{\sf GFC-GPSVAL}} \cite{DBLP:conf/cig/SalemMG19}& 282923
+&7-14\\	
+\textbf{{\sf GFC-GPSVAE}}& 287200
+&11-16\\
+ \textbf{{\sf GFC-GPSE}}&	289850
+&20-39\\
+\textbf{{\sf GFC-VA}} \cite{DBLP:conf/cig/SalemMG19}&293000
+&9-18\\
+ \textbf{{\sf GFC-GPSL}} \cite{DBLP:conf/cig/SalemMG19}& 295445
+&21-35\\
+\textbf{\textbf{{\sf GFC}}} \cite{salem_cig2018}&402000
+                   &32-36\\
+\textbf{{\sf GFC-GPSVA5}} \cite{DBLP:conf/cig/SalemMG19}&	436520
+&7-15\\	
 	
- \textbf{{\sf GFC-GPS5}} \cite{DBLP:conf/cig/SalemMG19}&331320
-				&24-38\\	
+ \textbf{{\sf GFC-GPS5}} \cite{DBLP:conf/cig/SalemMG19}&443860
+				&21-35\\	
 					
 			\hline 
+		
 		\end{tabular}
 		
 	}
 \end{table} 
 
 {\sf GFC-GPSVAE} and {\sf GFC-GPSE} controllers were the best where
-they are ranked $1^{st}$ and $2^{nd}$ but they are very expensive in runtime, since they have performed around 273000s and 276600s respectively, which is a
+they are ranked $1^{st}$ and $2^{nd}$ but they are very expensive in runtime, since they have performed around 282923s and 287200s respectively, which is a
 huge training time. % Don't all individuals use the same amount of
                     % laps to race? - JJ
                     
@@ -1043,7 +1075,7 @@ This means that, even if the proposed selection policy is very effective, in tur
 %
 Another point that we can highlight is that the controllers with
 $BLX-\alpha$ have reached the optimal solution in few generations
-(between the $10^{th}$ and the $20^{th}$) while the other methods required more
+(between the $7^{th}$ and the $20^{th}$) while the other methods required more
 generations. 
 
 
