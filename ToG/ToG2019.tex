@@ -48,7 +48,7 @@ controllers from the rest, and a series of operators that are able to
 explore different possibilities in the controller search space. Within
 the context of the TORCS racing simulator, in this paper we introduce
 a kind of fitnessless selection policy based on competition and called
-\textit{Grand Prix Selection} (GPS), which should be able to reduce
+\textit{Grand Prix Selection} (GPS), which will be able to reduce
 uncertainty by using something more realistic than solo race scores to
 select individuals. Additionally, we increase the exploitative power
 of this kind of selection via an adaptive BLX-$\alpha$ operator. We
@@ -81,25 +81,25 @@ Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness
 Driving a car is a problem in which you have to map inputs that
 include data about the environment we are driving in as well as car
 data, to the output: throttling and steering. Car controllers have to
-be designed so that cars do not crash, and are able to run at a
-reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins in as many races as possible.
+be designed so that cars do not crash and are able to run at a
+reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins in many races as possible.
 
 There are so many variables in this problem, that eventually some of
 them are decided using heuristic rules, while the rest are open to
 optimization. For instance, deciding the type of controller is usually
-done before the design process begin, and a single, parametrized one
+done before the design process begins, and a single, parametrized one
 is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09} are often used. 
 Additionally to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
-race, so that it can adapt itself to new, and not seen before,
+race, so that it can adapt itself to new and previously unseen,
 scenarios and competitors, or it can be fixed by training the
 controllers in advance. 
 
-We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success.
+We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success \cite{salem_evo17},\cite{salem_evo18},.
 However, in a simulated and realistic racing car environment like the one we use, racing car scores are a
     statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
     that score in a training track will always be a surrogate of its
-    actual score when racing against other cars in different tracks,
+    actual score when racing against other cars on different tracks,
     which adds another layer of uncertainty. This is why optimization
     in this environment is quite hard. If training is done before the
     race, and the controllers are fixed via an optimization process,
@@ -124,8 +124,7 @@ introduced fuzzy controllers for driving the car and continued with
 \cite{salem_evo18}, where the shape and values of the
 fuzzy controllers were improved using an evolutionary algorithm; that
 algorithm was improved in \cite{salem_ipmu18}. However,
-we still had to deal with uncertainty, as well as a not so good
-exploration of the parameter space; the issue that we were using a
+we still had to deal with uncertainty, as well as a suboptimal exploration of the parameter space; the issue that we were using a
 surrogate of the real bot capacity by doing solo races was tackled by
 trying to use different fitness functions, but also by racing the best
 individuals in the last generation, which we introduced in
@@ -133,9 +132,9 @@ individuals in the last generation, which we introduced in
 ``winner'', even if it was in the last generation, improved results,
 so this kind of competitive selection was extended by introducing real
 races from every few generations in 
-\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$ operator, and checked two different configurations using a fixed and a decreasing $\alpha$. This operator works, at the same time, exploring and exploiting the existing space of solutions, and let the designer to establish the balance between both factors in the search. The results with decreasing $\alpha$ were the best obtained so far.
+\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$ operator, and checked two different configurations using a fixed and a decreasing $\alpha$. This operator works at the same time, exploring and exploiting the existing space of solutions, and lets the designer to establish the balance between both factors in the search. The results with decreasing $\alpha$ were the best obtained so far.
 
-Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS), combined with other selection policies or by itself, as the only way for car controllers to be selected for the next generation.
+Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  This reduction of uncertainty has been proved also to reduce diversity in the genetic pool
 \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. 
