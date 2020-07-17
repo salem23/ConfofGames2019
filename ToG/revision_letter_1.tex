@@ -71,20 +71,107 @@
 \begin{enumerate}
 \item {\bf \underline{ Reviewer 1 Comments}}\\
 	\begin{itemize}
-		\item {\bf Fitnessless:}
+		\item {\bf Fitnessless:} Revised.
 		\item {\bf Typos and Grammar:} Revised
 		\item  {\bf Presentation Style:}
 		\begin{itemize}
 			\item Linebreak of the word CG-Track 1:  fixed
 			\item Tables values: sorted
 		\end{itemize}
-	\end{itemize}
+              \end{itemize}
+\begin{quote}
+I would be especially interested in a general definition of the
+proposed selection method, so it could be applied in other
+contexts. Furthermore, it is claimed that the Grand Prix Selection is
+a fitnessless method. I am not quite fond of this term since the
+ranking after driving a race can be considered as fitness as well,
+e.g. doesn't be successful in playing the game itself define a fitness
+function? Even if it is not arbritarily chosen, the environment's
+designer or the person who defines the task inherently defined a goal
+as well. In the introduction, it is even mentioned that the system
+uses a "kind of fitness selection". To better distinguish fitnessless
+methods from traditional ones, I would be useful to provide a
+definition.
+\end{quote}
+
+We have added an explanation of why we call it fitnessless, since it
+does not give an invariant and individual score (or fitness) to every
+individual, it's simply a way of keeping track the positions in the
+podium, and, in that sense, it's simply a way of tallying the result
+of a (repeated) tournament selection; the individuals don't have a
+fitness {\em before} entering Grand Prix Selection and we give the
+result of the tournaments based on that fitness. The selection is what
+yields a score that does not really have existence outside the
+selection procedure.
+
+We have added this text to the paper in order to clarify what we
+understand by fitnessless:
+{\em Although this selection uses a score that could be assimilated to a fitness, it's actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it's not intrinsic to the individual. It's equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it's participated.}
+
 \item {\bf \underline{ Reviewer 2 Comments}}\\
 	\begin{itemize}
-		\item {\bf How the fitnessless method or GPS is first introduced in the introduction:}\\
+		\item {\bf How the fitnessless method or GPS is first introduced in the introduction:} Revised\\
 .............................
 		\item {\bf Language errors :} Revisited
-	\end{itemize}
+                \end{itemize}
+
+                \begin{quote}
+                 According to the authors, simulating solo-races is
+                 not a reliable way of evaluating a car
+                 controller. Instead, they suggest to use a relative
+                 performance measure based on ranks in 10-car races,
+                 thus also being able to capture the controller
+                 performance in the presence of other cars. I would
+                 argue this is not actually a different selection
+                 operator, it is just a different fitness function. It
+                 was therefore confusing to me why the authors chose
+                 to call their approach "fitnessless" - they are still
+                 using a score that is compared. I would suggest to
+                 either clarify this further or pick different
+                 terminology.
+               \end{quote}
+
+We thank the reviewer for this suggestion. In fact, it can be
+considered an alternative fitness function; however, usually methods
+that don't use a fitness score that is independent of the selection
+procedure are considered fitnessless; we also call it {\em
+  fitnessless} as opposed to the fitness function we give to the same
+individual in solo races, when that's the method used in some
+generations in the paper. Just to clarify, this {\em score} is simply
+a writedown of the position of the car in the different races, in the
+same way that if we were running repeated tournament selections we
+would tally up the number of wins or loses. It's also called
+fitnessless because there's no absolute number that can be called that
+way, no crisp number that tells you if a car controller is better than
+other. We can only compare them (and only partially), and see how they
+run in different races; this {\em fitness} (which should be called
+more properly a score) is the result of the selection process, not the
+other way round, the selection process is the result of the fitness of
+the individuals participating in it. This is similar to a
+coevolutionary strategy, and has been called traditionally {\em
+  fitnessless}, which is what we do here.
+
+As the reviewer suggests, we have added a clarification (and a
+reference) in the following paragraph:
+
+{\em Thus, in this paper we are testing the best approaches we have
+  found all together in an algorithm, considering a kind of
+  fitnessless selection, which we have called \textit{Grand Prix
+    Selection} (GPS). Although this selection uses a score that could
+  be assimilated to a fitness, it's actually an extension of a
+  tournament selection policy since it creates tournaments of several
+  individuals, and ``scores'' them according to how they fare in these
+  races. This is not actually a fitness, since it's not intrinsic to
+  the individual. It's equivalent to, in a $n$-tournament selection
+  that is repeated several times, giving a score of $n$ to the first,
+  $n-1$ to the second, and then using this for selection. That score
+  is, thus, not a fitness but actually a way of keeping track of the
+  position of the individual in the different tournaments it's
+  participated; since, in this context, we have no way of evaluating (
+  = assigning a fitness) to a controller but only a way to compare
+  them, we call this approach {\em fitnessless}, as it was called, for
+  instance, in {\sc jaskowski2008winning}.}
+
 \item {\bf \underline{ Reviewer 3 Comments}}\\
 	\begin{itemize}
 	\item {\bf It was therefore confusing to me why the authors chose to call their approach "fitnessless" - they are still using a score that is compared. I would suggest to either clarify this further or pick different terminology.}\\
