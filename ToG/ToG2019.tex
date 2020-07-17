@@ -328,13 +328,12 @@ to use fuzzy sub-controllers, which will be described next.
 \label{subsec:fuzzy-controllers}
 
 \begin{figure}[!ht]
-  \label{fig:ga}
   \begin{center}
     \includegraphics[width=9cm]{fig/flowchart}
   \end{center}
   \caption{Schema of the two controllers that will be evolved by the proposed 
     evolutionary algorithm (GA), and evaluated by TORCS, which will
-    return the values for the car's average speed on the complete race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.}
+    return the values for the car's average speed on the complete race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.  \label{fig:ga}}
 \end{figure}
 %
 The two fuzzy sub-controllers we evolve take care of target speed and steering angle. These controllers were introduced by the authors in a previous paper \cite{salem_evo17}, and share the same structure as the standard TORCS driver but they consider five different sensors (see Figure \ref{fig:torcs-sensors}). These controllers are shown in Figure \ref{fig:ga}. 
@@ -654,6 +653,7 @@ easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.
 The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is hairpin turn.It was  described   in \cite{wheel2track_chen} as ' a more difficult track with many fast turns'(See Figure \ref{fig:alpine2_track}).
+% this figure has disappeared - JJ
 
 We have again used the vehicle \textit{car1-trb1},
 which is a well balanced, NASCAR type car \footnote{See description in
