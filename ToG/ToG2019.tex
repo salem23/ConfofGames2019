@@ -644,7 +644,7 @@ from the uncertainty influence point of view.
 \begin{subfigure}[b]{0.15\textwidth}
 	\centering
 	\includegraphics[width=3cm]{fig/wheel2.jpg}
-	\caption{Wheel 2 Track.  Length: 6205.46m, Width: 12m.}
+	\caption{\textcolor{red}{Wheel 2 Track.  Length: 6205.46m, Width: 12m.}}
 	\label{fig:wheel2}
 \end{subfigure}
 \caption{Training tracks}
@@ -786,12 +786,14 @@ results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom).
 
 \begin{figure}[ht]	
 	\begin{center}
-          \includegraphics[width=9.5cm]{fig/GFC__.jpg}
-          \includegraphics[width=9.5cm]{fig/GFCRSE__.jpg}
-          \includegraphics[width=9.5cm]{fig/GFCVARSE__.jpg}
-		\caption{Skewness ($y$ axis) and kurtosis ($x$ axis)
-                  for the fitness score or chosen individuals in an experiment with the {\sf GFC} method \cite{salem_cig2018} (top), {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom). We are considering $f_{AVS}$ fitness for GFC controller and GPS score for the others.}
-		\label{fig:gfcsk} \label{fig:gfcrsesk} \label{fig:gfcvarsesk}			
+          \includegraphics[width=8cm, height=3cm]{fig/GFC__.jpg}
+          \includegraphics[width=8cm, height=3cm]{fig/GFCRSE__.jpg}
+          \includegraphics[width=8cm, height=3cm]{fig/GFCVARSE__.jpg}
+		\caption{\textcolor{red}{Skewness ($y$ axis) and kurtosis ($x$ axis)
+                  for the fitness score or chosen individuals in an experiment with the {\sf GFC} method \cite{salem_cig2018} (top), {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom). We are considering $f_{AVS}$ fitness for GFC controller and GPS score for the others.}}
+		\label{fig:gfcsk}
+		 \label{fig:gfcrsesk} 
+		 \label{fig:gfcvarsesk}			
 	\end{center}	
 \end{figure}
 
@@ -997,13 +999,28 @@ This final competition clearly demonstrates the superiority of the {\sf GFC-GPSV
 %%%%%%%%%%  controller GFC-VAGPSE MFs
 
 As an additional results, we depict the structure of the winner controller {\sf GFC-GPSVAE} in Figure \ref{fig:frontmfs}. 
+If we take into account the rules already set in Table
+\ref{tab:output}, the shape of the obtained MFs  is in accordance with
+what a human driver would have done: favor speed as much as possible
+in the straight sections and brake as late as possible in the turns. 
+According to the figures, we have more than three quarters of
+probability that the first three rules will activate; these rules
+would make the car very aggressive especially in the straight sections
+of the track. The MFs for the FRONT sensor are for most of the values
+either Medium or High, which means that the target speed output will
+be over 240 km/h for the majority of the sensor range. 
+That situation is similar for the MAX5 and MAX10 MFs: turning will be done smoothly, and only in a very extreme situation (with the FRONT sensor in LOW and
+the other two sensors or medium or high, it will take a sharp turn;
+considering the physics of the simulator, these sharp turns might lead
+to getting off track and thus damage to the car.
+
 %
-\begin{figure}[!ht]	
+\begin{figure}[h]	
   \begin{center}
-    \includegraphics[width=9cm]{fig/FRONT.jpg}
-    \includegraphics[width=9cm]{fig/MAX5.jpg}
-    \includegraphics[width=9cm]{fig/MAX10.jpg}		
-    \caption{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with the {\sf GFC-GPSVAE} method.}
+    \includegraphics[width=9cm, height=3cm]{fig/FRONT.jpg}
+    \includegraphics[width=9cm, height=3cm]{fig/MAX5.jpg}
+    \includegraphics[width=9cm, height=3cm]{fig/MAX10.jpg}		
+    \caption{\textcolor{red}{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with the {\sf GFC-GPSVAE} method.}}
     \label{fig:frontmfs}
 \end{center}	
 \end{figure}
@@ -1024,20 +1041,6 @@ As an additional results, we depict the structure of the winner controller {\sf 
 %	\end{center}	
 %\end{figure}
 %
-If we take into account the rules already set in Table
-\ref{tab:output}, the shape of the obtained MFs  is in accordance with
-what a human driver would have done: favor speed as much as possible
-in the straight sections and brake as late as possible in the turns. 
-According to the figures, we have more than three quarters of
-probability that the first three rules will activate; these rules
-would make the car very aggressive especially in the straight sections
-of the track. The MFs for the FRONT sensor are for most of the values
-either Medium or High, which means that the target speed output will
-be over 240 km/h for the majority of the sensor range. 
-That situation is similar for the MAX5 and MAX10 MFs: turning will be done smoothly, and only in a very extreme situation (with the FRONT sensor in LOW and
-the other two sensors or medium or high, it will take a sharp turn;
-considering the physics of the simulator, these sharp turns might lead
-to getting off track and thus damage to the car.
 
 Since these MFs lead to a very reliable performance in the car, it
 validates our approach of using fixed rules to compute out. It should
