@@ -99,6 +99,9 @@ I look forward to here your reply.
 
 Reviewer Comments, Author Responses and Manuscript Changes
 \begin{enumerate}
+
+% #############################################################################
+
 \item {\bf \underline{ Reviewer 1 Comments}}\\
 	\begin{itemize}
 		\item {\bf Comment 1: Fitnessless:
@@ -133,14 +136,73 @@ Reviewer Comments, Author Responses and Manuscript Changes
 		understand by fitnessless:
 		{\em Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in [18].}
 % Antonio - I tried to add a bibliographic item and it failed, so maybe this would be easier as in any other response letter.
-		\item {\bf Comment 2:Typos and Grammar errors:}
+
+% ------------------------------------------------------------------------
+
+		\item {\bf Comment 2: Runtime comparison:
+		\begin{quote}
+			In the evaluation, the evolutionary approaches are compared based on 		
+			the number of generations and the resulting fitness. Since it is also 
+			mentioned that the Grand Prix Selection is a time-consuming selection 
+			method (in terms of processing time) it would be interesting to do 	
+			similar performance comparisons based on runtime of the algorithm.
+		\end{quote}
+		}
+		\item {\bf Response:} Following the reviewer suggestion, we have added a new comparison at the end of the experiments section, including a new table showing the running time of every approach, as well as an indication about the generation in which the best solution was found in every case.
+
+% ------------------------------------------------------------------------
+
+		\item {\bf Comment 3: Other rivals from the competition:
+		\begin{quote}
+			Furthermore, the evaluation consists of multiple variants of the
+			proposed algorithm and version from the author's previous papers. It 
+			also includes the baseline bots of the TORCS framework and a single bot 
+			from the competition. Could you mention why the bot PSRI was chosen and 
+			why the evaluation is not using any of the other bots of the 
+			competition? To have a broad comparison it would be useful to include 
+			other bots as well or argue why the comparison may not be useful 
+			according to the focus of this paper.		
+		\end{quote}
+		}
+		\item {\bf Response:} The reviewer is right, indeed we tried to contact to many other authors of bots which participated in the competition in order to include them in the comparison. Unfortunately, we just received a positive answer from the creators of PSRI bot.
+
+% ------------------------------------------------------------------------
+
+		\item {\bf Comment 4: Typos and Grammar errors:
+		\begin{quote}
+			- Abstract: experimens -> experiments
+			- how good a bot or controller is by playing the game -> how good a bot
+	  		  or controller is, is by playing the game
+			- $\alpha$ parameter allows to control the search... -> The $\alpha$ 
+           parameter allows to control the search
+		\end{quote}
+		}
 		\item {\bf Response:} We thank the reviewer for mentioning these errors which we fixed now. 
-		\item {\bf Comment 3:Presentation Style about the linebreak of the word CG-Track 1 and sorting the Tables values.}
-		\item {\bf Response:} Thank you so much for catching these glaring and confusing presentation style errors. We have corrected them in previous and new tables.
-              \end{itemize}
 
+% ------------------------------------------------------------------------
 
+		\item {\bf Comment 5: Presentation Style about the linebreak of the word CG-Track 1 and sorting the Tables values.}
+		\item {\bf Response:} Thank you so much for catching these glaring and confusing presentation style errors. We have corrected them in previous and new tables in the manuscript.
 
+% ------------------------------------------------------------------------
+
+		\item {\bf Comment 6: Presentation of graph skewness and kurtosis
+		\begin{quote}
+			Figure 4: instead of plotting certain points in time consider plotting
+			the distribution of skewness and its variance over time and do the same 
+			with kurtosis. Consider skewness to be a probability distribution that 
+			changes over time and plot its mean and its variance per timestep.
+			From the picture I assume, that the mean value converges to 0 (or a 
+			small positive number) and the variances reduce over time.
+		\end{quote}
+		}
+		\item {\bf Response:} *** TO ANSWER ***
+
+   \end{itemize}
+
+\newpage
+
+% ##############################################################################
 
 \item {\bf \underline{ Reviewer 2 Comments}}\\
 	\begin{itemize}
@@ -164,20 +226,24 @@ Reviewer Comments, Author Responses and Manuscript Changes
 		We thank the reviewer for this suggestion. In fact, it can be
 		considered an alternative fitness function; however, usually methods that don't use a fitness score that is independent of the selection procedure are considered fitnessless; we also call it {\em fitnessless} as opposed to the fitness function we give to the same individual in solo races, when that's the method used in some generations in the paper. Just to clarify, this {\em score} is simply a writedown of the position of the car in the different races, in the
 		same way that if we were running repeated tournament selections we would tally up the number of wins or loses. It's also called fitnessless because there's no absolute number that can be called that way, no crisp number that tells you if a car controller is better than other. We can only compare them (and only partially), and see how they
-		run in different races; this {\em fitness} (which should be called 	more properly a score) is the result of the selection process, not the other way round, the selection process is the result of the fitness of the individuals participating in it. This is similar to a coevolutionary strategy, and has been called traditionally {\em fitnessless}, which is what we do here.
+		run in different races; this {\em fitness} (which should be called more properly a score) is the result of the selection process, not the other way round, the selection process is the result of the fitness of the individuals participating in it. This is similar to a coevolutionary strategy, and has been called traditionally {\em fitnessless} (for instance in [18]), which is what we do here.
 		As the reviewer suggests, we have added a clarification (and a
 		reference) in the following paragraph:\\
-		{\em Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it's actually an extension of a 	tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it's not intrinsic to
-		the individual. It's equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it's participated; since, in this context, we have no way of evaluating (=assigning a fitness) to a controller but only a way to compare	them, we call this approach {\em fitnessless}, as it was called, for instance, in {\sc jaskowski2008winning}.}
+		{\em Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.}
 		
 		\item {\bf  Comment 2: Language errors :} 
-			\item {\bf Response:} Revisited
+			\item {\bf Response:} Revised
 	                \end{itemize}
+
+\newpage
+
+% ##############################################################################
+
 \item {\bf \underline{ Reviewer 3 Comments}}\\
 	\begin{itemize}
 	\item {\bf  Comment 1: It was therefore confusing to me why the authors chose to call their approach "fitnessless" - they are still using a score that is compared. I would suggest to either clarify this further or pick different terminology.}\\
-	\item {\bf Response:}
-..
+	\item {\bf Response:}  *** TO ANSWER ***
+
 		\item {\bf  Comment 2:	There is just one track that is used for training, and the same track is used for evaluation as well (in addition to one other track)}:\\
 		\item {\bf Response:}
 				
@@ -201,41 +267,41 @@ Reviewer Comments, Author Responses and Manuscript Changes
 		\item {\bf   Comment 4: There were also some statements I was missing some form of evidence for:}
 			\begin{itemize}
 			\item	"successful racing will only need these sensor values" (2)\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item	the approach could generalise to other types of controllers (6)\\
-					\item {\bf Response:} ..........................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item	reduced diversity is good (1) -> usually, the opposite is true in my experience\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\end{itemize}
 
 		\item {\bf 	  Comment 5: While the paper is generally well-structured, there are several problems with the writing, sometimes making the message unclear. Examples are:}
 			\begin{itemize}
 			\item "A fitness is substituted by a podium"\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item "use neuroevolution instead of evolving" -> both are evolutionary approaches?\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item What does "map the trajectory" mean?\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item It is not clear whether the statistics about the articles cited are about TORCS or not? And if they aren't, why are they relevant?\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\item "the higher diversification factor which it means"\\
-					\item {\bf Response:} ............................
+					\item {\bf Response:} *** TO ANSWER ***
 			\end{itemize}
 	
 
 	\item {\bf   Comment 6: Minor language comments: :} 
 				\begin{itemize}
 				\item 	"driving a car is a problem" -> It is not clear at this point that you are talking about an optimisation problem\\
-				\item {\bf Response:}  .......................
+				\item {\bf Response:}  *** TO ANSWER ***
 				\item 	"eventually some of them are decided" -> Eventually makes it sound like there is a sequence of events here?\\
-				\item {\bf Response:} .......................
+				\item {\bf Response:} *** TO ANSWER ***
 	
 
 				\item 	"in this environment is quite hard" -> very vague\\
-				\item {\bf Response:} ........................
+				\item {\bf Response:} *** TO ANSWER ***
 
 				\item 	"on the other hand" should only be used in conjunction with "on the one hand"\\
-				\item {\bf Response:} ........................
+				\item {\bf Response:} *** TO ANSWER ***
 				\item 	"previsely"?\\
 				\item {\bf Response:} It was a typographic error which has been fixed. The correct word is `precisely'.
 			
