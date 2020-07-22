@@ -374,7 +374,7 @@ rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
 \begin{table}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules  \cite{salem_evo18} for speed (top) and steering
+    \caption{Rules  (from \cite{salem_evo18}) for speed (top) and steering
       (bottom) controller output. Additionally, when 
       the front, right and left sensors have the maximum value
       possible, a crisp rule that tries to set the max speed
@@ -930,7 +930,14 @@ races. Results are shown in Table \ref{tab:VaryingalphaRSresults}.
 \end{table}
 %
 \textcolor{red}{
-As it can be seen in the table, again the controller using GPS in every generation has reached the best score, but also can be noticed the big impact of the application of the adaptive $BLX-\alpha$ operator in all the controllers. Looking at the results in this table and comparing them with those in Table \ref{tab:RSresults}, the increase in the obtained score is evident, at least in the first two.
+As it can be seen in the table, again the controller using GPS in
+every generation has reached the best score, but please check out the
+big impact of the application of the adaptive $BLX-\alpha$ operator in
+all the controllers. Looking at the results in this table % please add
+                                % reference - JJ
+and comparing them with those in Table \ref{tab:RSresults}, the
+increase in the obtained score is evident, at least in the first
+two. % Probably putting those tables together would be better - JJ
 Thus, the introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and increases diversification in the optimization process, which has led to better results.
 Finally, the best controllers obtained from the two main optimization
 processes: {\sf GFC-GPSVAE} and {\sf GFC-GPSE} are evaluated in a F1 like
@@ -1033,7 +1040,7 @@ to getting off track and thus damage to the car.
 %
 
 Since these MFs lead to a very reliable performance in the car, it
-validates our approach of using fixed rules to compute out. It should
+validates our approach of using fixed rules. It should
 also be noted that the fact that we are using fuzzy controllers allows
 us for an easy interpretation of the behavior of the car, something
 that would not be possible if other black-box heuristics were used.
@@ -1110,7 +1117,7 @@ In this paper, and in order to avoid the impedance between using solo
 racing scores and performance in competitive races, we have
 incorporated this competition into the selection of individuals in an
 evolutionary algorithm that evolves fuzzy controllers in the TORCS
-simulator. This selection policy, called GPS, has been evaluated in combination with hybrid methods that use it only part of the time, and also together with an adaptive BLX-$\alpha$ and a standard crossover operators, to assess how it interacts with them and which combination yields the best competitive results.
+simulator. This selection policy, called GPS (as in Grand Prix Selection), has been evaluated in combination with hybrid methods that use it only part of the time, and also together with an adaptive BLX-$\alpha$ and a standard crossover operators, to assess how it interacts with them and which combination yields the best competitive results.
 
 % Rewritten above --- ^^^ ---
 % This paper is dedicated to present a new selection policy to replace
@@ -1144,29 +1151,24 @@ simulator. This selection policy, called GPS, has been evaluated in combination 
 % it has won the majority of races being the first in the general
 % ranking.
 
-In races performed in the training, and other tracks, the controller
+In races performed in the training, and other, tracks, the controller
 that has evolved using competitive (fitnessless) selection and the
-variable $\alpha$ BLX crossover operator has proved superior to not
+variable-$\alpha$ BLX crossover operator has proved superior to not
 only other controllers evolved previously by us, but also other
-competitive entries. As a matter of fact, using GPS has the greatest 
+competitive entries. As a matter of fact, the use of the GPS method has the greatest 
 influence in the results: {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, whose only
 difference lies in the kind of crossover operator they use, create the
 best controllers, finishing first and second in competitive races and,
 in the first case, obtain twice the score of a non-evolved
-competitor such as $berniw2$. % Antonio berniw is not ours
-% So what? - JJ
-
-% Variable BLX-$\alpha$ means nothing. Variable $\alpha$ means that,
-% well, the alpha is variable. Please don't break what others have
-% written - JJ
+competitor such as $berniw2$.
 
 The adaptive BLX-$\alpha$ operator seems to have also a positive
 influence in the outcome, outperforming the standard crossover
 results. Thus, the decreasing amount of exploration that adaptive
-BLX-$\alpha$ boasts explores in a more efficient way the space of
-controllers, finding very competitive solutions. 
+BLX-$\alpha$ boasts seems to get to areas with better solutions in a
+more efficient way, eventually finding very competitive controllers.
 
-Another advantage of these combined selection and crossover is that they do not
+Another advantage of these combined selection and crossover operators is that they do not
 increase too much the total training time, and are also able to find a good solution in the first stages of evolution, which, if needed, allows to cut the training short. {\sf GFC-GPSVAE} needs at most 18 generations (which is around one third of the maximum number of generations defined) to find a good solution. Running GPS every generation needs more generations to get to the best that if it is run every 5 generations, or just at the end, but the problem is that in those cases the solution found is less competitive. However, {\sf GFC-GPSVA5} is quite competitive, and in the case of a limited evaluation budget, it could be a very good compromise.
 
 As a conclusion, in this paper we have proved that combining a
@@ -1174,11 +1176,15 @@ fitnessless evolutionary algorithm with an adaptive, floating point,
 crossover operator, consistently obtains the best results so far in
 TORCS. The sets of choices of running track, car, controller and
 actually parts of it that are evolving are thus also validated by
-these results.
+these results. Since the tracks have been specially selected to be as
+general as possible, we think that this result could be extended to
+other tracks, as long as ``training'' or evolution uses a track that
+has as many different features as possible. % Added this, check it out
+                                % - JJ
 
-However, results are probably independent of the fact that we are using a
+We also think that results are probably independent of the fact that we are using a
 set of fuzzy controllers. The result could be generalized to any kind
-of controllers, as long as they have the possibility to explore the
+of controller, as long as the evolution process has the possibility to explore the
 space of controllers in the same, efficient, way. This is a possible
 way of extending the work: substituting fuzzy controllers by simple
 neural nets could be a way of proving that the fitnessless approach
