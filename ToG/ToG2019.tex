@@ -145,7 +145,7 @@ so this kind of competitive selection was extended by introducing real
 races from every few generations in 
 \cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$ operator, and checked two different configurations using a fixed and a decreasing $\alpha$. This operator works at the same time, exploring and exploiting the existing space of solutions, and lets the designer to establish the balance between both factors in the search. The results with decreasing $\alpha$ were the best obtained so far.
 \textcolor{red}{
-Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it's actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it's not intrinsic to the individual. It's equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it's participated; since, in this context, we have no way of evaluating ( = assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
+Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
 }
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
@@ -638,7 +638,7 @@ from the uncertainty influence point of view.
 	\label{fig:wheel2}
 \end{subfigure}
 \caption{Training tracks}
-\label{alpine2_wheel2track}
+\label{fig:alpine2_wheel2track}
 \end{figure}
 
 \textcolor{red}{
@@ -659,7 +659,7 @@ Alpine 2 track is probably one of the most popular tracks used for
 training; \mbox{CG-Track 2} has similar features, and it is used by
 \cite{mirus2019short,8833873,verma2018programmatically},
 in this last case for transfer learning. \cite{Kole-ParamCarTunning12}
-mentions CG-Track 2 is "relatively harder", with E-Track 3 the
+mentions CG-Track 2 is ``relatively harder'', with E-Track 3 the
 hardest. On the other hand, \cite{10.1371/journal.pone.0213193} uses
 CG-Track 1. There are several differences between CG-Track 2 and Alpine
 2, the one we use, but the main one is that turns are relatively
@@ -667,8 +667,9 @@ easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 \textcolor{red}{
-The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is hairpin turn.It was  described   in \cite{wheel2track_chen} as ' a more difficult track with many fast turns'(See Figure \ref{fig:alpine2_wheel2track}).}
+The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).}
 % this figure has disappeared - JJ
+% Antonio - Fixed
 
 We have again used the vehicle \textit{car1-trb1},
 which is a well balanced, NASCAR type car \footnote{See description in
