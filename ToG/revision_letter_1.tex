@@ -206,7 +206,39 @@ Reviewer Comments, Author Responses and Manuscript Changes
 
 \item {\bf \underline{ Reviewer 2 Comments}}\\
 	\begin{itemize}
-		\item {\bf  Comment 1:  How the fitnessless method or GPS is first introduced in the introduction:\\
+		\item {\bf  Comment 1:  Revise writing and text style:\\
+		\begin{quote}
+			Abstract:
+			"...Grand Prix Selection (GPS), which should be able..." -> I recommend 
+			being assertive here, if it does reduce uncertainty demonstrated in 
+			your results.
+
+			"...experimens..." -> "experiments"
+			
+			Page 1:
+			"Driving a car is a problem..." -> in a video game or in real life? 
+			Both?
+			"...that cars do not crash, and are able..." -> no comma
+			"...so that the car wins in as many..." -> "...the car wins as many..."
+			"...with increasing success." -> needs citation
+			"...as well as a not so good exploration..." -> "suboptimal"
+
+			Page 2:
+			"...This operator works, at the same time,..." -> "This operator works 
+			at the same time"
+			"..and let the designer.." -> "lets"
+			"Thus, in this paper we are testing..." -> this paragraph is one 		
+			sentence long, I think it would benefit from being split up to be more 
+			clear what you are introducing.
+			\end{quote}}
+			\item {\bf Response:} All these suggested corrections have been done in 	
+ 			the manuscript. Moreover, the whole text has been revised 
+			again carefully. Changes have been marked in red color in order to ease 
+			finding them in the new version of the manuscript. 
+
+% ------------------------------------------------------------------------
+
+		\item {\bf  Comment 2:  How the fitnessless method or GPS is first introduced in the introduction:\\
 			                \begin{quote}
 				According to the authors, simulating solo-races is
 				not a reliable way of evaluating a car
@@ -229,11 +261,15 @@ Reviewer Comments, Author Responses and Manuscript Changes
 		run in different races; this {\em fitness} (which should be called more properly a score) is the result of the selection process, not the other way round, the selection process is the result of the fitness of the individuals participating in it. This is similar to a coevolutionary strategy, and has been called traditionally {\em fitnessless} (for instance in [18]), which is what we do here.
 		As the reviewer suggests, we have added a clarification (and a
 		reference) in the following paragraph:\\
-		{\em Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.}
+		{\em Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in [18].}
+
+% ------------------------------------------------------------------------
+
+		\item {\bf  Comment 3: My understanding of Figure 4 is that all the points come from a single experimental evolutionary run. Because GPS creates pockets of "relative fitness" due to the nature of how it evaluates controllers against one another, I think that this paper would benefit from showing the results of multiple runs, to ensure that GPS consistently shows improvement over the GFC method.}\\
+	\item {\bf Response:}  *** TO ANSWER ***
+
 		
-		\item {\bf  Comment 2: Language errors :} 
-			\item {\bf Response:} Revised
-	                \end{itemize}
+    \end{itemize}
 
 \newpage
 
@@ -244,26 +280,27 @@ Reviewer Comments, Author Responses and Manuscript Changes
 	\item {\bf  Comment 1: It was therefore confusing to me why the authors chose to call their approach "fitnessless" - they are still using a score that is compared. I would suggest to either clarify this further or pick different terminology.}\\
 	\item {\bf Response:}  *** TO ANSWER ***
 
+% ------------------------------------------------------------------------
+
 		\item {\bf  Comment 2:	There is just one track that is used for training, and the same track is used for evaluation as well (in addition to one other track)}:\\
 		\item {\bf Response:}
-				
-		We thank the reviewer for this important remark about the number of used tracks in the training process. In the submitted paper, we used the Alpine 2 track due to how onerous is  the proposed fitnessless optimization. 
-		
-		Authors have considered the reviewer comment and added another track : Wheel 2 to train the controllers and Street 1 track for testing purpose.\\
-		They have multiplied the races number running 10 races instead of 5 for each track.
+		We thank the reviewer for this important remark about the number of used tracks in the training process. In the initial manuscript we used the Alpine 2 track due to how onerous is the proposed fitnessless optimization. 
+		Now, the authors have considered this reviewer's comment and added another track, `Wheel 2', to train the controllers; and `Street 1' track for testing purposes.\\
+		We have also multiplied the number of races, running 10 instead of 5 for each track.
 
-		\item {\bf Changes:}
-		We carried out new experiments considering two training tracks: The previously used Alpine 2 track and a newly introduced Wheel 2 track  which is a Suzuka F1 inspired track with more challenging difficulties, hairpin turns and long straight segments. It is longer then the Alpine 2 one(See Figure 3 in the paper).
-		Furthermore, another track is added for testing purpose: The street 1 track.
-		These changes imply updating all the Tables and Figures of the Results section.\\
-		All changes are in red color in the paper.
+		Thus, we have carried out new experiments considering two training tracks: the previously used `Alpine 2' track and a newly introduced called `Wheel 2' track, which is a Suzuka F1 inspired track with more challenging difficulties, hairpin turns and long straight segments. It is longer than Alpine 2 (See Figure 3 in the paper).\\
+		Furthermore, another track has been added for testing the controller, named `Street 1' track. *** EXPLAIN WHY THIS TRACKS HAS BEEN CHOSEN (Here and in the paper) ***\\
+		These changes imply updating all the Tables and Figures of the Experiments and Results section. All the modifications have been marked in red color in the text.
 		
-		
+% ------------------------------------------------------------------------
 		 
 		\item {\bf   Comment 3:	About the analysis of the noise section} However, it could have been clearer how many individuals were picked and how often they were evaluated.\\
 		\item {\bf Response:}
-		Authors selects randomly $20\%$ of the population size (60 individuals)
-	
+		Authors selects randomly $20\%$ of the population size (60 individuals).
+*** COMPLETE THIS ANSWER (changes in the text?) ***	
+
+% ------------------------------------------------------------------------
+
 		\item {\bf   Comment 4: There were also some statements I was missing some form of evidence for:}
 			\begin{itemize}
 			\item	"successful racing will only need these sensor values" (2)\\
@@ -273,6 +310,8 @@ Reviewer Comments, Author Responses and Manuscript Changes
 			\item	reduced diversity is good (1) -> usually, the opposite is true in my experience\\
 					\item {\bf Response:} *** TO ANSWER ***
 			\end{itemize}
+
+% ------------------------------------------------------------------------
 
 		\item {\bf 	  Comment 5: While the paper is generally well-structured, there are several problems with the writing, sometimes making the message unclear. Examples are:}
 			\begin{itemize}
@@ -288,6 +327,7 @@ Reviewer Comments, Author Responses and Manuscript Changes
 					\item {\bf Response:} *** TO ANSWER ***
 			\end{itemize}
 	
+% ------------------------------------------------------------------------
 
 	\item {\bf   Comment 6: Minor language comments: :} 
 				\begin{itemize}

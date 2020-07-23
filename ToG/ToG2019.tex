@@ -89,11 +89,10 @@ Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
 
-Driving a car is a problem in which you have to map inputs that
-include data about the environment we are driving in as well as car
+Driving a \textcolor{red}{simulated} car is a problem in which you have to map inputs that include data about the environment we are driving in as well as car
 data, to the output: throttling and steering. Car controllers have to
 be designed so that cars do not crash and are able to run at a
-reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins in many races as possible.
+reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins as many races as possible.
 
 There are so many variables in this problem, that eventually some of
 them are decided using heuristic rules, while the rest are open to
@@ -105,7 +104,7 @@ race, so that it can adapt itself to new and previously unseen,
 scenarios and competitors, or it can be fixed by training the
 controllers in advance. 
 
-We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success \cite{salem_evo17},\cite{salem_evo18},.
+We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success \cite{salem_evo17},\cite{salem_evo18}.
 However, in a simulated and realistic racing car environment like the one we use, racing car scores are a
     statistical variable whose value will vary depending on track and
     (simulated) atmospheric conditions; and we should never forget
@@ -902,7 +901,7 @@ previous evolutionary processes compete again in a similar set of races, in orde
 \end{table}
 %
 \textcolor{red}{
-As it could be noticed in Table \ref{tab:RSresults}, the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Street 2}. 
+As it could be noticed in Table \ref{tab:RSresults}, the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Wheel 2}. 
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
 From Table \ref{tab:RSresults}, it is clear that the controller {\sf GFC-GPSE}, where GPS selection has been applied in every generation, has won the majority of possible points in the four tracks, even in the unknown (not trained) \textit{E-Track 5}  and \textit{Street 1} tracks.
 }
