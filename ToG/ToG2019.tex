@@ -10,19 +10,7 @@
 \usepackage{subcaption}
 
 \usepackage{colortbl}
-%\usepackage[backend=bibtex,style=IEEEtranS,natbib=true]{biblatex}
-%\addbibresource{geneura.bib} %added
-%\addbibresource{uncertainty.bib} %added
-%\addbibresource{fitnessless.bib} %added
-%\addbibresource{fuzzy_torcs.bib} %added
 
-
-
-
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
-%\setcounter{biburllcpenalty}{7000}
-%\setcounter{biburlucpenalty}{8000}
 \def\UrlBreaks{\do\/\do-}
 \begin{document}
 %
@@ -747,7 +735,7 @@ We kept the same values for the evolutionary parameters as in our previous works
 
 We need first to find out how different kind of selection procedures
 affect uncertainty in scores (fitness values). Better selection procedures should be able to reduce it, making evolved controllers as centrally distributed
-as possible; other kind of selections should keep distribution of
+as possible; other kinds of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done a study of the distribution of the genetic individuals of
 three evolution processes {\sf GFC}, {\sf GFC-GPSE} and {\sf GFC-GPSVA5}. 
@@ -759,48 +747,46 @@ uncertain (usually called {\em noisy}) fitness functions; but a simple
 one is to re-evaluate ({\em re-sample}) the score every generation. A
 skewed distribution mean that it will more likely to sample a value
 that is different from the average, but it might be better or worse
-than average; in any case, different from the score we would expect to
+than average; in any case, different from the (crisp) score we would expect to
 achieve in other circumstances. On the other hand, kurtosis measures
 the amount of values that are far from the average, creating either a
 heavy-tailed or too-lightly-tailed distribution. In the first case, it
-will mean that values far from what would be expected are likely to
+will mean that values far from what would be expected (the median or average) are likely to
 show up in the fitness score.
 
 This is why we are interested in how these two statistical measures
-are going to change with evolution; they will both affect
-selectability of an individual, so that, in general, they will select
+are going to change with evolution using the different fitness measures; skewness and kurtosis will  affect
+selectability of an individual, so that, in general, most selection procedures will select
 individuals with lower kurtosis and skewness, since they are more
 likely to draw a consistent value and thus go ahead to the next
-generation. However, different selection procedures will affect this
-in different ways. This is why we have computed skewness and kurtosis for 1 in 5 individuals from the population chosen randomly, and measured fitness values after the first, the 30th and the last generation for the three controllers;
+generation. However, different selection procedures will affect them in different ways. This is why we have computed skewness and kurtosis for a sample of 1 in 5 individuals from the population, and measured fitness values after the first, the 30th and the last generation for the three controllers;
 results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom). 
 
 \begin{figure}[ht]	
 	\begin{center}
-          \includegraphics[width=8cm, height=3cm]{fig/GFC__.jpg}
-          \includegraphics[width=8cm, height=3cm]{fig/GFCRSE__.jpg}
-          \includegraphics[width=8cm, height=3cm]{fig/GFCVARSE__.jpg}
-		\caption{\textcolor{red}{Skewness ($y$ axis) and kurtosis ($x$ axis)
-                  for the fitness score or chosen individuals in an experiment with the {\sf GFC} method \cite{salem_cig2018} (top), {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom). We are considering $f_{AVS}$ fitness for GFC controller and GPS score for the others.}}
+          \includegraphics[width=8cm, height=2.5cm]{fig/GFC__.jpg}
+          \includegraphics[width=8cm, height=2.5cm]{fig/GFCRSE__.jpg}
+          \includegraphics[width=8cm, height=2.5cm]{fig/GFCVARSE__.jpg}
+		\caption{\textcolor{red}{Skewness ($y$) and kurtosis ($x$)
+                  for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}}
 		\label{fig:gfcsk}
-		 \label{fig:gfcrsesk} 
-		 \label{fig:gfcvarsesk}			
 	\end{center}	
 \end{figure}
 
-All figures show that the evolution process has a certain influence in
+The figures show that the evolution process has a certain influence in
 these measures, with individuals in the latest stages of evolution
-getting closer to the origin, which would be a 0-skewness, 0-kurtosis
+getting their values closer to the origin, which would be a 0-skewness, 0-kurtosis
 Gaussian. However, there are differences between the fitness-based
-process ({\sf GFC}) and the other two. In the first case, the
+process ({\sf GFC}) and the other two, which are a fitnessless process. This is not only due to the fact that what we are measuring is a different value (fitness vs. selection score). 
+In the first case, the
 selection procedure simply eliminates the outliers with a high
 skewness or kurtosis; there does not seem to be a big change from
 generation 30 to 50, so as a matter of fact individuals with a high
 and skewed variability are selected as {\em winners} when in fact they
-are not.
+are possibly not.
 
 The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VA-GPSE}, are
-notably similar, with selection eventually concentrating individuals
+notably similar, with selection eventually making the score of  individuals
 close to a Gaussian distribution, although slightly skewed to the
 right, and with a positive fat tail. However, {\sf GFC-GPSVAE} is able
 to find solutions with lower skewness, always between -0.5 and 1,
