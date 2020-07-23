@@ -186,8 +186,8 @@ Reviewer Comments, Author Responses and Manuscript Changes
 
 % ------------------------------------------------------------------------
 
-		\item {\bf Comment 6: Presentation of graph skewness and kurtosis
-		\begin{quote}
+\item {\bf Comment 6: Presentation of graph skewness and kurtosis
+\begin{quote}
 			Figure 4: instead of plotting certain points in time consider plotting
 			the distribution of skewness and its variance over time and do the same 
 			with kurtosis. Consider skewness to be a probability distribution that 
@@ -196,8 +196,31 @@ Reviewer Comments, Author Responses and Manuscript Changes
 			small positive number) and the variances reduce over time.
 		\end{quote}
 		}
-		\item {\bf Response:} *** TO ANSWER ***
+              \item {\bf Response:} We have revised the text related to this comment and added a conclusion:
+                \begin{quote}
+                  ... this was an objective of this GPS procedure, and we consider it has been achieved
+                \end{quote}
 
+ The reviewer comment really nails the conclusion; however, our
+ intention was not so much to check the evolution, specially of the
+ variance, but to see what was the final result compared to the
+ initial one (and intermediate), that is, how efficiently skewness and
+ kurtosis is reduced, thus reducing uncertainty and also improving
+ results. Using fitness, it was relatively easy to select an
+ individual just by chance, and that is shown by the high kurtosis and
+ skewness even in the last generations. By using a fitnessless
+ selection procedure based on races, only individuals who solidly
+ perform better (small 1st, 2nd and 3rd degree moments of their
+ fitness score) will be able to succeed; by representing mainly the
+ values 2nd and 3rd degree moments in the latest generations, we prove
+ what we were looking for. Representing the evolution for every
+ generation would mean a lot of additional computation would have to
+ be made (because every point involves a different number of races),
+ and the conclusion is not very likely to vary. We might obtain some
+ insight on when exactly that variation occur, either in early stages
+ or final stages of evolution, but while that might have some
+ intrinsic value, it's rather beside the point for this paper. We hank
+ anyway the reviewer for this comment.
    \end{itemize}
 
 \newpage
