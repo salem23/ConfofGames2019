@@ -648,10 +648,12 @@ easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 \textcolor{red}{
-The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).}
+The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
 % this figure has disappeared - JJ
 % Antonio - Fixed
-
+To test the obtained controllers, we considered two tracks: the first track is \textit{E-Track 5}, used in previous papers \cite{salem_evo17},\cite{salem_evo17} and the second one is \textit{Street 1}
+This controller has many long speed segments, difficult sharp turns. In addition, the track is two meters larger than the others  three considered tracks which increase the overtaking possibilities.
+}
 We have again used the vehicle \textit{car1-trb1},
 which is a well balanced, NASCAR type car \footnote{See description in
   the TORCS racing board web page,
@@ -753,7 +755,7 @@ are going to change with evolution using the different fitness measures; skewnes
 selectability of an individual, so that, in general, most selection procedures will select
 individuals with lower kurtosis and skewness, since they are more
 likely to draw a consistent value and thus go ahead to the next
-generation. However, different selection procedures will affect them in different ways. This is why we have computed skewness and kurtosis \textcolor{red}{for a sample of 20 from the 60 individuals of the population}╬, and measured fitness values after the first, the 30th and the last generation for the three controllers;
+generation. However, different selection procedures will affect them in different ways. This is why we have computed skewness and kurtosis \textcolor{red}{for a sample of 20 from the 60 individuals of the population}, and measured fitness values after the first, the 30th and the last generation for the three controllers;
 results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom). 
 
 \begin{figure}[ht]	
