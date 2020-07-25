@@ -222,7 +222,10 @@ solution using TORCS, such as neural networks or reinforcement learning \cite{ab
 You can also use vision to have more complete, although more complicated, view of where the car is and where it is going, or just use sensors, which only check the most immediate scenario, but on the other hand are more precise and easy to check. 
 
 In our case, we have opted for the latter, although other papers like the
-ones authored by Zhu et al. \cite{zhu2018driving,zhu2019vision,neurone} rather
+ones authored by Zhu et al.
+\cite{zhu2018driving,zhu2019vision} rather
+%%\cite{zhu2018driving,zhu2019vision,neurone} rather 
+%%% I deleted this ref to save space %% Mohammed
 consider vision, using TORCS as a testbed for a different kind of
 algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient) that uses images to learn behaviors for specific racing scenarios.
 
@@ -272,11 +275,12 @@ This section presents the environment where the study has been conducted, i.e. t
 
 %-------------------------------  TORCS ----------------------------
 %
+
 \subsection{Simulation environment}
 
 \begin{figure}[!ht] 
 	\begin{center}
-		\includegraphics[scale=0.35]{fig/torcs-sensors}
+		\includegraphics[scale=0.30]{fig/torcs-sensors}
 		\caption {TORCS capture showing some of the sensors
                 used by the autonomous drivers (controllers). Figure from \cite{DBLP:conf/cig/SalemMG19}.}
 		\label{fig:torcs-sensors}
