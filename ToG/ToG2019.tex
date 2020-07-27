@@ -379,9 +379,8 @@ rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
       Low & Low & Medium & 60 \\           
       Low & Low & Low & 30 \\     
 \hline
-\end{tabular}
-\vspace{1em} \\
-\begin{tabular}{|c|c|c||c|}
+%\end{tabular}
+%\begin{tabular}{|c|c|c||c|}
 \hline
       Value FRONT & Value MAX5 & Value MAX10 & $sin$(Steer Angle) \\
 \hline
@@ -409,11 +408,7 @@ extensively in \cite{DBLP:conf/cig/SalemMG19}.
 As mentioned, these fuzzy sub-controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
 be applied to any kind of controller, as long as it can be fully
 encoded and evolved using an Evolutionary Algorithm (a GA). 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Optimizing Sub-controllers with an Evolutionary Algorithm}
 \label{sec:ga}
 
@@ -585,10 +580,7 @@ combinations and configurations of both techniques in the experiments
 conducted in next section. We will also study their impact from
 different perspectives, both considering their performance and also
 from the uncertainty influence point of view. 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \section{Experiments and results}  
 \label{sec:results}
 
@@ -818,13 +810,16 @@ previous evolutionary processes compete again in a similar set of races, in orde
 \begin{table}[h!]
 	\centering
 	{\scriptsize
-		\caption{ \textcolor{red}{Results of GPS controllers in a mini-championship
+		\caption{ \textcolor{red}{Results of GPS controllers  and adaptive $BLX-\alpha$ controllers in a mini-championship
 			with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. We mark in {\bf boldface}
                       the best value, and in {\em italics} the second best.}}
 		{
                   \begin{tabular}{|c|c|>{\columncolor[gray]{.9}}c|c|c||c|}
+                  	              \hline
+                  	\multicolumn{6}{|c|}{Results of GPS controllers} \\
                     \hline
+                    
 %                    \rowcolor{gray!30}
                     & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
                     \hline
@@ -848,22 +843,24 @@ previous evolutionary processes compete again in a similar set of races, in orde
 			$inferno1$& \cellcolor{red!25}16& \cellcolor{red!25}30&\cellcolor{red!25} 16& \cellcolor{red!25}14& \cellcolor{red!25}76\\			
 			
 				\hline
-
-				
-			\end{tabular}
-		}\label{tab:RSresults}
-	}
-\end{table}
 %
-\begin{table}[h!]
-	\centering
-	{\scriptsize
-          \caption{\textcolor{red}{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with 10 controllers
-          	and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}}
-          {
-            \begin{tabular}{|c|c|c|c|c||c|}
+%				
+%			\end{tabular}
+%		}\label{tab:RSresults}
+%	}
+%\end{table}
+%%
+%\begin{table}[h!]
+%	\centering
+%	{\scriptsize
+%          \caption{\textcolor{red}{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with 10 controllers
+%          	and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}}
+%          {
+%            \begin{tabular}{|c|c|c|c|c||c|}
               \hline
-                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
+               \multicolumn{6}{|c|}{Results of adaptive $BLX-\alpha$ controllers} \\
+                            \hline
+%                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
               \hline
                     Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
               \hline
@@ -1054,7 +1051,6 @@ to getting off track and thus damage to the car.
 %	\end{center}	
 %\end{figure}
 %
-
 Since these MFs lead to a very reliable performance in the car, it
 validates our approach of using fixed rules. It should
 also be noted that the fact that we are using fuzzy controllers allows
