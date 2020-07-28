@@ -102,18 +102,18 @@ However, in a simulated and realistic racing car environment like the one we use
     in this environment is quite hard. If training is done before the
     race, and the controllers are fixed via an optimization process,
     the uncertainty in the evaluation of every controller will make
-    the result of scores in unknown tracks with unknown competitors
+    the resulting score in unknown tracks with unknown rivals
     uncertain at best.
 
 The best way to reduce uncertainty is to make the evaluation process
-as close as possible as the environment in which the controller will
+as close as possible to the environment in which the controller will
 eventually compete, in a race with other competitors. By totally
 eliminating fitness, in a fitnessless environment, we also eliminate
 a source of uncertainty. We also reduce this even more by repeating
 races several times. A single (and uncertain) fitness is thus
 substituted by a podium in which car controllers that win the most
-races will proceed to the next generation, while those that do not
-will simply be eliminated from the genetic pool. 
+races will proceed to the next generation, while those that do not,
+will simply be removed from the pool. 
 
 The algorithm proposed in this paper overcomes most of the problems we
 have found in this line of research, that started with
@@ -196,7 +196,10 @@ called ``transfer learning''. This is the technique applied by the authors in
 
 
 Evolution can also be used directly to map the trajectory after ``test
-laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory,vrajitorugenetic}, using then an evolutionary algorithm to optimize driving within that specific track. 
+laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
+%\cite{vrajitoru2019trajectory,vrajitorugenetic}, 
+%%% Antonio - I remove one reference to save space.
+using then an evolutionary algorithm to optimize driving within that specific track. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -221,11 +224,11 @@ There are several possible approaches to autonomous driving and its
 solution using TORCS, such as neural networks or reinforcement learning \cite{abuzekry2comparative}. 
 You can also use vision to have more complete, although more complicated, view of where the car is and where it is going, or just use sensors, which only check the most immediate scenario, but on the other hand are more precise and easy to check. 
 
-In our case, we have opted for the latter, although other papers like the
-ones authored by Zhu et al.
-\cite{zhu2018driving,zhu2019vision} rather
+In our case, we have opted for the latter, although other authors like Zhu et al.
+\cite{zhu2019vision} rather
 %%\cite{zhu2018driving,zhu2019vision,neurone} rather 
 %%% I deleted this ref to save space %% Mohammed
+%%% Antonio - I also remove another one to save space. ;)
 consider vision, using TORCS as a testbed for a different kind of
 algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient) that uses images to learn behaviors for specific racing scenarios.
 
@@ -254,7 +257,10 @@ programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 However, the competitions played in those works were not, strictly,
 games. The first time fitnessless evolution was used in  games was by
 \cite{luke1998genetic}; however, it was later used extensively, like
-\cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using,DBLP:conf/evoW/Fernandez-AresG16}. Deriving which individuals are the best from these races, taking into account
+%\cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using,fernandez2016_only_one}. 
+\cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,fernandez2016_only_one}.
+% Antonio - Reducing the number of references. Changing our ref to another shorter => Save space
+Deriving which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
 introduced for selecting winning bots in a fighting game
@@ -644,7 +650,7 @@ easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 \textcolor{red}{
-The second track is the Wheel 2 Track, it is a  Suzuka F1 track, it combines many challenges such as high speed  parts and different curves types. Also the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
+The second circuit is the Wheel 2 Track. It is a  Suzuka F1 track that combines many challenges such as high speed parts and different curves types. Moreover the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
 % this figure has disappeared - JJ
 % Antonio - Fixed
 To test the obtained controllers, we considered two tracks: the first track is \textit{E-Track 5}, used in previous papers \cite{salem_evo17},\cite{salem_evo17} and the second one is \textit{Street 1}
@@ -756,9 +762,9 @@ results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom).
 
 \begin{figure}[ht]	
 	\begin{center}
-          \includegraphics[width=8cm, height=2.2cm]{fig/GFC__.jpg}
-          \includegraphics[width=8cm, height=2.2cm]{fig/GFCRSE__.jpg}
-          \includegraphics[width=8cm, height=2.2cm]{fig/GFCVARSE__.jpg}
+          \includegraphics[width=8cm, height=2.3cm]{fig/GFC__.jpg}
+          \includegraphics[width=8cm, height=2.3cm]{fig/GFCRSE__.jpg}
+          \includegraphics[width=8cm, height=2.3cm]{fig/GFCVARSE__.jpg}
 		\caption{\textcolor{red}{Skewness ($y$) and kurtosis ($x$)
                   for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}}
 		\label{fig:gfcsk}
@@ -800,7 +806,7 @@ In the next subsection we will see how this kind of selection has an influence i
 
 \textcolor{red}{
 Once the 10 runs have finished, the obtained best controllers from the
-previous evolutionary processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection is considered. We run the selected controllers in 10 races of 20 laps for each of the two training tracks :Alpine 2  and Wheel 2  and  for each of the two testing tracks: E-Track 5 and Street 1. Results are shown in Tables \ref{tab:RSresults} and \ref{tab:VaryingalphaRSresults}.}
+previous evolutionary processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection is considered. We run the selected controllers in 10 races of 20 laps for each of the two training tracks :Alpine 2  and Wheel 2  and  for each of the two testing tracks: E-Track 5 and Street 1. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.}
 %% Process 1 : GPS without Alpha
 %% Process 2  : GPS with Alpha
 %%  GFC and VA are used only in comparaison purpose
@@ -880,14 +886,14 @@ previous evolutionary processes compete again in a similar set of races, in orde
 		$berniw1$	 &\cellcolor{red!25}36 &\cellcolor{red!25}	24 &\cellcolor{red!25}30 &	\cellcolor{red!25}48 &\cellcolor{red!25}	138\\	
 		$inferno1$ &\cellcolor{red!25}22 &\cellcolor{red!25}	22 &\cellcolor{red!25}18 &\cellcolor{red!25}	18 &\cellcolor{red!25}	80\\					\hline			
 			\end{tabular}
-		}\label{tab:VaryingalphaRSresults}
+		}\label{tab:GPS_and_Varyingalpha_RSresults}
 	}
 \end{table}
 %
 \textcolor{red}{
-As it could be noticed in Table \ref{tab:RSresults}, the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Street 1}. 
+As it could be noticed in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (top subtable), the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Street 1}. 
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
-From Table \ref{tab:RSresults}, it is clear that the controller {\sf GFC-GPSE}, where GPS selection has been applied in every generation, has won the majority of possible points in the four tracks, even in the unknown (not trained) \textit{E-Track 5}  and \textit{Street 1} tracks.
+From the same subtable, it is clear that the controller {\sf GFC-GPSE}, where GPS selection has been applied in every generation, has won the majority of possible points in the four tracks, even in the unknown (not trained) \textit{E-Track 5}  and \textit{Street 1} tracks.
 }
 These results come to confirm the influence of the proposed selection policy where the controllers obtained from applying only the GPS selection have won the competition (comparing the points obtained by GPS controllers and GFC).
 Indeed, we have made a `realistic' selection process by eliminating
@@ -905,7 +911,7 @@ The following experimentation is dedicated to assess the impact of the
 $BLX-\alpha$ operator; the same process has been followed
 selecting the best controllers of the evolution from those which
 have used this adaptive crossover operator and testing them in several
-races. Results are shown in Table \ref{tab:VaryingalphaRSresults}. 
+races. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable). 
 %
 %
 %\begin{table}[ht]
@@ -944,17 +950,20 @@ races. Results are shown in Table \ref{tab:VaryingalphaRSresults}.
 As it can be seen in the table, again the controller using GPS in
 every generation has reached the best score, but it should be noted the
 big impact of the application of the adaptive $BLX-\alpha$ operator in
-all the controllers. Thus, looking again at the results in Table \ref{tab:VaryingalphaRSresults}
+all the controllers. Thus, looking again at the results in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable) 
 % please add reference - JJ
 % Antonio - done
-and comparing them with those in Table \ref{tab:RSresults}, the
-increase in the obtained score is evident, at least in the first
+and comparing them with those in the top subtable (results of GPS controllers), the increase in the obtained score is evident, at least in the first
 two. % Probably putting those tables together would be better - JJ
 % Antonio - I have put them consecutively in the page. Maybe if we need to save space we could fuse them in the same table with a common caption. But now I think we could let them like this.
+% Antonio - Ok, now they are together in the same table. ;)
 Thus, the introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and increases diversification in the optimization process, which has led to better results.
 Finally, the best controllers obtained from the two main optimization
 processes: {\sf GFC-GPSVAE} and {\sf GFC-GPSE} are evaluated in a F1 like
 mini-championship against the previous five TORCS bots and the {\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19} and {\sf GFC} controllers  \cite{salem_cig2018}. 
+}
+
+\textcolor{red}{
 We have also considered a new rival from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
 It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi
 \cite{EvolvingRuleSystem08} and later refined in the work
