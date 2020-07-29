@@ -22,7 +22,6 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[10pt]{letter} % 10pt font size default, 11pt and 12pt are also possible
-
 \usepackage{geometry} % Required for adjusting page dimensions
 
 %\longindentation=0pt % Un-commenting this line will push the closing "Sincerely," to the left of the page
@@ -307,7 +306,7 @@ Please bear in mind that the superiority of fitnessless methods over others has 
 \newpage
 
 % ##############################################################################\\
-
+%
 \item {\bf \underline{ Reviewer 3 Comments}}\\
 	\begin{itemize}
 	\item {\bf  Comment 1: It was therefore confusing to me why the authors chose to call their approach "fitnessless" - they are still using a score that is compared. I would suggest to either clarify this further or pick different terminology.}
@@ -325,12 +324,20 @@ We have added this text in the introduction of the paper in order to clarify wha
 {\em Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, in a $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in [18].}\\
 
 % ------------------------------------------------------------------------
-		 
-		\item {\bf   Comment 2:	The authors also suggest a crossover method, but the description was not entirely clear to me. It seems like some variation of intermediate crossover per dimension (which would select values in an interval betwen x_i and y_i) and then also forcing mutation (controlled by alpha). Alpha is adaptive in the sense that it decreases over the runtime, which is a common approach with mutation operators. I also would not call it adaptive, as it does not adapt to the state of the population, it is just continually decreasing.
+%		 
+		\item {\bf   Comment 2:	The authors also suggest a crossover method, but the description was not entirely clear to me. It seems like some variation of intermediate crossover per dimension (which would select values in an interval betwen $x_i$ and $y_i$) and then also forcing mutation (controlled by alpha). Alpha is adaptive in the sense that it decreases over the runtime, which is a common approach with mutation operators. I also would not call it adaptive, as it does not adapt to the state of the population, it is just continually decreasing.}
 		\item {\bf Response:}
-		***TO ANSWER***\\	
-
-% ------------------------------------------------------------------------
+		***TO CHECK***\\
+		We thanks the reviewer for this comment.
+		We proposed to introduce in the GA, an adaptive crossover operator which is the Blend Crossover  or adaptive BLX-$\alpha$ Crossover.  Indeed, this operator is a variation of the original operator proposed in [10]. This proposal comes to control the relationship between the exploration and exploitation in the GA process. This crossover operator produces three new individuals resulting from the crossover between the two parents. It is not a mutation.
+		
+		The crossover points of the two parents are chosen randomly in an interval depending on the value of alpha.
+		
+		In [10], the alpha parameter is a constant fixed at the beginning but we propose to make it variable which decreases throughout the optimization process.
+		We understand that we could call it 'Varying BLX-$\alpha$' instead of 'adaptive BLX-$\alpha$' but the name 'adaptive' is due to the fact that the algorithm adapts its need for exploration and exploitation over generations and since the need for exploration decreases as we move towards the last generation, we have chosen a decreasing value of alpha.
+			
+%
+%% ------------------------------------------------------------------------
 
 		\item {\bf  Comment 3:	There is just one track that is used for training, and the same track is used for evaluation as well (in addition to one other track). That is not near enough to make any conclusions about generalisability of the results. I understand that these evaluations are costly, but it would still be important to not overfit to just a single track. Additionally, it seems that the reported results for each championship only reflect a single race through each track. If the environment is uncertain, this of course does not reflect the performance of the controllers accurately. The description of the results is also sometimes very biased, ignoring the fact that in table 3, berniw2 is doing pretty well.}:
 		\item {\bf Response:}
@@ -366,7 +373,11 @@ We have added a text referring to our previous works in which we proved this sta
 				Indeed, that main result of the paper is that we can tune the parameters of  TORCS fuzzy controller with an evolutionary process  using a sort of a fitnessless selection. This finding could be generalized to any other TORCS controller, just performing a parameter tuning through evolution.\\
 				
 			\item	reduced diversity is good (1) -> usually, the opposite is true in my experience
-					\item {\bf Response:} *** TO ANSWER ***
+					\item {\bf Response:} *** TO CHECK ***
+			We thank the reviewer for the interesting remark.
+			Yes in general, diversification is good especially to avoid local minimums but when we are closely interested in the functioning of the genetic algorithm, we conclude that the need for diversification decreases along the iterations.
+			A great diversification is necessary at the beginning to speed up the optimization process and get closer to the optimal solution but towards the end we need to press the selection in order to exploit the neighborhood of this solution.
+			So more diversification in general implies a great deal of uncertainty in our case. What we are looking for is controlled diversification.
 			\end{itemize}
 
 % ------------------------------------------------------------------------
@@ -378,12 +389,17 @@ We have added a text referring to our previous works in which we proved this sta
 					That means that instead of using a certain fitness value for an individual, we replace it by a ranking after several races against other controllers. We have clarified this in the text.\\
 					
 			\item "use neuroevolution instead of evolving" -> both are evolutionary approaches?
-					\item {\bf Response:} *** TO ANSWER ***\\
+					\item {\bf Response:} *** TO CHECK ***\\
+					Yes they are, but  neuroevolution  uses evolutionary algorithms to generate artificial neural networks by optimizing their parameters.
 			\item What does "map the trajectory" mean?
-					\item {\bf Response:} *** TO ANSWER ***\\
-			\item It is not clear whether the statistics about the articles cited are about TORCS or not? And if they aren't, why are they relevant?
-					\item {\bf Response:} *** TO ANSWER ***\\
+					\item {\bf Response:} *** TO CHECK ***\\
+			To find or estimate the position of the car in the track ( trajectory) using input data and evolutionary methods( Mapping inputs to find the trajectory).		
 					
+			\item It is not clear whether the statistics about the articles cited are about TORCS or not? And if they aren't, why are they relevant?
+					\item {\bf Response:} *** TO CHECK ***\\
+			Yes, the mentioned statistics are about TORCS  environment.
+			Statistics are given to position both the simulation environment and the used techniques in the research area. These statistics prove that researchers still working on them.
+				
 			\item "the higher diversification factor which it means"
 					\item {\bf Response:} : It was a typographic error, we deleted the words 'which it means'.
 			\end{itemize}
@@ -394,7 +410,7 @@ We have added a text referring to our previous works in which we proved this sta
 %24
 % 45 
 % Antonio - I guess these numbers shouldn't be here. ;D
-% ------------------------------------------------------------------------
+% of course % Mohammed ------------------------------------------------------------------------
 
 	\item {\bf   Comment 7: Minor language comments: :} 
 				\begin{itemize}
@@ -408,7 +424,9 @@ We have added a text referring to our previous works in which we proved this sta
 				Here , 'eventually' in the sense of possibly, or probably
 
 				\item 	"in this environment is quite hard" -> very vague
-				\item {\bf Response:} *** TO ANSWER ***\\
+				\item {\bf Response:} *** TO CHECK ***\\
+				The TORCS environment has many uncontrolled parameters such as track conditions, tires condition and friction. These uncertain factors make it  difficult even hard to tune controller parameters via an optimization algorithm such as evolutionary ones.
+				
 
 				\item 	"on the other hand" should only be used in conjunction with "on the one hand"
 				\item {\bf Response:} *** TO CHECK **\\
@@ -421,8 +439,8 @@ We have added a text referring to our previous works in which we proved this sta
 				\item {\bf Response:} It was a typographic error which has been fixed. The correct word is `precisely'.
 			
 			\end{itemize}
-	
-\end{itemize}
+\end{itemize}	
+
 \end{enumerate}
  
 
