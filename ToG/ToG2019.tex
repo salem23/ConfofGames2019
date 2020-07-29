@@ -790,15 +790,14 @@ The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VA-GPSE}, are
 notably similar, with selection eventually making the score of  individuals
 close to a Gaussian distribution, although slightly skewed to the
 right, and with a positive fat tail. However, {\sf GFC-GPSVAE} is able
-to find solutions with lower skewness, always between -0.5 and 1,
-although kurtosis is slightly higher for the last generation. Since
+to find solutions with lower skewness, always between -0.5 and 1. Since
 this method exploits more found solutions, it seems that it is able to
 generate new solutions with a more reliable expected value around the
 middle of the area the variable covers, but decreasing more slowly
-towards values further away from the center. For the time being,
+towards values away from the center. For the time being,
 we can affirm that fitnessless methods tend to evolve individuals
 with a score that is less uncertain, and thus more robust and whose
-expected results are more reliable; this was an objective of this GPS procedure, and we consider it has been achieved.
+expected results are more reliable; this was an objective of this GPS procedure, and we consider it has been achieved. Although we have represented a single run here, results for other runs are similar.
 
 In the next subsection we will see how this kind of selection has an influence in the success as a method for finding high-performance controllers.
 
