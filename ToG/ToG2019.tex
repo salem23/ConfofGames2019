@@ -47,8 +47,7 @@ controllers from the rest, and a series of operators that are able to
 explore different possibilities in the controller search space. Within
 the context of the TORCS racing simulator, in this paper we introduce
 a kind of fitnessless selection policy based on competition and called
-\textit{Grand Prix Selection} (GPS), which \textcolor{red}{will} be able to reduce
-uncertainty by using something more realistic than solo race scores to
+\textit{Grand Prix Selection} (GPS), which \textcolor{red}{will} be able to reduce uncertainty by using something more realistic than solo race scores to
 select individuals. Additionally, we increase the exploitative power
 of this kind of selection via an adaptive BLX-$\alpha$ operator. We
 compare these new selection and operator with hybrid approaches that
@@ -111,9 +110,11 @@ eventually compete, in a race with other competitors. By totally
 eliminating fitness, in a fitnessless environment, we also eliminate
 a source of uncertainty. We also reduce this even more by repeating
 races several times. A single (and uncertain) fitness is thus
-substituted by a podium in which car controllers that win the most
-races will proceed to the next generation, while those that do not,
-will simply be removed from the pool. 
+substituted by a podium 
+\textcolor{red}{
+(a ranking after several races against other opponents) 
+}
+in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. 
 
 The algorithm proposed in this paper overcomes most of the problems we
 have found in this line of research, that started with
@@ -131,7 +132,8 @@ Thus, in this paper we are testing the best approaches we have found all togethe
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  This reduction of uncertainty has been proved also to reduce diversity in the genetic pool
-\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}. 
+\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}.
+% Antonio - revise this statement. Is this possitive somehow? 
 In addition, we have compared the influence of the BLX-$\alpha$ on the performance of the evolved controllers with those yielded using standard crossover operators.
 
 % Antonio - part of this was said before, so I have completed the paragraph above with this text also and removed this.
@@ -176,15 +178,16 @@ published; however, they differ in the way the specific controlled
 works. In many cases, they learn during the race; reinforcement
 learning has that specific capability, and it was used by Loiacono et
 al. \cite{loiacono2010learning} in the first paper that uses it. It is still one of the most popular methods, as is shown
-in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in the last
-case, the method used is called asynchronous advantage actor-critic
+in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in the last case, the method used is called asynchronous advantage actor-critic
 reinforcement algorithm.
 
 However, it is not the only kind of soft computing method
 used. \cite{mirus2019short} uses a neuromorphic architecture, namely,
 spiking neural networks, but using, the same way we do in our works, a single track for training. The kind of data used for the design of racing cars is
-also different depending on the author. We think that, in general, successful racing will only need these sensor values to drive the car, since they give enough information to avoid collisions, drive as close as possible to the
-center of the track, and drive as fast as possible when needed.
+also different depending on the author. 
+\textcolor{red}{
+According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{salem_cig2018}, in general, successful racing will only need these sensor values to drive the car, since they give enough information to avoid collisions, drive as close as possible to the center of the track, and drive as fast as possible when needed.
+}
 
 Soft computing has been combined also with evolutionary algorithms 
 % Antonio - EAs are also a kind of Soft Computing method, aren't they?
@@ -1203,10 +1206,8 @@ other tracks, as long as ``training'' or evolution uses a track that
 has as many different features as possible. % Added this, check it out
                                 % - JJ
 
-We also think that results are probably independent of the fact that we are using a
-set of fuzzy controllers. The result could be generalized to any kind
-of controller, as long as the evolution process has the possibility to explore the
-space of controllers in the same, efficient, way. This is a possible
+We also think that results are probably independent of the fact that we are using a set of fuzzy controllers. The results could be generalized to any kind
+of controller, as long as the evolution process has the possibility to explore the space of controllers in the same, efficient, way. This is a possible
 way of extending the work: substituting fuzzy controllers by simple
 neural nets could be a way of proving that the fitnessless approach
 is able to find good results independently of the low-level algorithms
