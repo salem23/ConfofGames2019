@@ -23,6 +23,7 @@
 
 \documentclass[10pt]{letter} % 10pt font size default, 11pt and 12pt are also possible
 \usepackage{geometry} % Required for adjusting page dimensions
+\usepackage{lmodern}
 
 %\longindentation=0pt % Un-commenting this line will push the closing "Sincerely," to the left of the page
 
@@ -333,7 +334,7 @@ We have added this text in the introduction of the paper in order to clarify wha
 		% In [10], the alpha parameter is a constant fixed at the beginning but we propose to make it variable, i.e it will be decreased throughout the optimization process.
 		% We understand that we could call it `Varying BLX-$\alpha$' instead of `adaptive BLX-$\alpha$' but the term `adaptive' refers to the fact that the algorithm adapts its need first for exploration and then for exploitation over generations. Since the need for exploration decreases as the GA advances towards the last generations, we have chosen a decreasing value of alpha.
                 % Lots of words to illustrate the reviewer. You NEVER do that. The reviewer is always right.
-                We have changed the title to {\em decreasing} and eliminated all references to adaptive, using ``varying'' in some cases (since it corresponds to the acronym, VA as in ``varying $\alpha$'', and BLX with decreasing $\alpha$ or other variations, depending on the context. Essentially, the reviewer is right because there's no adaptation to specific circumstances of search or self-adaptation, it's simply a continuous variation. This operator is a variation of the BLX-$\alpha$ crossover, which was proposed originally by Eshelman and Schaeffer. A reference to this original paper has been included, as well as what we changed from the original. We have clarified this in the text this way: {\em The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} \cite{blx2008} \textcolor{red}{introduced originally by Eshelman and Schaeffer \cite{eshelman1993real}, and adapted here to use a varying $\alpha$ value}.}
+                We have changed the title to {\em decreasing} and eliminated all references to adaptive, using ``varying'' in some cases (since it corresponds to the acronym, VA as in ``varying $\alpha$'', and BLX with decreasing $\alpha$ or other variations, depending on the context. Essentially, the reviewer is right because there's no adaptation to specific circumstances of search or self-adaptation, it's simply a continuous variation. This operator is a variation of the BLX-$\alpha$ crossover, which was proposed originally by Eshelman and Schaeffer. A reference to this original paper has been included, as well as what we changed from the original. We have clarified this in the text this way: {\em The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} {\sf blx2008} \textcolor{red}{introduced originally by Eshelman and Schaeffer \cite{eshelman1993real}, and adapted here to use a varying $\alpha$ value}.}
 %% ------------------------------------------------------------------------
 
 		\item {\bf  Comment 3:	There is just one track that is used for training, and the same track is used for evaluation as well (in addition to one other track). That is not near enough to make any conclusions about generalisability of the results. I understand that these evaluations are costly, but it would still be important to not overfit to just a single track. Additionally, it seems that the reported results for each championship only reflect a single race through each track. If the environment is uncertain, this of course does not reflect the performance of the controllers accurately. The description of the results is also sometimes very biased, ignoring the fact that in table 3, berniw2 is doing pretty well.}:
@@ -371,8 +372,10 @@ We have added a text referring to our previous works in which we proved this sta
 				
 			\item	reduced diversity is good (1) -> usually, the opposite is true in my experience
 					\item {\bf Response:} 
-			We thank the reviewer for the interesting remark.
-			Yes, in general, diversification is good especially to avoid local minimums, so it is necessary at the beginning of the evolutionary process to explore the space of solutions. However, normally, in a Genetic Algorithm the need for diversification decreases along the generations and towards the end it is better to increase the selective pressure to exploit promising areas of solutions. Diversification is also correlated with uncertainty, so, we aim to use a controller diversification factor aiming to also `control' (or reduce) the uncertainty present in this problem.
+                                          We thank the reviewer for the interesting remark. In general, reduced diversity is not good. Reduced uncertainty is, because it means that the solutions are more robust. However, reduced undertainty might lead to a loss of diversity, since specific individuals are selected with a higher probability than in an uncertain context, where any individual has a non-zero possibility of being selected, as long as in that specific generation, the fitness measured is high enough. This is why in our paper the possible loss of diversity through selection is offset by the use of an operator, BLX-$\alpha$, with a certain degree of exploration through crossover and mutation. This has been clarified in the pagraph, which now reads: {\em This reduction of uncertainty has been proved also to reduce diversity in the genetic pool {\sf DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the BLX-$\alpha$ operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
+In addition, we have compared the influence of the BLX-$\alpha$ operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.}
+                                          
+
 We have clarified this in the corresponding text in the manuscript.
 			\end{itemize}
 
@@ -405,7 +408,7 @@ We have added a phrase on this regard.
 	\item {\bf   Comment 7: Minor language comments: :} 
 				\begin{itemize}
 				\item 	"driving a car is a problem" -> It is not clear at this point that you are talking about an optimisation problem
-				\item {\bf Response:}  
+				\item {\bf Response:} 
 				Thank you for the remark, the sentence has been changed in the introduction in red color:
 				{\em  Driving a \textcolor{red}{simulated} car \textcolor{red}{can be formulated as an optimization} problem in which you have to map inputs that include data about the environment we are driving in as well as car
 data, to the output: throttling and steering \textcolor{red}{to meet a series of standards}.}

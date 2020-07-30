@@ -129,26 +129,8 @@ Thus, in this paper we are testing the best approaches we have found all togethe
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix Selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  
-\textcolor{red}{
-This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which would be desirable towards the end of the evolution.
-% Antonio - revise this statement. Is this possitive somehow? 
-In addition, we have compared the influence of the BLX-$\alpha$ operator on the performance of the evolved controllers with those yielded using standard crossover operators; since we aim to better control the diversity in the population and thus, as a consequence, the uncertainty present.
-}
-
-% Antonio - part of this was said before, so I have completed the paragraph above with this text also and removed this.
-%In our previous paper,
-%  \cite{DBLP:conf/cig/SalemMG19}, we introduced the BLX-$\alpha$
-%  operator which works, at the same time, exploring and exploiting
-%  the existing space of solutions, and tested it with fixed or varying
-%  $\alpha$. This last configuration yielded better results, so in this
-%  paper we will evaluate it in combination with this kind of Grand Prix
-%  selection, comparing it with a classical crossover, as well as
-%  different degrees of application of the same technique, from using
-%  no competition for selection, just the fitness scores, to
-%  introducing phases of GPS selection every five generations or only
-%  at the end.
-
-% Antonio - TODO: Add here an outline of the obtained results.
+\textcolor{red}{This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the BLX-$\alpha$ operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
+In addition, we have compared the influence of the BLX-$\alpha$ operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.}
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
