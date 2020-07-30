@@ -129,8 +129,8 @@ Thus, in this paper we are testing the best approaches we have found all togethe
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix Selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  
-\textcolor{red}{This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the BLX-$\alpha$ operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
-In addition, we have compared the influence of the BLX-$\alpha$ operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.}
+\textcolor{red}{This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the \mbox{BLX-$\alpha$} operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
+In addition, we have compared the influence of the \mbox{BLX-$\alpha$} operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.}
 
 The rest of the paper is organized as follows. Next we present the
 state of the art, to be followed by a description of the TORCS
@@ -543,7 +543,7 @@ The value of the $\alpha$ parameter regulates the exploration/exploitation balan
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
 To this end, we have implemented an \textit{BLX} operator with a decreasing $\alpha$ value, following
-the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
+the expression: \mbox{$\alpha =1-\frac{g}{g_{max}}$}, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
 This will mean a higher diversification factor in the first generations, because the offspring will take much more different values for their genes in comparison with their parent and other descendants. %, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. 
@@ -603,30 +603,29 @@ them with 180 degrees, steep segments, and some very challenging parts
 like the entrance of a tunnel at a square angle. All these features make
 it a good testbed for good turning and collision avoidance
 strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. This same track has been also repeatedly used by other authors for training as well as for testing and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}, for instance in
-\cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after Alpine 1 and Olethros, implying it
+\cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after \mbox{Alpine 1} and Olethros, implying it
 has got a good balance between hardness and speed. Since we also used
 it in our previous papers, it allowed us to compare racing bots that
 had been ``trained'' in the same conditions.}
 
-Alpine 2 track is probably one of the most popular tracks used for
+\mbox{Alpine 2} track is probably one of the most popular tracks used for
 training; \mbox{CG-Track 2} has similar features, and it is used by
 \cite{mirus2019short,8833873,verma2018programmatically},
 in this last case for transfer learning. \cite{Kole-ParamCarTunning12}
-mentions CG-Track 2 is ``relatively harder'', with E-Track 3 the
+mentions \mbox{CG-Track 2} is ``relatively harder'', with \mbox{E-Track 3} the
 hardest. On the other hand, \cite{10.1371/journal.pone.0213193} uses
-CG-Track 1. There are several differences between CG-Track 2 and Alpine
-2, the one we use, but the main one is that turns are relatively
+\mbox{CG-Track 1}. There are several differences between \mbox{CG-Track 2} and \mbox{Alpine 2}, the one we use, but the main one is that turns are relatively
 easier and straight segments are longer, favoring fast cars over
 balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 \textcolor{red}{
-The second circuit is the Wheel 2 Track. It is a  Suzuka F1 track that combines many challenges such as high speed parts and different curves types. Moreover the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
+The second circuit is the \mbox{Wheel 2} Track. It is a  Suzuka F1 track that combines many challenges such as high speed parts and different curves types. Moreover the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
 % this figure has disappeared - JJ
 % Antonio - Fixed
-To test the obtained controllers, we considered two tracks: the first track is \textit{E-Track 5}, used in previous papers \cite{salem_evo17},\cite{salem_evo17} and the second one is \textit{Street 1}
+To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo17} and the second one is \mbox{\textit{Street 1}}
 This controller has many long speed segments, difficult sharp turns. In addition, the track is two meters larger than the others  three considered tracks which increase the overtaking possibilities.
 }
-We have again used the vehicle \textit{car1-trb1},
+We have again used the vehicle \mbox{\textit{car1-trb1}},
 which is a well balanced, NASCAR type car \footnote{See description in
   the TORCS racing board web page,
   \url{http://www.berniw.org/trb/cars/car_view.php?viewcarid=5}},
