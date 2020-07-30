@@ -566,7 +566,7 @@ $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
-The value of the $\alpha$ parameter allows to control the search on the space of solutions, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
+The value of the $\alpha$ parameter regulates the exploration/exploitation balance when searching the space of solutions; a value $\alpha = 0.5$ will balance exploration and exploitation.
 
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
