@@ -334,7 +334,7 @@ We have added this text in the introduction of the paper in order to clarify wha
 		% In [10], the alpha parameter is a constant fixed at the beginning but we propose to make it variable, i.e it will be decreased throughout the optimization process.
 		% We understand that we could call it `Varying BLX-$\alpha$' instead of `adaptive BLX-$\alpha$' but the term `adaptive' refers to the fact that the algorithm adapts its need first for exploration and then for exploitation over generations. Since the need for exploration decreases as the GA advances towards the last generations, we have chosen a decreasing value of alpha.
                 % Lots of words to illustrate the reviewer. You NEVER do that. The reviewer is always right.
-                We have changed the title to {\em decreasing} and eliminated all references to adaptive, using ``varying'' in some cases (since it corresponds to the acronym, VA as in ``varying $\alpha$'', and BLX with decreasing $\alpha$ or other variations, depending on the context. Essentially, the reviewer is right because there's no adaptation to specific circumstances of search or self-adaptation, it's simply a continuous variation. This operator is a variation of the BLX-$\alpha$ crossover, which was proposed originally by Eshelman and Schaeffer. A reference to this original paper has been included, as well as what we changed from the original. We have clarified this in the text this way: {\em The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} {\sf blx2008} \textcolor{red}{introduced originally by Eshelman and Schaeffer \cite{eshelman1993real}, and adapted here to use a varying $\alpha$ value}.}
+                We have changed the title to {\em decreasing} and eliminated all references to adaptive, using ``varying'' in some cases (since it corresponds to the acronym, VA as in ``varying $\alpha$'', and BLX with decreasing $\alpha$ or other variations, depending on the context. Essentially, the reviewer is right because there's no adaptation to specific circumstances of search or self-adaptation, it's simply a continuous variation. This operator is a variation of the BLX-$\alpha$ crossover, which was proposed originally by Eshelman and Schaeffer. A reference to this original paper has been included, as well as what we changed from the original. We have clarified this in the text this way: {\em The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} {\sf blx2008} \textcolor{red}{introduced originally by Eshelman and Schaeffer {\sf eshelman1993real}, and adapted here to use a varying $\alpha$ value}.}
 %% ------------------------------------------------------------------------
 
 		\item {\bf  Comment 3:	There is just one track that is used for training, and the same track is used for evaluation as well (in addition to one other track). That is not near enough to make any conclusions about generalisability of the results. I understand that these evaluations are costly, but it would still be important to not overfit to just a single track. Additionally, it seems that the reported results for each championship only reflect a single race through each track. If the environment is uncertain, this of course does not reflect the performance of the controllers accurately. The description of the results is also sometimes very biased, ignoring the fact that in table 3, berniw2 is doing pretty well.}:
@@ -388,16 +388,13 @@ We have clarified this in the corresponding text in the manuscript.
 					That means that instead of using a certain fitness value for an individual, we replace it by a ranking after several races against other controllers. We have clarified this in the text.\\
 					
 			\item "use neuroevolution instead of evolving" -> both are evolutionary approaches?
-					\item {\bf Response:} 
-					The intention was to write {\em simply evolving parameters}, but eventually we've decided to eliminate that sentence to make it clearer. Thanks for the suggestion.
+					\item {\bf Response:} The intention was to write {\em simply evolving parameters}, but eventually we've decided to eliminate that sentence to make it clearer. Thanks for the suggestion.
 			\item What does "map the trajectory" mean?
 					\item {\bf Response:} 
 			It means to compute a trajectory estimation method, which can be used later in a controller. This has been clarified in the text, which now reads: {\em Evolution can also be used directly to compute the optimal trajectory after ``test laps''.}
-					
 			\item It is not clear whether the statistics about the articles cited are about TORCS or not? And if they aren't, why are they relevant?
-					\item {\bf Response:} 
-			Yes, those statistics are related to works mentioning TORCS environment. Statistics are given to position both the simulation environment and the used techniques in the research area. They prove that researchers are still working on them or on similar problems. 
-We have added a phrase on this regard.
+\item {\bf Response:} 
+			Yes, those statistics are related to works mentioning TORCS environment, as we mention in the first sentence in the paragraph. Our intention here was twofold: TORCS is a popular testbed for driving algorithms, and our approach using a genetic fuzzy system is quite original and, as we will prove in the paper, fruitful. The text now reads {\em Fuzzy controllers are mentioned in around 15\% of the above mentioned articles, while around 30\% mention evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS (but just mentioning it); so the approach in this line of research is truly original in this context}
 				
 			\item "the higher diversification factor which it means"
 					\item {\bf Response:} : This sentence has been rewritten; now it reads  {\em  derived higher diversification factor}.
@@ -442,11 +439,6 @@ The reviewer is right; although there's an implicit sequence (some initial explo
 
 \end{enumerate}
  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
 
 %----------------------------------------------------------------------------------------
 
