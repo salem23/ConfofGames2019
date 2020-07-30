@@ -327,14 +327,13 @@ We have added this text in the introduction of the paper in order to clarify wha
 %		 
 		\item {\bf   Comment 2:	The authors also suggest a crossover method, but the description was not entirely clear to me. It seems like some variation of intermediate crossover per dimension (which would select values in an interval betwen $x_i$ and $y_i$) and then also forcing mutation (controlled by alpha). Alpha is adaptive in the sense that it decreases over the runtime, which is a common approach with mutation operators. I also would not call it adaptive, as it does not adapt to the state of the population, it is just continually decreasing.}
 		\item {\bf Response:}
-		***TO CHECK***\\
-		We thanks the reviewer for this comment.
-		We proposed to introduce in the GA, an adaptive crossover operator which is the Blend Crossover  or adaptive BLX-$\alpha$ Crossover.  Indeed, this operator is a variation of the original operator proposed in [10]. This proposal comes to control the relationship between the exploration and exploitation in the GA process. This crossover operator produces three new individuals resulting from the crossover between the two parents. It is not a mutation.
+		We would like to thank the reviewer for this comment.
+		We proposed to introduce in the GA, an adaptive crossover operator which is the Blend Crossover  or adaptive BLX-$\alpha$ Crossover.  Indeed, this operator is a variation of the original operator proposed in [10]. This proposal comes to control the relationship between the exploration and exploitation in the GA process. This crossover operator produces three new individuals resulting from the combination of the two parents. Thus, it is not a mutation.
 		
 		The crossover points of the two parents are chosen randomly in an interval depending on the value of alpha.
 		
-		In [10], the alpha parameter is a constant fixed at the beginning but we propose to make it variable which decreases throughout the optimization process.
-		We understand that we could call it 'Varying BLX-$\alpha$' instead of 'adaptive BLX-$\alpha$' but the name 'adaptive' is due to the fact that the algorithm adapts its need for exploration and exploitation over generations and since the need for exploration decreases as we move towards the last generation, we have chosen a decreasing value of alpha.
+		In [10], the alpha parameter is a constant fixed at the beginning but we propose to make it variable, i.e it will be decreased throughout the optimization process.
+		We understand that we could call it `Varying BLX-$\alpha$' instead of `adaptive BLX-$\alpha$' but the term `adaptive' refers to the fact that the algorithm adapts its need first for exploration and then for exploitation over generations. Since the need for exploration decreases as the GA advances towards the last generations, we have chosen a decreasing value of alpha.
 			
 %
 %% ------------------------------------------------------------------------
@@ -373,11 +372,10 @@ We have added a text referring to our previous works in which we proved this sta
 				Indeed, that main result of the paper is that we can tune the parameters of  TORCS fuzzy controller with an evolutionary process  using a sort of a fitnessless selection. This finding could be generalized to any other TORCS controller, just performing a parameter tuning through evolution.\\
 				
 			\item	reduced diversity is good (1) -> usually, the opposite is true in my experience
-					\item {\bf Response:} *** TO CHECK ***
+					\item {\bf Response:} 
 			We thank the reviewer for the interesting remark.
-			Yes in general, diversification is good especially to avoid local minimums but when we are closely interested in the functioning of the genetic algorithm, we conclude that the need for diversification decreases along the iterations.
-			A great diversification is necessary at the beginning to speed up the optimization process and get closer to the optimal solution but towards the end we need to press the selection in order to exploit the neighborhood of this solution.
-			So more diversification in general implies a great deal of uncertainty in our case. What we are looking for is controlled diversification.
+			Yes, in general, diversification is good especially to avoid local minimums, so it is necessary at the beginning of the evolutionary process to explore the space of solutions. However, normally, in a Genetic Algorithm the need for diversification decreases along the generations and towards the end it is better to increase the selective pressure to exploit promising areas of solutions. Diversification is also correlated with uncertainty, so, we aim to use a controller diversification factor aiming to also `control' (or reduce) the uncertainty present in this problem.
+We have clarified this in the corresponding text in the manuscript.
 			\end{itemize}
 
 % ------------------------------------------------------------------------
@@ -389,28 +387,22 @@ We have added a text referring to our previous works in which we proved this sta
 					That means that instead of using a certain fitness value for an individual, we replace it by a ranking after several races against other controllers. We have clarified this in the text.\\
 					
 			\item "use neuroevolution instead of evolving" -> both are evolutionary approaches?
-					\item {\bf Response:} *** TO CHECK ***\\
-					Yes they are, but  neuroevolution  uses evolutionary algorithms to generate artificial neural networks by optimizing their parameters.
+					\item {\bf Response:} 
+					Yes they are, but  neuroevolution uses evolutionary algorithms to generate artificial neural networks by optimizing their parameters. Anyway, the way it was written in the text could be confusing, so we have rewritten that text and removed the "instead of evolving" part to be clearer. 
 			\item What does "map the trajectory" mean?
-					\item {\bf Response:} *** TO CHECK ***\\
-			To find or estimate the position of the car in the track ( trajectory) using input data and evolutionary methods( Mapping inputs to find the trajectory).		
+					\item {\bf Response:} 
+			It means to compute a trajectory estimation method, which can be used later in a controller. This has been clarified in the text.
 					
 			\item It is not clear whether the statistics about the articles cited are about TORCS or not? And if they aren't, why are they relevant?
-					\item {\bf Response:} *** TO CHECK ***\\
-			Yes, the mentioned statistics are about TORCS  environment.
-			Statistics are given to position both the simulation environment and the used techniques in the research area. These statistics prove that researchers still working on them.
+					\item {\bf Response:} 
+			Yes, those statistics are related to works mentioning TORCS environment. Statistics are given to position both the simulation environment and the used techniques in the research area. They prove that researchers are still working on them or on similar problems. 
+We have added a phrase on this regard.
 				
 			\item "the higher diversification factor which it means"
-					\item {\bf Response:} : It was a typographic error, we deleted the words 'which it means'.
+					\item {\bf Response:} : This sentence has been rewritten.
 			\end{itemize}
 	
-%\\
-%10
-%32 33 19 
-%24
-% 45 
-% Antonio - I guess these numbers shouldn't be here. ;D
-% of course % Mohammed ------------------------------------------------------------------------
+%-----------------------------------------------------------------------
 
 	\item {\bf   Comment 7: Minor language comments: :} 
 				\begin{itemize}

@@ -81,15 +81,13 @@ data, to the output: throttling and steering. Car controllers have to
 be designed so that cars do not crash and are able to run at a
 reasonable speed \cite{Autodriv2006}. Additionally, in a racing car the controller has to be designed so that the car wins in as many races as possible.
 
-There are so many variables in this problem, that eventually the values of some of
-them are decided using heuristic rules, while the rest are open to
+There are so many variables in this problem, that eventually the values of some of them are decided using heuristic rules, while the rest are open to
 optimization. For instance, deciding the type of controller is usually
 done before the design process begins, and a single, parametrized one
 is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09} are often used. 
-Additionally to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done during the
-race, so that it can adapt itself to new and previously unseen,
-scenarios and competitors, or it can be fixed by training the
-controllers in advance. 
+Additionally to that, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done online (during the
+race), so that it can adapt itself to new and previously unseen,
+scenarios and competitors, or it can be fixed training offline. 
 
 We have been using genetically-optimized fuzzy controllers in this line of work, with increasing success \cite{salem_evo17},\cite{salem_evo18}.
 However, in a simulated and realistic racing car environment like the one we use, racing car scores are a
@@ -131,10 +129,12 @@ Thus, in this paper we are testing the best approaches we have found all togethe
 }
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
-This work also presents an exhaustive study, where we have checked how this Grand Prix selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  This reduction of uncertainty has been proved also to reduce diversity in the genetic pool
-\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}.
+This work also presents an exhaustive study, where we have checked how this Grand Prix selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  
+\textcolor{red}{
+This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which would be desirable towards the end of the evolution.
 % Antonio - revise this statement. Is this possitive somehow? 
-In addition, we have compared the influence of the BLX-$\alpha$ on the performance of the evolved controllers with those yielded using standard crossover operators.
+In addition, we have compared the influence of the BLX-$\alpha$ operator on the performance of the evolved controllers with those yielded using standard crossover operators; since we aim to better control the diversity in the population and thus, as a consequence, the uncertainty present.
+}
 
 % Antonio - part of this was said before, so I have completed the paragraph above with this text also and removed this.
 %In our previous paper,
@@ -186,23 +186,19 @@ used. \cite{mirus2019short} uses a neuromorphic architecture, namely,
 spiking neural networks, but using, the same way we do in our works, a single track for training. The kind of data used for the design of racing cars is
 also different depending on the author. 
 \textcolor{red}{
-According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{salem_cig2018}, in general, successful racing will only need these sensor values to drive the car, since they give enough information to avoid collisions, drive as close as possible to the center of the track, and drive as fast as possible when needed.
+According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{salem_cig2018}, in general, successful racing will only need these sensor values to drive the car, since they give enough information to avoid collisions, drive as close as possible to the center of the track, and drive as fast as possible.
 }
 
-Soft computing has been combined also with evolutionary algorithms 
-% Antonio - EAs are also a kind of Soft Computing method, aren't they?
-in several occasions: \cite{10.1371/journal.pone.0213193} uses
-neuroevolution, for instance; instead of evolving, controllers trained
-in one track are briefly re-trained for use in other cars, in what is
-called ``transfer learning''. This is the technique applied by the authors in 
-\cite{verma2018programmatically}. 
+\textcolor{red}{
+Other soft computing methods have been combined also with evolutionary algorithms in several occasions, such as \cite{10.1371/journal.pone.0213193} which uses neuroevolution. Thus, controllers trained in one track are briefly re-trained for use in other cars, in what is called ``transfer learning''. This is also the technique applied by the authors in \cite{verma2018programmatically}. 
+}
 
-
-Evolution can also be used directly to map the trajectory after ``test
-laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
+\textcolor{red}{
+Evolution can also be used directly to compute the optimal trajectory after ``test laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
 %\cite{vrajitoru2019trajectory,vrajitorugenetic}, 
 %%% Antonio - I remove one reference to save space.
-using then an evolutionary algorithm to optimize driving within that specific track. 
+using then an evolutionary algorithm to optimize driving within that specific track and considering the obtained trajectory calculation. 
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -218,8 +214,10 @@ challenge \cite{badue2019selfdriving}.
 
 
 Only in the last year (2019) there are around 200 articles that
-mention it; \cite{schiavullo2019torcs} revises its applications for the last 20 years. It can be considered as the most successful platform used for this kind of problem. 
-Fuzzy controllers are mentioned in around 15\% of them, while around 30\% mention evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS.
+mention TORCS; \cite{schiavullo2019torcs} revises its applications for the last 20 years. It can be considered as the most successful platform used for this kind of problem.
+\textcolor{red}{ 
+Fuzzy controllers are mentioned in around 15\% of them, while around 30\% mention evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS (but just mentioning it). However these statistics show the relevance of this environment as a research testbed.
+}
 % Antonio - But they are mentioned on one of the papers which mention TORCS?? So, they mention TORCS but do not use it?
 % Antonio - I don't understand this paragraph above, but I have tried to clarify it, because it was wrong.
 
@@ -246,7 +244,7 @@ and the best way of checking how good a bot or controller is, is by
 playing the game. This way of evolving bots was called fitnessless
 coevolution: and was defined in
 \cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to our
-Grand Prix selection, which we present in this paper, whose essence is
+Grand Prix selection, presented here, whose essence is
 to get rid of a fitness score resulting from evaluation of an
 individual, substituting it by a score obtained by the controller in
 more realistic competitive conditions.
@@ -416,12 +414,13 @@ extensively in \cite{DBLP:conf/cig/SalemMG19}.
 
 As mentioned, these fuzzy sub-controllers proved to be a good platform for the evolution of racing car controllers, and have not essentially changed since our first paper. As a matter of fact, the methods presented in this paper could
 be applied to any kind of controller, as long as it can be fully
-encoded and evolved using an Evolutionary Algorithm (a GA). 
+encoded and evolved using an Evolutionary Algorithm. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  OPTIMISING WITH GAS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Optimizing Sub-controllers with an Evolutionary Algorithm}
 \label{sec:ga}
 
-We have applied an evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have been using in this line of research.
+We have applied an evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have used in this line of research.
 % Antonio - I put this text back as we are working with a GA (the title of the section says this), so it is clearer to say what is it. Moreover, the reference is also used in other places, so it is not removed to save space indeed. 
 % In addition, there is free available space now. ;)
 % You don't way why this is a GA and not an EA, and why it's relevant
@@ -477,8 +476,7 @@ evaluation is done in two different ways.
 
 The first method considers the fitness function already used
 previously \cite{salem_cig2018}, because it was the most successful 
-among some others proposed \cite{salem_evo18}. It is described in the
-next equation: 
+among some others proposed \cite{salem_evo18}. It is described as: 
 
  \begin{equation} \label{fit_avg}
  	\begin{array}{lll}
@@ -550,7 +548,7 @@ In this respect, the authors argue that this operator will provide better indivi
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. \textcolor{red}{ stated before, one of the side effects of uncertainty is the higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
+The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. \textcolor{red}{As stated before, one of the side effects of uncertainty is its derived higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
 
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
@@ -569,13 +567,13 @@ $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
-The $\alpha$ parameter allows to control the search on the space of solutions, depending on its value, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
+The value of the $\alpha$ parameter allows to control the search on the space of solutions, so, a value $\alpha = 0.5$ will establish a balance between exploration and exploitation.
 
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
 To this end, we have implemented an \textit{adaptive BLX-$\alpha$}
-approach, which considers a variable value for $\alpha$. Thus, the
-value of this parameter is decreased over the generations, following
+approach, which considers a variable value for $\alpha$. Thus, its
+value is decreased over the generations, following
 the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
@@ -739,7 +737,7 @@ affect uncertainty in scores (fitness values). Better selection procedures shoul
 as possible; other kinds of selections should keep distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done a study of the distribution of the genetic individuals of
-three evolution processes {\sf GFC}, {\sf GFC-GPSE} and {\sf GFC-GPSVA5}. 
+three approaches: {\sf GFC}, {\sf GFC-GPSE} and {\sf GFC-GPSVA5}. 
 
 
 Skewness is related to how symmetric the distribution of fitness
@@ -797,7 +795,8 @@ middle of the area the variable covers, but decreasing more slowly
 towards values away from the center. For the time being,
 we can affirm that fitnessless methods tend to evolve individuals
 with a score that is less uncertain, and thus more robust and whose
-expected results are more reliable; this was an objective of this GPS procedure, and we consider it has been achieved. Although we have represented a single run here, results for other runs are similar.
+expected results are more reliable; this was an objective of this GPS procedure, and we consider it has been achieved. 
+%Although we have represented a single run here, results for other runs are similar.
 
 In the next subsection we will see how this kind of selection has an influence in the success as a method for finding high-performance controllers.
 
