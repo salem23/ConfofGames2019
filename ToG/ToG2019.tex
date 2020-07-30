@@ -95,8 +95,11 @@ However, in a simulated and realistic racing car environment like the one we use
     (simulated) atmospheric conditions; and we should never forget
     that score in a training track will always be a surrogate of its
     actual score when racing against other cars on different tracks,
-    which adds another layer of uncertainty. This is why optimization
-    in this environment is quite hard. If training is done before the
+    which adds another layer of uncertainty. 
+\textcolor{red}{
+This is why performing an appropriate optimization process in this environment is a problem itself. 
+}
+If training is done before the
     race, and the controllers are fixed via an optimization process,
     the uncertainty in the evaluation of every controller will make
     the resulting score in unknown tracks with unknown rivals
