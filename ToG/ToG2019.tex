@@ -540,7 +540,7 @@ In this respect, the authors argue that this operator will provide better indivi
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. \textcolor{red}{As stated before, one of the side effects of uncertainty is its derived higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, \textcolor{red}{the balance changes with the decreasing value of $\alpha$}.
+The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} \cite{blx2008} \textcolor{red}{introduced originally by Eshelman and Schaeffer \cite{eshelman1993real}, and adapted here to use a varying $\alpha$ value}. \textcolor{red}{As stated before, one of the side effects of uncertainty is its derived higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, \textcolor{red}{the balance changes with the decreasing value of $\alpha$}.
 
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
