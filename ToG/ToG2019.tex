@@ -23,7 +23,7 @@
 	%\title{Bare Demo of IEEEtran.cls for\\ IEEE Computer Society Journals}
 %
 \title{Overtaking Uncertainty with Evolutionary TORCS controllers:
-  Combining adaptive BLX-$\alpha$ Operator and Grand Prix Selection}
+  Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection}
 
 \author{Mohammed~Salem, Antonio~M.~Mora, Juan~J.~Merelo% <-this % stops a space
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem M. Salem was with the Department of Computer Sciences, University of Mascara, Algeria.\protect\\
@@ -49,7 +49,7 @@ the context of the TORCS racing simulator, in this paper we introduce
 a kind of fitnessless selection policy based on competition and called
 \textit{Grand Prix Selection} (GPS), which \textcolor{red}{will} be able to reduce uncertainty by using something more realistic than solo race scores to
 select individuals. Additionally, we increase the exploitative power
-of this kind of selection via an adaptive BLX-$\alpha$ operator. We
+of this kind of selection via a BLX operator  \textcolor{red}{with continuously decreasing $alpha$}. We
 compare these new selection and operator with hybrid approaches that
 apply GPS only part of the time, as well as other classical crossover
 operators. In general, \textcolor{red}{experiments} show that these combined
@@ -514,15 +514,8 @@ crossover operator able to manage the balance between exploration and
 exploitation during the evolution. 
 
 % -------------------------------------------------------------------
-\subsection{Grand Prix Selection and adaptive-$\alpha$ BLX crossover operator}
+\subsection{Grand Prix Selection and decreasing-$\alpha$ BLX blending crossover operator}
 \label{subsec:novel_operators}
-
-% I don't think putting these things together in a section makes
-% sense, just because they are new, but whatever - JJ
-
-%This paper proposes the inclusion of two different mechanisms into
-%the algorithm in order to improve its performance, as well as they
-%allow to obtain better controllers overall. 
 
 As introduced in the previous subsection, the \textbf{Grand Prix Selection} policy (GPS)  aims to select, in every generation, more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm, as well as use them as a basis for exploration of new solutions. It is a fitnessless approach,
 independent of the aforementioned fitness function (see Equation
@@ -547,7 +540,7 @@ In this respect, the authors argue that this operator will provide better indivi
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. \textcolor{red}{As stated before, one of the side effects of uncertainty is its derived higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, we have used an \textit{adaptive approach} of the operator.
+The second operator implemented in our GA is the Blend Crossover or  \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}. \textcolor{red}{As stated before, one of the side effects of uncertainty is its derived higher diversification factor}. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, \textcolor{red}{the balance changes with the decreasing value of $\alpha$}.
 
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
@@ -570,9 +563,7 @@ The value of the $\alpha$ parameter regulates the exploration/exploitation balan
 
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
-To this end, we have implemented an \textit{adaptive BLX-$\alpha$}
-approach, which considers a variable value for $\alpha$. Thus, its
-value is decreased over the generations, following
+To this end, we have implemented an \textit{BLX} operator with a decreasing $\alpha$ value, following
 the expression: $\alpha =1-\frac{g}{g_{max}}$, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
@@ -674,7 +665,7 @@ To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out two main optimization processes based
 on the GPS: the first one uses the GPS with the two point crossover
-operator while the second uses adaptive BLX-$\alpha$.
+operator while the second uses  BLX with decreasing $\alpha$.
 
 For every kind of crossover, three configurations are considered: for
 the first one, GPS is applied in every generation giving the new
@@ -707,16 +698,16 @@ We kept the same values for the evolutionary parameters as in our previous works
 				\hline
 				\hline
 {\sf{GFC-GPSE}}&Fitnessless&Every generation&Standard crossover\\
-{\sf{GFC-GPSVAE}}&Fitnessless&Every generation & Adaptive BLX$-\alpha$\\
+{\sf{GFC-GPSVAE}}&Fitnessless&Every generation & Varying BLX$-\alpha$\\
 
 {\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&Standard crossover\\
-{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations & Adaptive BLX$-\alpha$\\
+{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations & Varying BLX$-\alpha$\\
 
 {\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation &Standard crossover\\
 	
-{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation & Adaptive BLX$-\alpha$\\
+{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation & Varying BLX$-\alpha$\\
 {\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&Standard crossover\\							
-{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})& - & Adaptive BLX$-\alpha$\\
+{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})& - & Varying BLX$-\alpha$\\
 
 
 \hline
@@ -816,7 +807,7 @@ previous evolutionary processes compete again in a similar set of races, in orde
 \begin{table}[h!]
 	\centering
 	{\scriptsize
-		\caption{ \textcolor{red}{Results of GPS controllers  and adaptive $BLX-\alpha$ controllers in a mini-championship
+		\caption{ \textcolor{red}{Results of GPS controllers  and varying $BLX-\alpha$ controllers in a mini-championship
 			with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with the TORCS
 			simulator \cite{torcs4}. We mark in {\bf boldface}
                       the best value, and in {\em italics} the second best.}}
@@ -864,7 +855,7 @@ previous evolutionary processes compete again in a similar set of races, in orde
 %          {
 %            \begin{tabular}{|c|c|c|c|c||c|}
               \hline
-               \multicolumn{6}{|c|}{Results of adaptive $BLX-\alpha$ controllers} \\
+               \multicolumn{6}{|c|}{Results of varying $BLX-\alpha$ controllers} \\
                             \hline
 %                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
               \hline
@@ -910,7 +901,7 @@ well in {\em training} races and could, thus, be potential winners.
 The following experimentation is dedicated to assess the impact of the
 $BLX-\alpha$ operator; the same process has been followed
 selecting the best controllers of the evolution from those which
-have used this adaptive crossover operator and testing them in several
+have used this varying-$\alpha$ crossover operator and testing them in several
 races. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable). 
 %
 %
@@ -949,7 +940,7 @@ races. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bott
 \textcolor{red}{
 As it can be seen in the table, again the controller using GPS in
 every generation has reached the best score, but it should be noted the
-big impact of the application of the adaptive $BLX-\alpha$ operator in
+big impact of the application of the varying $BLX-\alpha$ operator in
 all the controllers. Thus, looking again at the results in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable) 
 % please add reference - JJ
 % Antonio - done
@@ -1138,7 +1129,7 @@ In this paper, and in order to avoid the impedance between using solo
 racing scores and performance in competitive races, we have
 incorporated this competition into the selection of individuals in an
 evolutionary algorithm that evolves fuzzy controllers in the TORCS
-simulator. This selection policy, called GPS (as in Grand Prix Selection), has been evaluated in combination with hybrid methods that use it only part of the time, and also together with an adaptive BLX-$\alpha$ and a standard crossover operators, to assess how it interacts with them and which combination yields the best competitive results.
+simulator. This selection policy, called GPS (as in Grand Prix Selection), has been evaluated in combination with hybrid methods that use it only part of the time, and also together with an varying BLX-$\alpha$ and a standard crossover operators, to assess how it interacts with them and which combination yields the best competitive results.
 
 % Rewritten above --- ^^^ ---
 % This paper is dedicated to present a new selection policy to replace
@@ -1183,17 +1174,16 @@ best controllers, finishing first and second in competitive races and,
 in the first case, obtain twice the score of a non-evolved
 competitor such as $berniw2$.
 
-The adaptive BLX-$\alpha$ operator seems to have also a positive
+The  BLX operator with decreasing $\alpha$ also has got a positive
 influence in the outcome, outperforming the standard crossover
-results. Thus, the decreasing amount of exploration that adaptive
-BLX-$\alpha$ boasts seems to get to areas with better solutions in a
+results. Thus, the decreasing amount of exploration that this BLX-$\alpha$ boasts seems to get to areas with better solutions in a
 more efficient way, eventually finding very competitive controllers.
 
 Another advantage of these combined selection and crossover operators is that they do not
 increase too much the total training time, and are also able to find a good solution in the first stages of evolution, which, if needed, allows to cut the training short. {\sf GFC-GPSVAE} needs at most 18 generations (which is around one third of the maximum number of generations defined) to find a good solution. Running GPS every generation needs more generations to get to the best that if it is run every 5 generations, or just at the end, but the problem is that in those cases the solution found is less competitive. However, {\sf GFC-GPSVA5} is quite competitive, and in the case of a limited evaluation budget, it could be a very good compromise.
 
 As a conclusion, in this paper we have proved that combining a
-fitnessless evolutionary algorithm with an adaptive, floating point,
+fitnessless evolutionary algorithm with an varying, floating point,
 crossover operator, consistently obtains the best results so far in
 TORCS. The sets of choices of running track, car, controller and
 actually parts of it that are evolving are thus also validated by
