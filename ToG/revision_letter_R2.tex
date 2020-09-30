@@ -1,0 +1,384 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Formal Letter
+% LaTeX Template
+% Version 2.0 (7/2/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@LaTeXTemplates.com)
+%
+% Originally based on an example on WikiBooks 
+% (http://en.wikibooks.org/wiki/LaTeX/Letters) but rewritten as of v2.0
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{letter} % 10pt font size default, 11pt and 12pt are also possible
+\usepackage{geometry} % Required for adjusting page dimensions
+\usepackage{lmodern}
+
+%\longindentation=0pt % Un-commenting this line will push the closing "Sincerely," to the left of the page
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	top=3cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	left=4.5cm, % Left margin
+	right=4.5cm, % Right margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+
+\usepackage{stix} % Use the Stix font by default
+
+\usepackage{microtype} % Improve justification
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+
+\signature{Mohammed SALEM} % Your name for the signature at the bottom
+
+\address{University of Mascara \\ Algeria\\ salem@univ-mascara.dz}
+
+%---------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{letter}{Professor Julian Togelius \\ Editor in Chief, IEEE Transactions on Games} % Name/title of the addressee
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT SECTION
+%----------------------------------------------------------------------------------------
+\opening{Subject: Revision and resubmission of manuscript TCIAIG-2019-0090.R1\\
+	\\	
+\textbf{Dear Dr Togelius,}}
+
+Thank you for your consideration of our manuscript entitled "Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection". 
+We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have reviewed and addressed the reviewers' comments and have thoroughly revised the manuscript. We found the comments helpful, and believe our revised manuscript which you will find uploaded alongside this document, represents a significant improvement over our submission. In it, changes and new contents have been marked in red color.
+
+In addition we have appended the reviewers' comments below in this letter and responded to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made. The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author. 
+We sincerely hope the revised manuscript worth being accepted for publication in the Journal.
+
+Thank you for your time and consideration.
+
+I look forward to here your reply.
+
+\vspace{2\parskip} % Extra whitespace for aesthetics
+\closing{Sincerely yours,}
+\vspace{2\parskip} % Extra whitespace for aesthetics
+
+\ps{P.S. You can find additional information attached to this letter.} % Postscript text, comment this line to remove it
+
+
+
+
+
+
+
+\newpage
+
+Reviewer Comments, Author Responses and Manuscript Changes
+\begin{enumerate}
+
+% #############################################################################
+
+\item {\bf \underline{ Reviewer 1 Comments}}\\
+		Comments to the Author:\\
+		I would like to thank the authors for their thorough revision of the paper and the detailed explanation of all the changes. While I still don't like the term fitness-less, the authors have made their point clear in revising the manuscript and explained how the term is to be understood.
+
+		I am quite satisfied with the result. All what is left are some minor remarks below which should be fixed before the final publication:
+		
+%%\textcolor{red}{
+		\begin{itemize}
+			\item {\bf Comment 1:}
+				\begin{quote}
+					- page 6 line 15: ... second one is Street 1 This controller... -> missing a dot
+					- page 2 line 16, left column: ... in a n-tournament... -> in an n-tournament
+					- page 2 line 16, right column: "Thus, controllers trained in one track are briefly re-trained for use in other cars, in what is called “transfer learning”." -> I would have expected that the controller is retrained for other tracks and not cards. Consider revising the sentence.
+					- Figure 3: "right Wheel 2" is missing an :
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed 
+					We thank the reviewer for the comments, they are all revised and highlighted in red color in the text.
+			\item {\bf Comment 2:}
+				\begin{quote}
+					- Figure 4: the image is very skewed in dimensions and axis labels, ticks as well as legend labels cannot be read
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed 
+				We agree with reviewer, Figure 4 is completely redrawn using the same axis and subcaptions are added. 
+			\item {\bf Comment 3:}
+				\begin{quote}
+					- page 7, line 30, left column: "results for other runs are similar" -> consider uploading the results of other runs on some webpage. It does not seem worth to add similar tables in an appendix (which would also result in over-length charge) but it would be good to have all the data available if required.
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed 
+			I have another run results with different random initial population, the results are not the same (of course) but the skewness behave the same. Should I use it?
+			if so, where can I upload it?( webpage)
+			%% JJ & %% Antonio?????		
+			--------------------------
+		-
+	   \end{itemize}
+
+\newpage
+
+% ##############################################################################
+
+\item {\bf \underline{ Reviewer 2 Comments}}\\
+	Comments to the Author\\
+	Overall the research here is good and has been improved since the last submission. I especially appreciate the inclusion of another track in the experiments section.
+	However, I recommend that the authors do a thorough revision of some of the phrasing and writing. I'm sometimes confused by some of the language within.
+	A few corrections for more clarity:	
+	\begin{itemize}			
+		\item {\bf Comment 1:}
+			\begin{quote}
+				"Driving a simulated car can be formulated as an optimization problem in which you have to map inputs that include data about the environment we are driving in as well as car data, to the output: throttling and steering to meet a series of standards: cars should not crash and should have a reasonable speed [23]." -> the first sentence is a bit long. This should be worded more tightly or split into two sentences. Also, switching between "you" and "we" is a bit disorienting; I'd make both references "you" to refer back to the reader.
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+				According to the reviewer's comment, the sentence has been split into two sentences and we kept only the pronoun 'you'. This part of the text now reads: \\
+			\textcolor{red}{
+				"Driving a simulated car can be formulated as an optimization
+				problem in which you have to map inputs that
+				include data about the driving environment as well as car
+				data, to the output: throttling and steering. This mapping
+				has to meet a series of standards: cars should not crash
+				and should have a reasonable speed [23]."}
+
+		\item {\bf Comment 2:}
+			\begin{quote}
+				"Since there are so many variables in this problem, the search space is usually reduced using heuristic rules for some of them." -> some of the variables? or some of the search space?
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+		In the sentence, the pronoun "them" refers to the variables.
+	
+%%\textcolor{red}{
+		\item {\bf Comment 3:}
+			\begin{quote}
+				"Additionally to that" -> Additionally
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+			The word "to that "  was deleted. The sentence now reads:
+			"\textcolor{red}{
+				Additionally}, training (or learning)[26] can be done online (during the race)"
+		\item {\bf Comment 4:}
+			\begin{quote}
+				"The best way to reduce uncertainty is to make the evaluation process as close as possible to the environment in which the controller will eventually compete, in a race with other competitors." -> This is the best way?
+			\end{quote}	
+		\item {\bf Response:} 
+%		We believe that the uncertainty in race competition is due to the lack of the information about the driving environment or 
+			%% Antonio-----------------------------
+		\item {\bf Comment 5:}
+			\begin{quote}
+				"By totally eliminating fitness, in a fitnessless environment, we also eliminate a source of uncertainty. We also reduce this even more by repeating races several times." -> At first glance, it sounds like you are about to define fitnessless, but then talk about repeating races instead. I would first handle the fitness part. For instance: "If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting.... ....We can further reduce uncertainty by..."
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+				We agree with the reviewer's comment. the sentence is a bit confusing. It has been rewritten following the reviewer's suggestion and marked in red in the text.
+				
+				\textcolor{red}{
+					If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating races several times."
+				}
+		\item {\bf Comment 6:}
+			\begin{quote}
+				"The algorithm proposed in this paper overcomes most of the problems we have found in this line of research, that started with [41], which was a basic system that introduced fuzzy controllers for driving the car and continued with [42], where the shape and values of the fuzzy controllers were improved using an evolutionary algorithm; that algorithm
+				was improved in [44]." -> This sentence is also a bit long. First start with stating the problems in prior research. Then state that your algorithm can overcome them. Make sure to follow up on this in the discussion section.
+			\end{quote}	
+		\item {\bf Response:} 
+			%% Antonio -----------------------------
+		\item {\bf Comment 7:}
+			\begin{quote}
+				First sentence of Section 3.1: I'd revise this sentence as it is very long. Focus it first on TORCS by itself, and not on the fact that you use it or that other studies use it. That can be specified in a second or third sentence.
+			\end{quote}	
+		\item {\bf Response:} 
+				%%Antonio -----------------------------
+		\item {\bf Comment 8:}
+			\begin{quote}
+				Section 5:
+				"...it has got many turns..." -> it has many turns
+				"all these features" -> these features
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+			We thank the reviewer for mentioning these errors which we fixed now following the reviewer suggestions.
+		\item {\bf Comment 9:}
+			\begin{quote}
+				"GFC-GPSVAE and GFC-GSPE controllers were the best where they are ranked 1st and 2nd" -> this sentence feels too echo-y. IF they are ranked 1st and 2nd in a specific location, specify where. Otherwise just say "They are best but require lots of computation time."
+			\end{quote}	
+		\item {\bf Response:} 
+			%%Mohammed 
+			The sentence has been rewritten following the reviewer's suggestion.It now reads:\\
+		\textcolor{red}{	{\bf "GFC-GPSVAE and GFC-GPSE controllers were the best where 	they are ranked $1^{st}$ and $2^{nd}$ in the comparative competition(See Table.4) but they are very expensive in runtime."}}	
+		\item {\bf Comment 10:}
+			\begin{quote}
+				I probably did not find everything, but addressing these phrases and perhaps a detailed rewriting of some of the clunkier parts would greatly benefit this paper.
+			\end{quote}	
+		\item {\bf Response:} 
+%% Antonio-----------------------------		
+    \end{itemize}
+
+\newpage
+
+% ##############################################################################\\
+%
+\item {\bf \underline{ Reviewer 3 Comments}}\\
+		Comments to the Author\\
+		I first want to thank the authors of the manuscript for their detailed responses. I think the paper has already improved significantly. I'll go through the letter first and then get back to issues that in my mind, have not properly been addressed.	
+		\begin{itemize}
+			\item {\bf Comment 1:}
+				\begin{quote}	
+					- While I still don't think "fitnessless" is the best term for the approach, I can see their reasoning of wanting to use it. At least it has been clarified now.
+				\end{quote}	
+			\item {\bf Response:} 
+				%%JJ -----------------------------
+			\item {\bf Comment 2:}
+				\begin{quote}	
+					- In the letter, you mention that "it was relatively easy to select an individual just by chance using fitness". I don't think your analysis on skewness and kurtosis is enough to warrant a conclusion like that.
+				\end{quote}	
+			\item {\bf Response:} 
+			%% JJ -----------------------------
+			\item {\bf Comment 3:}
+				\begin{quote}	
+					- page 7, comment 4: You did not answer how often they were evaluated?
+				\end{quote}	
+			\item {\bf Response:} 
+				%% Mohammed-----------------------------
+			\item {\bf Comment 4:}
+				\begin{quote}	
+					- re "successful racing will only need these sensor values": You proved that it "can be achieved with only these sensor values", not that this is the only way to do it. I'd just propose to use the latter formulation.
+				\end{quote}	
+			\item{\bf Response:} 
+				%%Mohammed 
+				The sentence has been reformulated to meet the reviewer's suggestion.It now reads:\\
+			 \textcolor{red}{	{\bf in general, successful racing could be achieved using only these sensor values} }
+			\item {\bf Comment 5:}
+				\begin{quote}	
+					- re "the approach could generalize to other types of controllers": Of course the approach could be applied to other types of controllers. The question is more whether the same performance changes are expected.
+				\end{quote}	
+			\item {\bf Response:} 
+					%%JJ -----------------------------
+			\item {\bf Comment 6:}
+				\begin{quote}	
+					- Maybe "uncertainty" is not the best term to describe the variability of the controller. You are not reducing uncertainty, but increasing robustness.
+				\end{quote}	
+			\item {\bf Response:} 
+					%% JJ -----------------------------
+			\item {\bf Comment 7:}
+				\begin{quote}	
+					I still have some issues with the experimental evaluation:
+					- It would help if you could make clearer what abbreviation you are using for which controller. "VA", e.g. was never mentioned as an abbreviation for the crossover. On page 6, line 40, you also mention GVC-VA twice. Table 2 helps a lot, but the text on its own is not entirely clear.
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed
+			We agree with the reviewer comment, the paper did not clearly describe  the considered controllers and even if the Table.2 is clear, the corresponding text is completely rewritten and highlighted in the manuscript. It now reads:
+			\textcolor{red}{
+				To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out two main optimization processes based on the GPS: the first one uses the GPS with the two point crossover operator while the second uses  BLX with decreasing $\alpha$.
+				In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5) and in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
+				Hence, we experimented six controllers in all: the new
+				proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers  [43]: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}..
+				Also and for comparison purpose, two reference controllers have been considered: {\sf{GFC-VA}}[43] and {\sf{GFC}}[40], they both use the fitness function $f_{AVS}$ (Equation 1) value for selection.
+				All these controllers are summarized in Table.2. 
+			}
+			\item {\bf Comment 8:}
+				\begin{quote}	
+					Re Fig. 4:
+					- The plots are weirdly stretched out
+					- It probably would be better if the plots had subcaptions
+					- Readability could be improved by having the same axis limits for all plots so comparisons are easier
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed 
+				We totally agree with reviewer in his comment. The Fig.4 has been redrawn with subcaptions and the same axis limits for all plots.
+			\item {\bf Comment 9:}
+				\begin{quote}	
+					- I did not understand what fitness value you were actually using in this plots. In my opinion, it would need to be the same value, and the one you are intending to optimise for at the end - so I assume score after a tournament like in table 3. Otherwise the values are incomparable and do not really help you to judge you the robustness of the individuals
+				\end{quote}	
+			\item {\bf Response:} 
+					%%	JJ -----------------------------
+			\item {\bf Comment 10:}
+				\begin{quote}	
+					- Do you have any idea why all of the individuals have mostly positive skewness? So most controllers are very good in some cases? Wouldn't they also need to be very bad in some others?
+				\end{quote}	
+			\item {\bf Response:} 
+			%%JJ -----------------------------
+			\item {\bf Comment 11:}
+				\begin{quote}	
+					- Why is the first generation so different across algorithms? Are these the individuals after selection? If not (which I assumed), this should be a random sample, so similar across approaches.
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed
+			We agree with this interesting remark, there were a mistake in Fig.4 where we draw the first generation's individuals after evaluation.
+			we corrected  that by using the individuals values after random initialization. Of course we used the same values for the three algorithms for a fair comparison.
+			
+			\item {\bf Comment 12:}
+				\begin{quote}	
+					Re Table 3:
+					- as far as I understand, the controllers in the respective subtables compete against each other. I think you should try to see what happens if there are different combinations of controllers. Because now, there are 5 relatively similar controllers per experiment - I am unsure what effects this has on the race - it might just block other controllers off?
+				\end{quote}	
+			\item {\bf Response:} 
+			%%JJ -----------------------------
+			\item {\bf Comment 13:}
+				\begin{quote}	
+					- A lot of the results seem to indicate the same ranking for the controllers on all tracks. I am concerned that this indicates a problem, because you said the tracks were chosen to be different. Are you able to explain that there is not more variability here?
+				\end{quote}	
+			\item {\bf Response:} 
+			%% 	JJ -----------------------------
+			\item {\bf Comment 14:}
+				\begin{quote}	
+					Re Table 5:
+					- I like the idea of adding runtime
+				\end{quote}	
+			\item {\bf Response:} 
+			%%Mohammed -----------------------------
+			\item {\bf Comment 15:}
+				\begin{quote}	
+					- I assume the average runtime is after the completed run, and the number of generations is just additional info? It would be good to clarify
+				\end{quote}	
+			\item {\bf Response:} 
+					%%Mohammed-----------------------------
+			\item {\bf Comment 16:}
+				\begin{quote}	
+				- Shouldn't the controllers that use GPS at every iteration take longer? I thought that was the premise?
+				\end{quote}	
+			\item {\bf Response:} 
+				%%Mohammed -----------------------------
+			\item {\bf Comment 17:}
+				\begin{quote}	
+					- Do you have comparisons against other state-of-the-art controllers? Because currently, you're just comparing different versions of a similar idea.
+				\end{quote}	
+
+			\item {\bf Response:} 
+				%%Mohammed 
+		We agree with the reviewer that to have a broad comparison it would be useful to include other bots ,but after contacting authors of previous competitions' bots, the only positive answer we received is from the creators of PSRI bot.	
+			
+	\end{itemize}	
+
+\end{enumerate}
+ 
+
+%----------------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}
