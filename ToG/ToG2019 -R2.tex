@@ -80,8 +80,7 @@ Driving a simulated car can be formulated as an optimization problem in which yo
  to meet a series of standards: cars should not crash and should have a
 reasonable speed \cite{Autodriv2006}.} Additionally, in a racing car the controller has to be designed so that the car wins in as many races as possible.
 
-Since there are so many variables in this problem, the search space is usually reduced using heuristic rules for some of them. For instance, deciding the type of controller is usually
-done before the design process begins, and a single, parametrized one
+Since there are so many variables in this problem, the search space is usually reduced using heuristic rules. For instance, deciding the type of controller is usually done before the design process begins, and a single, parametrized one
 is chosen; fixed rules as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09} are often used. \textcolor{red}{
 Additionally}, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done online (during the
 race), so that it can adapt itself to new and previously unseen,
@@ -275,16 +274,10 @@ This section presents the environment where the study has been conducted, i.e. t
 	\end{center}
 \end{figure}
 
-As many other studies in the area of autonomous driving or simulated
-racing car evolution, we are using The Open Racing Car Simulator
-(TORCS) \cite{torcs4}, which is free software, and offers realistic
-physics, as well as telemetry that is used by the car controllers to
-gauge their position with respect to the track, the position of the
-rest of the players, and self-measurements like speed, damage incurred
-or angle; these measurements are connected to car sensors \cite{torcs5}, which are represented in Figure \ref{fig:torcs-sensors}; TORCS provides
-these sensor values as input to the car controller and these will be
-used to manage the car by means of actuators such as brake,
-accelerator, steering wheel or gearbox. 
+\textcolor{red}{
+We are using in this study The Open Racing Car Simulator (TORCS) \cite{torcs4}, which is free software, and offers realistic physics, as well as telemetry that is used by the car controllers to gauge their position with respect to the track, the position of the rest of the players, and self-measurements like speed, damage incurred or angle. These measurements are connected to car sensors \cite{torcs5}, which are represented in Figure \ref{fig:torcs-sensors}. TORCS provides these sensor values as input to the car controller and these will be
+used to manage the car by means of actuators such as brake, accelerator, steering wheel or gearbox. 
+This simulator has been used in many other studies in the area of autonomous driving or simulated racing car evolution.}
 
 %All these sensors refer to different angles. The sensors considered in this work are:
 %\begin{itemize}
