@@ -1175,13 +1175,22 @@ general as possible, we think that this result could be extended to
 other tracks, as long as ``training'' or evolution uses a track that
 has as many different features as possible.
 
-We also think that results are probably independent of the fact that we are using a set of fuzzy controllers. The results could be generalized to any kind
-of controller, as long as the evolution process has the possibility to explore the space of controllers in the same, efficient, way. This is a possible
-way of extending the work: substituting fuzzy controllers by simple
-neural nets could be a way of proving that the fitnessless approach
-is able to find good results independently of the low-level algorithms
-using to drive the car. Fuzzy and neural controllers could be also
-mixed, even coevolved, to try and find the best ones.
+We also think that results are probably independent of the fact that
+we are using a set of fuzzy controllers, and could be
+generalized to any kind of controller, as long as the evolution
+process has the possibility to explore the space of controllers in the
+same, efficient, way. This is a possible way of extending the work:
+substituting fuzzy controllers by simple neural nets could be a way of
+proving that the fitnessless approach is able to find good results
+independently of the low-level algorithms using to drive the
+car. Fuzzy and neural controllers could be also mixed, even coevolved,
+to try and find the best ones. \textcolor{red}{Since the GPS method
+  operates at a level that is independent of the type of controller used, by
+  reducing uncertainty in the evaluation of a controller, it is very
+  likely that it will be able to improve over a baseline controller
+  optimization method that would use solo-races for evaluation, although of course no affirmation
+  can be made over its performance relative to this one (based on
+  fuzzy controllers) or others.}
 
 Additionally, we have been using heuristic rules for computing outputs
 from the fuzzy rule activation. We could, however, consider optimizing
