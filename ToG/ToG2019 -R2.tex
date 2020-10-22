@@ -47,7 +47,7 @@ controllers from the rest, and a series of operators that are able to
 explore different possibilities in the controller search space. Within
 the context of the TORCS racing simulator, in this paper we introduce
 a kind of fitnessless selection policy based on competition and called
-\textit{Grand Prix Selection} (GPS), which will be able to reduce uncertainty by using something more realistic than solo race scores to
+\textit{Grand Prix Selection} (GPS), which will be able to increase robustness by using something more realistic than solo race scores to
 select individuals. Additionally, we increase the exploitative power
 of this kind of selection via a BLX operator with continuously decreasing $alpha$. We
 compare these new selection and operator with hybrid approaches that
@@ -99,14 +99,21 @@ If training is done before the
     the resulting score in unknown tracks with unknown rivals
     uncertain at best.
 
-\textcolor{red}{A potentially useful} way to reduce uncertainty is to make the evaluation process
+\textcolor{red}{A potentially useful} way to \textcolor{red}{increase robustness, that
+is, }reduce uncertainty is to make the evaluation process
 as close as possible to the environment in which the controller will
-eventually compete, in a race with other competitors. 
+eventually compete, in a race with other
+competitors. \textcolor{red}{Hereafter, we will use in general the
+  terminology ``reduce uncertainty'' to mean that our intention is to
+  increase the robustness of the result, that is, obtain results whose
+  performance is not affected by the selection procedure and that are
+  consistently good performing. However, robustness is something that
+  cannot be measured or appreciated directly, which is why we will
+  refer to uncertainty and its reduction in the rest of the paper}.
 \textcolor{red}{
 	If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) 
 	in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating
-	races several times."
-}
+	races several times."}
 
 
 By totally eliminating \textcolor{red}{individually-computed} fitness
