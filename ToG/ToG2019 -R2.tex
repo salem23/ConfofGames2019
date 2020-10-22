@@ -936,7 +936,7 @@ well in {\em training} races and could, thus, be potential winners.
 
 % ----------------
 
-The following experimentation is dedicated to assess the impact of the
+The next experiment is dedicated to assess the impact of the
 $BLX-\alpha$ operator; the same process has been followed
 selecting the best controllers of the evolution from those which
 have used this varying-$\alpha$ crossover operator and testing them in several
@@ -1007,7 +1007,11 @@ Table \ref{tab:allsresults} shows the obtained results.
     \caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
       in a mini-championship with 10 controllers
       and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS
-      simulator \cite{torcs4}.  {\bf Boldface} is used to highlight the best value, {\em italics} for the second best.}
+      simulator \cite{torcs4}.  {\bf Boldface} is used to highlight
+      the best value, {\em italics} for the second
+      best. \textcolor{red}{We sort controllers according to the
+        overall score, but please note that this ranking need not be
+        kept in every column}}
     {
             \begin{tabular}{|c|c|c|c|c||c|}
 	\hline
@@ -1040,7 +1044,26 @@ $inferno1$	&18	&30 &16 &14 &78\\
 
 
 
-This final competition shows {\sf GFC-GPSVAE} clearly leading. It collected most of the points in the four tracks, leaving the {\sf GFC-GPSE} controller far behind it. The reference drivers, namely {\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $4^{th}$.
+This final competition shows {\sf GFC-GPSVAE} clearly leading. It
+collected most of the points in the four tracks, leaving the {\sf
+  GFC-GPSE} controller far behind it. The reference drivers, namely
+{\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $4^{th}$.
+
+\textcolor{red}{Let it be noted that there are very few individual
+  differences in the ranking obtained for individual methods in every
+  track; ranking by total score is very similar to rankings in every
+  one of the tracks. In the case of our fuzzy-controller based
+  algorithms, this shows basically its robustness across different
+  track conditions. Also and, in general, published controllers are also robust
+  enough to not have big drops in performance in specific
+  tracks; sometimes they are subsequent controller in a series, so
+  it is only natural that {\tt berniw2} and {\tt inferno2} are better
+  than the first ones in the series. However, among different {\em
+    brands}, there are small differences in some tracks: {\sf
+    Wheel 2} track makes {\tt berniw1} underperform, for instance; or
+  {\sf Street 1}, which makes {\tt inferno1}, with its 36-score
+  difference with respect to the second worse {\tt inferno2}, fall to
+  last in the overall rankings.}
 
 %%%%%%%%%%  controller GFC-VAGPSE MFs
 
