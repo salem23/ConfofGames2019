@@ -745,8 +745,18 @@ are going to change with evolution using the different fitness measures; skewnes
 selectability of an individual, so that, in general, most selection procedures will select
 individuals with lower kurtosis and skewness, since they are more
 likely to draw a consistent value and thus go ahead to the next
-generation. However, different selection procedures will affect them in different ways.  \textcolor{red}{This is why we have computed skewness and kurtosis for a sample of 20 from the 60 individuals of the population evaluated for 50 generations, and measured fitness values after the first, the 30th and the last generation for the three controllers;}
-results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom). 
+generation. However, different selection procedures will affect them
+in different ways.  \textcolor{red}{This is why we have computed
+  skewness and kurtosis for a sample of 20 from the 60 individuals of
+  the population evaluated for 50 generations, and measured fitness
+  values after the first, the 30th and the last generation for the
+  three controllers;}\textcolor{red}{we take 30 measures of the
+  fitness, generating a statistical distribution for the fitness
+  values for every individual in the population; what we plot in}
+Figure \ref{fig:gfcsk} (top, middle, bottom) \textcolor{red}{is the
+  skewness and kurtosis of the fitness for every one of these
+  individuals. The normal distribution would have a skewness and
+  excess kurtosis exactly equal to 0}.
 
 %\begin{figure}[ht]	
 %	\begin{center}
@@ -761,7 +771,7 @@ results are shown in Figure \ref{fig:gfcsk} (top, middle, bottom).
 \begin{figure}[ht]	
 	\begin{center}
 		\includegraphics[width=8cm, height=7cm]{fig/skew1.jpg}
-		\caption{\textcolor{red}{Skewness ($y$) and kurtosis ($x$)
+		\caption{\textcolor{red}{Excess skewness ($y$) and kurtosis ($x$)
 			for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}}
 		\label{fig:gfcsk}
 	\end{center}	

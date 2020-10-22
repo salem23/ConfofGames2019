@@ -223,40 +223,10 @@ Reviewer Comments, Author Responses and Manuscript Changes
 				was improved in [44]." -> This sentence is also a bit long. First start with stating the problems in prior research. Then state that your algorithm can overcome them. Make sure to follow up on this in the discussion section.
 			\end{quote}
 		\item {\bf Response:}
-                  That paragraph has been rewritten, and it reads now:
+                  That paragraph has been rewritten, as it can be seen
+                  in the updated version.
 
-                  \begin{quote}
-                    \textcolor{red}{By doing this, we try to overcome one of the biggest
-challenges we have found in this line of research. Uncertainty in
-selection was already identified as such in its first paper
-\cite{salem_evo17}, which introduced} a basic
-\textcolor{red}{fuzzy-controller based car driving}
-system. \textcolor{red}{This system was iteratively improved in
-\cite{salem_evo18,salem_ipmu18}, by using an EA to change the shape
-and values of the fuzzy controllers}. However, we still had to deal
-with uncertainty, as well as a suboptimal exploration of the parameter
-space; the main issue was that we were using a surrogate
-\textcolor{red}{to measure the performance} of the bot by doing solo
-races, \textcolor{and we tried to make that surrogate as accurate as
-  possible by testing} different
-fitness functions, but also, in \cite{salem_cig2018}, by racing the best individuals in the last
-generation. Introducing
-races in the selection of the ``winner'', even if it was in the last
-generation, improved results, so this kind of competitive selection
-was extended by introducing real races from every few generations in
-\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$
-operator, and checked two different configurations using a fixed and a
-decreasing $\alpha$. This operator combines exploration and
-exploitation, and lets the designer establish the balance between both factors in the search. The
-results with decreasing $\alpha$ were the best obtained so
-far. \textcolor{red}{Although this additional operator, by itself, did
-  not reduce uncertainty in the selection of individual car
-  controllers, by enhancing search capabilities it made possible
-  accessing parts of the search space where controllers with low
-  uncertainty could possibly be found}.
-\end{quote}
-
-The main challenge, uncertainty, had actually been formulated in the
+                 The main challenge we were referring to, uncertainty, had actually been formulated in the
 previous paragraph, so we have used to state the problems in the
 previous papers in this research line. We have indicated how the
 different papers addressed this problem, and how eventually we
@@ -400,7 +370,14 @@ the reviewer says, is what we are actually aiming for.
 					- I did not understand what fitness value you were actually using in this plots. In my opinion, it would need to be the same value, and the one you are intending to optimise for at the end - so I assume score after a tournament like in table 3. Otherwise the values are incomparable and do not really help you to judge you the robustness of the individuals
 				\end{quote}	
 			\item {\bf Response:} 
-					%%	JJ -----------------------------
+What we are plotting here is the distribution of fitness values in
+solo races for a group of selected individuals in every
+generation. That is, we pick up a few random individuals off the
+population in the indicated generation. We measure fitness in the
+classical way, 30 times, by doing solo races. That gives us a
+statistical variable, whose distribution we plot in Figure 4. We have
+clarified what we are actually plotting in this Figure, and how we
+compute it.
 			\item {\bf Comment 10:}
 				\begin{quote}	
 					- Do you have any idea why all of the individuals have mostly positive skewness? So most controllers are very good in some cases? Wouldn't they also need to be very bad in some others?
