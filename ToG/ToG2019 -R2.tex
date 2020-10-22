@@ -109,13 +109,15 @@ eventually compete, in a race with other competitors.
 }
 
 
-By totally
-eliminating fitness, in a fitnessless environment, we also eliminate
-a source of uncertainty. We also reduce this even more by repeating
-races several times. A single (and uncertain) fitness is thus
-substituted by a podium 
-(a ranking after several races against other opponents) 
-in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. 
+By totally eliminating \textcolor{red}{individually-computed} fitness
+\textcolor{red}{and moving to} a ``fitnessless'' environment, we also
+eliminate \textcolor{red}{one} source of uncertainty,
+\textcolor{red}{which is reduced further} by repeating the races
+several times. A single (and uncertain) fitness is thus substituted by
+a podium (a ranking after several races against other opponents) in
+which car controllers that win the most races will proceed to the next
+generation, while those that do not, will simply be removed from the
+pool.
 
 The algorithm proposed in this paper overcomes most of the problems we
 have found in this line of research, that started with
