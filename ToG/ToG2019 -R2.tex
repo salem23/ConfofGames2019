@@ -119,16 +119,34 @@ which car controllers that win the most races will proceed to the next
 generation, while those that do not, will simply be removed from the
 pool.
 
-The algorithm proposed in this paper overcomes most of the problems we
-have found in this line of research, that started with
-\cite{salem_evo17}, which was a basic system that
-introduced fuzzy controllers for driving the car and continued with
-\cite{salem_evo18}, where the shape and values of the
-fuzzy controllers were improved using an evolutionary algorithm; that
-algorithm was improved in \cite{salem_ipmu18}. However,
-we still had to deal with uncertainty, as well as a suboptimal exploration of the parameter space; the issue that we were using a surrogate of the real bot capacity by doing solo races was tackled by trying to use different fitness functions, but also by racing the best individuals in the last generation, which we introduced in \cite{salem_cig2018}. Introducing races in the selection of the ``winner'', even if it was in the last generation, improved results, so this kind of competitive selection was extended by introducing real
-races from every few generations in 
-\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$ operator, and checked two different configurations using a fixed and a decreasing $\alpha$. This operator works at the same time, exploring and exploiting the existing space of solutions, and lets the designer to establish the balance between both factors in the search. The results with decreasing $\alpha$ were the best obtained so far.
+\textcolor{red}{By doing this, we try to overcome one of the biggest
+challenges we have found in this line of research. Uncertainty in
+selection was already identified as such in its first paper
+\cite{salem_evo17}, which introduced} a basic
+\textcolor{red}{fuzzy-controller based car driving}
+system. \textcolor{red}{This system was iteratively improved in
+\cite{salem_evo18,salem_ipmu18}, by using an EA to change the shape
+and values of the fuzzy controllers}. However, we still had to deal
+with uncertainty, as well as a suboptimal exploration of the parameter
+space; the main issue was that we were using a surrogate
+\textcolor{red}{to measure the performance} of the bot by doing solo
+races, \textcolor{and we tried to make that surrogate as accurate as
+  possible by testing} different
+fitness functions, but also, in \cite{salem_cig2018}, by racing the best individuals in the last
+generation. Introducing
+races in the selection of the ``winner'', even if it was in the last
+generation, improved results, so this kind of competitive selection
+was extended by introducing real races from every few generations in
+\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$
+operator, and checked two different configurations using a fixed and a
+decreasing $\alpha$. This operator combines exploration and
+exploitation, and lets the designer establish the balance between both factors in the search. The
+results with decreasing $\alpha$ were the best obtained so
+far. \textcolor{red}{Although this additional operator, by itself, did
+  not reduce uncertainty in the selection of individual car
+  controllers, by enhancing search capabilities it made possible
+  accessing parts of the search space where controllers with low
+  uncertainty could possibly be found}.
 
 Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not actually a fitness, since it is not intrinsic to the individual. It is indeed equivalent to,\textcolor{red}{ in an $n$-tournament} selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but actually a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
