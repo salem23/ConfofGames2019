@@ -406,16 +406,31 @@ this paper investigating this does not really fall within its focus.
 				\end{quote}	
 			\item {\bf Response:} 
 				%%Mohammed
-			We agree with this interesting remark, there were a mistake in Fig.4 where we draw the first generation's individuals after evaluation.
-			we corrected  that by using the individuals values after random initialization. Of course we used the same values for the three algorithms for a fair comparison.
+			We agree with this interesting remark, there
+                        were a mistake in Fig.4 where we draw the
+                        first generation's individuals after
+                        evaluation. We have corrected that by using
+                        the individuals values after random
+                        initialization. Of course we used the same
+                        values for the three algorithms for a fair
+                        comparison.
 
 			\item {\bf Comment 12:}
 				\begin{quote}	
 					Re Table 3:
 					- as far as I understand, the controllers in the respective subtables compete against each other. I think you should try to see what happens if there are different combinations of controllers. Because now, there are 5 relatively similar controllers per experiment - I am unsure what effects this has on the race - it might just block other controllers off?
-				\end{quote}	
-			\item {\bf Response:} 
-			%%JJ -----------------------------
+				\end{quote}
+			\item {\bf Response:}
+The fact that score is so different indicates that, as a matter of
+fact, they are not so similar. Small differences in output early in
+the race might lead to big differences in the final score. These
+experiments, however, were designed to show how different versions of
+the method fared against each other, and they are similar for that
+specific reason: if they differ only in a specific feature, that
+feature must be the one that has led them to victory. This is why in
+Table 3 we make the best in the previous experiments to compete
+against each other, showing a clear winner in that area. We have
+clarified this when Table 3 is introduced.
 			\item {\bf Comment 13:}
 				\begin{quote}	
 					- A lot of the results seem to indicate the same ranking for the controllers on all tracks. I am concerned that this indicates a problem, because you said the tracks were chosen to be different. Are you able to explain that there is not more variability here?

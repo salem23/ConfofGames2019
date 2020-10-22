@@ -814,11 +814,28 @@ In the next subsection we will see how this kind of selection has an influence i
 
 \subsection{Testing Grand Prix Selection and BLX-$\alpha$ controllers}
 
-Once the 10 runs have finished, the obtained best controllers from the
-previous evolutionary processes compete again in a similar set of races, in order to choose the best controller overall per approach, i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and {\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection is considered. We run the selected controllers in 10 races of 20 laps for each of the two training tracks :Alpine 2  and Wheel 2  and  for each of the two testing tracks: E-Track 5 and Street 1. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
-%% Process 1 : GPS without Alpha
-%% Process 2  : GPS with Alpha
-%%  GFC and VA are used only in comparaison purpose
+Once the 10 runs have finished, the best controllers obtained from the
+previous evolutionary processes compete again in a similar set of
+races, in order to choose the best controller overall per approach,
+i.e. the best between {\sf GFC-GPSL}, {\sf GFC-GPSE} and {\sf
+  GFC-GPS5}; and also between {\sf GFC-GPSVAL}, {\sf GFC-GPSVAE} and
+{\sf GFC-GPSVA5}. The same F1 Grand Prix score used in GPS selection
+is considered. We run the selected controllers in 10 races of 20 laps
+for each of the two training tracks :Alpine 2  and Wheel 2  and  for
+each of the two testing tracks: E-Track 5 and Street 1. Results are
+shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
+
+\textcolor{red}{The main intention in these experiments is to
+  highlight the differences in performance brought by the different
+  operators and methods used, as well as establishing a new state of
+  the art in TORCS. We use 10 controllers in every experiment, since
+  this amount of cars will create conditions that will show the
+  quality of the controllers avoiding colisions or overcoming other
+  cars. The fact that some controllers in every set of races is
+  theoretically similar (due to the fact tha only one operator or
+  selector changes from one to the next) will not actually be a
+  problem, but rather a way of highlighting the clear differences in
+  performance, as we will see later}.
 
 
 
@@ -899,7 +916,11 @@ previous evolutionary processes compete again in a similar set of races, in orde
 	}
 \end{table}
 %
-As it could be noticed in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (top subtable), the controller {\sf GFC-GPSE} has won the Grand Prix championship obtaining 438 points from 500 in the tracks used in the training, it has also ranked first in the testing tracks  \textit{E-Track 5} and \textit{Street 1}. 
+As Table \ref{tab:GPS_and_Varyingalpha_RSresults} (top subtable)
+shows, the controller {\sf GFC-GPSE} has won the Grand Prix
+championship obtaining 438 points from 500 in the tracks used during
+training; it has also ranked first in the testing tracks
+\textit{E-Track 5} and \textit{Street 1}.
 The other GPS based controllers have obtained nearly the same results (149 and 158 respectively).
 From the same subtable, it is clear that the controller {\sf GFC-GPSE}, where GPS selection has been applied in every generation, has won the majority of possible points in the four tracks, even in the unknown (not trained) \textit{E-Track 5}  and \textit{Street 1} tracks.
 
