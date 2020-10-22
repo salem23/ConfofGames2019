@@ -201,7 +201,7 @@ Reviewer Comments, Author Responses and Manuscript Changes
                         %% training will lead to add more sources of
                         %% noise/uncertainty... don't you think?
                   In this paper, we have not really proved that this
-                  is the best way, out of many possible ways to reduce
+                  is the best way, out of the many possible ways to reduce
                   uncertainty (some of which we have mentioned in the
                   state of the art section). We have reduced this
                   claim to ``A potentially useful way'', which it
@@ -209,11 +209,11 @@ Reviewer Comments, Author Responses and Manuscript Changes
 		\item {\bf Comment 5:}
 			\begin{quote}
 				"By totally eliminating fitness, in a fitnessless environment, we also eliminate a source of uncertainty. We also reduce this even more by repeating races several times." -> At first glance, it sounds like you are about to define fitnessless, but then talk about repeating races instead. I would first handle the fitness part. For instance: "If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting.... ....We can further reduce uncertainty by..."
-			\end{quote}	
-		\item {\bf Response:} 
-			%%Mohammed 
+			\end{quote}
+		\item {\bf Response:}
+			%%Mohammed
 				We agree with the reviewer's comment. the sentence is a bit confusing. It has been rewritten following the reviewer's suggestion and marked in red in the text.
-				
+
 				\textcolor{red}{
 					If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating races several times."
 				}
@@ -221,9 +221,48 @@ Reviewer Comments, Author Responses and Manuscript Changes
 			\begin{quote}
 				"The algorithm proposed in this paper overcomes most of the problems we have found in this line of research, that started with [41], which was a basic system that introduced fuzzy controllers for driving the car and continued with [42], where the shape and values of the fuzzy controllers were improved using an evolutionary algorithm; that algorithm
 				was improved in [44]." -> This sentence is also a bit long. First start with stating the problems in prior research. Then state that your algorithm can overcome them. Make sure to follow up on this in the discussion section.
-			\end{quote}	
-		\item {\bf Response:} 
-			%% Antonio -----------------------------
+			\end{quote}
+		\item {\bf Response:}
+                  That paragraph has been rewritten, and it reads now:
+
+                  \begin{quote}
+                    \textcolor{red}{By doing this, we try to overcome one of the biggest
+challenges we have found in this line of research. Uncertainty in
+selection was already identified as such in its first paper
+\cite{salem_evo17}, which introduced} a basic
+\textcolor{red}{fuzzy-controller based car driving}
+system. \textcolor{red}{This system was iteratively improved in
+\cite{salem_evo18,salem_ipmu18}, by using an EA to change the shape
+and values of the fuzzy controllers}. However, we still had to deal
+with uncertainty, as well as a suboptimal exploration of the parameter
+space; the main issue was that we were using a surrogate
+\textcolor{red}{to measure the performance} of the bot by doing solo
+races, \textcolor{and we tried to make that surrogate as accurate as
+  possible by testing} different
+fitness functions, but also, in \cite{salem_cig2018}, by racing the best individuals in the last
+generation. Introducing
+races in the selection of the ``winner'', even if it was in the last
+generation, improved results, so this kind of competitive selection
+was extended by introducing real races from every few generations in
+\cite{DBLP:conf/cig/SalemMG19}, where we also applied the BLX-$alpha$
+operator, and checked two different configurations using a fixed and a
+decreasing $\alpha$. This operator combines exploration and
+exploitation, and lets the designer establish the balance between both factors in the search. The
+results with decreasing $\alpha$ were the best obtained so
+far. \textcolor{red}{Although this additional operator, by itself, did
+  not reduce uncertainty in the selection of individual car
+  controllers, by enhancing search capabilities it made possible
+  accessing parts of the search space where controllers with low
+  uncertainty could possibly be found}.
+\end{quote}
+
+The main challenge, uncertainty, had actually been formulated in the
+previous paragraph, so we have used to state the problems in the
+previous papers in this research line. We have indicated how the
+different papers addressed this problem, and how eventually we
+introduced techniques that have been thoroughly tested in this paper,
+the BLX-$alpha$ operator and the ``Grand Prix Selection''.
+
 		\item {\bf Comment 7:}
 			\begin{quote}
 				First sentence of Section 3.1: I'd revise this sentence as it is very long. Focus it first on TORCS by itself, and not on the fact that you use it or that other studies use it. That can be specified in a second or third sentence.
