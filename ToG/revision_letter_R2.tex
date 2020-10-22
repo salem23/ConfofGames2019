@@ -314,7 +314,21 @@ the BLX-$alpha$ operator and the ``Grand Prix Selection''.
 					- In the letter, you mention that "it was relatively easy to select an individual just by chance using fitness". I don't think your analysis on skewness and kurtosis is enough to warrant a conclusion like that.
 				\end{quote}	
 			\item {\bf Response:} 
-			%% JJ -----------------------------
+Well, we have to admit that responding to this was a tough one; we're
+anyway grateful to the reviewer for this suggestion. We understand
+that the changes we made in the paper in the first iteration were not
+enough, for starters. We have added a paragraph now highlighting the
+fact that skewness and kurtosis are bot reduced in the two methods
+compared with the baseline  {\sf GFC}; and, additionally, the method
+presented in this paper reduces skewness even more. This additional
+reduction of skewness will lower the chance of selecting by chance an
+individual that could eventually underperform in an actual race. We
+can then qualify our initial response, and allow us to do it here: in
+the initial algorithm, high kurtosis and skewness increased the
+probability of selecting an individual whose fitness was at the tail
+end of the distribution, but that on a real race, or on average, was
+much worse than other, unselected, individuals. We hope this clarifies
+the intent of our method, and also the intent of our original response.
 			\item {\bf Comment 3:}
 				\begin{quote}	
 					- page 7, comment 4: You did not answer how often they were evaluated?

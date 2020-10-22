@@ -130,7 +130,7 @@ and values of the fuzzy controllers}. However, we still had to deal
 with uncertainty, as well as a suboptimal exploration of the parameter
 space; the main issue was that we were using a surrogate
 \textcolor{red}{to measure the performance} of the bot by doing solo
-races, \textcolor{and we tried to make that surrogate as accurate as
+races, \textcolor{red}{and we tried to make that surrogate as accurate as
   possible by testing} different
 fitness functions, but also, in \cite{salem_cig2018}, by racing the best individuals in the last
 generation. Introducing
@@ -772,18 +772,23 @@ and skewed variability are selected as {\em winners} when in fact they
 are possibly not.
 
 The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VA-GPSE}, are
-notably similar, with selection eventually making the score of  individuals
-close to a Gaussian distribution, although slightly skewed to the
-right, and with a positive fat tail. However, {\sf GFC-GPSVAE} is able
-to find solutions with lower skewness, always between -0.5 and 1. Since
-this method exploits more found solutions, it seems that it is able to
-generate new solutions with a more reliable expected value around the
-middle of the area the variable covers, but decreasing more slowly
-towards values away from the center. For the time being,
-we can affirm that fitnessless methods tend to evolve individuals
-with a score that is less uncertain, and thus more robust and whose
-expected results are more reliable; this was an objective of this GPS procedure, and we consider it has been achieved. 
-Although we have represented a single run here, results for other runs are similar.
+notably similar, with selection eventually making the score of
+individuals close to a Gaussian distribution, although slightly skewed
+to the right, and with a positive fat tail. However, {\sf GFC-GPSVAE}
+is able to find solutions with lower skewness, always between -0.5 and
+1. Since this method exploits more found solutions, it seems that it
+is able to generate new solutions with a more reliable expected value
+around the middle of the area the variable covers, but decreasing more
+slowly towards values away from the center. For the time being, we can
+affirm that fitnessless methods tend to evolve individuals with a
+score that is less uncertain, and thus more robust and whose expected
+results are more reliable; this was an objective of this GPS
+procedure, and we consider it has been achieved\textcolor{red}{, as it can be seen in
+Figure \ref{fig:gfcsk}: this last method reaches the minimal
+dispersion of skewness in the 50th generation, with kurtosis in a
+distribution that is similar to {\sf GFC-GPSE}, but in either case
+with a lower variability than the one found in the original {\sf GFC} algorithm}. Although we have
+represented a single run here, results for other runs are similar.
 
 In the next subsection we will see how this kind of selection has an influence in the success as a method for finding high-performance controllers.
 
@@ -1100,7 +1105,7 @@ To evaluate the cost of the proposed controllers, we run the evolutionary optimi
 	}
 \end{table} 
 \textcolor{red}{{\sf GFC-GPSVAE} and {\sf GFC-GPSE} controllers were the best where
-they are ranked $1^{st}$ and $2^{nd}$ in the comparative competition(See Table \ref{tab:allsresults}) but they are very expensive in runtime}, since they have performed around 282923s and 287200s respectively, which is a
+they are ranked $1^{st}$ and $2^{nd}$ in the comparative competition (See Table \ref{tab:allsresults}) but they are very expensive in runtime}, since they have performed around 282923s and 287200s respectively, which is a
 huge training time. % Don't all individuals use the same amount of
                     % laps to race? - JJ                    
                  % Mohammed : in fitnessless  case , time of a race is the time of the worst individual 
@@ -1136,7 +1141,7 @@ In races performed in the training, and other, tracks, the controller
 that has evolved using competitive (fitnessless) selection and the
 variable-$\alpha$ BLX crossover operator has proved superior to not
 only other controllers evolved previously by us, but also other
-competitive entries. As a matter of fact, the use of the GPS method has the greatest 
+competitive entries. As a matter of fact, the use of the GPS method has the greatest
 influence in the results: {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, whose only
 difference lies in the kind of crossover operator they use, create the
 best controllers, finishing first and second in competitive races and,
@@ -1149,7 +1154,16 @@ results. Thus, the decreasing amount of exploration that this BLX-$\alpha$ boast
 more efficient way, eventually finding very competitive controllers.
 
 Another advantage of these combined selection and crossover operators is that they do not
-increase too much the total training time, and are also able to find a good solution in the first stages of evolution, which, if needed, allows to cut the training short. {\sf GFC-GPSVAE} needs at most 18 generations (which is around one third of the maximum number of generations defined) to find a good solution. Running GPS every generation needs more generations to get to the best that if it is run every 5 generations, or just at the end, but the problem is that in those cases the solution found is less competitive. However, {\sf GFC-GPSVA5} is quite competitive, and in the case of a limited evaluation budget, it could be a very good compromise.
+increase too much the total training time, and are also able to find a
+good solution in the first stages of evolution, which, if needed,
+allows to cut the training short. {\sf GFC-GPSVAE} needs at most 18
+generations (which is around one third of the maximum number of
+generations defined) to find a good solution. Running GPS every
+generation needs more generations to get to the best that if it is run
+every 5 generations, or just at the end, but the problem is that in
+those cases the solution found is less competitive. However, {\sf
+  GFC-GPSVA5} is quite competitive, and in the case of a limited
+evaluation budget, it could be a very good compromise.
 
 As a conclusion, in this paper we have proved that combining a
 fitnessless evolutionary algorithm with an varying, floating point,
@@ -1167,7 +1181,7 @@ way of extending the work: substituting fuzzy controllers by simple
 neural nets could be a way of proving that the fitnessless approach
 is able to find good results independently of the low-level algorithms
 using to drive the car. Fuzzy and neural controllers could be also
-mixed, even coevolved, to try and find the best ones. 
+mixed, even coevolved, to try and find the best ones.
 
 Additionally, we have been using heuristic rules for computing outputs
 from the fuzzy rule activation. We could, however, consider optimizing
