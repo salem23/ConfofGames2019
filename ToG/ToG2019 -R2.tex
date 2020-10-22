@@ -1137,12 +1137,16 @@ generations.
 \section{Conclusions and Future Work} 
 \label{sec:conclusions}
 
-% >>>>>> TODO: Rewrite this section -> All  <<<<<<<<<<
 In this paper, and in order to avoid the impedance between using solo
 racing scores and performance in competitive races, we have
 incorporated this competition into the selection of individuals in an
 evolutionary algorithm that evolves fuzzy controllers in the TORCS
-simulator. This selection policy, called GPS (as in Grand Prix Selection), has been evaluated in combination with hybrid methods that use it only part of the time, and also together with an varying BLX-$\alpha$ and a standard crossover operators, to assess how it interacts with them and which combination yields the best competitive results.
+simulator. This selection policy, called GPS (as in Grand Prix
+Selection), has been evaluated in combination with hybrid methods that
+use it only part of the time, and also together with an varying
+BLX-$\alpha$ and a standard crossover operators, to assess how it
+interacts with them and which combination yields the best competitive
+results.
 
 % -------------------- this is reiterative and does not add anything -----
 % We tried in a previous work to design a fitness which eliminates this uncertainty or reduces it by looking for the parameters which most affect the behavior of the controllers but the results obtained were not sufficiently satisfactory. In this paper, we started from a simple hypothesis: what if we let nature make the selection? Indeed, since the objective is to find the parameters of a winning controller, why not get rid of fitness and let nature do the rest.
@@ -1216,6 +1220,14 @@ the outputs of the fuzzy controllers, as well as the rules.
 The implementation could also be optimized. Right now, training takes
 a long time. This optimization could go from parallelization, to basic
 program-level improvement. All this is left as future work.
+
+\textcolor{red}{Robustness in results has been our main objective, but
+  we have not really investigated the reason why the fitness
+  distribution of controllers in solo races usually has a positive
+  skewness, and what could be the reason for this. An interesting
+  avenue of research would be to deal with this fact on an individual
+  basis and continuing with solo races, so that we avoid the big
+  computational budget we need to perform GPS}.
 
 \section*{Acknowledgments}
 
