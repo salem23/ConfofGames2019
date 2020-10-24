@@ -123,7 +123,7 @@ eliminate \textcolor{red}{one} source of uncertainty,
 several times. A single (and uncertain) fitness is thus substituted by
 a podium (a ranking after several races against other opponents) in
 which car controllers that win the most races will proceed to the next
-generation, while those that do not, will simply be removed from the
+generation, while those that do not, will be removed from the
 pool.
 
 \textcolor{red}{By doing this, we try to overcome one of the biggest
@@ -132,7 +132,7 @@ selection was already identified as such in its first paper
 \cite{salem_evo17}, which introduced} a basic
 \textcolor{red}{fuzzy-controller based car driving}
 system. \textcolor{red}{This system was iteratively improved in
-\cite{salem_evo18,salem_ipmu18}, by using an EA to change the shape
+\cite{salem_evo18,salem_cig2018}, by using an EA to change the shape
 and values of the fuzzy controllers}. However, we still had to deal
 with uncertainty, as well as a suboptimal exploration of the parameter
 space; the main issue was that we were using a surrogate
@@ -162,13 +162,13 @@ This work also presents an exhaustive study, where we have checked how this Gran
 This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the \mbox{BLX-$\alpha$} operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
 In addition, we have compared the influence of the \mbox{BLX-$\alpha$} operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.
 
-The rest of the paper is organized as follows. Next we present the
-state of the art, to be followed by a description of the TORCS
-simulator and the previously defined fuzzy controllers in Section
-\ref{sec:methods}. After this, the evolutionary algorithm implemented
-is explained in Section \ref{sec:ga}, including an extensive explanation of the new selection policy as well as the BLX-$\alpha$ crossover operator. After it, the experiments conducted and the obtained results are described in
-Section \ref{sec:results}. Finally, conclusions and future lines of
-work will be presented in Section \ref{sec:conclusions}. 
+%The rest of the paper is organized as follows. Next we present the
+%state of the art, to be followed by a description of the TORCS
+%simulator and the previously defined fuzzy controllers in Section
+%\ref{sec:methods}. After this, the evolutionary algorithm implemented
+%is explained in Section \ref{sec:ga}, including an extensive explanation of the new selection policy as well as the BLX-$\alpha$ crossover operator. After it, the experiments conducted and the obtained results are described in
+%Section \ref{sec:results}. Finally, conclusions and future lines of
+%work will be presented in Section \ref{sec:conclusions}. 
 
 
 
@@ -191,9 +191,7 @@ approached using soft computing since the first papers were
 published; however, they differ in the way the specific controlled
 works. In many cases, they learn during the race; reinforcement
 learning has that specific capability, and it was used by Loiacono et
-al. \cite{loiacono2010learning} in the first paper that uses it. It is still one of the most popular methods, as is shown
-in recent papers like \cite{giani2019desing,remondaformula,waghdistributed}; in the last case, the method used is called asynchronous advantage actor-critic
-reinforcement algorithm.
+al. \cite{loiacono2010learning} in the first paper that uses it. It is still one of the most popular methods, as is shown in recent papers like \cite{remondaformula,waghdistributed}.
 
 However, it is not the only kind of soft computing method
 used. \cite{mirus2019short} uses a neuromorphic architecture, namely,
@@ -204,10 +202,10 @@ According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{sale
 Other soft computing methods have been combined also with evolutionary algorithms in several occasions, such as \cite{10.1371/journal.pone.0213193} which uses neuroevolution. \textcolor{red}{Thus, controllers trained in one track are briefly re-trained for use in other tracks}, in what is called ``transfer learning''. This is also the technique applied by the authors in \cite{verma2018programmatically}. 
 
 
-Evolution can also be used directly to compute the optimal trajectory after ``test laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
+%Evolution can also be used directly to compute the optimal trajectory after ``test laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
 %\cite{vrajitoru2019trajectory,vrajitorugenetic}, 
 %%% Antonio - I remove one reference to save space.
-using then an evolutionary algorithm to optimize driving within that specific track and considering the obtained trajectory calculation. 
+%using then an evolutionary algorithm to optimize driving within that specific track and considering the obtained trajectory calculation. 
 
 
 
@@ -216,15 +214,7 @@ using then an evolutionary algorithm to optimize driving within that specific tr
 All the different approaches would not have been possible without a
 racing car simulator that could be the testbed for them all, which was
 TORCS (The Open Racing Car Simulator) \cite{torcs4}. The TORCS racing simulator
-continues to be one of the main platforms  
-for testing different autonomous driving or bot creation strategies,
-which are, by and themselves, also a hot topic in the gaming arena as
-well as by itself, at least since DARPA created their autonomous car
-challenge \cite{badue2019selfdriving}.
-
-
-Only in the last year (2019) there are around 200 articles that
-mention TORCS; \cite{schiavullo2019torcs} revises its applications for the last 20 years. It can be considered as the most successful platform used for this kind of problem.
+continues to be one of the main platforms for testing different autonomous driving or bot creation strategies. Only in the last year (2019) there are around 200 articles that mention TORCS; \cite{badue2019selfdriving} revises its applications for the last 20 years. It can be considered as the most successful platform used for this kind of problem.
 
 Fuzzy controllers are mentioned in around 15\% of the above mentioned articles, while around 30\% mention evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS (but just mentioning it); so the approach in this line of research is truly original in this context.
 
@@ -232,8 +222,7 @@ There are several possible approaches to autonomous driving and its
 solution using TORCS, such as neural networks or reinforcement learning \cite{abuzekry2comparative}. 
 You can also use vision to have more complete, although more complicated, view of where the car is and where it is going, or just use sensors, which on one hand check the most immediate scenario, but on the other hand are more precise and easy to process.
 
-In our case, we have opted for the latter, although other authors like Zhu et al.
-\cite{zhu2019vision} rather
+In our case, we have opted for the latter, although other authors like Zhu et al. \cite{zhu2019vision} rather
 %%\cite{zhu2018driving,zhu2019vision,neurone} rather 
 %%% I deleted this ref to save space %% Mohammed
 %%% Antonio - I also remove another one to save space. ;)
@@ -250,7 +239,7 @@ which is an additional source of uncertainty. Plus games are games,
 and the best way of checking how well a bot or controller plays, is by
 playing the game. This way of evolving bots was called fitnessless
 coevolution: and was defined in
-\cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to our
+\cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to
 Grand Prix Selection, presented here, whose essence is
 to get rid of a fitness score resulting from evaluation of an
 individual, substituting it by a score obtained by the controller in
@@ -263,9 +252,7 @@ fitness environment''. Fitnessless evolution was further developed in
 programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 
 However, the competitions played in those works were not, strictly,
-games. The first time fitnessless evolution was used in  games was by
-\cite{luke1998genetic}; however, it was later used extensively, like
-%\cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,alhejali2011using,fernandez2016_only_one}. 
+games. Fitnessless evolution has been used in games extensively, like
 \cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,fernandez2016_only_one}.
 % Antonio - Reducing the number of references. Changing our ref to another shorter => Save space
 Deriving which individuals are the best from these races, taking into account
@@ -315,9 +302,7 @@ This simulator has been used in many other studies in the area of autonomous dri
 
 Other open source simulators, mentioned in \cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
 if more focused in 3D realism, and Speed Dreams is actually a fork of
-TORCS, same as Gym-TORCS \cite{yoshida2016gym}, which is a Python
-wrapper which is specially designed to test controllers based on
-reinforcement learning.
+TORCS, same as Gym-TORCS, which is a Python wrapper which is specially designed to test controllers based on reinforcement learning.
 
 Although our results are not TORCS specific, we have been
 working on this since it has got all the telemetry and simulation
@@ -326,7 +311,7 @@ competitions, so it is a good testbed to evaluate the performance of new control
 
 TORCS does not impose a specific way for programming the controllers;
 it can be done via any system that maps inputs to outputs. We decided
-to use fuzzy sub-controllers, which will be described next.
+to use fuzzy sub-controllers.
 
 %---------------------------  FUZZY SUB-CONTROLLERS ----------------------------
 
@@ -335,7 +320,7 @@ to use fuzzy sub-controllers, which will be described next.
 
 \begin{figure}[!ht]
   \begin{center}
-    \includegraphics[width=9cm]{fig/flowchart}
+    \includegraphics[width=8cm]{fig/flowchart}
   \end{center}
   \caption{Schema of the two controllers that will be evolved by the proposed 
     evolutionary algorithm (GA), and evaluated by TORCS, which will
@@ -506,13 +491,13 @@ obtained in a championship with several races, where every controller
 in a generation participates. This will be describe more extensively
 in the next subsection.
 
-\textbf{non uniform mutation} \cite{mutation1997} has been used as the
+\textbf{Non uniform mutation} \cite{mutation1997} has been used as the
 \textit{mutation operator} in the GA, because it was considered in
 previous approaches of our controllers. 
 
-The next section will describe the two methods we are presenting in
+Next section describes the two methods we are presenting in
 this paper: a fitnessless selection policy and an extended real-value
-crossover operator able to manage the balance between exploration and
+crossover operator to manage the balance between exploration and
 exploitation during the evolution. 
 
 % -------------------------------------------------------------------
@@ -534,19 +519,18 @@ Then, the best individuals will be those whose accumulated score (sum of scores 
 
 The objective of this operator is to really select the best
 individuals of the population. However, given the existing uncertainty
-\cite{merelo2016statistical} due to the competition against other
-non-deterministic controllers, it is not possible to ensure they are
+\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16} due to the competition against other non-deterministic controllers, it is not possible to ensure they are
 doubtlessly the best. 
 
-In this respect, the authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
+The authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
-The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} \cite{blx2008} introduced originally by Eshelman and Schaeffer \cite{eshelman1993real}, and adapted here to use a varying $\alpha$ value. As stated before, one of the side effects of uncertainty is its derived higher diversification factor. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, the balance changes with the decreasing value of $\alpha$.
+The second operator implemented in our GA is the Blend Crossover or \textbf{BLX-$\alpha$ Crossover} \cite{blx2008}, and adapted here to use a varying $\alpha$ value. As stated before, one of the side effects of uncertainty is its derived higher diversification factor. Thus, in order to have a better control between the exploration and exploitation factors during the evolution, the balance changes with the decreasing value of $\alpha$.
 
 It is based on the random selection of values from the interval
 $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
-are the $i^{th}$ parameter values of the parent solutions $x$,$y$ and
+are the $i^{th}$ values of the parent solutions $x$,$y$ and
 $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
 % \begin{figure}[!ht]	
@@ -561,7 +545,7 @@ $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
 Thus, this crossover method was designed for real-coded EAs \cite{blx2008}, and creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it is able to create three new individuals from one parent, which are different between them and, of course, different to their parent individual. This fact enhances the exploration factor in new generations.
 
-The value of the $\alpha$ parameter regulates the exploration/exploitation balance when searching the space of solutions; a value $\alpha = 0.5$ will balance exploration and exploitation.
+The value of the $\alpha$ parameter regulates the exploration/exploitation priority when searching the space of solutions; a value $\alpha = 0.5$ will balance them.
 
 Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done by means of a diversification in the individuals. Then, a exploitation process would be recommended, in order to refine the promising solutions to get to an optimal one.
 
@@ -576,9 +560,7 @@ On the contrary, as the number of generations is increased, $\alpha$ will take a
 We argue that this operator, in conjunction with GPS will aid the
 algorithm to find better controllers, so we will test several
 combinations and configurations of both techniques in the experiments
-conducted in next section. We will also study their impact from
-different perspectives, both considering their performance and also
-from the uncertainty influence point of view. 
+conducted in next section. We will also study their impact, both considering their performance and also from the uncertainty influence point of view. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%  RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experiments and results}  
 \label{sec:results}
@@ -624,26 +606,17 @@ are essential for evaluating a bot: \textcolor{red}{it has many turns}, some of
 them with 180 degrees, steep segments, and some very challenging parts
 like the entrance of a tunnel at a square angle.\textcolor{red}{ These features} make
 it a good testbed for good turning and collision avoidance
-strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. This same track has been also repeatedly used by other authors for training as well as for testing and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}, for instance in
-\cite{cardamone2010applying,CarRacing_Pelta09,zong2017obstacle}; in \cite{AG} it had the third lowest lap time, after \mbox{Alpine 1} and Olethros, implying it
-has got a good balance between hardness and speed. Since we also used
-it in our previous papers, it allowed us to compare racing bots that
-had been ``trained'' in the same conditions.
+strategies. Moreover it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. This same track has been also repeatedly used by other authors for training as well as for testing \cite{cardamone2010applying}, and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}; in \cite{AG} it had the third lowest lap time, after \mbox{Alpine 1} and Olethros, implying it has got a good balance between hardness and speed. Since we also used it in our previous papers, it allowed us to compare racing bots that had been ``trained'' in the same conditions.
 
 \mbox{Alpine 2} track is probably one of the most popular tracks used for
 training; \mbox{CG-Track 2} has similar features, and it is used by
 \cite{mirus2019short,8833873,verma2018programmatically},
-in this last case for transfer learning. \cite{Kole-ParamCarTunning12}
-mentions \mbox{CG-Track 2} is ``relatively harder'', with \mbox{E-Track 3} the
-hardest. On the other hand, \cite{10.1371/journal.pone.0213193} uses
-\mbox{CG-Track 1}. There are several differences between \mbox{CG-Track 2} and \mbox{Alpine 2}, the one we use, but the main one is that turns are relatively
-easier and straight segments are longer, favoring fast cars over
-balanced ones; this is why we have chosen Alpine 2 for training, since
+in this last case for transfer learning. There are several differences between \mbox{CG-Track 2} and \mbox{Alpine 2}, the one we use, but the main one is that turns are relatively easier and straight segments are longer, favoring fast cars over balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 The second circuit is the \mbox{Wheel 2} Track. It is a  Suzuka F1 track that combines many challenges such as high speed parts and different curves types. Moreover the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
 % this figure has disappeared - JJ
 % Antonio - Fixed
-To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo17} \textcolor{red}{and the second one is \mbox{\textit{Street 1}}.
+To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo18} \textcolor{red}{and the second one is \mbox{\textit{Street 1}}.
 This }controller has many long speed segments, difficult sharp turns. In addition, the track is two meters larger than the others  three considered tracks which increase the overtaking possibilities.
 
 We have again used the vehicle \mbox{\textit{car1-trb1}},
@@ -653,9 +626,9 @@ which is a well balanced, NASCAR type car \footnote{See description in
 which we have used also in our previous papers, and also by many
 winning bots along the history of the TORCS championship
 \cite{torcs5} as well as other authors in the literature
-\cite{auteur2010,li2019reinforcement}. This matches well the selection
+\cite{auteur2010}. This matches well the selection
 of racing track, but being as it is a balanced car, allows driving to
-fit itself to the controllers we are developing.
+fit itself to our developed controllers.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -830,9 +803,9 @@ shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
   operators and methods used, as well as establishing a new state of
   the art in TORCS. We use 10 controllers in every experiment, since
   this amount of cars will create conditions that will show the
-  quality of the controllers avoiding colisions or overcoming other
+  quality of the controllers avoiding collisions or overcoming other
   cars. The fact that some controllers in every set of races is
-  theoretically similar (due to the fact tha only one operator or
+  theoretically similar (due to the fact that only one operator or
   selector changes from one to the next) will not actually be a
   problem, but rather a way of highlighting the clear differences in
   performance, as we will see later}.
@@ -842,10 +815,7 @@ shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
 \begin{table}[h!]
 	\centering
 	{\scriptsize
-		\caption{ Results of GPS controllers  and varying $BLX-\alpha$ controllers in a mini-championship
-			with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with the TORCS
-			simulator \cite{torcs4}. We mark in {\bf boldface}
-                      the best value, and in {\em italics} the second best.}
+		\caption{ Results of GPS controllers and varying $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt	inferno} are example controllers included with TORCS \cite{torcs4}. In {\bf boldface} the best value, and in {\em italics} the second best.}
 		{
                   \begin{tabular}{|c|c|>{\columncolor[gray]{.9}}c|c|c||c|}
                   	              \hline
@@ -994,10 +964,7 @@ mini-championship against the previous five TORCS bots and the {\sf GFC-VA}\cite
 
 
 We have also considered a new rival from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
-It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi
-\cite{EvolvingRuleSystem08} and later refined in the work
-\cite{PerezEvolvingFuzzy09}. We have baptized it as \textit{PSRI} in honor of
-its authors' surnames. 
+It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio and Isasi, and improved in the work \cite{PerezEvolvingFuzzy09}. We have baptized it as \textit{PSRI} in honor of its authors' surnames. 
 Table \ref{tab:allsresults} shows the obtained results.
 %
 
@@ -1011,7 +978,7 @@ Table \ref{tab:allsresults} shows the obtained results.
       the best value, {\em italics} for the second
       best. \textcolor{red}{We sort controllers according to the
         overall score, but please note that this ranking need not be
-        kept in every column}}
+        kept in every column.}}
     {
             \begin{tabular}{|c|c|c|c|c||c|}
 	\hline
@@ -1089,7 +1056,7 @@ to getting off track and thus damage to the car.
     \includegraphics[width=8.5cm, height=1.9cm]{fig/FRONT.jpg}
     \includegraphics[width=8.5cm, height=1.9cm]{fig/MAX5.jpg}
     \includegraphics[width=8.5cm, height=1.9cm]{fig/MAX10.jpg}		
-    \caption{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with the {\sf GFC-GPSVAE} method.}
+    \caption{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with {\sf GFC-GPSVAE} method.}
     \label{fig:frontmfs}
 \end{center}	
 \end{figure}
@@ -1263,7 +1230,7 @@ the outputs of the fuzzy controllers, as well as the rules.
 
 The implementation could also be optimized. Right now, training takes
 a long time. This optimization could go from parallelization, to basic
-program-level improvement. All this is left as future work.
+program-level improvement.
 
 \textcolor{red}{Robustness in results has been our main objective, but
   we have not really investigated the reason why the fitness
@@ -1276,7 +1243,7 @@ program-level improvement. All this is left as future work.
 \section*{Acknowledgments}
 
 This work has been supported in part by: Ministerio espa\~{n}ol de
-Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P (UGR-DeepBio), as well as project RTI2018-102002-A-I00 (Ministerio espa\~{n}ol de Ciencia, Innovaci\'{\o}n y Universidades) and project B-TIC-402-UGR18 (FEDER and Junta de Andaluc\'{i}a).
+Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P, as well as project RTI2018-102002-A-I00 (Minist. espa\~{n}ol de Ciencia, Innovaci\'{o}n y Universid.) and project B-TIC-402-UGR18 (FEDER and Junta de Andaluc\'{i}a).
 
 \bibliographystyle{IEEEtranS}
 \bibliography{fuzzy_torcs,geneura,uncertainty,fitnessless}
