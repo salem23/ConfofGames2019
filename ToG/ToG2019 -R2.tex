@@ -507,10 +507,14 @@ Then, the best individuals will be those whose accumulated score (sum of scores 
 
 The objective of this operator is to really select the best
 individuals of the population. However, given the existing uncertainty
-\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16} due to the competition against other non-deterministic controllers, it is not possible to ensure they are
-doubtlessly the best. 
-
-The authors argue that this operator will provide better individuals than one based on a `standard' fitness function, regarding their competitiveness and reliability. The reasoning for this is the fact that their score just depends on their ability to win the race against other competent controllers, rather than in the combination of a set of variables which might add `noise' to the valuation of the individuals.
+\cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16} due to the competition
+against other non-deterministic controllers, it is not possible to
+ensure they are doubtlessly the best. We claim that this operator will
+provide more competitive and reliable individuals than one based on a
+`standard' fitness function, since their score just depends on their
+ability to win the race against other competent controllers, rather
+than in the combination of a set of variables which might add `noise'
+to the valuation of the individuals.
 
 However, the application of this method consumes much higher computation time, so it could be combined with a classical fitness-based selection in some generations. Indeed, in the experiments conducted in Section \ref{sec:results}, we have analyzed the impact of the application of different configurations of GPS, considering different frequencies of application during the evolutionary process.
 
