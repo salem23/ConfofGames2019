@@ -111,21 +111,9 @@ competitors. \textcolor{red}{Hereafter, we will use in general the
   cannot be measured or appreciated directly, which is why we will
   refer to uncertainty and its reduction in the rest of the paper}.
 \textcolor{red}{
-	If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) 
+	If we can eliminate \textcolor{red}{individually-computed} fitness and move to a ``fitnessless'' environment,, we can remove one source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) 
 	in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating
 	races several times."}
-
-
-By totally eliminating \textcolor{red}{individually-computed} fitness
-\textcolor{red}{and moving to} a ``fitnessless'' environment, we also
-eliminate \textcolor{red}{one} source of uncertainty,
-\textcolor{red}{which is reduced further} by repeating the races
-several times. A single (and uncertain) fitness is thus substituted by
-a podium (a ranking after several races against other opponents) in
-which car controllers that win the most races will proceed to the next
-generation, while those that do not, will be removed from the
-pool.
-
 \textcolor{red}{By doing this, we try to overcome one of the biggest
 challenges we have found in this line of research. Uncertainty in
 selection was already identified as such in its first paper
@@ -162,13 +150,13 @@ This work also presents an exhaustive study, where we have checked how this Gran
 This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the \mbox{BLX-$\alpha$} operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
 In addition, we have compared the influence of the \mbox{BLX-$\alpha$} operator on the performance of the evolved controllers with others using standard crossover operators, since we aim to better control the diversity in the population.
 
-%The rest of the paper is organized as follows. Next we present the
-%state of the art, to be followed by a description of the TORCS
-%simulator and the previously defined fuzzy controllers in Section
-%\ref{sec:methods}. After this, the evolutionary algorithm implemented
-%is explained in Section \ref{sec:ga}, including an extensive explanation of the new selection policy as well as the BLX-$\alpha$ crossover operator. After it, the experiments conducted and the obtained results are described in
-%Section \ref{sec:results}. Finally, conclusions and future lines of
-%work will be presented in Section \ref{sec:conclusions}. 
+The rest of the paper is organized as follows. Next we present the
+state of the art, to be followed by a description of the TORCS
+simulator and the previously defined fuzzy controllers in Section
+\ref{sec:methods}. After this, the evolutionary algorithm implemented
+is explained in Section \ref{sec:ga}, including an extensive explanation of the new selection policy as well as the BLX-$\alpha$ crossover operator. After it, the experiments conducted and the obtained results are described in
+Section \ref{sec:results}. Finally, conclusions and future lines of
+work will be presented in Section \ref{sec:conclusions}. 
 
 
 
@@ -1053,9 +1041,9 @@ to getting off track and thus damage to the car.
 %
 \begin{figure}[h]	
   \begin{center}
-    \includegraphics[width=8.5cm, height=1.9cm]{fig/FRONT.jpg}
-    \includegraphics[width=8.5cm, height=1.9cm]{fig/MAX5.jpg}
-    \includegraphics[width=8.5cm, height=1.9cm]{fig/MAX10.jpg}		
+    \includegraphics[width=8.5cm, height=1.7cm]{fig/FRONT.jpg}
+    \includegraphics[width=8.5cm, height=1.7cm]{fig/MAX5.jpg}
+    \includegraphics[width=8.5cm, height=1.7cm]{fig/MAX10.jpg}		
     \caption{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with {\sf GFC-GPSVAE} method.}
     \label{fig:frontmfs}
 \end{center}	
