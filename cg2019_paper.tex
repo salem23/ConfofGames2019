@@ -581,7 +581,7 @@ We have evaluated the Genetic Fuzzy Controller (GFC) with the proposed fitness f
 
 New pole position selection has been conducted considering \textit{Alpine 2} track, 5 races and 20 laps per race. 
 We have defined a score function based in Formula 1 schema, so the obtained punctuations depend on the car position in the final rank: 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1. The the starting grid (initial positions of cars) on these races was set randomly.
-Due to the \textcolor{red}{high time-demanding nature of this method}, this race-based selection process has just been performed every 5 generations (not in all of them).
+Due to the \textcolor{red}{time-demanding nature of this method}, this race-based selection process has just been performed every 5 generations (not in all of them).
 
 At the end of the evolution (in the last generation) an additional race-based selection process is applied as in previous work \cite{salem_cig2018}. So, the best 10 individuals (according to their fitness) of the final population compete in 5 races (of 5 laps) in the \textit{Alpine 2} track. Formula 1 scores are again applied and the winner will be selected as the best controller of the run.
 
