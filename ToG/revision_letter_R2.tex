@@ -53,7 +53,7 @@
 
 \signature{Mohammed SALEM} % Your name for the signature at the bottom
 
-\address{University of Mascara \\ Algeria\\ salem@univ-mascara.dz}
+\address{SALEM Mohammed \\ University of Mascara \\ Algeria\\ salem@univ-mascara.dz}
 
 %---------------------------------------------------------------------------------
 
@@ -73,9 +73,9 @@
 \textbf{Dear Dr Togelius,}}
 
 Thank you for your consideration of our manuscript entitled "Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection". 
-We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments and have thoroughly revised the manuscript. We found the comments very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. In it, changes and new contents have been marked in red color.
-
-In addition we have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the text. 
+We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments and have thoroughly revised the manuscript. We found the comments very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
+We have followed the editor's remark and thoroughly proof-read the paper by grammatical tools and then by an English native speaker and the new changes are highlighted in blue color to distinguish them.\\
+In addition we have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the text and marked it in red color. 
 
 The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author. 
 We sincerely hope the revised manuscript worth being accepted for publication in the Journal.
@@ -98,9 +98,25 @@ We look forward to here your reply.
 
 \newpage
 
-Reviewer Comments, Author Responses and Manuscript Changes
-\begin{enumerate}
+	% #############################################################################
 
+{\bf \underline{ Responses to Editor's  Comments to the authors}}\\
+All reviewers agree that the last version of the manuscript is going in the right direction, with substantial improvements being made. There are still two very important issues that needs to be addressed thoroughly in my opinion to recommend accept.
+			\begin{enumerate}
+					\item {\bf Comment 1:} 
+Some comments by R3 had not been addressed, regarding the technical contribution of the paper. Please pay attention to those.\\
+	 {\bf Response:} \\
+We apologize for not responding to these comments in the previous letter, we have resolved this and have addressed them in detail.
+		\item {\bf Comment 2:} 
+There's an important work that needs to be done with regards to grammatical errors found in the paper. The manuscript needs to be thoroughly proof-read and revised by a maybe native English speaker.\\
+	 {\bf Response:} \\
+	We thank the editor for this remark. We have given more importance to the grammatical revision of the paper, first by using automatic correction tools and then by an native English speaker. All changes have been marked in blue color in the text.
+			\end{enumerate}
+
+
+\newpage
+ Reviewers Comments, Author Responses and Manuscript Changes
+\begin{enumerate}
 % #############################################################################
 
 \item {\bf \underline{ Reviewer 1 Comments}}\\
@@ -219,7 +235,15 @@ We are very grateful to this reviewer for his/her useful and kind comments.
 				We agree with the reviewer's comment. the sentence is a bit confusing. It has been rewritten following the reviewer's suggestion and marked in red in the text. So, now it is:
 
 				\textcolor{red}{
-					If we can eliminate fitness, we can remove a source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating races several times."
+					" If we can eliminate individually-computed fitness
+					and move to a “fitnessless” environment,, we can remove
+					one source of uncertainty. We accomplish this by substituting
+					a single (and uncertain) fitness by a podium (a ranking
+					after several races against other opponents) in which car
+					controllers that win the most races will proceed to the next
+					generation, while those that do not, will simply be removed
+					from the pool. We can further reduce uncertainty even more
+					by repeating races several times."
 				}
 		\item {\bf Comment 6:}
 			\begin{quote}
@@ -311,7 +335,11 @@ the intent of our method, and also the intent of our original response.
 				\end{quote}	
 			\item {\bf Response:} 
 			We thank the reviewer for the comment and we apologize for not answering the question in the previous letter. The population was evaluated for 50 generations. We have rewritten the corresponding sentence to add this information. So, now it is:
-			\textcolor{red}{This is why we have computed skewness and kurtosis for a sample of 20 from the 60 individuals of the population evaluated for 50 generations, and measured fitness values after the first, the 30th and the last generation for the three controllers;}
+			\textcolor{red}{This is why we have computed skewness
+				and kurtosis for a sample of 20 from the 60 individuals of
+				the population evaluated for 50 generations, and measured
+				fitness values after the first, the 30th ,and the last generation
+				for the three controllers;}
 			
 %				%% Mohammed
 			\item {\bf Comment 4:}
@@ -349,12 +377,24 @@ that talking about ``uncertainty'' makes the results easier to appreciate and me
 				%%Mohammed
 			We agree with the reviewer's comment, the paper did not clearly describe the considered controllers, so even if Table 2 is clear, the corresponding text has been completely rewritten and highlighted in the manuscript. It now reads:
 			\textcolor{red}{
-				To analyze the influence of the new introduced Grand Prix Selection (GPS) and the crossover operator on the performance of the fuzzy controller, we have carried out two main optimization processes based on the GPS: the first one uses the GPS with the two point crossover operator while the second uses  BLX with decreasing $\alpha$.
-				In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5) and in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
-				Hence, we experimented six controllers in all: the new
-				proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers  [43]: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}..
-				Also and for comparison purpose, two reference controllers have been considered: {\sf{GFC-VA}}[43] and {\sf{GFC}}[40], they both use the fitness function $f_{AVS}$ (Equation 1) value for selection.
-				All these controllers are summarized in Table 2. 
+				To analyze the influence of the new introduced Grand
+				Prix Selection (GPS) and the crossover operator on the
+				performance of the fuzzy controller, we have carried out two
+				main optimization processes based on the GPS: the first one
+				uses the GPS with the two point crossover operator while
+				the second uses BLX with decreasing $\alpha$. In every process,
+				three controllers are obtained depending on the application
+				of the GPS: in every generation (E), every 5 generations
+				(5) ,and in the last generation(L). The acronym VA stands
+				for varying $\alpha$ in the names of controllers with BLX and
+			decreasing $\alpha$.  Hence, we experimented with six controllers
+				in all: the new proposed controllers GFC-GPSVAE and
+				GFC-GPSE, our previous four GPS based controllers [35]:
+				GFC-GPS5, GFC-GPSL,GFC-GPSVA5 and GFC-GPSVAL..
+				Also and for comparison purpose, two reference controllers
+				have been considered: GFC-VA [35] and GFC [32], they
+				both use the fitness function $f_{AVS}$ (Equation 1) value for
+				selection. All these controllers are summarized in Table 2.
 			}
 			\item {\bf Comment 8:}
 				\begin{quote}	
@@ -465,8 +505,11 @@ weight in that track, at least in the first experiment. {\tt inferno2}
 					The reviewer is right, we run the  controllers for 50 generations in 10 runs and the average time is in Table 5. We also added the range of generations where the best solutions are found.
 					We have rewritten the text to clarify it so it is now:
 						\textcolor{red}{
-						To evaluate the cost of the proposed controllers, we run the evolutionary optimization for 50 generations and 10 runs for all the considered controllers.
-						Table 5 shows the average running time and  as additional information, the range of generations where the best individual was found. } 
+						To evaluate the cost of the proposed controllers, we run
+						the evolutionary optimization for 50 generations and 10
+						runs for all the considered controllers. Table 5 shows the
+						average running time and as additional information, the
+						range of generations where the best individual was found. } 
 					%%Mohammed
 			\item {\bf Comment 16:}
 				\begin{quote}	
