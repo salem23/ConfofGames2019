@@ -33,7 +33,7 @@ E-mail: salem@univ-mascara.dz
 \IEEEcompsocthanksitem A~M.~Mora was with the Department of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain.\protect\\
 Email: amorag@ugr.es
 \IEEEcompsocthanksitem J~J.~Merelo was with the Department of Computer Architecture and Computer Technology. University of Granada, Spain.\protect\\
-Email: jmerelo@geneura.ugr.es
+Email: jmerelo@ugr.es
 }% <-this % stops an unwanted space
 \thanks{Manuscript received December XX, 2019; revised XXXX, 2020.}}
 
@@ -307,9 +307,10 @@ to use fuzzy sub-controllers.
   \begin{center}
     \includegraphics[width=8cm]{fig/flowchart}
   \end{center}
-  \caption{Schema of the two controllers that will be evolved by the proposed 
-    evolutionary algorithm (GA), and evaluated by TORCS, which will
-    return the values for the car's average speed on the complete race and the incurred damage on the vehicle. Figure taken from \cite{salem_evo18}.} 
+  \caption{Schema of the two GA-evolved controllers evaluated by TORCS, which will
+    return the values for the car's average speed on the complete race
+    and the incurred damage on the vehicle. Figure taken from
+    \cite{salem_evo18}.}
     \label{fig:ga}
 \end{figure}
 %
@@ -1204,9 +1205,7 @@ to try and find the best ones. \textcolor{red}{Since the GPS method
 
 Additionally, we have been using heuristic rules for computing outputs
 from the fuzzy rule activation. We could, however, consider optimizing
-the outputs of the fuzzy controllers, as well as the rules.
-
-The implementation could also be optimized. Right now, training takes
+the outputs of the fuzzy controllers, as well as the rules. The implementation could also be optimized. Right now, training takes
 a long time. This optimization could go from parallelization, to basic
 program-level improvement.
 
@@ -1219,8 +1218,9 @@ program-level improvement.
 
 \section*{Acknowledgments}
 
-This work has been supported in part by: Ministerio espa\~{n}ol de
-Econom\'{\i}a y Competitividad under projects  TIN2017-85727-C4-2-P, as well as project RTI2018-102002-A-I00 (Minist. espa\~{n}ol de Ciencia, Innovaci\'{o}n y Universid.) and project B-TIC-402-UGR18 (FEDER and Junta de Andaluc\'{i}a).
+Supported in part by MINCYT projects
+TIN2017-85727-C4-2-P and  RTI2018-102002-A-I00 and project
+B-TIC-402-UGR18 (FEDER and JA).
 
 \bibliographystyle{IEEEtranS}
 \bibliography{fuzzy_torcs,geneura,uncertainty,fitnessless}
