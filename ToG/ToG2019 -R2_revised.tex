@@ -42,7 +42,7 @@ Email: jmerelo@ugr.es
   \begin{abstract}
     Evolution is a powerful problem-solving technique, extensively
 used for designing racing car controllers, but with a series of
-challenges: an evaluation function that \textcolor{blue}{can} to separate the best
+challenges: an evaluation function that \textcolor{blue}{can} separate the best
 controllers from the rest, and a series of operators that \textcolor{blue}{can} 
 explore different possibilities in the controller search space. Within
 the context of the TORCS racing simulator, in this paper\textcolor{blue}{,} we introduce
@@ -202,7 +202,7 @@ racing car simulator that could be the testbed for them all, which was
 TORCS (The Open Racing Car Simulator) \cite{torcs4}. The TORCS racing simulator
 continues to be one of the main platforms for testing different autonomous driving or bot creation strategies. Only in the last year (2019) there are around 200 articles that mention TORCS; \cite{badue2019selfdriving} revises its applications for the last 20 years. It can be considered as the most successful platform used for this kind of problem.
 
-Fuzzy controllers are mentioned in around 15\% of the \textcolor{blue}{above-mentioned} articles, while around 30\% \textcolor{blue}{mentions} evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS (but just mentioning it); so the approach in this line of research is truly original in this context.
+Fuzzy controllers are \textcolor{blue}{considered} in around 15\% of the \textcolor{blue}{aforementioned} articles, while around 30\% \textcolor{blue}{mentions} evolutionary algorithms; very few, however, around 7\%, use both, and most of them are not actually using TORCS (but just mentioning it); so the approach in this line of research is truly original in this context.
 
 There are several possible approaches to autonomous driving and its
 solution using TORCS, such as neural networks or reinforcement learning \cite{abuzekry2comparative}. 
@@ -398,8 +398,7 @@ We have applied an evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize th
 % to make this distinction. But whatever. - JJ
 
 EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
-recombination \textcolor{blue}{,and} mutation, \textcolor{blue}{to} create a new population of
-better individuals on average. This is repeated a number of times
+recombination, \textcolor{blue}{and} mutation, \textcolor{blue}{to} create a new population of better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
 applied to solve a huge amount of optimization problems, including regression and fuzzy systems \cite{hoffmann2001evolutionary}; in this kind of problem the solutions are \textcolor{blue}{modeled} as a vector of numeric values, as is the
@@ -536,7 +535,7 @@ Thus, this crossover method was designed \textcolor{blue}{for real-coded EAs \ci
 
 The value of the $\alpha$ parameter regulates the exploration/exploitation priority when searching the space of solutions; a value $\alpha = 0.5$ will balance them.
 
-Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done \textcolor{blue}{through} diversification in the individuals. \textcolor{blue}{Then, an} exploitation process would be recommended,\textcolor{blue}{to} refine the promising solutions to get to an optimal one.
+Given the characteristics of an evolutionary algorithm and the way it works, the first generations should be devoted to explore the search space looking for promising areas (those with potential good solutions) where parts of the population could be focused. This would be done \textcolor{blue}{through} diversification in the individuals. \textcolor{blue}{Then, an} exploitation process would be recommended, \textcolor{blue}{to} refine the promising solutions to get to an optimal one.
 
 To this end, we have implemented an \textit{BLX} operator with a decreasing $\alpha$ value, following
 the expression: \mbox{$\alpha =1-\frac{g}{g_{max}}$}, where $g$ is the
@@ -627,7 +626,7 @@ To analyze the influence of the new introduced Grand Prix Selection
 controller, we have carried out two main optimization processes based
 on the GPS: the first one uses the GPS with the two point crossover
 operator while the second uses  BLX with decreasing $\alpha$.
-In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5)  \textcolor{blue}{,and} in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
+In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5), \textcolor{blue}{and} in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
 Hence, we experimented  \textcolor{blue}{ with six} controllers in all: the new
 proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}..
 Also and for comparison purpose, two reference controllers have been considered: {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC}}\cite{salem_cig2018}, they both use the fitness function $f_{AVS}$ (Equation \ref{fit_avg}) value for selection.
@@ -686,7 +685,7 @@ affect uncertainty in scores (fitness values). Better selection procedures shoul
 as possible; other kinds of selections should keep  \textcolor{blue}{the} distribution of
 scores (for a single controller) skewed and lopsided; this is why we
 have done a study of the distribution of the genetic individuals of
-three approaches: {\sf GFC}, {\sf GFC-GPSE}  \textcolor{blue}{,and} {\sf GFC-GPSVA5}. 
+three approaches: {\sf GFC}, {\sf GFC-GPSE}, \textcolor{blue}{and} {\sf GFC-GPSVA5}. 
 
 
 Skewness is related to how symmetric the distribution of fitness
@@ -710,8 +709,7 @@ generation. However, different selection procedures will affect them
 in different ways.  \textcolor{red}{This is why we have computed
   skewness and kurtosis for a sample of 20 from the 60 individuals of
   the population evaluated for 50 generations, and measured fitness
-  values after the first, the 30th  \textcolor{blue}{,and} the last generation for the
-  three controllers;} \textcolor{red}{we take 30 measures of the
+  values after the first, the 30th, \textcolor{blue}{and} the last generation for the three controllers;} \textcolor{red}{we take 30 measures of the
   fitness, generating a statistical distribution for the fitness
   values for every individual in the population; what we plot in}
 Figure \ref{fig:gfcsk} (top, middle, bottom) \textcolor{red}{is the
@@ -799,7 +797,7 @@ shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
 \begin{table}[h!]
 	\centering
 	{\scriptsize
-		\caption{ Results of GPS controllers and varying $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}  \textcolor{blue}{,and} {\tt	inferno} are example controllers included with TORCS \cite{torcs4}. In {\bf boldface} the best value, and in {\em italics} the second best.}
+		\caption{ Results of GPS controllers and varying $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw},   \textcolor{blue}{and} {\tt	inferno} are example controllers included with TORCS \cite{torcs4}. In {\bf boldface} the best value, and in {\em italics} the second best.}
 		{
                   \begin{tabular}{|c|c|>{\columncolor[gray]{.9}}c|c|c||c|}
                   	              \hline
@@ -947,7 +945,7 @@ processes: {\sf GFC-GPSVAE} and {\sf GFC-GPSE} are evaluated \textcolor{blue}{in
 
 
 We have also considered a new rival from the state of the art, which participated in several Simulated Car Racing Competitions in past editions. 
-It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio \textcolor{blue}{,and} Isasi, and improved in the work \cite{PerezEvolvingFuzzy09}. We have baptized it as \textit{PSRI} in honor of its authors' surnames. 
+It was proposed by P{\'e}rez-Li{\'e}bana, S{\'a}ez, Recio, \textcolor{blue}{and} Isasi, and improved in the work \cite{PerezEvolvingFuzzy09}. We have baptized it as \textit{PSRI} in honor of its authors' surnames. 
 Table \ref{tab:allsresults} shows the obtained results.
 %
 
@@ -956,7 +954,7 @@ Table \ref{tab:allsresults} shows the obtained results.
   {\scriptsize
     \caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
       in a mini-championship with 10 controllers
-      and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} \textcolor{blue}{,and} {\tt inferno} are example controllers included with the TORCS
+      and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}, \textcolor{blue}{and} {\tt inferno} are example controllers included with the TORCS
       simulator \cite{torcs4}.  {\bf Boldface} is used to highlight
       the best value, {\em italics} for the second
       best. \textcolor{red}{We sort controllers according to the
@@ -1181,7 +1179,7 @@ evaluation budget, it could be a very good compromise.
 
 As a conclusion, in this paper\textcolor{blue}{, we} have proved that combining a fitnessless evolutionary algorithm with \textcolor{blue}{a} varying, floating point,
 crossover operator, consistently obtains the best results so far in
-TORCS. The sets of choices of running track, car, controller\textcolor{blue}{,and} actually parts of it that are evolving are thus also validated by
+TORCS. The sets of choices of running track, car, controller, \textcolor{blue}{and} actually parts of it that are evolving are thus also validated by
 these results. Since the tracks have been specially selected to be as
 general as possible, we think that this result could be extended to
 other tracks, as long as ``training'' or evolution uses a track that
@@ -1220,7 +1218,7 @@ program-level improvement.
 
 Supported in part by MINCYT projects
 TIN2017-85727-C4-2-P and  RTI2018-102002-A-I00 and project
-B-TIC-402-UGR18 (FEDER and JA).
+B-TIC-402-UGR18 (FEDER and Junta de Andaluc\'{i}a).
 
 \bibliographystyle{IEEEtranS}
 \bibliography{fuzzy_torcs,geneura,uncertainty,fitnessless}
