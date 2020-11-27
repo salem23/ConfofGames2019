@@ -72,16 +72,16 @@ Grand Prix Selection, Fitnessless, Uncertainty, Competitive fitness
 \IEEEdisplaynontitleabstractindextext
 \IEEEpeerreviewmaketitle
 
-%%%%\textcolor{red}{
+
 
 \IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
-\textcolor{red}{
+\textcolor{blue}{
 Driving a simulated car can be formulated as an optimization problem in which you have to map inputs that include data about the driving environment as well as car data, to the output: throttling and steering. This mapping has 
  to meet a series of standards: cars should not crash and should have a
 reasonable speed \cite{Autodriv2006}.} Additionally, in a racing car\textcolor{blue}{,} the controller has to be designed so that the car wins in as many races as possible.
 
 Since there are so many variables in this problem, the search space is usually reduced using heuristic rules. For instance, deciding the type of controller is usually done before the design process begins, and a single, parametrized one
-is chosen; fixed rules\textcolor{blue}{,} as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09}\textcolor{blue}{,} are often used. \textcolor{red}{
+is chosen; fixed rules\textcolor{blue}{,} as well as neural networks \cite{KIM201287} or fuzzy controllers \cite{PerezEvolvingFuzzy09}\textcolor{blue}{,} are often used. \textcolor{blue}{
 Additionally}, training (or learning) \cite{Loiacono:2012:LEA:2212908.2212953} can be done online (during the
 race), so that it can adapt itself to new and previously unseen,
 scenarios and competitors, or it can be fixed training offline. 
@@ -99,31 +99,31 @@ If training is done before the
     the resulting score in unknown tracks with unknown rivals
     uncertain at best.
 
-\textcolor{red}{A potentially useful} way to \textcolor{red}{increase robustness, that
+\textcolor{blue}{A potentially useful} way to \textcolor{blue}{increase robustness, that
 is, }reduce uncertainty is to make the evaluation process
 as close as possible to the environment in which the controller will
-eventually compete, in a race with other competitors. \textcolor{red}{Hereafter, we will use in general the
+eventually compete, in a race with other competitors. \textcolor{blue}{Hereafter, we will use in general the
   terminology ``reduce uncertainty'' to mean that \textcolor{blue}{we attend} to increase the robustness of the result, that is, obtain results whose
   performance is not affected by the selection procedure and that are
   consistently good performing. However, robustness is something that
   cannot be measured or appreciated directly, which is why we will
   refer to uncertainty and its reduction in the rest of the paper}.
-\textcolor{red}{
-	If we can eliminate \textcolor{red}{individually-computed} fitness and move to a ``fitnessless'' environment,, we can remove one source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) 
+\textcolor{blue}{
+	If we can eliminate \textcolor{blue}{individually-computed} fitness and move to a ``fitnessless'' environment,, we can remove one source of uncertainty. We accomplish this by substituting a single (and uncertain) fitness  by a podium (a ranking after several races against other opponents) 
 	in which car controllers that win the most races will proceed to the next generation, while those that do not, will simply be removed from the pool. We can further reduce uncertainty even more by repeating
 	races several times."}
-\textcolor{red}{By doing this, we try to overcome one of the biggest
+\textcolor{blue}{By doing this, we try to overcome one of the biggest
 challenges we have found in this line of research. Uncertainty in
 selection was already identified as such in its first paper
 \cite{salem_evo17}, which introduced} a basic
-\textcolor{red}{fuzzy-controller based car driving}
-system. \textcolor{red}{This system was iteratively improved in
+\textcolor{blue}{fuzzy-controller based car driving}
+system. \textcolor{blue}{This system was iteratively improved in
 \cite{salem_evo18,salem_cig2018}, by using an EA to change the shape
 and values of the fuzzy controllers}. However, we still had to deal
 with uncertainty, as well as a suboptimal exploration of the parameter
 space; the main issue was that we were using a surrogate
-\textcolor{red}{to measure the performance} of the bot by doing solo
-races, \textcolor{red}{and we tried to make that surrogate as accurate as
+\textcolor{blue}{to measure the performance} of the bot by doing solo
+races, \textcolor{blue}{and we tried to make that surrogate as accurate as
   possible by testing} different
 fitness functions, but also, in \cite{salem_cig2018}, by racing the best individuals in the last
 generation. Introducing
@@ -135,13 +135,13 @@ operator, and checked two different configurations using a fixed and a
 decreasing $\alpha$. This operator combines exploration and
 exploitation and lets the designer establish the balance between both factors in the search. The
 results with decreasing $\alpha$ were the best obtained so
-far. \textcolor{red}{Although this additional operator, by itself, did
+far. \textcolor{blue}{Although this additional operator, by itself, did
   not reduce uncertainty in the selection of individual car
   controllers, by enhancing search capabilities it made possible
   accessing parts of the search space where controllers with low
   uncertainty \textcolor{blue}{could} be found}.
 
-Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. \textcolor{blue}{This is not} a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, \textcolor{red}{\textcolor{blue}{an} $n$-tournament} selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but \textcolor{blue}{ a way} of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
+Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. \textcolor{blue}{This is not} a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, \textcolor{blue}{\textcolor{blue}{an} $n$-tournament} selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but \textcolor{blue}{ a way} of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
 This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix Selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  
@@ -164,14 +164,6 @@ work will be presented in Section \ref{sec:conclusions}.
 \section{State of the Art}
 \label{sec:soa}
 
-
-% We have to focus the state of the art in three different things
-% 1. First and foremost, uncertainty in evolution, since it's in the
-% title of the paper.
-% 2. Second, alternative selection operators used in games, similar to
-% the Grand Prix Selection.
-% 3. State of the art in TORCS since our last paper (CoG 2019)
-
 The problem of designing controllers for racing cars has been
 approached using soft computing since the first papers were
 published; however, they differ in the way the specific controlled
@@ -183,16 +175,9 @@ However, it is not the only kind of soft computing method
 used. \cite{mirus2019short} uses a neuromorphic architecture, namely,
 spiking neural networks, but using, the same way we do in our works, a single track for training. The kind of data used for the design of racing cars is
 also different depending on the author. 
-According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{salem_cig2018}, \textcolor{red}{ in general, successful racing could be achieved using only these sensor values }to drive the car, since they give enough information to avoid collisions, drive as close as possible to the center of the track, and drive as fast as possible.
+According to our previous works \cite{salem_evo17},\cite{salem_evo18},\cite{salem_cig2018}, \textcolor{blue}{ in general, successful racing could be achieved using only these sensor values }to drive the car, since they give enough information to avoid collisions, drive as close as possible to the center of the track, and drive as fast as possible.
 
-Other soft computing methods have been combined also with evolutionary algorithms \textcolor{blue}{on} several occasions, such as \cite{10.1371/journal.pone.0213193} which uses neuroevolution. \textcolor{red}{Thus, controllers trained in one track are briefly re-trained for use in other tracks}, in what is called ``transfer learning''. This is also the technique applied by the authors in \cite{verma2018programmatically}. 
-
-
-%Evolution can also be used directly to compute the optimal trajectory after ``test laps''. This is what Vrajitoru does \cite{vrajitoru2019trajectory},
-%\cite{vrajitoru2019trajectory,vrajitorugenetic}, 
-%%% Antonio - I remove one reference to save space.
-%using then an evolutionary algorithm to optimize driving within that specific track and considering the obtained trajectory calculation. 
-
+Other soft computing methods have been combined also with evolutionary algorithms \textcolor{blue}{on} several occasions, such as \cite{10.1371/journal.pone.0213193} which uses neuroevolution. \textcolor{blue}{Thus, controllers trained in one track are briefly re-trained for use in other tracks}, in what is called ``transfer learning''. This is also the technique applied by the authors in \cite{verma2018programmatically}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TORCS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -209,9 +194,6 @@ solution using TORCS, such as neural networks or reinforcement learning \cite{ab
 You can also use vision to have \textcolor{blue}{a} more complete, although \textcolor{blue}{a} more complicated, view of where the car is and where it is going, or just use sensors, which on one hand check the most immediate scenario, but on the other hand are more precise and easy to process.
 
 In our case, we have opted for the latter, although other authors like Zhu et al. \cite{zhu2019vision} rather
-%%\cite{zhu2018driving,zhu2019vision,neurone} rather 
-%%% I deleted this ref to save space %% Mohammed
-%%% Antonio - I also remove another one to save space. ;)
 consider vision, using TORCS as a testbed for a different kind of
 algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient)\textcolor{blue}{,} that uses images to learn behaviors for specific racing scenarios.
 
@@ -239,7 +221,6 @@ programming by Tettamanzi in \cite{tettamanzi1996genetic}.
 However, the competitions played in those works were not, strictly,
 games. Fitnessless evolution has been used in games extensively, like
 \cite{Jaskowski2008,10.1007/978-3-540-78671-9_2,fernandez2016_only_one}.
-% Antonio - Reducing the number of references. Changing our ref to another shorter => Save space
 Deriving which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
@@ -273,18 +254,10 @@ This section presents the environment where the study has been conducted, i.e. t
 	\end{center}
 \end{figure}
 
-\textcolor{red}{
+\textcolor{blue}{
 We are using in this study The Open Racing Car Simulator (TORCS) \cite{torcs4}, which is free software \textcolor{blue}{and} offers realistic physics, as well as telemetry that is used by the car controllers to gauge their position with respect to the track, the position of the rest of the players, and self-measurements like speed, damage incurred or angle. These measurements are connected to car sensors \cite{torcs5}, which are represented in Figure \ref{fig:torcs-sensors}. TORCS provides these sensor values as input to the car controller and these will be
 used to manage the car by means of actuators such as brake, accelerator, steering wheel\textcolor{blue}{, or gearbox}. 
 This simulator has been used in many other studies in the area of autonomous driving or simulated racing car evolution.}
-
-%All these sensors refer to different angles. The sensors considered in this work are:
-%\begin{itemize}
-%	\item Sensor 9 (frontal distance): straight distance to the track border (or another vehicle) in an angle of 0\textdegree.
-%	\item Sensor 8 and Sensor 10: distance to the track border (or another vehicle) in an angle of +5\textdegree and -5\textdegree with respect Sensor 9.
-%	\item Sensor 7 and Sensor 11: distance to track border (or another vehicle) in an angle of +10\textdegree and -10\textdegree with respect to Sensor 9.
-%\end{itemize}
-
 Other \textcolor{blue}{open-source} simulators, mentioned in \cite{Loiacono:2012:LEA:2212908.2212953}, are also available: VDrift
 if more focused \textcolor{blue}{on} 3D realism, and Speed Dreams \textcolor{blue}{is}  a fork of
 TORCS, same as Gym-TORCS, which is a Python wrapper which is specially designed to test controllers based on reinforcement learning.
@@ -328,8 +301,6 @@ system \cite{iancu2012} with three trapezoidal Membership Functions
 (MFs) for each variable. The controller uses a set of fuzzy rules
 which combine the fuzzy values for these inputs to compute outputs:
 target speed or steering angle.
-% 
-% Antonio - I move this text and tables to the sub-controllers section, since these variables have been defined to be used in the fuzzy rules. Moreover, the variables are introduced for the first time in this section. 
 These rules were designed following \textcolor{blue}{the} usual human-like race car driving
 rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
 
@@ -392,47 +363,12 @@ encoded and evolved using an Evolutionary Algorithm.
 \label{sec:ga}
 
 We have applied an evolutionary algorithm (EA) \cite{EAs_Back96}, to optimize the parameters of the membership functions of the fuzzy sub-controllers we have used in this line of research.
-% Antonio - I put this text back as we are working with a GA (the title of the section says this), so it is clearer to say what is it. Moreover, the reference is also used in other places, so it is not removed to save space indeed. 
-% In addition, there is free available space now. ;)
-% You don't way why this is a GA and not an EA, and why it's relevant
-% to make this distinction. But whatever. - JJ
-
 EAs are nature inspired methods that evolve populations of possible (encoded) solutions for a problem following a process of selection of the best,
 recombination, \textcolor{blue}{and} mutation, \textcolor{blue}{to} create a new population of better individuals on average. This is repeated a number of times
 (generations) to get to a solution that meets our requirements, or the
 budget we have for evaluation of solutions. EAs have been widely
 applied to solve a huge amount of optimization problems, including regression and fuzzy systems \cite{hoffmann2001evolutionary}; in this kind of problem the solutions are \textcolor{blue}{modeled} as a vector of numeric values, as is the
 case in this paper; we use 18 floating-point values, 6 per variable, 2 values per membership function.
-
-
-% We show in Figure \ref{fig:cromosome} how we represent every individual (chromosome) as a vector of 18 values/parameters (genes), 6 per variable. They have been coded using real values, looking for higher precision \cite{elsayed13}. We started to use this encoding in \cite{salem_evo18}.
-
-
-%  \begin{figure*}[!ht]	
-%  	\begin{center}
-%  		\includegraphics[width=12cm]{fig/chromosome2.png}
-%  		\caption{GA chromosome description. There are 6 genes
-%                   (values) per fuzzy variable, modelling the 3
-%                   different membership functions. The membership
-%                   functions are trapezoidal, needing only two values
-%                   for every one.}
-%  		\label{fig:cromosome}	
-%  	\end{center}	
-%  \end{figure*}
-
-% \begin{figure*}[!ht]	
-% 	\begin{center}
-% 		\includegraphics[width=12cm]{fig/chromosome2.png}
-% 		\caption{GA chromosome description. There are 6 genes
-%                  (values) per fuzzy variable, modelling the 3
-%                  different membership functions. The membership
-%                  functions are trapezoidal, needing only two values
-%                  for every one.}
-% 		\label{fig:cromosome}	
-% 	\end{center}	
-% \end{figure*}
-
-
 
 Following standard implementations in the first step of the algorithm \cite{salem_evo18} a
 population of random individuals is composed by assigning diverse values inside a feasible range ($[0,100]$).
@@ -521,15 +457,6 @@ $[x_i-\alpha(y_i-x_i).. y_i+\alpha(y_i-x_i)]$, where $x_i$ and $y_i$
 are the $i^{th}$ values of the parent solutions $x$,$y$ and
 $x_i < y_i$. % See Figure \ref{fig:blxalpha}.
 
-% \begin{figure}[!ht]	
-%  	\begin{center}
-%  		\includegraphics[width=7cm]{fig/blxalpha.jpg}
-%  		\caption{Blend crossover operator ($BLX-\alpha$). Figure taken from \cite{Adibo_BLXFig_03}.}
-%  		\label{fig:blxalpha}	
-%  	\end{center}	
-%  \end{figure}
-%  Antonio - I include again the figure, because I consider it as very ilustrative to understand how BLX-alpha works. And now we have enough free space.
-% It's not the objective of the paper, and it's not even our figure. - JJ
 
 Thus, this crossover method was designed \textcolor{blue}{for real-coded EAs \cite{blx2008} and} creates the offspring (i.e. individuals of the new generation) of the current population by selecting random values for every gene around an interval for each of the parents' genes. So, it \textcolor{blue}{can} create three new individuals from one parent, which are different between them and, of course, different \textcolor{blue}{from} their parent individual. This fact enhances the exploration factor in new generations.
 
@@ -541,8 +468,7 @@ To this end, we have implemented an \textit{BLX} operator with a decreasing $\al
 the expression: \mbox{$\alpha =1-\frac{g}{g_{max}}$}, where $g$ is the
 current generation and $g_{max}$ is the maximum number of generations.
 
-This will mean a higher diversification factor in the first \textcolor{blue}{generations} because the offspring will take much more different values for their genes in comparison with their parent and other descendants. %, i.e. the intervals in Figure \ref{fig:blxalpha} will be wider. 
-% Antonio - Referencing again Figure. Anyway, the text without this reference was not correct.
+This will mean a higher diversification factor in the first \textcolor{blue}{generations} because the offspring will take much more different values for their genes in comparison with their parent and other descendants. 
 On the contrary, as the number of generations is increased, $\alpha$ will take a smaller value, the intervals will be reduced, the individuals will be more similar to their parents, and thus, the space of solutions will be exploited (the solutions will be refined).
 
 We argue that this operator, in conjunction with GPS will aid the
@@ -553,21 +479,6 @@ conducted in \textcolor{blue}{the next} section. We will also study their impact
 \section{Experiments and results}  
 \label{sec:results}
 
-% >>>>>> TODO: Explain the new experiments and results -> Mohammed  <<<<<<<<<<
-% TODO: Results with GPS (no BLX-Alpha crossover)
-% TODO: Results with GPS and BLX-Alpha crossover
-% TODO: Comparison against the standard controllers in TORCS
-% TODO: Comparison against S&PL controller (of all our controllers, if possible)
-%
-%\begin{figure}[!ht]	
-%	\begin{center}
-%		\includegraphics[width=3cm]{fig/alpine2.jpg}
-%		\includegraphics[width=3cm]{fig/wheel2.jpg}
-%		\caption{Alpine 2 Track. Length: 3773.57m, Width: 10m.}
-%		\label{fig:alpine2_track}	
-%	\end{center}	
-%      \end{figure}
-%%     
 \begin{figure}[!ht]	
 \centering
 \begin{subfigure}[b]{0.15\textwidth}
@@ -590,9 +501,9 @@ conducted in \textcolor{blue}{the next} section. We will also study their impact
 In this kind of \textcolor{blue}{problem}, it is essential to select the correct
 training track so that bots \textcolor{blue}{can} work in a wide range of
 conditions. Since using several tracks would make evaluation too onerous, we chose to select two tracks to train our solution. The first track is \textit{Alpine 2} track, the one already used in several papers  \cite{salem_cig2018,DBLP:conf/cig/SalemMG19}. This circuit has several characteristics that
-are essential for evaluating a bot: \textcolor{red}{it has many turns}, some of
+are essential for evaluating a bot: \textcolor{blue}{it has many turns}, some of
 them with 180 degrees, steep segments, and some very challenging parts
-like the entrance of a tunnel at a square angle. \textcolor{red}{ These features} make
+like the entrance of a tunnel at a square angle. \textcolor{blue}{ These features} make
 it a good testbed for good turning and collision avoidance
 strategies. \textcolor{blue}{Moreover,} it also offers a few straight segments which allow the car to speed ahead, reaching high speeds. This same track has been also repeatedly used by other authors for training as well as for testing \cite{cardamone2010applying}, and has been described as ``technical and complex'' \cite{AG} and ``presenting a challenge even at low speeds'' \cite{vrajitoru2018global}; in \cite{AG} it had the third lowest lap time, after \mbox{Alpine 1} and Olethros, implying it has got a good balance between hardness and speed. Since we also used it in our previous papers, it allowed us to compare racing bots that had been ``trained'' in the same conditions.
 
@@ -602,9 +513,7 @@ training; \mbox{CG-Track 2} has similar features, and it is used by
 in this last case for transfer learning. There are several differences between \mbox{CG-Track 2} and \mbox{Alpine 2}, the one we use, but the main one is that turns are relatively easier and straight segments are longer, favoring fast cars over balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 The second circuit is the \mbox{Wheel 2} Track. It is a  Suzuka F1 track that combines many challenges such as  \textcolor{blue}{high-speed} parts and different  \textcolor{blue}{curve} types.  \textcolor{blue}{Moreover,} the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
-% this figure has disappeared - JJ
-% Antonio - Fixed
-To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo18} \textcolor{red}{and the second one is \mbox{\textit{Street 1}}.
+To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo18} \textcolor{blue}{and the second one is \mbox{\textit{Street 1}}.
 This }controller has many long speed segments, difficult sharp turns. In addition, the track is two meters larger than the  \textcolor{blue}{other}  three considered tracks which  \textcolor{blue}{increases} the overtaking possibilities.
 
 We have again used the vehicle \mbox{\textit{car1-trb1}},
@@ -620,7 +529,7 @@ fit itself to our developed controllers.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcolor{red}{
+\textcolor{blue}{
 To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out two main optimization processes based
@@ -628,7 +537,7 @@ on the GPS: the first one uses the GPS with the two point crossover
 operator while the second uses  BLX with decreasing $\alpha$.
 In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5), \textcolor{blue}{and} in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
 Hence, we experimented  \textcolor{blue}{ with six} controllers in all: the new
-proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}..
+proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}.
 Also and for comparison purpose, two reference controllers have been considered: {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC}}\cite{salem_cig2018}, they both use the fitness function $f_{AVS}$ (Equation \ref{fit_avg}) value for selection.
 All these controllers are summarized in Table \ref{tab:drivers}. 
 }
@@ -636,15 +545,13 @@ All these controllers are summarized in Table \ref{tab:drivers}.
 We have run the algorithms with a population size of 60
 individuals. The rest of  \textcolor{blue}{the} parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
-configuration. % Clarify if crossover rate means BLX-alpha crossover
-               % or there's another crossover too - JJ
-              
+configuration. 
 For every optimization's race, the track is selected randomly from Alpine2 and Wheel 2 tracks.
 We kept the same values for the evolutionary parameters as in our previous works for two reasons: first, because they yielded good results (and are  \textcolor{blue}{not} the focus of this paper), and second, in order to compare previous controllers with the new ones in the same conditions.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% This table could be reduced to 1 column - JJ
+
 \begin{table*}[!htp]
 	\centering
 	{\scriptsize
@@ -706,31 +613,21 @@ are going to change with evolution using the different fitness measures; skewnes
 individuals with lower kurtosis and skewness, since they are more
 likely to draw a consistent value and thus go ahead to the next
 generation. However, different selection procedures will affect them
-in different ways.  \textcolor{red}{This is why we have computed
+in different ways.  \textcolor{blue}{This is why we have computed
   skewness and kurtosis for a sample of 20 from the 60 individuals of
   the population evaluated for 50 generations, and measured fitness
-  values after the first, the 30th, \textcolor{blue}{and} the last generation for the three controllers;} \textcolor{red}{we take 30 measures of the
+  values after the first, the 30th, \textcolor{blue}{and} the last generation for the three controllers;} \textcolor{blue}{we take 30 measures of the
   fitness, generating a statistical distribution for the fitness
   values for every individual in the population; what we plot in}
-Figure \ref{fig:gfcsk} (top, middle, bottom) \textcolor{red}{is the
+Figure \ref{fig:gfcsk} (top, middle, bottom) \textcolor{blue}{is the
   skewness and kurtosis of the fitness for every one of these
   individuals. The normal distribution would have  \textcolor{blue}{ skewness} and
   excess kurtosis exactly equal to 0}.
 
-%\begin{figure}[ht]	
-%	\begin{center}
-%          \includegraphics[width=8cm, height=2cm]{fig/GFC__.jpg}
-%          \includegraphics[width=8cm, height=2cm]{fig/GFCRSE__.jpg}
-%          \includegraphics[width=8cm, height=2cm]{fig/GFCVARSE__.jpg}
-%		\caption{Skewness ($y$) and kurtosis ($x$)
-%                  for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}
-%		\label{fig:gfcsk}
-%	\end{center}	
-%\end{figure}
 \begin{figure}[ht]	
 	\begin{center}
 		\includegraphics[width=8cm, height=7cm]{fig/skew1.jpg}
-		\caption{\textcolor{red}{Excess skewness ($y$) and kurtosis ($x$)
+		\caption{\textcolor{blue}{Excess skewness ($y$) and kurtosis ($x$)
 			for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}}
 		\label{fig:gfcsk}
 	\end{center}	
@@ -758,7 +655,7 @@ around the middle of the area the variable covers, but decreasing more
 slowly towards values away from the center. For the time being, we can
 affirm that fitnessless methods tend to evolve individuals with a  \textcolor{blue}{less uncertain score}, and thus more robust and whose expected
 results are more reliable; this was an objective of this GPS
-procedure, and we consider it has been achieved\textcolor{red}{, as it can be seen in
+procedure, and we consider it has been achieved\textcolor{blue}{, as it can be seen in
 Figure \ref{fig:gfcsk}: this last method reaches the minimal
 dispersion of skewness in the 50th generation, with kurtosis in a
 distribution that is similar to {\sf GFC-GPSE}, but in either case
@@ -783,7 +680,7 @@ for each of the two training  \textcolor{blue}{tracks: Alpine 2}  and Wheel 2  a
 each of the two testing tracks: E-Track 5 and Street 1. Results are
 shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
 
-\textcolor{red}{The main intention \textcolor{blue}{of} these experiments is to
+\textcolor{blue}{The main intention \textcolor{blue}{of} these experiments is to
   highlight the differences in performance brought by the different
   operators and methods used, as well as establishing a new state of
   the art in TORCS. We use 10 controllers in every experiment,  \textcolor{blue}{since
@@ -827,24 +724,9 @@ shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults}.
 			$inferno1$& 16& 30& 16& 14& 76\\			
 			
 				\hline
-%
-%				
-%			\end{tabular}
-%		}\label{tab:RSresults}
-%	}
-%\end{table}
-%%
-%\begin{table}[h!]
-%	\centering
-%	{\scriptsize
-%          \caption{\textcolor{red}{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with 10 controllers
-%          	and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}}
-%          {
-%            \begin{tabular}{|c|c|c|c|c||c|}
               \hline
                \multicolumn{6}{|c|}{Results of varying $BLX-\alpha$ controllers} \\
                             \hline
-%                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
               \hline
                     Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
               \hline
@@ -893,51 +775,14 @@ $BLX-\alpha$ operator; the same process has been followed
 selecting the best controllers of the evolution from those which
 have used this varying-$\alpha$ crossover operator and testing them in several
 races. Results are shown in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable). 
-%
-%
-%\begin{table}[ht]
-%	\centering
-%	{\scriptsize
-%          \caption{\textcolor{red}{ Results of adaptive $BLX-\alpha$ controllers in a mini-championship with 10 controllers
-%          	and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw} and {\tt inferno} are example controllers included with the TORCS simulator \cite{torcs4}. {\bf Boldface} for the absolute winner, {\em italics} for the second best.}}
-%          {
-%            \begin{tabular}{|c|c|c|c|c||c|}
-%              \hline
-%                    & \multicolumn{2}{|c|}{Training tracks} &\multicolumn{2}{|c|}{Testing tracks} \\
-%              \hline
-%                    Controller&\textit{Alpine 2} &Wheel 2&\textit{E-Track 5}  &Street 1&Total\\
-%              \hline
-%              \hline	
-%              {\sf GFC-GPSVAE} &\cellcolor{red!25}236&\cellcolor{red!25}	236&\cellcolor{red!25}250&	\cellcolor{red!25}236&\cellcolor{red!25}{\bf 958}\\
-%              {\sf GFC-GPSVA5} \cite{DBLP:conf/cig/SalemMG19}&\cellcolor{red!25}170&\cellcolor{red!25}	188&\cellcolor{red!25}162&	\cellcolor{red!25}188&\cellcolor{red!25}	{\em 708}\\
-%
-%				{\sf GFC-GPSVAL} \cite{DBLP:conf/cig/SalemMG19}&\cellcolor{red!25}152&	\cellcolor{red!25}156&\cellcolor{red!25}146&\cellcolor{red!25}	156&\cellcolor{red!25}	610\\
-%
-%				
-%				
-%		{\sf GFC-VA} \cite{DBLP:conf/cig/SalemMG19}&\cellcolor{red!25}124&\cellcolor{red!25}	96 &\cellcolor{red!25}102&\cellcolor{red!25}	108&\cellcolor{red!25}	430\\		
-%		{\sf GFC}  \cite{salem_cig2018}&\cellcolor{red!25}102&\cellcolor{red!25}	96 &\cellcolor{red!25}88 &\cellcolor{red!25}	100&\cellcolor{red!25}	386\\
-%		$berniw2$	 &\cellcolor{red!25}76 &\cellcolor{red!25}	88 &\cellcolor{red!25}74 &	\cellcolor{red!25}76 &\cellcolor{red!25}	314\\
-%		$tita1$	 	&\cellcolor{red!25}52 &	\cellcolor{red!25}60 &\cellcolor{red!25}56 &\cellcolor{red!25}	56 &\cellcolor{red!25}	224\\
-%		$inferno2$ &\cellcolor{red!25}40 &\cellcolor{red!25}	44 &\cellcolor{red!25}80 &	\cellcolor{red!25}24 &\cellcolor{red!25}	188\\		
-%		$berniw1$	 &\cellcolor{red!25}36 &\cellcolor{red!25}	24 &\cellcolor{red!25}30 &	\cellcolor{red!25}48 &\cellcolor{red!25}	138\\	
-%		$inferno1$ &\cellcolor{red!25}22 &\cellcolor{red!25}	22 &\cellcolor{red!25}18 &\cellcolor{red!25}	18 &\cellcolor{red!25}	80\\					\hline			
-%			\end{tabular}
-%		}\label{tab:VaryingalphaRSresults}
-%	}
-%\end{table}
-%
+
 
 As it can be seen in the table, again the controller using GPS in
 every generation has reached the best score, but it should be noted the
 big impact of the application of the varying $BLX-\alpha$ operator in
 all the controllers. Thus, looking again at the results in Table \ref{tab:GPS_and_Varyingalpha_RSresults} (bottom subtable) 
-% please add reference - JJ
-% Antonio - done
 and comparing them with those in the top subtable (results of GPS controllers), the increase in the obtained score is evident, at least in the first
-two. % Probably putting those tables together would be better - JJ
-% Antonio - I have put them consecutively in the page. Maybe if we need to save space we could fuse them in the same table with a common caption. But now I think we could let them like this.
-% Antonio - Ok, now they are together in the same table. ;)
+two. 
 Thus, the introduction of the $BLX-\alpha$ operator allows the parameters of the controllers to be refined and increases diversification in the optimization process, which has led to better results.
 Finally, the best controllers obtained from the two main optimization
 processes: {\sf GFC-GPSVAE} and {\sf GFC-GPSE} are evaluated \textcolor{blue}{in an F1} like mini-championship against the previous five TORCS bots and the {\sf GFC-VA}\cite{DBLP:conf/cig/SalemMG19} and {\sf GFC} controllers  \cite{salem_cig2018}. 
@@ -957,7 +802,7 @@ Table \ref{tab:allsresults} shows the obtained results.
       and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}, \textcolor{blue}{and} {\tt inferno} are example controllers included with the TORCS
       simulator \cite{torcs4}.  {\bf Boldface} is used to highlight
       the best value, {\em italics} for the second
-      best. \textcolor{red}{We sort controllers according to the
+      best. \textcolor{blue}{We sort controllers according to the
         overall score, but please note that this ranking need not be
         kept in every column.}}
     {
@@ -997,7 +842,7 @@ collected most of the points in the four tracks, leaving the {\sf
   GFC-GPSE} controller far behind it. The reference drivers, namely
 {\sf GFC-VA} and {\sf GFC}  are classified $3^{rd}$ and $4^{th}$.
 
-\textcolor{red}{Let it be noted that there are very few individual
+\textcolor{blue}{Let it be noted that there are very few individual
   differences in the ranking obtained for individual methods in every
   track; ranking by total score is very similar to rankings in every
   one of the tracks. In the case of our fuzzy-controller based
@@ -1040,23 +885,7 @@ to getting off track and thus damage to the car.
     \label{fig:frontmfs}
 \end{center}	
 \end{figure}
-%\begin{figure}[!ht]	
-%	\begin{center}
-%		\includegraphics[width=9cm]{fig/MAX5.jpg}
-%		\caption{MAX5 input membership for 
-%			{\sf GFC-GPSVAE}.}
-%		\label{fig:max5mfs}	
-%	\end{center}	
-%\end{figure}
-%\begin{figure}[!ht]	
-%	\begin{center}
-%		\includegraphics[width=9cm]{fig/MAX10.jpg}
-%		\caption{MAX10 input membership for 
-%			{\sf GFC-GPSVAE}.}
-%		\label{fig:max10mfs}	
-%	\end{center}	
-%\end{figure}
-%
+
 Since these MFs lead \textcolor{blue}{to very} reliable performance in the car, it
 validates our approach of using fixed rules. It should
 also be noted that the fact that we are using fuzzy controllers allows
@@ -1064,7 +893,7 @@ us for an easy interpretation of the behavior of the car, something
 that would not be possible if other black-box heuristics were used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\textcolor{red}{
+	\textcolor{blue}{
 To evaluate the cost of the proposed controllers, we run the evolutionary optimization for 50 generations and 10 runs for all the considered controllers.
  Table \ref{tab:time} shows the average running time and  as additional information, the range of generations where the best individual was found. } 
 
@@ -1072,21 +901,12 @@ To evaluate the cost of the proposed controllers, we run the evolutionary optimi
 	\centering
 	{\scriptsize
           \caption{Average runtime in 10 runs of 10 races 
-          	 %  Isn't this
-                                %  average running time? - JJ
             and
                   generation where the best individual was spawned.}
 		\label{tab:time}
 		\begin{tabular}{|p{2.85cm}|p{2.20cm}|p{1.65cm}|}
 			\hline  
 			Controller& \textbf{Avg Runtime (s)}&\textbf{Generation}\\
-% Is this number of laps or running time? - Jj
-%Mohammed %% each lap in Alpine 2  takes between 90s and 120s
-%% number of completed laps,  I prefered the laps number to high
-%% values of average running time values ( 123800s for instance)
-                  % But still all cars run the same amount of laps in
-                  % every race. It probably makes sense to use time
-                  % here - JJ
 \hline
 \hline 	 
  \textbf{{\sf GFC-GPSVAL}} \cite{DBLP:conf/cig/SalemMG19}&282923
@@ -1112,14 +932,11 @@ To evaluate the cost of the proposed controllers, we run the evolutionary optimi
 		
 	}
 \end{table} 
-\textcolor{red}{{\sf GFC-GPSVAE} and {\sf GFC-GPSE} controllers were the best where
+\textcolor{blue}{{\sf GFC-GPSVAE} and {\sf GFC-GPSE} controllers were the best where
 they are ranked $1^{st}$ and $2^{nd}$ in the comparative competition (See Table \ref{tab:allsresults}) but they are very expensive in runtime }\textcolor{blue}{ since} they have performed around 282923s and 287200s respectively, which is a
-huge training time. % Don't all individuals use the same amount of
-                    % laps to race? - JJ                    
-                 % Mohammed : in fitnessless  case , time of a race is the time of the worst individual 
-                 % Time of BLX based aproaches, ind are close to each other, so the difference between the best and the wort is less, this factor, decreases the whole runtime                 
+huge training time. 
+           
 This means that, even if the proposed selection policy is very effective, in turn, it requires a lot of computation time.
-%
 Another point that we can highlight is that the controllers with
 $BLX-\alpha$ have reached the optimal solution in \textcolor{blue}{ a few}  generations
 (between the $7^{th}$ and the $20^{th}$) while the other methods required more
@@ -1138,17 +955,6 @@ use it only part of the time, and also together with \textcolor{blue}{a} varying
 BLX-$\alpha$ and \textcolor{blue}{ standard} crossover operators, to assess how it
 interacts with them and which combination yields the best competitive
 results.
-
-% -------------------- this is reiterative and does not add anything -----
-% We tried in a previous work to design a fitness which eliminates this uncertainty or reduces it by looking for the parameters which most affect the behavior of the controllers but the results obtained were not sufficiently satisfactory. In this paper, we started from a simple hypothesis: what if we let nature make the selection? Indeed, since the objective is to find the parameters of a winning controller, why not get rid of fitness and let nature do the rest.
-% The main idea of this work is to overcome uncertainty by using a
-% selection policy based on a system similar to Grand Prix championships
-% where the score of a controller is the sum of the points collected
-% during a set of races and in order to speed up the optimization
-% process, we have introduced a new crossover operator: BLX-$\alpha$
-% which improves exploration.
-% ----------------------------------------------------------------
-
 In races performed in the training, and other, tracks, the controller
 that has evolved using competitive (fitnessless) selection and the
 variable-$\alpha$ BLX crossover operator has proved superior to not
@@ -1194,7 +1000,7 @@ substituting fuzzy controllers by simple neural nets could be a way of
 proving that the fitnessless approach \textcolor{blue}{can} find good results
 independently of the low-level algorithms using to drive the
 car. Fuzzy and neural controllers could be also mixed, even coevolved,
-to try and find the best ones. \textcolor{red}{Since the GPS method
+to try and find the best ones. \textcolor{blue}{Since the GPS method
   operates at a level that is independent of the type of controller used, by
   reducing uncertainty in the evaluation of a controller, \textcolor{blue}{it will likely} be able to improve over a baseline controller
   optimization method that would use solo-races for evaluation, although of course no affirmation
@@ -1207,7 +1013,7 @@ the outputs of the fuzzy controllers, as well as the rules. The implementation c
 a long time. This optimization could go from parallelization, to basic
 program-level improvement.
 
-\textcolor{red}{Robustness in results has been our main objective, but
+\textcolor{blue}{Robustness in results has been our main objective, but
   we have not really investigated the reason why the fitness
   distribution of controllers in solo races usually has a positive
   skewness, and what could be the reason for this. An interesting
@@ -1223,8 +1029,6 @@ B-TIC-402-UGR18 (FEDER and Junta de Andaluc\'{i}a).
 \bibliographystyle{IEEEtranS}
 \bibliography{fuzzy_torcs,geneura,uncertainty,fitnessless}
 
-
-% Antonio - This should be included once it is accepted
 %\begin{IEEEbiographynophoto}{Juan~J.~Merelo}
 %Biography text here.
 %\end{IEEEbiographynophoto}
