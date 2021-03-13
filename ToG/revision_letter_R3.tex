@@ -1,0 +1,221 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Formal Letter
+% LaTeX Template
+% Version 2.0 (7/2/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Author:
+% Vel (vel@LaTeXTemplates.com)
+%
+% Originally based on an example on WikiBooks 
+% (http://en.wikibooks.org/wiki/LaTeX/Letters) but rewritten as of v2.0
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{letter} % 10pt font size default, 11pt and 12pt are also possible
+\usepackage{geometry} % Required for adjusting page dimensions
+\usepackage{lmodern}
+\usepackage{hyperref}
+%\longindentation=0pt % Un-commenting this line will push the closing "Sincerely," to the left of the page
+
+\geometry{
+	paper=a4paper, % Change to letterpaper for US letter
+	top=3cm, % Top margin
+	bottom=1.5cm, % Bottom margin
+	left=4.5cm, % Left margin
+	right=4.5cm, % Right margin
+	%showframe, % Uncomment to show how the type block is set on the page
+}
+
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+
+\usepackage{stix} % Use the Stix font by default
+
+\usepackage{microtype} % Improve justification
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
+
+\signature{Mohammed SALEM} % Your name for the signature at the bottom
+
+\address{SALEM Mohammed \\ University of Mascara \\ Algeria\\ salem@univ-mascara.dz}
+
+%---------------------------------------------------------------------------------
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	ADDRESSEE SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{letter}{Professor Julian Togelius \\ Editor in Chief, IEEE Transactions on Games} % Name/title of the addressee
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT SECTION
+%----------------------------------------------------------------------------------------
+\opening{Subject: Revision and resubmission of manuscript TCIAIG-2019-0090.R1\\
+	\\	
+\textbf{Dear Dr Togelius,}}
+
+Thank you for your consideration of our manuscript entitled "Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection". 
+We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments and have thoroughly revised the manuscript. We found the comments very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
+
+We have followed the editor's remark and thoroughly proof-read the paper using grammatical tools and also by an English native speaker.
+
+In addition we have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the manuscript.
+
+Both, the new and the amended text have been marked in blue color.\\
+The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author. 
+We sincerely hope the revised manuscript worth being accepted for publication in the Journal.
+
+Thank you for your time and consideration.
+
+We look forward to here your reply.
+
+\vspace{2\parskip} % Extra whitespace for aesthetics
+\closing{Sincerely yours,}
+\vspace{2\parskip} % Extra whitespace for aesthetics
+
+\ps{P.S. You can find additional information attached to this letter.} % Postscript text, comment this line to remove it
+
+
+\newpage
+
+	% #############################################################################
+
+{\bf \underline{ Responses to Editor's  Comments to the authors}}\\
+
+	\bf  {\bf AE's Comments to Author:} 
+				\begin{quote}	
+Thank you for the previous revisions of this manuscript. The paper has improved significantly after addressing the different comments from the reviewers. The two reviews below highlight minor modifications that nevertheless should be addressed. Note that I do not recommend doing extra experiments for this manuscript, just provide the explanations/justifications and corrections asked by the reviewers.
+				\end{quote}	
+ {\bf Response:} 
+We thank the editor for this remark. We have given more importance to the grammatical revision of the paper, first by using automatic correction tools and then by an native English speaker. All changes have been marked in blue color in the text.
+
+\newpage
+ Reviewers Comments, Author Responses and Manuscript Changes
+\begin{enumerate}
+% #############################################################################
+
+\item {\bf \underline{ Reviewer 1 Comments}}\\
+		Comments to the Author:\\
+	I would like to thank the authors for the made changes. Added explanations on robustness, uncertainty and fitness-less as well as corrected typos and grammar errors make the paper much more readable.
+	
+	I didn't have much to comment on the previous version, but I am glad that the other reviewers had so many comments which have been addressed in this version. My remaining remarks all consider the presentation and are listed below:
+\begin{itemize}
+	\item {\bf Comment 1:}
+	\begin{quote}	
+	- Figure 4: the figure is still stretched in the x axis. Comparing it to the figure provided via the link in the authors comments, show that the original image has not been stretched.\\
+	- Figure 5: labels are not readable and the image is very stretched in the x-axis\\
+	- Table 3: the right border in the second row is missing\\
+	- Table 4: the right border is missing in the header of the table
+	\end{quote}	
+	\item {\bf Response:} 
+		We thank the reviewer for his interesting remarks. Figure 4 and Figure.5 have been redrawn and the problem of missing lines of Tables 3 and 4 is fixed. 	
+		
+\end{itemize}
+
+We are very grateful to this reviewer for his/her useful and kind comments.
+
+\newpage
+
+% ##############################################################################
+
+\item {\bf \underline{ Reviewer 2 Comments}}\\
+	Comments to the Author\\
+This paper proposes a new evaluation function and a recombination operator for evolving TORCS controllers. However, several aspects need to be considered and a thorough revision of the paper's language.
+
+	\begin{itemize}			
+
+		\item {\bf Comment 1:}
+		\begin{quote}
+
+1. It is questionable to use the term "fitness-less." Isn't the sum of ranks in several races can be seen as an individual's fitness? I think the word "relative-fitness" is more suitable.
+		\end{quote}	
+		\item {\bf Response:} 
+		JJ
+		\begin{quote}
+2. The authors argue that by learning in a competitive environment instead of a solo environment, the layer of uncertainty can be eliminated. However, to verify the claim, the following aspects are needed to be addressed.
+		\end{quote}	
+
+%%			\begin{enumerate}	
+		\item {\bf Comment 2.1:}				
+		\begin{quote}
+- 1) When learning in a competitive environment, several additional variables are expected to be involved, e.g., the track to be used, the number of competing vehicles, the type of competing vehicles, and the competing vehicles' recklessness, etc. How do these variables affect the learning performance? Additional experiments in this regard appear to be necessary. Learning in a competitive environment does really eliminate the uncertainty?
+			\end{quote}	
+			\item {\bf Response:} 
+			JJ
+		\item {\bf Comment 2.2:}
+		\begin{quote}
+- 2) When learning in a competitive environment, does the learned controller work well in a solo environment? Additional experiments in this regard appear to be necessary.
+			\end{quote}	
+		\item {\bf Response:} 
+		Mohammed
+		\item {\bf Comment 2.3:}
+		\begin{quote}
+- 3) Why have several existing studies mainly suggested learning in a solo environment? And, have there been any studies conducted in a competitive environment in the past?
+			\end{quote}	
+		\item {\bf Response:} 
+		
+		Antonio
+		
+		
+%%%	\end{enumerate}		
+		\item {\bf Comment 1:}
+		\begin{quote}
+3. When describing the experiment, the authors stated that in a solo environment, the learning process was based on 20 laps, while using the suggested GPS, learning was based on several races. So, did the authors use 20 laps per race in a competitive environment? In other words, I am curious to see if the training was fair based on the same computational cost.
+			\end{quote}	
+		\item {\bf Response:} 
+		Mohammed
+		\item {\bf Comment 1:}
+		\begin{quote}
+4. The authors used a two-point crossover operator. Is there any rationale for using a two-point crossover operator? Why not use a one-point crossover or uniform crossover? Further explanation is needed for this.
+			\end{quote}	
+		\item {\bf Response:} 
+		Antonio
+		\item {\bf Comment 5:}
+		\begin{quote}
+5. The author used population size = 60, crossover rate = 0.85, mutation rate = 0.09, etc. Is there any rationale for using these control parameters? Can it be argued that these parameters are not optimized for the proposed technique? It is necessary to find the optimal parameters for each comparison technique using grid search, etc., and then compare them.
+			\end{quote}	
+		\item {\bf Response:} 
+		Mohammed
+		\item {\bf Comment 6:}
+		\begin{quote}
+6. It is necessary to examine whether the testing track's performance claimed in the experiment is fair. Since the method proposed by the authors performs training in an already competing environment, there is no guarantee that the test environment is performed completely based on unseen data (test set corruption might exist). If the evaluation is to be conducted fairly, it seems necessary to make changes in the number of competing vehicles, etc.
+			\end{quote}	
+		\item {\bf Response:} 
+		JJ
+		\item {\bf Comment 7:}
+		\begin{quote}
+7. Need to compare with other state-of-the-art algorithms. The authors seem to have only compared the results of their previous studies.				
+			\end{quote}	
+		\item {\bf Response:} 
+		Mohammed		
+	\end{itemize}					
+
+The authors want to thank the reviewer for his/her suggestions for improvement.
+
+
+\end{enumerate}
+ 
+
+%----------------------------------------------------------------------------------------
+
+\end{letter}
+
+\end{document}
