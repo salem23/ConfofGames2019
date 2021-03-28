@@ -68,18 +68,15 @@
 %----------------------------------------------------------------------------------------
 %	LETTER CONTENT SECTION
 %----------------------------------------------------------------------------------------
-\opening{Subject: Revision and resubmission of manuscript TCIAIG-2019-0090.R1\\
+\opening{Subject: Revision and resubmission of manuscript TCIAIG-2019-0090.R2\\
 	\\	
 \textbf{Dear Dr Togelius,}}
 
 Thank you for your consideration of our manuscript entitled "Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection". 
-We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments and have thoroughly revised the manuscript. We found the comments very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
+We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments that we found very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
 
-We have followed the editor's remark and thoroughly proof-read the paper using grammatical tools and also by an English native speaker.
 
-In addition we have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the manuscript.
-
-Both, the new and the amended text have been marked in blue color.\\
+We have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the manuscript.\\
 The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author. 
 We sincerely hope the revised manuscript worth being accepted for publication in the Journal.
 
@@ -105,7 +102,7 @@ We look forward to here your reply.
 Thank you for the previous revisions of this manuscript. The paper has improved significantly after addressing the different comments from the reviewers. The two reviews below highlight minor modifications that nevertheless should be addressed. Note that I do not recommend doing extra experiments for this manuscript, just provide the explanations/justifications and corrections asked by the reviewers.
 				\end{quote}	
  {\bf Response:} 
-We thank the editor for this remark. We have given more importance to the grammatical revision of the paper, first by using automatic correction tools and then by an native English speaker. All changes have been marked in blue color in the text.
+We thank the editor. We responded to the comments of the reviewers and highlights changes in the text. 
 
 \newpage
  Reviewers Comments, Author Responses and Manuscript Changes
@@ -165,7 +162,9 @@ This paper proposes a new evaluation function and a recombination operator for e
 - 2) When learning in a competitive environment, does the learned controller work well in a solo environment? Additional experiments in this regard appear to be necessary.
 			\end{quote}	
 		\item {\bf Response:} 
-		Mohammed
+		We thank the reviewer for the comment, We agree with the reviewer that additional experiments are needed to test the learned controller in solo environment but the aim of our paper is to design a controller for TORCS races trying to eliminate uncertainty and we argue that competitive environment are more uncertain and difficult to train a good bot.
+		
+	%%	Mohammed
 		\item {\bf Comment 2.3:}
 		\begin{quote}
 - 3) Why have several existing studies mainly suggested learning in a solo environment? And, have there been any studies conducted in a competitive environment in the past?
@@ -181,7 +180,8 @@ This paper proposes a new evaluation function and a recombination operator for e
 3. When describing the experiment, the authors stated that in a solo environment, the learning process was based on 20 laps, while using the suggested GPS, learning was based on several races. So, did the authors use 20 laps per race in a competitive environment? In other words, I am curious to see if the training was fair based on the same computational cost.
 			\end{quote}	
 		\item {\bf Response:} 
-		Mohammed
+		We used the same laps number (20 laps) in competitive environment. Results of Table3 and Table.4 are obtained using 20 laps.
+%		Mohammed
 		\item {\bf Comment 1:}
 		\begin{quote}
 4. The authors used a two-point crossover operator. Is there any rationale for using a two-point crossover operator? Why not use a one-point crossover or uniform crossover? Further explanation is needed for this.
@@ -193,7 +193,9 @@ This paper proposes a new evaluation function and a recombination operator for e
 5. The author used population size = 60, crossover rate = 0.85, mutation rate = 0.09, etc. Is there any rationale for using these control parameters? Can it be argued that these parameters are not optimized for the proposed technique? It is necessary to find the optimal parameters for each comparison technique using grid search, etc., and then compare them.
 			\end{quote}	
 		\item {\bf Response:} 
-		Mohammed
+		The reviewer is right; these parameters are the optimal ones for our first trained controller GFC which is the baseline for the proposed controllers in this paper, We believe that using the same parameters for the considered techniques is fair for the comparison taking into account  that a grid search  time consuming. 
+		
+%		Mohammed
 		\item {\bf Comment 6:}
 		\begin{quote}
 6. It is necessary to examine whether the testing track's performance claimed in the experiment is fair. Since the method proposed by the authors performs training in an already competing environment, there is no guarantee that the test environment is performed completely based on unseen data (test set corruption might exist). If the evaluation is to be conducted fairly, it seems necessary to make changes in the number of competing vehicles, etc.
@@ -205,7 +207,10 @@ This paper proposes a new evaluation function and a recombination operator for e
 7. Need to compare with other state-of-the-art algorithms. The authors seem to have only compared the results of their previous studies.				
 			\end{quote}	
 		\item {\bf Response:} 
-		Mohammed		
+		The reviewer is right, indeed we tried to contact to many other authors of bots which participated in the competition in order to include them in the comparison. Unfortunately, we just received a positive answer
+		from the creators of PSRI bot.
+		
+%%		Mohammed		
 	\end{itemize}					
 
 The authors want to thank the reviewer for his/her suggestions for improvement.
