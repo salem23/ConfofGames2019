@@ -101,15 +101,23 @@ If training is done before the
     the resulting score in unknown tracks with unknown rivals
     uncertain at best.
 
-A potentially useful way to increase robustness, that
-is, reduce uncertainty is to make the evaluation process
-as close as possible to the environment in which the controller will
-eventually compete, in a race with other competitors. Hereafter, we will use in general the
-  terminology ``reduce uncertainty'' to mean that we attend to increase the robustness of the result, that is, obtain results whose
-  performance is not affected by the selection procedure and that are
-  consistently good performing. However, robustness is something that
-  cannot be measured or appreciated directly, which is why we will
-  refer to uncertainty and its reduction in the rest of the paper.
+A potentially useful way to increase robustness, that is, reduce
+uncertainty, is to make the evaluation process as close as possible to
+the environment in which the controller will eventually compete, in a
+race with other competitors. By evaluating the ability to win races
+using a different, related, problem, which is the performance {\em
+  running} races, we are actually working with a {\em surrogate model}
+of the problem; this is what introduces a layer of uncertainty, since
+we don't know how close the surrogate model (good runner) is to the
+problem winner (good runner {\em that wins races against other
+  potentially good runners}).
+Hereafter, we will use in general the
+terminology ``reduce uncertainty'' to mean that we attend to increase
+the robustness of the result, that is, obtain results whose
+performance is not affected by the selection procedure and that are
+consistently good performing. However, robustness is something that
+cannot be measured or appreciated directly, which is why we will refer
+to uncertainty and its reduction in the rest of the paper.
 
 If we can eliminate individually-computed fitness and move to an
 environment where fitness is only a relative value, that is, can only
