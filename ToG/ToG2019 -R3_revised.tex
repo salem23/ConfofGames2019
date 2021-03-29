@@ -580,9 +580,12 @@ All these controllers are summarized in Table \ref{tab:drivers}.
 We have run the algorithms with a population size of 60
 individuals. The rest of the parameters are: Generations=50, Crossover
 rate=0.85, Mutation rate=0.09, and 10 different runs per
-configuration. 
-For every optimization's race, the track is selected randomly from Alpine2 and Wheel 2 tracks.
-We kept the same values for the evolutionary parameters as in our previous works for two reasons: first, because they yielded good results (and are not the focus of this paper), and second, in order to compare previous controllers with the new ones in the same conditions.
+configuration.  For every optimization's race, the track is selected
+randomly from Alpine2 and Wheel 2 tracks.  We kept the same values for
+the evolutionary parameters as in our previous works for two reasons:
+first, because they yielded good results (and are not the focus of
+this paper), and second, in order to compare previous controllers with
+the new ones in the same conditions.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -597,21 +600,20 @@ We kept the same values for the evolutionary parameters as in our previous works
 				Controller&Fitness & GPS frequency&Crossover operator \\
 				\hline
 				\hline
-{\sf{GFC-GPSE}}&Fitnessless&Every generation&Standard crossover\\
-{\sf{GFC-GPSVAE}}&Fitnessless&Every generation & Varying BLX$-\alpha$\\
+{\sf{GFC-GPSE}}&Competition-based&Every generation&Standard crossover\\
+{\sf{GFC-GPSVAE}}&Competition-based&Every generation & Varying BLX$-\alpha$\\
 
 {\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&Standard crossover\\
 {\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations & Varying BLX$-\alpha$\\
 
 {\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation &Standard crossover\\
-	
+
 {\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation & Varying BLX$-\alpha$\\
-{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&Standard crossover\\							
+{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&Standard crossover\\
 {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})& - & Varying BLX$-\alpha$\\
 
 
 \hline
-				
 			\end{tabular}
 		}\label{tab:drivers}
 	}
@@ -671,15 +673,17 @@ The figures show that the evolution process has a certain influence in
 these measures, with individuals in the latest stages of evolution
 getting their values closer to the origin, which would be a 0-skewness, 0-kurtosis
 Gaussian. However, there are differences between the fitness-based
-process ({\sf GFC}) and the other two, which are a fitnessless process. This is not only because what we are measuring, is a different value (fitness vs. selection score). 
+process ({\sf GFC}) and the other two, which are based on their
+performance against other players. This is not only because what we are measuring, is a different value (fitness vs. selection score).
 In the first case, the
 selection procedure simply eliminates the outliers with a high
 skewness or kurtosis; there does not seem to be a big change from
-generation 30 to 50, so individuals with  high
+generation 30 to 50, so individuals with high
 and skewed variability are selected as {\em winners} when in fact they
 are possibly not.
 
-The two fitnessless methods, {\sf GFC-GPSE} and {\sf GFC-VA-GPSE}, are
+The two methods that use competition for selecting individuals, {\sf
+  GFC-GPSE} and {\sf GFC-VA-GPSE}, are 
 notably similar, with selection eventually making the score of
 individuals close to a Gaussian distribution, although slightly skewed
 to the right, and with a positive fat tail. However, {\sf GFC-GPSVAE} can find solutions with lower skewness, always between -0.5 and
@@ -687,7 +691,9 @@ to the right, and with a positive fat tail. However, {\sf GFC-GPSVAE} can find s
 is able to generate new solutions with a more reliable expected value
 around the middle of the area the variable covers, but decreasing more
 slowly towards values away from the center. For the time being, we can
-affirm that fitnessless methods tend to evolve individuals with a less uncertain score, and thus more robust and whose expected
+affirm that methods that use competition outcomes for selection tend
+to evolve individuals with a less uncertain score, and thus more
+robust and whose expected
 results are more reliable; this was an objective of this GPS
 procedure, and we consider it has been achieved, as it can be seen in
 Figure \ref{fig:gfcsk}: this last method reaches the minimal
