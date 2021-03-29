@@ -168,7 +168,7 @@ other policies or by itself, is the only way for car controllers to be
 selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how
-this Grand Prix Selection works compared with mixed competition and
+this Grand Prix Selection works compared with mixed competition- and
 fitness-based races, or simply using a selection for those controllers
 that have the highest fitness in the last generation.  This reduction
 of uncertainty has been proved also to reduce diversity in the genetic
@@ -229,20 +229,21 @@ In our case, we have opted for the latter, although other authors like Zhu et al
 consider vision, using TORCS as a testbed for a different kind of
 algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient), that uses images to learn behaviors for specific racing scenarios.
 
-TORCS, being a realistic simulator, can introduce `noise' into
-the track conditions, so that races will never be the same. In
-general, this is the case for most games: there are sources of
-uncertainty either in the game environment itself or in the behavior
-of non-playing characters that act as adversaries in the game; the
-game bot or controller itself can also have non-deterministic rules,
-which is an additional source of uncertainty. Plus games are games,
-and the best way of checking how well a bot or controller plays, is by
-playing the game. This way of evolving bots was called fitnessless
-coevolution: and was defined in
-\cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to
-Grand Prix Selection, presented here, whose essence is
-to get rid of a fitness score resulting from the evaluation of an individual, substituting it with a score obtained by the controller in
-more realistic competitive conditions.
+TORCS, being a realistic simulator, can introduce `noise' into the
+track conditions, so that races will never be the same. In general,
+this is the case for most games: there are sources of uncertainty
+either in the game environment itself or in the behavior of
+non-playing characters that act as adversaries in the game; the game
+bot or controller itself can also have non-deterministic rules, which
+is an additional source of uncertainty. Plus games are games, and the
+best way of checking how well a bot or controller plays, is by playing
+the game. This way of evolving bots was called {\em fitnessless
+coevolution}, and was defined in
+\cite{Jaskowski:2008:FC:1389095.1389161}. This is a precedent to Grand
+Prix Selection, presented here, whose essence is to get rid of a
+fitness score resulting from the evaluation of an individual,
+substituting it with a score obtained by the controller in more
+realistic competitive conditions.
 
 The concept, however, goes back at least to
 \cite{Angeline:1993:CEE:645513.657590}, which calls it a ``competitive
