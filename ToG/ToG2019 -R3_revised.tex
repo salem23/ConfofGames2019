@@ -445,7 +445,7 @@ in the next subsection.
 
 \textbf{Non-uniform} mutation \cite{mutation1997} has been used as the
 \textit{mutation operator} in the GA because it was considered in
-previous approaches of our controllers. 
+previous approaches of our controllers.
 
 The next section describes the two methods we are presenting in this
 paper: a competition-based selection policy and an extended real-value
@@ -456,15 +456,19 @@ exploitation during the evolution.
 \subsection{Grand Prix Selection and decreasing-$\alpha$ BLX blending crossover operator}
 \label{subsec:novel_operators}
 
-As introduced in the previous subsection, the \textbf{Grand Prix Selection} policy (GPS)  aims to select, in every generation, more reliable individuals/controllers as parents to combine their genes for creating new individuals in the following generation of the algorithm, as well as use them as a basis for exploration of new solutions. It is a fitnessless approach,
-independent of the aforementioned fitness function (see Equation
-\ref{fit_avg}), designed to better deal with the uncertainty present
-in the election of an actual good individual using solo races, which
-is a good surrogate for the actual objective of evolution, winning
-competitive races, as has been proved in our papers so far. However,
-in this paper, we will examine if using real races for evolution can be
-a better option in terms of performance, and also of evaluation
-budget. 
+As introduced in the previous subsection, the \textbf{Grand Prix
+Selection} policy (GPS) aims to select, in every generation, more
+reliable individuals/controllers as parents to combine their genes for
+creating new individuals in the following generation of the algorithm,
+as well as use them as a basis for exploration of new solutions. It is
+a competition-based approach, independent of the aforementioned
+fitness function (see Equation \ref{fit_avg}), designed to better deal
+with the uncertainty present in the election of an actual good
+individual using solo races, which is a good surrogate for the actual
+objective of evolution, winning competitive races, as has been proved
+in our papers so far. However, in this paper, we will examine if using
+real races for evolution can be a better option in terms of
+performance, and also of evaluation budget.
 
 The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based on Formula 1 Grand Prix ranking, so the obtained scores per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
