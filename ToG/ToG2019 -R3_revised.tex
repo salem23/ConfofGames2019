@@ -146,8 +146,25 @@ selection of individual car controllers, by enhancing search
 capabilities it made possible accessing parts of the search space
 where controllers with low uncertainty could be found.
 
-Thus, in this paper we are testing the best approaches we have found all together in an algorithm, considering a kind of fitnessless selection, which we have called \textit{Grand Prix Selection} (GPS). Although this selection uses a score that could be assimilated to a fitness, it is actually an extension of a tournament selection policy since it creates tournaments of several individuals, and ``scores'' them according to how they fare in these races. This is not a fitness, since it is not intrinsic to the individual. It is indeed equivalent to, an $n$-tournament selection that is repeated several times, giving a score of $n$ to the first, $n-1$ to the second, and then using this for selection. That score is, thus, not a fitness but a way of keeping track of the position of the individual in the different tournaments it has participated; since, in this context, we have no way of evaluating (i.e. assigning a fitness) to a controller but only a way to compare them, we call this approach {\em fitnessless}, as it was called, for instance, in \cite{jaskowski2008winning}.
-This selection policy is combined with other policies or by itself, as the only way for car controllers to be selected for the next generation.
+Thus, in this paper we are testing the best approaches we have found
+all together in an algorithm, considering a kind of selection based on
+comparisons of performance, which we have called \textit{Grand Prix Selection}
+(GPS). Although this selection uses a score that could be assimilated
+to a fitness, it is actually an extension of a tournament selection
+policy since it creates tournaments of several individuals, and
+``scores'' them according to how they fare in these races. This is not
+a fitness, since it is not intrinsic to the individual. It is indeed
+equivalent to, an $n$-tournament selection that is repeated several
+times, giving a score of $n$ to the first, $n-1$ to the second, and
+then using this for selection. That score is, thus, not a fitness but
+a way of keeping track of the position of the individual in the
+different tournaments it has participated; since, in this context, we
+have no way of evaluating (i.e. assigning a fitness) to a controller
+but only a way to compare them, we call this approach {\em
+fitnessless}, as it was called, for instance, in
+\cite{jaskowski2008winning}.  This selection policy is combined with
+other policies or by itself, as the only way for car controllers to be
+selected for the next generation.
 
 This work also presents an exhaustive study, where we have checked how this Grand Prix Selection works compared with mixed fitnessless and fitness-based races, or simply using a selection for those controllers that have the highest fitness in the last generation.  
 This reduction of uncertainty has been proved also to reduce diversity in the genetic pool \cite{DBLP:journals/tcci/MereloLFGCCRMGTCC16}, which is why the introduction of the \mbox{BLX-$\alpha$} operator, with a certain explorative component, achieves better results than GPS by itself, as we will show here.
