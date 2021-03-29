@@ -103,6 +103,7 @@ Thank you for the previous revisions of this manuscript. The paper has improved 
 		\end{quote}	
  \item {\bf Response:} 
 We thank the editor. We responded to the comments of the reviewers and highlights changes in the text. 
+% Antonio - But we have not highlighted changes in the text indeed, right?
 \end{itemize}
 \newpage
 {\bf
@@ -121,6 +122,7 @@ We thank the editor. We responded to the comments of the reviewers and highlight
 	\begin{quote}	
 	- Figure 4: the figure is still stretched in the x axis. Comparing it to the figure provided via the link in the authors comments, show that the original image has not been stretched.\\
 	- Figure 5: labels are not readable and the image is very stretched in the x-axis\\
+% Antonio - It is still hard to be read
 	- Table 3: the right border in the second row is missing\\
 	- Table 4: the right border is missing in the header of the table
 	\end{quote}	
@@ -197,7 +199,7 @@ When learning in a competitive environment, several additional variables are exp
 When learning in a competitive environment, does the learned controller work well in a solo environment? Additional experiments in this regard appear to be necessary.
 			\end{quote}	
 		\item {\bf Response:} 
-		We thank the reviewer for the comment, We agree with the reviewer that additional experiments are needed to test the learned controller in solo environment but the aim of our paper is to design a controller for TORCS races trying to reduce uncertainty and we argue that competitive environment are more uncertain and difficult to train a good bot.
+		We thank the reviewer for the comment, We agree that additional experiments would be needed to test the learned controller in solo environment, but the aim of our paper is to design a controller for TORCS races trying to reduce uncertainty and we argue that competitive environment are more uncertain and difficult to train a good bot.
 		
 	%%	Mohammed
 		\item {\bf Comment 2.3:}
@@ -215,7 +217,7 @@ Why have several existing studies mainly suggested learning in a solo environmen
 		When describing the experiment, the authors stated that in a solo environment, the learning process was based on 20 laps, while using the suggested GPS, learning was based on several races. So, did the authors use 20 laps per race in a competitive environment? In other words, I am curious to see if the training was fair based on the same computational cost.
 			\end{quote}	
 		\item {\bf Response:} 
-		We used the same laps number (20 laps) in competitive environment. Results of Table3 and Table.4 are obtained using 20 laps.
+		We used the same number of laps in competitive environment Thus, results of Table 3 and Table 4 are obtained considering 20 laps.
 %		Mohammed
 		\item {\bf Comment 4:}
 		\begin{quote}
@@ -228,7 +230,7 @@ The authors used a two-point crossover operator. Is there any rationale for usin
 The author used population size = 60, crossover rate = 0.85, mutation rate = 0.09, etc. Is there any rationale for using these control parameters? Can it be argued that these parameters are not optimized for the proposed technique? It is necessary to find the optimal parameters for each comparison technique using grid search, etc., and then compare them.
 			\end{quote}	
 		\item {\bf Response:} 
-		The reviewer is right; these parameters are the optimal ones for our first trained controller GFC which is the baseline for the proposed controllers in this paper, We believe that using the same parameters for the considered techniques is fair for the comparison taking into account  that a grid search  time consuming. 
+		The reviewer is right; these parameters are the optimal ones for our first trained controller GFC which is the baseline for the proposed controllers in this paper. We believe that using the same parameters for the considered techniques is fair for the comparison taking into account that a grid search would be very time consuming. 
 		
 %		Mohammed
 		\item {\bf Comment 6:}
@@ -242,8 +244,9 @@ It is necessary to examine whether the testing track's performance claimed in th
 Need to compare with other state-of-the-art algorithms. The authors seem to have only compared the results of their previous studies.				
 			\end{quote}	
 		\item {\bf Response:} 
-		The reviewer is right, indeed we tried to contact to many other authors of bots which participated in the competition in order to include them in the comparison. Unfortunately, we just received a positive answer
-		from the creators of PSRI bot.
+		The reviewer is right, indeed we tried to contact many other authors of bots which participated in past editions of the competition, in order to include them in the comparison. Unfortunately, we just received a positive answer from the creators of PSRI bot. Thus, we have also included quite competitive opponents in the comparison, such as \texttt{berniw, tita} and \texttt{inferno}, which have been also considered in many previous studies.
+
+Anyway, most of the experiments are focused on analysing the impact of the different proposed factors and operators on our previous approaches, so we compare them. 
 		
 %%		Mohammed		
 	\end{itemize}					
