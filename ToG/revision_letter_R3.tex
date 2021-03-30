@@ -224,7 +224,10 @@ Why have several existing studies mainly suggested learning in a solo environmen
 The authors used a two-point crossover operator. Is there any rationale for using a two-point crossover operator? Why not use a one-point crossover or uniform crossover? Further explanation is needed for this.
 			\end{quote}	
 		\item {\bf Response:} 
-		Antonio
+Some works, such as the one by Eshelman et al., do not recommend the use of 1X (one-point crossover) due to its clear biasing effect. It presents the so-called positional bias which makes it harder to generate good solutions. On the opposite side the UX (uniform crossover) do not present any bias, however, it lacks the advantages of the building blocks. 2X (two-point crossover) is a good intermediate option among them. Moreover, we conducted in previous works an exhaustive experimentation process in which we tested different alternatives, finding out that 2X yielded the best results.
+We have added this explanation to the text (as a footnote on page 6), as well as the reference:\\
+Eshelman, Larry J., Richard A. Caruana, and J. David Schaffer. "Biases in the crossover landscape." In Proceedings of the third international conference on Genetic algorithms, pp. 10-19. 1989.
+
 		\item {\bf Comment 5:}
 		\begin{quote}
 The author used population size = 60, crossover rate = 0.85, mutation rate = 0.09, etc. Is there any rationale for using these control parameters? Can it be argued that these parameters are not optimized for the proposed technique? It is necessary to find the optimal parameters for each comparison technique using grid search, etc., and then compare them.

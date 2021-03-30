@@ -576,9 +576,9 @@ fit itself to our developed controllers.
 To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out two main optimization processes based
-on the GPS: the first one uses the GPS with the two point crossover
-operator while the second uses  BLX with decreasing $\alpha$.
-In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5), and in the last generation(L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
+on the GPS: the first one uses the GPS with the two-point crossover
+operator\footnote{Some works, such as the one by Eshelman et al. \cite{eshelman1989biases}, do not recommend the use of one-point crossover (1X) due to its clear positional biasing effect, which makes it harder to generate good solutions. On the opposite side the uniform crossover (UX) do not present any bias, however, it lacks the advantages of the building blocks. Thus, two-point crossover (2X) is a good intermediate option among them. Moreover, we conducted in previous works an exhaustive experimentation process in which we tested different alternatives, finding out that 2X yielded the best results.} while the second uses BLX with decreasing $\alpha$.
+In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5), and in the last generation (L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
 Hence, we experimented with six controllers in all: the new
 proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}.
 Also and for comparison purpose, two reference controllers have been considered: {\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19} and {\sf{GFC}}\cite{salem_cig2018}, they both use the fitness function $f_{AVS}$ (Equation \ref{fit_avg}) value for selection.
