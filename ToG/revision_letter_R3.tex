@@ -208,8 +208,30 @@ Why have several existing studies mainly suggested learning in a solo environmen
 			\end{quote}	
 		\item {\bf Response:} 
 		
-		Antonio
+	As it is explained in the text (page 2), solo races are more convenient for the `training' stage (i.e. the evolutionary process), since the incorporation of rivals includes an additional uncertainty source due to their `unexpected' behaviour during the races. Thus, considering the car is being optimised by itself allows to improve its general behavioural patterns (in a surrogate model). Moreover, it must be remarked that TORCS sensors simply detect `obstacles' or `objects' around the car, which can be the track limits or other cars, so, in both cases, our car must avoid impacting with them.
+Finally, since we aim to study the impact of different operators in the evolutionary process, we argue that we should focus on the car performance without external factors, such as rivals during the evaluation stage.
+
+With regard to other works, most of them follow a similar approach, i.e. they design and optimise their controllers in solo races, even in works like the one by Cardamone et al., in which an on-line (during the game) procedure is considered, but with no opponents to deal with.
+
+The reference is:\\
+L. Cardamone, D. Loiacono, and P. L. Lanzi, ``On-line neuroevolution
+applied to the open racing car simulator,'' in Proceedings of the Eleventh
+Conference on Congress on Evolutionary Computation, ser. CEC`09.
+Piscataway, NJ, USA: IEEE Press, 2009, pp. 2622-2629.\\
 		
+There are some studies like the one by D.P. Li\'ebana et al. that consider rivals during the optimisation procedure, but due to that fact, they cannot extract firm conclusions regarding their proposed approach.
+Also, Loiacono et al. published a proposal of an algorithm to learn overtaking manoeuvre, which obviously considers opponents during the training stage, but since they are part of the problem to solve.
+
+The references are:\\
+D.P. Li\'ebana, G. Recio, Y. S\'aez, and P. Isasi, ``Evolving a fuzzy
+controller for a car racing competition,'' in Proceedings of the 2009
+IEEE Symposium on Computational Intelligence and Games, CIG 2009,
+Milano, Italy, 7-10 September, 2009, 2009, pp. 263-270.
+
+D. Loiacono, A. Prete, P. L. Lanzi, and L. Cardamone,``Learning to
+overtake in TORCS using simple reinforcement learning,'' in IEEE
+Congress on Evolutionary Computation. IEEE, 2010, pp. 1-8.
+
 	\end{itemize}			
 %%%	\end{enumerate}		
 		\item {\bf Comment 3:}
@@ -254,7 +276,7 @@ Anyway, most of the experiments are focused on analysing the impact of the diffe
 %%		Mohammed		
 	\end{itemize}					
 
-The authors want to thank the reviewer for his/her suggestions for improvement.
+The authors want to thank the reviewer for his/her valuable suggestions for improvement.
 
 
 \end{enumerate}
