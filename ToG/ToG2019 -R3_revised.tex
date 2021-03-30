@@ -559,8 +559,13 @@ training; \mbox{CG-Track 2} has similar features, and it is used by
 in this last case for transfer learning. There are several differences between \mbox{CG-Track 2} and \mbox{Alpine 2}, the one we use, but the main one is that turns are relatively easier and straight segments are longer, favoring fast cars over balanced ones; this is why we have chosen Alpine 2 for training, since
 it offers the best generalization for cars trained using it.\\
 The second circuit is the \mbox{Wheel 2} Track. It is a  Suzuka F1 track that combines many challenges such as  high-speed parts and different  curve types. Moreover, the eleventh turn is a hairpin turn. It was  described in \cite{wheel2track_chen} as `a more difficult track with many fast turns' (See Figure \ref{fig:alpine2_wheel2track}).
-To test the obtained controllers, we considered two tracks: the first track is \mbox{\textit{E-Track 5}}, used in previous papers \cite{salem_evo17},\cite{salem_evo18} and the second one is \mbox{\textit{Street 1}}.
-This controller has many long speed segments, difficult sharp turns. In addition, the track is two meters larger than the  other  three considered tracks which  increases the overtaking possibilities.
+To test the obtained controllers, we considered two tracks: \mbox{\textit{E-Track 5}}, used previously \cite{salem_evo17},\cite{salem_evo18} and  \mbox{\textit{Street 1}}.
+This controller has many long speed segments, difficult sharp
+turns. In addition, the track is two meters wider than the other three
+considered tracks which  increases the overtaking
+possibilities. \textcolor{red}{This is an unique feature, not found in
+  the training tracks, decreasing the possibility of a
+  over-generalization during training.}
 
 We have again used the vehicle \mbox{\textit{car1-trb1}},
 which is a well balanced, NASCAR type car \footnote{See description in

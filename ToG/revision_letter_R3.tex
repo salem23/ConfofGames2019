@@ -73,16 +73,17 @@
 \textbf{Dear Dr Togelius,}}
 
 Thank you for your consideration of our manuscript entitled "Overtaking Uncertainty with Evolutionary TORCS controllers: Combining BLX with Decreasing $\alpha$ Operator and Grand Prix Selection". 
-We would also like to take this opportunity to thank the reviewers for their positive feedback for correction or modification. Thus, we have checked and addressed the reviewers' comments that we found very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
+We would also like to take this opportunity to thank the reviewers for
+their positive feedback and their requests for correction or modification. Thus, we have checked and addressed the reviewers' comments that we found very helpful, and believe our revised manuscript - which you will find uploaded alongside this document -, represents a significant improvement over our previous submission. \\
 
 
 We have appended the reviewers' comments below in this letter and answered to them point by point, indicating exactly how we have addressed each concern or request, and describing the changes we have made in the manuscript.\\
-The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author. 
+The revisions have been approved by all the authors and I personally have again been chosen as the corresponding author.
 We sincerely hope the revised manuscript worth being accepted for publication in the Journal.
 
 Thank you for your time and consideration.
 
-We look forward to here your reply.
+We look forward to hear your reply.
 
 \vspace{2\parskip} % Extra whitespace for aesthetics
 \closing{Sincerely yours,}
@@ -96,13 +97,14 @@ We look forward to here your reply.
 
 {\bf \underline{ Responses to Editor's  Comments to the authors}}\\
 \begin{itemize}
- \item 	\bf  {\bf AE's Comments to Author:} 
-		\begin{quote}	
+ \item 	\bf  {\bf AE's Comments to Author:}
+		\begin{quote}
 Thank you for the previous revisions of this manuscript. The paper has improved significantly after addressing the different comments from the reviewers. The two reviews below highlight minor modifications that nevertheless should be addressed. Note that I do not recommend doing extra experiments for this manuscript, just provide the explanations/justifications and corrections asked by the reviewers.
-		\end{quote}	
+		\end{quote}
  \item {\bf Response:} 
-We thank the editor. We responded to the comments of the reviewers and highlights changes in the text. 
-% Antonio - But we have not highlighted changes in the text indeed, right?
+We thank the editor. We responded to the comments of the reviewers and
+highlights changes in the text.
+
 \end{itemize}
 \newpage
 {\bf
@@ -139,21 +141,22 @@ We are very grateful to this reviewer for his/her useful and kind comments.
 	Comments to the Author\\
 This paper proposes a new evaluation function and a recombination operator for evolving TORCS controllers. However, several aspects need to be considered and a thorough revision of the paper's language.
 
-	\begin{itemize}			
+	\begin{itemize}
 
 		\item {\bf Comment 1:}
 		\begin{quote}
 	It is questionable to use the term "fitness-less." Isn't the sum of ranks in several races can be seen as an individual's fitness? I think the word "relative-fitness" is more suitable.
-		\end{quote}	
+		\end{quote}
 		\item {\bf Response:} Except when referring to actual
                   papers or methods that were denominated in that
                   fashion, we have eliminated this term referring to
-                  our own work. As suggested by the reviewer,
+                  our own work. What the reviewer suggested,
                   ``relative fitness'' would be a good substitute, but
                   since it's actually arrived at via competiton, we
                   have used {\em competitive-based fitness} or other
-                  paraphrases that refer to this fact, instead of
-                  using fitnessless. We thank the reviewer for this suggestion.
+                  similar terms that refer to this fact, instead of
+                  using fitnessless. We thank the reviewer for this
+                  suggestion.
 
 \item {\bf Comment 2}	
 		\begin{quote}
@@ -166,7 +169,7 @@ This paper proposes a new evaluation function and a recombination operator for e
 When learning in a competitive environment, several additional variables are expected to be involved, e.g., the track to be used, the number of competing vehicles, the type of competing vehicles, and the competing vehicles' recklessness, etc. How do these variables affect the learning performance? Additional experiments in this regard appear to be necessary. Learning in a competitive environment does really eliminate the uncertainty?
 			\end{quote}	
 			\item {\bf Response:}
-			Uncertainty can't simply be eliminated,
+			Uncertainty can't simply be eliminated;
                         however, you can mitigate it by making what
                         you use to evolve as close as possible to the
                         actual problem that you want solved:
@@ -206,9 +209,16 @@ When learning in a competitive environment, does the learned controller work wel
 Why have several existing studies mainly suggested learning in a solo environment? And, have there been any studies conducted in a competitive environment in the past?
 			\end{quote}	
 		\item {\bf Response:} 
-		
-	As it is explained in the text (page 2), solo races are more convenient for the `training' stage (i.e. the evolutionary process), since the incorporation of rivals includes an additional uncertainty source due to their `unexpected' behaviour during the races. Thus, considering the car is being optimised by itself allows to improve its general behavioural patterns (in a surrogate model). Moreover, it must be remarked that TORCS sensors simply detect `obstacles' or `objects' around the car, which can be the track limits or other cars, so, in both cases, our car must avoid impacting with them.
-Finally, since we aim to study the impact of different operators in the evolutionary process, we argue that we should focus on the car performance without external factors, such as rivals during the evaluation stage.
+
+	As it is explained in the text (page 2), solo races are more
+        convenient for the `training' stage (i.e. the evolutionary
+        process), since the incorporation of rivals includes an
+        additional uncertainty source to the fitness due to their `unexpected'
+        behaviour during the races. Using competition to evaluate
+        controllers is also much slower; you need several races with
+        different combinations of cars, while you need a single one,
+        by definition, in a ``solo'' race.
+        Thus, considering the car is being optimised by itself allows to improve its general behavioural patterns (in a surrogate model). Moreover, it must be remarked that TORCS sensors simply detect `obstacles' or `objects' around the car, which can be the track limits or other cars, so, in both cases, our car must avoid impacting with them.
 
 With regard to other works, most of them follow a similar approach, i.e. they design and optimise their controllers in solo races, even in works like the one by Cardamone et al., in which an on-line (during the game) procedure is considered, but with no opponents to deal with.
 
@@ -231,6 +241,10 @@ D. Loiacono, A. Prete, P. L. Lanzi, and L. Cardamone,``Learning to
 overtake in TORCS using simple reinforcement learning,'' in IEEE
 Congress on Evolutionary Computation. IEEE, 2010, pp. 1-8.
 
+Any way, studies with a competitive environment, in this and other
+games, have been included in the bibliography and discussed in the
+State of the Art section.
+
 	\end{itemize}			
 %%%	\end{enumerate}		
 		\item {\bf Comment 3:}
@@ -238,7 +252,10 @@ Congress on Evolutionary Computation. IEEE, 2010, pp. 1-8.
 		When describing the experiment, the authors stated that in a solo environment, the learning process was based on 20 laps, while using the suggested GPS, learning was based on several races. So, did the authors use 20 laps per race in a competitive environment? In other words, I am curious to see if the training was fair based on the same computational cost.
 			\end{quote}	
 		\item {\bf Response:} 
-		We used the same number of laps in competitive environment Thus, results of Table 3 and Table 4 are obtained considering 20 laps.
+		We used the same number of laps in competitive
+                environment Thus, results of Table 3 and Table 4 are
+                obtained considering 20 laps. This is clarified in the
+                table caption.
 %		Mohammed
 		\item {\bf Comment 4:}
 		\begin{quote}
@@ -247,7 +264,10 @@ The authors used a two-point crossover operator. Is there any rationale for usin
 		\item {\bf Response:} 
 Some works, such as the one by Eshelman et al., do not recommend the use of 1X (one-point crossover) due to its clear biasing effect. It presents the so-called positional bias which makes it harder to generate good solutions. On the opposite side the UX (uniform crossover) do not present any bias, however, it lacks the advantages of the building blocks. 2X (two-point crossover) is a good intermediate option among them. Moreover, we conducted in previous works an exhaustive experimentation process in which we tested different alternatives, finding out that 2X yielded the best results.
 We have added this explanation to the text (as a footnote on page 6), as well as the reference:\\
-Eshelman, Larry J., Richard A. Caruana, and J. David Schaffer. "Biases in the crossover landscape." In Proceedings of the third international conference on Genetic algorithms, pp. 10-19. 1989.
+Eshelman, Larry J., Richard A. Caruana, and J. David Schaffer. "Biases
+in the crossover landscape." In Proceedings of the third international
+conference on Genetic algorithms, pp. 10-19. 1989.
+% Why a footnote and not in the main text? - JJ
 
 		\item {\bf Comment 5:}
 		\begin{quote}
@@ -265,9 +285,24 @@ The author used population size = 60, crossover rate = 0.85, mutation rate = 0.0
 		\item {\bf Comment 6:}
 		\begin{quote}
 It is necessary to examine whether the testing track's performance claimed in the experiment is fair. Since the method proposed by the authors performs training in an already competing environment, there is no guarantee that the test environment is performed completely based on unseen data (test set corruption might exist). If the evaluation is to be conducted fairly, it seems necessary to make changes in the number of competing vehicles, etc.
-			\end{quote}	
-		\item {\bf Response:} 
-		JJ
+			\end{quote}
+		\item {\bf Response:} We have added a sentence
+                  justifying our choice of one of these tracks, {\sf
+                    street 1}:
+                  there's more space for overtaking, for instance, but
+                  also many sharp turns and segments where speed can
+                  be maxed up. Our training system, anyway, does not
+                  memorize tracks, so we dare say that there's no
+                  problem of overfitting to a specific track. There
+                  might be a problem of drivers prepared only for
+                  specific features: high-speed segments, or other
+                  with only mild turns. This is why we select tracks
+                  based on the presence of many different features for
+                  which our drivers can be prepared. Even so, the one
+                  used for testing does have a unique, race-oriented
+                  feature (more possibilities of overtaking) that has
+                  been highlighted in the new version.
+
 		\item {\bf Comment 7:}
 		\begin{quote}
 Need to compare with other state-of-the-art algorithms. The authors seem to have only compared the results of their previous studies.				
@@ -275,10 +310,12 @@ Need to compare with other state-of-the-art algorithms. The authors seem to have
 		\item {\bf Response:} 
 		The reviewer is right, indeed we tried to contact many other authors of bots which participated in past editions of the competition, in order to include them in the comparison. Unfortunately, we just received a positive answer from the creators of PSRI bot. Thus, we have also included quite competitive opponents in the comparison, such as \texttt{berniw, tita} and \texttt{inferno}, which have been also considered in many previous studies.
 
-Anyway, most of the experiments are focused on analysing the impact of the different proposed factors and operators on our previous approaches, so we compare them. 
+Anyway, most of the experiments are focused on analysing the impact of
+the different proposed factors and operators on our previous
+approaches, so we use them for comparison.
 		
-%%		Mohammed		
-	\end{itemize}					
+%%		Mohammed
+	\end{itemize}
 
 The authors want to thank the reviewer for his/her valuable suggestions for improvement.
 
