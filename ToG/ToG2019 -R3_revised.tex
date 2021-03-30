@@ -45,9 +45,9 @@ used for designing racing car controllers, but with a series of
 challenges: an evaluation function that can separate the best
 controllers from the rest, and a series of operators that can explore
 different possibilities in the controller search space. Within the
-context of the TORCS racing simulator, in this paper, we introduce a
+context of the TORCS racing simulator, in this paper,\textcolor{red}{we introduce a
 selection policy based on competition and called
-\textit{Grand Prix Selection} (GPS), which will be able to increase
+\textit{Grand Prix Selection} (GPS)}, which will be able to increase
 robustness by using something more realistic than solo race scores to
 select individuals. Additionally, we increase the exploitative power
 of this kind of selection via a BLX operator with continuously
@@ -64,7 +64,7 @@ competitions.
 \begin{IEEEkeywords}
 Simulated Car Racing, TORCS, Fuzzy Controllers, Autonomous
 controllers, Genetic Algorithms, Optimization, BLX-$\alpha$ Crossover,
-Grand Prix Selection, Uncertainty, Competitive fitness
+Grand Prix Selection, Uncertainty, \textcolor{red}{Competitive fitness}
 \end{IEEEkeywords}}
 
 % make the title area
@@ -111,14 +111,14 @@ of the problem; this is what introduces a layer of uncertainty, since
 we don't know how close the surrogate model (good runner) is to the
 problem winner (good runner {\em that wins races against other
   potentially good runners}).
-Hereafter, we will use in general the
+	\textcolor{red}{Hereafter, we will use in general the
 terminology ``reduce uncertainty'' to mean that we attend to increase
 the robustness of the result, that is, obtain results whose
 performance is not affected by the selection procedure and that are
 consistently good performing. However, robustness is something that
 cannot be measured or appreciated directly, which is why we will refer
-to uncertainty and its reduction in the rest of the paper.
-
+to uncertainty and its reduction in the rest of the paper.}
+\textcolor{red}{
 If we can eliminate individually-computed fitness and move to an
 environment where fitness is only a relative value, that is, can only
 be computed relatively to other individuals, we will be avoiding one
@@ -128,7 +128,7 @@ against other opponents) in which car controllers that win the most
 races will proceed to the next generation, while those that do not,
 will simply be removed from the pool. We can further reduce
 uncertainty even more by repeating races several times."  By doing
-this, we try to overcome one of the biggest challenges we have found
+this}, we try to overcome one of the biggest challenges we have found
 in this line of research. Uncertainty in selection was already
 identified as such in its first paper \cite{salem_evo17}, which
 introduced a basic fuzzy-controller based car driving system. This
@@ -153,7 +153,7 @@ additional operator, by itself, did not reduce uncertainty in the
 selection of individual car controllers, by enhancing search
 capabilities it made possible accessing parts of the search space
 where controllers with low uncertainty could be found.
-
+\textcolor{red}{
 Thus, in this paper we are testing the best approaches we have found
 all together in an algorithm, considering a kind of selection based on
 comparisons of performance, which we have called \textit{Grand Prix Selection}
@@ -173,8 +173,8 @@ ocassions {\em
 fitnessless}, as it was called, for instance, in
 \cite{jaskowski2008winning}.  This selection policy is combined with
 other policies or by itself, is the only way for car controllers to be
-selected for the next generation.
-
+selected for the next generation.}
+\textcolor{red}{
 This work also presents an exhaustive study, where we have checked how
 this Grand Prix Selection works compared with mixed competition- and
 fitness-based races, or simply using a selection for those controllers
@@ -187,7 +187,7 @@ we will show here.  Besides, we have compared the influence of the
 \mbox{BLX-$\alpha$} operator on the performance of the evolved
 controllers with others using standard crossover operators, since we
 aim to better control the diversity in the population.
-
+}
 The rest of the paper is organized as follows. Next, we present the
 state of the art, to be followed by a description of the TORCS
 simulator and the previously defined fuzzy controllers in Section
@@ -236,7 +236,7 @@ You can also use vision to have a more complete, although a more complicated, vi
 In our case, we have opted for the latter, although other authors like Zhu et al. \cite{zhu2019vision} rather
 consider vision, using TORCS as a testbed for a different kind of
 algorithms. On the other hand \cite{8833873} uses deep learning, working with real images instead of sensor values, whereas \cite{Kaushik_2018_ECCV_Workshops} describes a DDPG (deep deterministic policy gradient), that uses images to learn behaviors for specific racing scenarios.
-
+\textcolor{red}{
 TORCS, being a realistic simulator, can introduce `noise' into the
 track conditions, so that races will never be the same. In general,
 this is the case for most games: there are sources of uncertainty
@@ -252,23 +252,23 @@ Prix Selection, presented here, whose essence is to get rid of a
 fitness score resulting from the evaluation of an individual,
 substituting it with a score obtained by the controller in more
 realistic competitive conditions.
-
+}
 The concept, however, goes back at least to
 \cite{Angeline:1993:CEE:645513.657590}, which calls it a ``competitive
 fitness environment''. So called {\em fitnessless} evolution was further developed in
 \cite{rosin1995methods}, but it has been also used in genetic
 programming by Tettamanzi in \cite{tettamanzi1996genetic}.
-
+\textcolor{red}{
 However, the competitions played in those works were not, strictly,
 games. Selection based on competition has been used in games extensively, like
-\cite{Jaskowski2008,jaskowski2008winning,fernandez2016_only_one}.
+\cite{Jaskowski2008,jaskowski2008winning,fernandez2016_only_one}.}
 % Antonio - References of Jaskowski are almost the same (they describe the same work, but in different publications).
 Deriving which individuals are the best from these races, taking into account
 the {\em noisy} environment we have mentioned, is not trivial
 either. As recently as 2017, an ELO-based ranking strategy was
 introduced for selecting winning bots in a fighting game
-\cite{7792145}. The first one mentions ``imperfect information'',
-precisely, as one of the factors to use this competition-based selection strategy.
+\cite{7792145}.\textcolor{red}{ The first one mentions ``imperfect information'',
+precisely, as one of the factors to use this competition-based selection strategy.}
 
 Since we are working with racing games, we will introduce a score that
 is closer to the one used in that kind of game. This will be
@@ -455,16 +455,16 @@ in the next subsection.
 \textbf{Non-uniform} mutation \cite{mutation1997} has been used as the
 \textit{mutation operator} in the GA because it was considered in
 previous approaches of our controllers.
-
+\textcolor{red}{
 The next section describes the two methods we are presenting in this
 paper: a competition-based selection policy and an extended real-value
 crossover operator to manage the balance between exploration and
-exploitation during the evolution.
+exploitation during the evolution.}
 
 % -------------------------------------------------------------------
 \subsection{Grand Prix Selection and decreasing-$\alpha$ BLX blending crossover operator}
 \label{subsec:novel_operators}
-
+\textcolor{red}{
 As introduced in the previous subsection, the \textbf{Grand Prix
 Selection} policy (GPS) aims to select, in every generation, more
 reliable individuals/controllers as parents to combine their genes for
@@ -478,7 +478,7 @@ objective of evolution, winning competitive races, as has been proved
 in our papers so far. However, in this paper, we will examine if using
 real races for evolution can be a better option in terms of
 performance, and also of evaluation budget.
-
+}
 The mechanism arranges groups of 10 individuals/controllers which are placed in a track in TORCS, where different races are simulated. Thus, they compete, using the same car (i.e. in the same conditions) during several laps. After every race, the controllers get a score according to their position in the final rank. This is a \textit{score function} based on Formula 1 Grand Prix ranking, so the obtained scores per rank are: rank 1 - 25 points, 2 - 18, 3 - 15, 4 - 12, 5 - 10, 6 - 8, 7 - 6, 8 - 4, 9 - 2, 10 - 1.
 Then, the best individuals will be those whose accumulated score (sum of scores of all races) are the five highest.
 
@@ -578,7 +578,7 @@ To analyze the influence of the new introduced Grand Prix Selection
 (GPS) and the crossover operator on the performance of the fuzzy
 controller, we have carried out two main optimization processes based
 on the GPS: the first one uses the GPS with the two-point crossover
-operator\footnote{Some works, such as the one by Eshelman et al. \cite{eshelman1989biases}, do not recommend the use of one-point crossover (1X) due to its clear positional biasing effect, which makes it harder to generate good solutions. On the opposite side the uniform crossover (UX) do not present any bias, however, it lacks the advantages of the building blocks. Thus, two-point crossover (2X) is a good intermediate option among them. Moreover, we conducted in previous works an exhaustive experimentation process in which we tested different alternatives, finding out that 2X yielded the best results.} while the second uses BLX with decreasing $\alpha$.
+operator\footnote{	\textcolor{red}{Some works, such as the one by Eshelman et al. \cite{eshelman1989biases}, do not recommend the use of one-point crossover (1X) due to its clear positional biasing effect, which makes it harder to generate good solutions. On the opposite side the uniform crossover (UX) do not present any bias, however, it lacks the advantages of the building blocks. Thus, two-point crossover (2X) is a good intermediate option among them. Moreover, we conducted in previous works an exhaustive experimentation process in which we tested different alternatives, finding out that 2X yielded the best results.}} while the second uses BLX with decreasing $\alpha$.
 In every process, three controllers are obtained depending on the application of the GPS: in every generation (E), every 5 generations (5), and in the last generation (L). The acronym VA  stands for "varying $\alpha$" in the names of  controllers with BLX and decreasing $\alpha$.
 Hence, we experimented with six controllers in all: the new
 proposed controllers {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, our previous four GPS based controllers \cite{DBLP:conf/cig/SalemMG19}: {\sf{GFC-GPS5}}, {\sf{GFC-GPSL}},{\sf{GFC-GPSVA5}} and {\sf{GFC-GPSVAL}}.
@@ -609,8 +609,8 @@ the new ones in the same conditions.
 				Controller&Fitness & GPS frequency&Crossover operator \\
 				\hline
 				\hline
-{\sf{GFC-GPSE}}&Competition-based&Every generation&Standard crossover\\
-{\sf{GFC-GPSVAE}}&Competition-based&Every generation & Varying BLX$-\alpha$\\
+{\sf{GFC-GPSE}}&	\textcolor{red}{Competition-based}&Every generation&Standard crossover\\
+{\sf{GFC-GPSVAE}}&	\textcolor{red}{Competition-based}&Every generation & Varying BLX$-\alpha$\\
 
 {\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&Standard crossover\\
 {\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations & Varying BLX$-\alpha$\\
@@ -672,7 +672,7 @@ Figure \ref{fig:gfcsk} (top, middle, bottom) is the
 
 \begin{figure}[ht]	
 	\begin{center}
-		\includegraphics[width=6cm, height=7cm]{fig/skew1.jpg}
+		\includegraphics[width=8cm, height=9cm]{fig/skew1.jpg}
 		\caption{Excess skewness ($y$) and kurtosis ($x$)
 			for the $f_{AVS}$ fitness in the  {\sf GFC} method \cite{salem_cig2018} (top), GPS score in {\sf GFC-GPSE} (middle) and {\sf GFC-GPSVAE} (bottom).}
 		\label{fig:gfcsk}
@@ -681,29 +681,29 @@ Figure \ref{fig:gfcsk} (top, middle, bottom) is the
 The figures show that the evolution process has a certain influence in
 these measures, with individuals in the latest stages of evolution
 getting their values closer to the origin, which would be a 0-skewness, 0-kurtosis
-Gaussian. However, there are differences between the fitness-based
+Gaussian. 	\textcolor{red}{However, there are differences between the fitness-based
 process ({\sf GFC}) and the other two, which are based on their
-performance against other players. This is not only because what we are measuring, is a different value (fitness vs. selection score).
+performance against other players. This is not only because what we are measuring, is a different value (fitness vs. selection score).}
 In the first case, the
 selection procedure simply eliminates the outliers with a high
 skewness or kurtosis; there does not seem to be a big change from
 generation 30 to 50, so individuals with high
 and skewed variability are selected as {\em winners} when in fact they
 are possibly not.
-
+	\textcolor{red}{
 The two methods that use competition for selecting individuals, {\sf
-  GFC-GPSE} and {\sf GFC-VA-GPSE}, are
+  GFC-GPSE} and {\sf GFC-VA-GPSE}}, are
 notably similar, with selection eventually making the score of
 individuals close to a Gaussian distribution, although slightly skewed
 to the right, and with a positive fat tail. However, {\sf GFC-GPSVAE} can find solutions with lower skewness, always between -0.5 and
 1. Since this method exploits more found solutions, it seems that it
 is able to generate new solutions with a more reliable expected value
 around the middle of the area the variable covers, but decreasing more
-slowly towards values away from the center. For the time being, we can
+slowly towards values away from the center. 	\textcolor{red}{For the time being, we can
 affirm that methods that use competition outcomes for selection tend
 to evolve individuals with a less uncertain score, and thus more
 robust and whose expected
-results are more reliable; this was an objective of this GPS
+results are more reliable;} this was an objective of this GPS
 procedure, and we consider it has been achieved, as it can be seen in
 Figure \ref{fig:gfcsk}: this last method reaches the minimal
 dispersion of skewness in the 50th generation, with kurtosis in a
@@ -927,9 +927,9 @@ to getting off track and thus damage to the car.
 %
 \begin{figure}[h]	
   \begin{center}
-    \includegraphics[width=6.5cm, height=1.7cm]{fig/FRONT.jpg}
-    \includegraphics[width=6.5cm, height=1.7cm]{fig/MAX5.jpg}
-    \includegraphics[width=6.5cm, height=1.7cm]{fig/MAX10.jpg}		
+    \includegraphics[width=6.5cm, height=2.5 cm]{fig/FRONT.jpg}
+    \includegraphics[width=6.5cm, height=2.5 cm]{fig/MAX5.jpg}
+    \includegraphics[width=6.5cm, height=2.5 cm]{fig/MAX10.jpg}		
     \caption{FRONT, MAX5 and MAX10 input membership functions for a controller obtained with {\sf GFC-GPSVAE} method.}
     \label{fig:frontmfs}
 \end{center}	
@@ -1004,10 +1004,10 @@ use it only part of the time, and also together with a varying
 BLX-$\alpha$ and standard crossover operators, to assess how it
 interacts with them and which combination yields the best competitive
 results.
-In races performed in the training, and other, tracks, the controller
+	\textcolor{red}{In races performed in the training, and other, tracks, the controller
 that has evolved using competitive selection and the
 variable-$\alpha$ BLX crossover operator has proved superior to not
-only other controllers evolved previously by us, but also other
+only other controllers evolved previously by us}, but also other
 competitive entries. As a matter of fact, the use of the GPS method has the greatest
 influence in the results: {\sf GFC-GPSVAE} and {\sf GFC-GPSE}, whose only
 difference lies in the kind of crossover operator they use, create the
@@ -1031,24 +1031,24 @@ every 5 generations, or just at the end, but the problem is that in
 those cases the solution found is less competitive. However, {\sf
   GFC-GPSVA5} is quite competitive, and in the case of a limited
 evaluation budget, it could be a very good compromise.
-
+	\textcolor{red}{
 As a conclusion, in this paper, we have proved that combining an
 evolutionary algorithm with a novel selection strategy that reduces
-uncertainty in evaluation with a varying, floating point,
+uncertainty in evaluation with a varying, floating point,}
 crossover operator, consistently obtains the best results so far in
 TORCS. The sets of choices of running track, car, controller, and actually parts of it that are evolving are thus also validated by
 these results. Since the tracks have been specially selected to be as
 general as possible, we think that this result could be extended to
 other tracks, as long as ``training'' or evolution uses a track that
 has as many different features as possible.
-
+	\textcolor{red}{
 We also think that results are probably independent of the fact that
 we are using a set of fuzzy controllers, and could be
 generalized to any kind of controller, as long as the evolution
 process has the possibility to explore the space of controllers in the
 same, efficient, way. This is a possible way of extending the work:
 substituting fuzzy controllers by simple neural nets could be a way of
-proving that the competition-based approach can find good results
+proving that the competition-based approach can find good results}
 independently of the low-level algorithms using to drive the
 car. Fuzzy and neural controllers could be also mixed, even coevolved,
 to try and find the best ones. Since the GPS method
