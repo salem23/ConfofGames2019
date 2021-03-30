@@ -285,7 +285,7 @@ This section presents the environment where the study has been conducted, i.e. t
 %-------------------------------  TORCS ----------------------------
 %
 
-\subsection{Simulation environment}
+%\subsection{Simulation environment}
 
 \begin{figure}[!ht] 
 	\begin{center}
@@ -315,7 +315,8 @@ to use fuzzy sub-controllers.
 
 %---------------------------  FUZZY SUB-CONTROLLERS ----------------------------
 
-\subsection{Fuzzy sub-controllers}
+% Eliminates this for space
+%\subsection{Fuzzy sub-controllers}
 \label{subsec:fuzzy-controllers}
 
 \begin{figure}[!ht]
@@ -350,14 +351,14 @@ rules in \cite{salem_evo18}, are fixed and shown in Table \ref{tab:output}.
 \begin{table}[h!tb]
   \centering
   {\scriptsize
-    \caption{Rules  (from \cite{salem_evo18}) for speed (top) and steering
+    \caption{{\scriptsize Rules  (from \cite{salem_evo18}) for speed (top) and steering
       (bottom) controller output. Additionally, when 
       the front, right and left sensors have the maximum value
       possible, a crisp rule that tries to set the max speed
       fires.  Angles will be reversed
       if the M10 is equal to Track 7 in the steering controller. The
       actual output will be the centroid of the output of all functions
-      that are activated. \label{tab:output}}
+      that are activated. \label{tab:output}}}
     \begin{tabular}{|c|c|c||c|}
 \hline
       Value FRONT & Value MAX5 & Value MAX10 & Target Speed (km/h) \\
@@ -602,7 +603,7 @@ the new ones in the same conditions.
 \begin{table}[!htp]
 	\centering
 	{\scriptsize
-		\caption{ Description of the controllers tested in the experiments.}
+		\caption{{\scriptsize Description of the controllers tested in the experiments.}}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
@@ -743,7 +744,7 @@ The main intention of these experiments is to
 \begin{table}[h!]
 	\centering
 	{\scriptsize
-		\caption{ Results of GPS controllers and varying $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}, and {\tt	inferno} are example controllers included with TORCS \cite{torcs4}. In {\bf boldface} the best value, and in {\em italics} the second best.}
+		\caption{{\scriptsize Results of GPS controllers and varying $BLX-\alpha$ controllers in a mini-championship with 10 controllers and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}, and {\tt	inferno} are example controllers included with TORCS \cite{torcs4}. In {\bf boldface} the best value, and in {\em italics} the second best.}}
 		{
                   \begin{tabular}{|c|c|>{\columncolor[gray]{.9}}c|c|c||c|}
                   	              \hline
@@ -846,7 +847,7 @@ Table \ref{tab:allsresults} shows the obtained results.
 \begin{table}[ht]
   \centering
   {\scriptsize
-    \caption{ Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
+    \caption{\scriptsize Results of {\sf GFC-GPSVAE} and {\sf GFC-GPSE}
       in a mini-championship with 10 controllers
       and 10 races in two different training tracks and two testing tracks (20 laps each). {\tt tita}, {\tt berniw}, and {\tt inferno} are example controllers included with the TORCS
       simulator \cite{torcs4}.  {\bf Boldface} is used to highlight
@@ -991,7 +992,7 @@ $BLX-\alpha$ have reached the optimal solution in a few generations
 (between the $7^{th}$ and the $20^{th}$) while the other methods required more
 generations. 
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions and Future Work} 
+\section{Conclusions and Future Work}
 \label{sec:conclusions}
 
 In this paper, and in order to avoid the impedance between using solo
