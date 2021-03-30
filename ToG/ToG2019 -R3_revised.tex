@@ -32,7 +32,7 @@
 E-mail: salem@univ-mascara.dz
 \IEEEcompsocthanksitem A~M.~Mora was with the Department of Signal Theory, Telematics and Communications, ETSIIT-CITIC, University of Granada, Spain.\protect\\
 Email: amorag@ugr.es
-\IEEEcompsocthanksitem J~J.~Merelo was with the Department of Computer Architecture and Computer Technology. University of Granada, Spain.\protect\\
+\IEEEcompsocthanksitem J~J.~Merelo was with the Department of Computer Architecture and Technology. University of Granada, Spain.\protect\\
 Email: jmerelo@ugr.es
 }% <-this % stops an unwanted space
 \thanks{Manuscript received December XX, 2019; revised XXXX, 2020.}}
@@ -45,7 +45,7 @@ used for designing racing car controllers, but with a series of
 challenges: an evaluation function that can separate the best
 controllers from the rest, and a series of operators that can explore
 different possibilities in the controller search space. Within the
-context of the TORCS racing simulator, in this paper,\textcolor{red}{we introduce a
+context of the TORCS racing simulator, in this paper \textcolor{red}{we introduce a
 selection policy based on competition and called
 \textit{Grand Prix Selection} (GPS)}, which will be able to increase
 robustness by using something more realistic than solo race scores to
@@ -599,34 +599,34 @@ the new ones in the same conditions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table*}[!htp]
+\begin{table}[!htp]
 	\centering
 	{\scriptsize
 		\caption{ Description of the controllers tested in the experiments.}
 		{
 			\begin{tabular}{|c|c|c||c|}
 				\hline
-				Controller&Fitness & GPS frequency&Crossover operator \\
+				GFC Controller&Fitness & GPS frequency&Xover operator \\
 				\hline
 				\hline
-{\sf{GFC-GPSE}}&	\textcolor{red}{Competition-based}&Every generation&Standard crossover\\
-{\sf{GFC-GPSVAE}}&	\textcolor{red}{Competition-based}&Every generation & Varying BLX$-\alpha$\\
+{\sf{GPSE}}&	\textcolor{red}{Competition-based}&Every gen.&Standard\\
+{\sf{GPSVAE}}&	\textcolor{red}{Competition-based}&Every gen. & Varying BLX$-\alpha$\\
 
-{\sf{GFC-GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations&Standard crossover\\
-{\sf{GFC-GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 generations & Varying BLX$-\alpha$\\
+{\sf{GPS5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 gens.&Standard\\
+{\sf{GPSVA5}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid&Every 5 gens. & Varying BLX$-\alpha$\\
 
-{\sf{GFC-GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation &Standard crossover\\
+{\sf{GPSL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last gen. &Standard\\
 
-{\sf{GFC-GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last generation & Varying BLX$-\alpha$\\
-{\sf{GFC}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Equation \ref{fit_avg})&-&Standard crossover\\
-{\sf{GFC-VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Equation \ref{fit_avg})& - & Varying BLX$-\alpha$\\
+{\sf{GPSVAL}}\cite{DBLP:conf/cig/SalemMG19}&Hybrid &Last gen. & Varying BLX$-\alpha$\\
+{\sf{Plain}}\cite{salem_cig2018}& Fitness $f_{AVS}$ (Eq \ref{fit_avg})&-&Standard xover\\
+{\sf{VA}}\cite{DBLP:conf/cig/SalemMG19}&Fitness $f_{AVS}$ (Eq \ref{fit_avg})& - & Varying BLX$-\alpha$\\
 
 
 \hline
 			\end{tabular}
 		}\label{tab:drivers}
 	}
-\end{table*}
+\end{table}
 %
 
 % ---------------------------------------------------------------------------
